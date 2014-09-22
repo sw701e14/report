@@ -1,0 +1,13 @@
+@echo off
+del *.aux
+del *.bbl
+del *.bib~
+del *.blg
+del *.log
+del *.out
+del *.synctex.gz
+del *.synctex.gz(busy)
+del *.toc
+del *.tdo
+del *.lof
+del *.lot

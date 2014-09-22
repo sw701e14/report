@@ -1,0 +1,72 @@
+% Her er en liste over navnene på de forskellige styles
+% C#: csharp
+% F#: fsharp
+
+% 
+% Listings kan refereres vha. \cref{}
+\crefname{listing}{code example}{code example}
+\Crefname{listing}{Code example}{code examples}
+% 
+
+%Algoritmer i cref
+\crefname{algocf}{algorithm}{algorithm}
+\Crefname{algocf}{Algorithm}{Algorithms}
+%
+
+% Angivelse af navn på listings
+\renewcommand\lstlistingname{Code example}
+\renewcommand\lstlistlistingname{Code example}
+
+\lstdefinestyle{standard}
+{
+	frame=shadowbox,
+	framesep=5pt,
+	rulecolor=\color{blue!40!black},
+	rulesepcolor=\color{white!93!black},
+	numbers=left,
+	basicstyle=\ttfamily,
+	numberstyle=\tiny,
+	numberfirstline=true,
+	%numberblanklines=false,
+	stepnumber=1,
+	numbersep=9pt,	
+	captionpos=b,
+	escapeinside={(*}{*)},
+	breaklines=true,
+	tabsize=4,
+	language=c
+}
+
+\lstset{style=standard}
+
+\lstdefinestyle{c}
+{
+	style=standard
+}
+
+\lstdefinestyle{csmall}
+{
+	style=c
+}
+
+\lstdefinestyle{csharp}
+{
+	style=standard,
+	language=[Sharp]C
+}
+\lstdefinestyle{csharpsmall}
+{
+	style=csharp
+}
+\lstdefinestyle{fsharp}
+{
+	language=[Sharp]F,
+	frame=lr,
+	rulecolor=\color{blue!80!black}
+}
+\lstdefinestyle{fsharpsmall}
+{
+	style=fsharp,
+	basicstyle=\ttfamily\footnotesize
+}
+
