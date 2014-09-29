@@ -7,6 +7,7 @@ These methods and their purpose will be described here.
 
 \paragraph{FollowMee.com}
 Followmee.com provides a service that tracks a phone like we expect the bikes will be tracked in the final system.
+The gps data is usable to our purpose because it tracks a GPS device with realistic errors and accuracies.
 An app reports to the site at a given interval and the data can then later be retrieved as a csv file.
 
 The format of the csv file is as follows:
@@ -26,6 +27,7 @@ A member from the group had the app running for about a week to generate some so
 \paragraph{Google Directions}
 Google directions is an API provided by Google that can calculate the route between two points and output as a number of road fragments.
 This provides a way of quickly testing specific test cases when debugging.
+This data is usable to our purpose because it generates realistic routes, but the accuracies are not as with a real GPS device, and will eventually have to be simulated.
 
 The API can output in either XML or JSON format.
 An example of a very simple request of the route from a point to itself can be seen in \cref{gdir}.
