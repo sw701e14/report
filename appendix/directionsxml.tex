@@ -1,0 +1,76 @@
+\chapter{Google Directions XML output}\label{gdir}
+
+The output for the http request
+
+\begin{lstlisting}
+https://maps.googleapis.com/maps/api/directions/xml?origin=Chicago,IL&destination=Chicago,IL
+\end{lstlisting}
+
+
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<DirectionsResponse>
+ <status>OK</status>
+ <route>
+  <summary>S Federal St</summary>
+  <leg>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>41.8781139</lat>
+     <lng>-87.6297872</lng>
+    </start_location>
+    <end_location>
+     <lat>41.8781139</lat>
+     <lng>-87.6297872</lng>
+    </end_location>
+    <polyline>
+     <points>eir~FdezuO</points>
+    </polyline>
+    <duration>
+     <value>0</value>
+     <text>1 min.</text>
+    </duration>
+    <html_instructions>Tag </html_instructions>
+    <distance>
+     <value>0</value>
+     <text>1 fod</text>
+    </distance>
+   </step>
+   <duration>
+    <value>0</value>
+    <text>1 min.</text>
+   </duration>
+   <distance>
+    <value>0</value>
+    <text>1 fod</text>
+   </distance>
+   <start_location>
+    <lat>41.8781139</lat>
+    <lng>-87.6297872</lng>
+   </start_location>
+   <end_location>
+    <lat>41.8781139</lat>
+    <lng>-87.6297872</lng>
+   </end_location>
+   <start_address>Chicago, Illinois, USA</start_address>
+   <end_address>Chicago, Illinois, USA</end_address>
+  </leg>
+  <copyrights>Kortdata 2014 Google</copyrights>
+  <overview_polyline>
+   <points>eir~FdezuO</points>
+  </overview_polyline>
+  <bounds>
+   <southwest>
+    <lat>41.8781139</lat>
+    <lng>-87.6297872</lng>
+   </southwest>
+   <northeast>
+    <lat>41.8781139</lat>
+    <lng>-87.6297872</lng>
+   </northeast>
+  </bounds>
+ </route>
+</DirectionsResponse>
+
+\end{lstlisting}
