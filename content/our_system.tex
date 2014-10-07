@@ -1,32 +1,38 @@
-The main idea behind making bikes publicly available is for people to use them. To increase the usage we have rethought the current system and found some areas which can be improved (see \ref{errorsInOldSystem}).
-We will improve the current system in these areas:
+The main idea behind making bikes publicly available is for people to use them. To increase the usage we have rethought the current system and found some areas which can be improved (see \cref{errorsInOldSystem}).
+
+The biggest change to the current system, will be the addition of GPSs in the bikes.
+This will bring the following changes:
 \begin{itemize}
-\item The bikes will become smarter.
-\item The stations will be shut down.
-\item The payment and payment method will be altered.
-\item We will drastically increased functionality.
+\item Bike stations will be completely obsolete.
+\item It will be possible to track the position of bikes.
+\item It will be possible to track the usage of bikes.
 \end{itemize}
 
-\subsection{The bikes}
-The current bikes sometimes vanish or are left in a ditch somewhere until another user sees it and reports it. In order to enhance this method and to increase overall functionality, we have installed GPSs in all bikes. This would allow us to always keep track of the bikes and thereby allow for more features and functionality.
+\subsection{Bike stations}
+As of now, bike stations serve a limited purpose.
+They are where people are supposed to place the bikes after use, thus making it possible for other people to find the bikes.
+However, bikes are not necessarily returned to a station after use, somewhat disrupting the sole purpose of the bike stations.
 
-In order to implement some of the features we want, we needed a special lock, which could be unlocked by a keypad (see \ref{lock}). The lock should also be connected to the Internet in order for us to know when a bike is locked. It is important that the bikes are now able to be locked remotely, to ensure the safety of the user.
+Furthermore, by adding GPSs to the bikes, it will be possible to get an exact location of a bike, even if it is not at a bike station.
 
-The lock should also be able to change its lock code every X minutes. This features ensures 
+\subsection{Tracking location of bikes}
+By requesting GPS locations on bikes, it will be possible to get an overview of all bikes.
+This can be useful for users, who are trying to locate an available bike nearby.
+It can also be used by Aalborg Kommune, to locate missing or stolen bikes.
 
-\includegraphics[width=.75\textwidth]{lock}
+In regards to users locating bikes, they should have a more limited view, as compared to Aalborg Kommune.
+They should be restricted to viewing bikes that are confirmed available.
+As of now, it is not completely certain how a bike will be confirmed available, but the main idea is to do so after a given period of time with no activity.
 
-\subsection{The stations}
-To achiever greater freedom of use we have decided to shut down the current stations. This allows the user to park the bike wherever he/she wants, and is no longer confined to the stations. This would however make it more difficult to find a bike, which is why we have implemented counter features which is described later in the report (see \ref{bikeNearby}).
+If a bike should leave the Aalborg area, Aalborg Kommune should be notified.
+If a bike is inactive for too long, it could mean that it is broken or parked too far away for anyone to use it.
+Then Aalborg Kommune could be notified, and someone can be sent to either make repairs or move it.
 
-\subsection{Payment}
-Given that the bikes have become smarter and therefore more expensive we have decided to charge for the fares. The prices should be over time with the price increasing every increment of time.\alexander{Write precise time and price instead when decided.}
-The price increase over time should solve the problem of people lending a bike and locking it with their own lock, to keep others from using it. \alexander{Source to problem?}
-
-Payment should be done through a smartphone application or established payment-stations for those who do not have a smartphone. It should therefore not impact the usage of tourists and people without smartphones.
-It is intended to work by the smartphone or payment-station grants you a position to a bike and a code which can unlock the bike for the next X minutes. This way it will not be a problem to locate the bikes, nor can a user occupy a bike without using it more than X minutes. The distance from the payment-station or smartphone to the bike should be calculated to ensure it is possible to walk to and unlocking the bike before the unlocking code changes.
-\alexander{What if a user has paid through payment-station and uses the bike more than paid fore?}
-
+\subsection{Tracking usage of bikes}
+By periodically requesting the location of the bikes, their movements could be tracked.
+Further, by confirming long stops (confirming availability), so-called hot-spots could be determined.
+These hot-spots would work as informal stations, where bikes are more likely to be placed after usage.
+Then it would be possible, by looking at the historics of bikes, to predict to which hot-spot a given bike is headed, when taken in to use from a certain hot-spot.
 
 \subsection{Software}
 \subsubsection{Webservice}
