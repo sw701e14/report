@@ -1,0 +1,77 @@
+\include{setup/preamble}
+\begin{document}
+
+%Front page
+\begin{titlepage}
+
+\begin{center}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\HRule \\[0.4cm]
+\textsc{ \Huge City Bike \\[0.3cm]
+	\Large Aalborg }\\[0.4cm]
+
+\HRule \\[1cm]
+
+\textsc{\Large SW701E14} \\[2cm]
+
+\includegraphics[width=.75\textwidth]{logo}
+
+\vfill
+{\Large Internet Technology}
+\\ ~\\
+{\large 7\superscript{th} Semester, Fall 2014}
+
+\end{center}
+\end{titlepage}
+
+\setcounter{secnumdepth}{3}
+
+\cleardoublepage
+
+\input{frontmatter/title_sheet.tex}
+
+\cleardoublepage
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\newcommand{\prefaceHeaderName}{Preface}
+\section*{\prefaceHeaderName}
+\input{frontmatter/preface}
+
+%Table of contents
+\pdfbookmark{\contentsname}{toc}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+\newcommand{\introductionHeaderName}{Introduction}
+\chapter*{\introductionHeaderName}
+\addcontentsline{toc}{chapter}{\introductionHeaderName}
+\input{frontmatter/introduction}
+
+\chapter{Analysis}
+\input{content/entity_framework}
+\input{content/current_system}
+
+\section{Existing Systems}
+\input{content/existing_systems}
+
+\section{Aalborg Bycyklen}
+\input{content/aalborg_bycyklen}
+
+\section{Our System}
+\input{content/our_system}
+
+\section{Test}
+\input{content/testData}
+
+
+\appendix
+
+\input{appendix/directionsxml.tex}
+
+\bibliography{bibliography}
+\end{document}
