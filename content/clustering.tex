@@ -178,4 +178,34 @@ Assign each border point to one of the clusters associated with the border point
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
 \end{algorithm}
 
-\stefan{expand on dbscan}
+\paragraph{Choosing parameters}
+DBSCAN is defined by the two parameters $ eps $ and $ MinPts $.
+The quality of the result of DBSCAN will be dependent on these parameters.
+
+A method for determining these values is considering the behaviour of the distance to the k-th nearest neighbour of all the points, calle $ k-dist $.
+The $ k-dist $ value of points in a cluster will be small if $ k $ is not larger than the number of points in the cluster.
+Sorting these values and plotting them in a graph will show a sharp bend in the area where $ eps $ will be suitable. 
+Using this value as $ eps $ and $ k $ as $MinPts$ will make every point that has a $ k-dist $ smaller than the chosen value a core point.
+
+Choosing $ k $ can be done experimentally but the original DBSCAN algorithm used $ k= 4 $ which turned out to be a reasonable value for two dimensional data sets.
+
+
+\subsection{Choosing an algorithm}
+\stefan{maybe in analysis?}
+The previous sections have describes the available algorithms for clustering.
+We can now choose an algorithm based on our data and purpose.
+Our data and purpose will be described in order to evaluate the three presented algorithms.
+
+\paragraph{Our data and purpose}
+The data we need to cluster is gps data from the bikes.
+A bike will send a gps location in some interval, and it will be saved in a database.
+We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
+
+The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
+
+\paragraph{K-means}
+The k-means algorithm needs a value for $ k $.
+For our purpose this is difficult to know in advance, and the 
+
+\paragraph{K-means}
+The k-means algorithm needs a value for $ k $ when computing the clusters.
