@@ -1,51 +1,56 @@
-
+\label{aalborg_bycyklen}
 Aalborg Bycyklen is a bike renting service located in Aalborg, Denmark.
-It is a public service and available to all visiting and living in the city Aalborg.
-The service is available from the 1st of may to sometime in the fall(not specified on their homepage).
-\cite{aalborgbycyklenbagcyklen}
+It is a public service and available to all residents and visitors in the city of Aalborg.
+The service is available from the 1st of may to sometime in the fall(not specified on their homepage).\cite{aalborgbycyklenbagcyklen}
+
 
 \paragraph{Components}
-The service consists of the following components:
+The service provides:
 \begin{itemize}
-\item An unspecified number of bikes, 
-\item 21 bike stations with room for 170 bikes
+\item 200 bikes(140 active) and 
+\item 21 bike stations with room for 170 bikes in total.
 \end{itemize}
-The bikes have a lock that can be used at stations only.
-The lock can be unlocked by putting in a coin(20 DKK) and when the bike is locked again the coin is released.
+Each bike is provided with a lock that can be used at stations only:
+it can be unlocked by putting in a coin(20 DKK) and when the bike is locked again the coin is released.
 
-\paragraph{The renting flow}
-The flow is pretty simple:
+\paragraph{A typical utilization of the service can be summarized as follows:}
 \begin{itemize}
-\item The user is renting a bike at a station by unlocking it with 20 DKK coin
-\item The user can cycle around.
-\item The user is at his end of the tour and stops by a station to lock the bike and collect the 20 DKK back.
+\item The user rents a bike at a station by unlocking it with a coin of 20 DKK as deposit.
+\item The user can freely cycle in the city. There is no time limit.
+\item The user can give back the bike at any station by locking the bike.
 \end{itemize}
 
-\subsection{Challenges}
-This section will consider the challenges that Aalborg Bycyklen has.
-The challenges described are from the groups own experience and perspective but still considered reasonable.
+\subsection{Problems in the current system}\label{aalborg_bycyklen:challenges}
+This section will consider the challenges associated with Aalborg Bycyklen.
+The challenges described are devised from our own experience and perspective but still considered reasonable.
+\bruno{Giovanni: "Consider to collect some interviews from users."}
 
+%http://nordjyske.dk/nyheder/bycykler-ude-af-drift/e7a38ecd-3b1d-4290-8d2f-0f0e1a5d0fa6/4/1513
 \paragraph{Bikes disappear}
-The low deposit fee does that many users do not have the obligation to stop at a station near there destination.
+The low deposit fee leads to many users who feel they do not have the obligation to stop at a station near their destination.
 Instead they cycle straight to their destination and leave the bike there.
 The obvious problem is that when someone needs a bike they might not find one at a station.
-Another problem is that Aalborg Bycyklen has to collect the cycles and return them to stations.
+Another problem is that Aalborg Bycyklen has to collect the bikes and return them to the stations.
+\bruno{Giovanni: "Write better."}
 
 \paragraph{Flexibility}
 The bikes can only be locked at stations.
-This means that when a user cycles around and wants to make a stop where there is no bike station he just has to leave his bike.
-Now he cannot lock the bike and risks that someone else takes the bike.
-This means that the flexibility of Aalborg Bycyklen depends on the area to cover and the amount of bike stations.
-Another example of lack of flexibility are areas where there are no bike stations.
+This means that when a user cycles around and wants to make a stop where there is no bike station he has to leave his bike unlocked.
+This entails a risk that someone else takes the bike and the original user has to find another way of transportation, undermining the whole idea of using Aalborg Bycyklen.
+The flexibility of Aalborg Bycyklen is therefore deeply dependent on the bike stations and are restricted to areas covered by bike stations.
 
+Another example of flexibility and restriction challenges are areas where there are no bike stations. This will forbid the user from parking the bike, making it available to other users and retrieve the deposit.
 
 \paragraph{Reliability}
-There are two main examples:
+There are two main challenges regarding the reliability of Aalborg Bycyklen:
 \begin{itemize}
-\item When users have to get a bike, they go to a station to see if there is one there.
-They have no way to see if there is a bike at a station beforehand.
+\item When users want to use a bike, they have to go to a station and see if there are any available bikes.
+They have no way of knowing whether there is a bike at a station or not.
 \item Lets say a user needs a bike at a specific time in a specific area.
-But he can not be sure to find a bike at the location at the time.
+He can not be sure to find a bike at the location at the time.
 \end{itemize}
-The examples show how Aalbog Bycyklen is not that reliable.
-This is because the user does not have any knowledge about the bikes availability.
+
+\paragraph{Broken bikes}
+Aalborg Bycyklen does not know when a bike is in need of repair and rely solely on the users to report broken bikes.
+Potentially there could be bikes left outside the common-usage-area in need of repair. These bikes would be out of service for a long time.
+This coupled with the flexibility issues could strictly limit the available bikes.

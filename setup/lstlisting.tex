@@ -11,6 +11,21 @@
 %Algoritmer i cref
 \crefname{algocf}{algorithm}{algorithm}
 \Crefname{algocf}{Algorithm}{Algorithms}
+%Algoritmelinjer i cref
+\crefalias{AlgoLine}{line}%
+
+\makeatletter
+\let\cref@old@stepcounter\stepcounter
+\def\stepcounter#1{%
+  \cref@old@stepcounter{#1}%
+  \cref@constructprefix{#1}{\cref@result}%
+  \@ifundefined{cref@#1@alias}%
+    {\def\@tempa{#1}}%
+    {\def\@tempa{\csname cref@#1@alias\endcsname}}%
+  \protected@edef\cref@currentlabel{%
+    [\@tempa][\arabic{#1}][\cref@result]%
+    \csname p@#1\endcsname\csname the#1\endcsname}}
+\makeatother
 %
 
 % Angivelse af navn på listings
