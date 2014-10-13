@@ -42,7 +42,7 @@ Unlike REST, it is procedure-oriented.
 RPC-style architectures usually make us of only one HTTP methods; POST.
 The actual method information is supplied in the entity body of the request.
 
-Two very popular RPC architectures are XML-RPC and JSON-RPC.
+\paragraph{XML-RPC and JSON-RPC} are two very popular RPC architectures.
 The entity body of both request and response are in the appropriate notation (XML or JSON).
 Since all the needed information about which procedure to call, and possible parameters, are contained in the entity body, all requests can be directed at the same URL.
 Then it is up to the server to deserialize the entity body, handle the request appropriately, and finally serialize and serve the response.
