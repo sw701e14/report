@@ -15,33 +15,42 @@ The main problems being:
 The biggest change to the current system, will be the addition of GPSs in the bikes.
 This will bring the following changes:
 \begin{itemize}
-\item Bike stations will be completely obsolete, instead 'hot-spots' will be introduced.
 \item It will be possible to track the position of bikes.
-\item It will be possible to track the usage of bikes and predict future locations.
+\item Bike stations will be completely obsolete, \giovanni{"Why? CPH uses bike stations even though it uses GPS."} instead 'hot-spots' will be introduced.
+\item It will be possible to monitor the usage of bikes and make statistical predictions on future locations.
 \end{itemize}
 
-As of now, bike stations serve a limited purpose.
+\paragraph{Bike stations are unnecessary}
+So far, bike stations serve a limited purpose.
 They are where people are supposed to place the bikes after use, thus making it possible for other people to find the bikes.
 However, bikes are not necessarily returned to a station after use, somewhat disrupting the sole purpose of the bike stations.
 
+\paragraph{GPS}
 Furthermore, by adding GPSs to the bikes, it will be possible to get an exact location of a bike, even if it is not at a bike station.
-By periodically requesting the location of the bikes, their movements could be tracked.
+By monitoring the location of the bikes, their movements could be tracked.
 Further, by detecting long stops (meaning ended trip), so-called hot-spots could be determined.
-These hot-spots would work as informal stations, where bikes are more likely to be placed after usage.
-Then it would be possible, by looking at the history of bike usage, to predict to which hot-spot a given bike is headed, when taken in to use from a certain hot-spot.
 
+\paragraph{Hot-spot}
+A hot-spot is an area, like an informal station.
+But hot-spots come and go, depending on the use of the bikes.
+A hot-spot is initialized when several bikes are available at the hot-spot location.
+This is determined by looking at the history of the bike usage.
+
+\paragraph{Locating bikes}
 By requesting GPS locations on bikes, it will be possible to get an overview of all bikes.
-This can be useful for users, who are trying to locate an available bike nearby.
+The system may select an available bike nearby and guide the user to its location.
 It can also be used by Aalborg Kommune, to locate missing or stolen bikes.
 
 In regards to users locating bikes, they should have a more limited view, as compared to Aalborg Kommune.
-They should be restricted to viewing bikes that are available.
-As of now, it is not completely certain how a bike will be confirmed available, but the main idea is to do so after a given period of time with no activity.
+They should be restricted to viewing bikes that are available and nearby.
+As of now, it is not completely certain how a bike will be confirmed available, but the main idea is to do so after a given period of time with no activity.\giovanni{"Can you elaborate on that? Possible questions: log-in/out system like in CPH? What is a reasonable period of time?"}
 
 If a bike should leave the Aalborg area, Aalborg Kommune should be notified.
 If a bike is inactive for too long, it could mean that it is broken or parked too far away for anyone to use it.
 Then Aalborg Kommune could be notified, and someone can be sent to either make repairs or move it.
 
+\paragraph{Structure of the solution}
+\bruno{Description}
 The structure of the solution can be seen on \cref{fig:solution_structure}.
 
 \begin{figure}
@@ -54,9 +63,9 @@ The structure of the solution can be seen on \cref{fig:solution_structure}.
 The limits presented in the list below:
 \begin{itemize}
 \item Time: The project is due the [insert due date]
-\item There are not provided any money for the project
+\item There is not provided any money for the project
 \end{itemize}
 
 \subsection{Scope}
-Because of the limitations mentioned above this project will be developing a webservice, a location service and an agent.
+Because of the limitations mentioned above this project will be developing a webservice, a location service and an agent \giovanni{agent system?}.
 Which can be seen on \cref{fig:solution_structure} in the blue box.
