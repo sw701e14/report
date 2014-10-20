@@ -194,6 +194,7 @@ Our data and purpose will be described in order to evaluate the three presented 
 The data we need to cluster is gps data from the bikes.
 A bike will send a gps location in some interval, and it will be saved in a database.
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
+These clusters may have different size depending on the physical properties of the places the bikes are left.
 
 The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
 
@@ -205,11 +206,9 @@ For our purpose this is difficult to know in advance, and it may even change ove
 Because we do not need a taxonomy of the data points this method is not necessary.
 
 \paragraph{DBScan}
+This method both handles the noisy outliers of our data and can make clusters of different size.
+It therefore seems like a good choice for our project.
 
-
-% % dbscan 
-
-\begin{comment}
 
 \paragraph{Choosing parameters}
 DBSCAN is defined by the two parameters $ eps $ and $ MinPts $.
@@ -221,4 +220,4 @@ Sorting these values and plotting them in a graph will show a sharp bend in the 
 Using this value as $ eps $ and $ k $ as $MinPts$ will make every point that has a $ k-dist $ smaller than the chosen value a core point.
 
 Choosing $ k $ can be done experimentally but the original DBSCAN algorithm used $ k= 4 $ which turned out to be a reasonable value for two dimensional data sets.
-\end{comment}
+\stefan{Skal flyttes til implementation måske?}
