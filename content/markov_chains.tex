@@ -23,7 +23,6 @@ Thus the data that the Markov chain is to model is quite sparse.
 Using continuous time to model a process with such data will therefore not yield any additional information as opposed to a discrete time model.
 As a continuous time model is more complex \mikkel{I am in need of citation} to model and will not yield better results, \projectname{} will use a discrete time model.
 
-
 \subsection{Markov property}\label{markov:property}
 A stochastic process is said to have the Markov property if for a given state in the process the next state can be determined without knowledge of prior states.
 In general we can describe the transitions between states in a stochastic process as the following:
@@ -51,6 +50,8 @@ P_{i,j} = &\mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \cdots, X_0) \nonumber\
         = &\mathbf{P}(X_{n+1} = j \mid X_n = i)
 \end{align}
 then the process has the Markov property and thus it is called a Markov process/Markov chain.
+
+\subsection{The initial state}\label{markov:initialstate}
 
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=10cm,
   thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
@@ -87,5 +88,3 @@ then the process has the Markov property and thus it is called a Markov process/
          edge [loop left] node {0.7} (D2)
          edge [bend left] node[above right] {0.2} (B1);
 \end{tikzpicture}
-
-\subsection{The initial state}\label{markov:initialstate}
