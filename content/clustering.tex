@@ -92,8 +92,9 @@ Calculate the centerpoint of the newly formed clusters \label{recalculate}\\
 
 Because most of the convergence happens in the initial iterations the condition in \cref{repeatcondition} can be replaced by a weaker condition, like repeat until only 1\% of the points change clusters.
 
+\begin{comment}
 \paragraph{Assignment of points} The assignment of points to cluster differ depending on the data.
-If the data is in the Euclidean space Euclidean distance may be appropriate, while other data types will be to use another similarity measure.
+If the data is in the Euclidean space Euclidean distance may be appropriate, while other data types will need to use another similarity measure.
 
 \paragraph{Calculate center points} In \cref{recalculate} of the algorithm it is stated that it needs to ``Calculate the center point of the newly formed clusters''. 
 This statement is very general in the sense that it depends on the data, and even on a particular type of data it can be done in different ways.
@@ -112,12 +113,11 @@ K clusters can then be extracted from the hierarchical clustering and their cent
 A third method is to take one random point and then selecting the point farthest away from all selected points until K points are selected.
 This method ensures that the points are separated, but risk choosing outliers that do not represent any cluster.
 
+\end{comment}
+
 \paragraph{Strengths and weaknesses}
 the K-means algorithm can have some difficulty finding clusters where the data is placed in shapes very different from globular. 
 Also very big differences in size of cluster may make it difficult for K-means to differentiate the clusters.
-
-
-\stefan{The following topics are covered in the book and can be included if we find it necessary: Complexity, Additional issues, Bisecting K-means (an extension of Kmeans)}
 
 \subsection{Hierarchical Clustering}
 
@@ -126,9 +126,7 @@ Hierarchical clustering can be performed either by starting at the top of the tr
 \textit{Agglomerative hierarchical clustering} starts by considering all points as being in an individual cluster and generating the hierarchy by merging the closest clusters. 
 \textit{Divisive hierarchical clustering} start by considering all points as being in a single cluster and then splitting the clusters at each step.
 
-This section will focus on the agglomerative variant of hierarchical clustering algorithms.
-As just described agglomerative hierarchical clustering starts with individual clusters and merges them at each step.
-This is expressed as an algorithm in \cref{agglo-hier}.
+The algorithm for the agglomerative variant is described as an algorithm in \cref{agglo-hier}.
 
 \begin{algorithm}
 \SetAlgoLined
@@ -140,32 +138,36 @@ Compute the proximity matrix\\
 Merge the closest two clusters\\
 Update the proximity matrix to reflect the proximity between the newly created cluster and the old clusters\\
 }
-\caption{Agglomerative hierarchical clustering algorithm clustering}\label{agglo-hier}
+\caption{Agglomerative hierarchical clustering algorithm}\label{agglo-hier}
 \end{algorithm}
 
+\begin{comment}
 \paragraph{Defining proximity}
 The key to the agglomerative hierarchical clustering algorithm is to choose a fitting measure for proximity.
 An approach is to look at the clusters as a graph.
 Then clusters can be compared by looking at either the distance between the closest members of the clusters, or the distance between the farthest members of the clusters.
 Another method is to look at the increase in SSE to the center of a cluster when performing a merge, and minimizing this value.
 This method is called Ward's method.
+\end{comment}
 
-\stefan{The following is covered in the book and can be added if we find it necessary: Complexity, proximity examples, Key issues}
+\paragraph{Strengths and weaknesses}
+Hierarchical clustering is ideal when some kind of taxonomy needs to be created of the data.
+This however comes at the cost of computational and space complexity.
 
 \subsection{DBSCAN}
 DBSCAN in a densitybased clusteringalgorithm that locates regions of high density that are separated by regions of low density.
 
 \paragraph{Center based point density}
-As with similarity there exists different methods of determining density.
-One approach is to use a point as a center and calculate the number of point that are within a certatin radius of the point.
+There exists different methods of determining density in a set of data points.
+One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be classified whether a point is placed in a dense region (a core point),at the edge of a dense region (a border point) or is in a region with sparse density (a noise point).
-The exact definition of the three types of points are as follows:
+The exact definition of the three types of points are as follows:\cite{pang2006introduction}
 
 \textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it. 
 Here $ MinPts $ is the number of points in the vicinity of a point regarded as dense by the user, and $ eps $ is the radius to look for these points.
-\textbf{Border points} A point that is not a core point, but is in the neighbourhood of a core point. 
+\textbf{Border points} A point that is not a core point, but is in the neighborhood of a core point. 
 One point can be a border point to several core points.
-\textbf{Noise point} Any point that is neither a core point or a border point.
+\textbf{Noise point} Any point that is neither a core point or a border point. 
 
 Given these definitions, the algorithm is described in \cref{dbscan-algo}
 
@@ -178,4 +180,45 @@ Assign each border point to one of the clusters associated with the border point
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
 \end{algorithm}
 
-\stefan{expand on dbscan}
+\paragraph{Strengts and weaknesses}
+DBScan is resistant to noise and can also handle clusters that vary in size.
+DBScan can have some trouble finding clusters that vary in density.
+
+\subsection{Choosing an algorithm}
+\stefan{maybe in analysis?}
+The previous sections have describes the available algorithms for clustering.
+We can now choose an algorithm based on our data and purpose.
+Our data and purpose will be described in order to evaluate the three presented algorithms.
+
+\paragraph{Our data and purpose}
+The data we need to cluster is gps data from the bikes.
+A bike will send a gps location in some interval, and it will be saved in a database.
+We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
+
+The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
+
+\paragraph{K-means}
+The k-means algorithm needs a value for $ k $.
+For our purpose this is difficult to know in advance, and it may even change over time.
+
+\paragraph{Hierarchical clustering}
+Because we do not need a taxonomy of the data points this method is not necessary.
+
+\paragraph{DBScan}
+
+
+% % dbscan 
+
+\begin{comment}
+
+\paragraph{Choosing parameters}
+DBSCAN is defined by the two parameters $ eps $ and $ MinPts $.
+The quality of the result of DBSCAN will be dependent on these parameters.
+
+A method for determining these values is considering the behaviour of the distance to the k-th nearest neighbour of all the points, calle $ k-dist $.
+The $ k-dist $ value of points in a cluster will be small if $ k $ is not larger than the number of points in the cluster.
+Sorting these values and plotting them in a graph will show a sharp bend in the area where $ eps $ will be suitable. 
+Using this value as $ eps $ and $ k $ as $MinPts$ will make every point that has a $ k-dist $ smaller than the chosen value a core point.
+
+Choosing $ k $ can be done experimentally but the original DBSCAN algorithm used $ k= 4 $ which turned out to be a reasonable value for two dimensional data sets.
+\end{comment}
