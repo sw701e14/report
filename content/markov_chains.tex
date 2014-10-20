@@ -53,6 +53,7 @@ then the process has the Markov property and thus it is called a Markov process/
 
 \subsection{The initial state}\label{markov:initialstate}
 
+\begin{figure}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=10cm,
   thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
 
@@ -65,7 +66,11 @@ then the process has the Markov property and thus it is called a Markov process/
     (2) edge [bend left] node {0.6} (1)
         edge [loop right] node {0.4} (2);
 \end{tikzpicture}
+\caption{A Markov chain model of two bike stations}
+\label{markov:model:simple}
+\end{figure}
 
+\begin{figure}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
   thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
 
@@ -88,3 +93,6 @@ then the process has the Markov property and thus it is called a Markov process/
          edge [loop left] node {0.7} (D2)
          edge [bend left] node[above right] {0.2} (B1);
 \end{tikzpicture}
+\caption{A Markov chain model of two bike stations with departure states}
+\label{markov:model:complex}
+\end{figure}
