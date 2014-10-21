@@ -29,7 +29,7 @@ In general we can describe the transitions between states in a stochastic proces
 
 Let $X_n$ denote the state of a process after $n$ transitions and $P_{i,j}$ describe the probability that a process transitions from state $i$ to state $j$.
 A stochastic process then has a finite set of states, given by $S = \{X_0, X_1, X_2,\cdots, X_{m-1}, X_m\}$.
-Given an initial state $X_0$ (see \cref{markov:initialstate}) we have that:
+Given an initial state $X_0$ we have that:
 \begin{align*}
 P_{X_0,X_1} = \mathbf{P}&(X_1 \mid X_0)\\
 P_{X_1,X_2} = \mathbf{P}&(X_2 \mid X_1, X_0)\\
@@ -50,5 +50,3 @@ P_{i,j} = &\mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \cdots, X_0) \nonumber\
         = &\mathbf{P}(X_{n+1} = j \mid X_n = i)
 \end{align}
 then the process has the Markov property and thus it is called a Markov process/Markov chain.
-
-\subsection{The initial state}\label{markov:initialstate}
