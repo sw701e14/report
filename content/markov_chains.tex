@@ -54,6 +54,7 @@ then the process has the Markov property and thus it is called a Markov process/
 \subsection{Representing a Markov chain}
 In the sections above the property describing a Markov chain were presented as well as the overall type of processes that are modeled using Markov chains.
 Below is given a formal definition of Markov chains, in terms of their mathematical, visual and binary representations:
+
 \paragraph{Mathematical representation}
 A discrete-time Markov chain can be represented as a 2-tuple.
 Below is given such a definition of Markov chains using such a representation:
@@ -64,7 +65,44 @@ S & = \{X_0, X_1, \cdots, X_n\} \nonumber\\
 \end{align}
 Where $S$ is a finite set of states in the process, as described in \cref{markov:property} and $\tau$ is a function that given two states $i$ and $j$ returns the probability of transitioning from state $i$ to $j$.
 We denote this probability as $\tau_{ij}$ and note that it must hold that:
-\begin{equation}
+\begin{equation}\label{markov:eq:state_sum}
 \forall s \in S \: \sum_{p \in S} (\tau_{sp}) = 1
 \end{equation}
 That is, there is probability 1 that the process will transition to its \emph{next state} when it transitions to its next state.
+
+\paragraph{Visual representation}
+Markov chains are typically represented using a directed acyclic graph.
+In such a graph nodes represent states and the weight of edges represent the probability of transitioning between two states.
+Because of the Markov property, processes can be represented using this very simple graphical representation.
+
+In \cref{markov:model:example1} is an example Markov chain with states $\{A, B, C\}$.
+From the diagram we see that the process will transition from state $C$ to state $A$ with probability $0.9$ and to state $B$ with probability $0.1$.
+There is zero probability of the process \textit{staying} in state $C$.
+Any such edges can be removed from the graph to simplify it.
+Thus all \emph{missing} edges should be considered edges with weight 0.
+We can also see from the graph that the sum of the weights of all outgoing edges on each node is 1, as per \cref{markov:eq:state_sum}.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
+bend angle=15,
+  thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (1) {$A$};
+  \node[main node] (2) [above right = 4cm and 3cm of 1] {$B$};
+  \node[main node] (3) [below right = 4cm and 3cm of 2] {$C$};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge [bend left] node {0.3} (2)
+        edge [loop left] node {0.7} (1)
+        edge [bend left, draw=gray] node {\color{gray} 0.0} (3)
+    (2) edge [bend left] node {0.3} (1)
+        edge [loop above] node {0.4} (2)
+        edge [bend left] node {0.3} (3)
+    (3) edge [bend left] node {0.9} (1)
+        edge [loop right, draw=gray] node {\color{gray} 0.0} (3)
+        edge [bend left] node {0.1} (2);
+\end{tikzpicture}
+\caption{A state diagram describing a Markov chain with states $\{A, B, C\}$}
+\label{markov:model:example1}
+\end{figure}
