@@ -23,6 +23,9 @@ To use the service the user has to log-in with an existing account.
 The bike is then unlocked from the rack and the hourly charges begin.
 Once the bike is no longer in use and placed in a rack again, the user is logged out and the bike is locked.
 
+If a bike is left outside a bike station for longer than 2 hours, fees are charged (200 DKK in Copenhagen/Frederiksberg, 800 DKK outside), or if it has been in use for longer than 10 hours (500 DKK).
+For short stops during a trip, the lock can be locked with an analogue lock, which is unlocked the same way as at a station, but only for the currently active user.
+
 It is possible to reserve a bike by using their web page, which in all cases cost 10 DKK.
 This will hold a bike, by locking it, up to 45 minutes before it is needed.
 Half an hour before the reservation time, a text is sent to inform whether a bike was successfully held or not.
@@ -61,30 +64,29 @@ The exact number of bikes and stations is unknown.
 The official website states that there are ''100s of stations'' and ''1000s of bikes''.
 The bikes are very simple, with no motor or GPS, and the tablet in front is only used for unlocking bikes with either pass-code or membership-key.
 
-\subsection{Reflections}
+\subsection{Evaluation}
 Based on the problems described in \cref{aalborg_bycyklen:challenges}, the existing systems will be evaluated in regards to whether they solve all or some of these problems.
 
 \paragraph{Bikes disappear}
-In Bycyklen there are hourly charges until the bike is returned, then there are additional fees if a bike is left outside a bike station for longer than 2 hours (200 DKK in Copenhagen/Frederiksberg, 800 DKK outside), or if it has been in use for longer than 10 hours (500 DKK).
+In Bycyklen, this is partially, indirectly solved by the hourly charges until the bike is returned, along with the additional fees if the bike is immobile for 2 hours or used for more than 10 hours.
 Presumably, the GPS in the bikes can also be used to locating misplaced bikes (This is based on the fact that users agree to let Bycyklen collect anonymous data about start/end destination, and route usage).
 
 In Citibike NYC overcharge fees are continuously charged, after exceeding the allowed half hour trip, until it is returned to a bike station.
 Nothing can be found about whether this goes on forever or not.
 
 \paragraph{Flexibility}
-In Bycyklen there is an analogue lock, for short stops (less than 2 hours), so that you can leave the bike without the risk of someone else taking it.
-However, the bike must be returned to one of the 20 stations after ended use.
+Bycyklen has the analogue lock, for short stops (2 hours) during use.
+However, when done using a bike it must be returned to a station.
 
-In Citi Bike NYC there are 100s of stations, with stations being within 2 or 3 blocks of each other.
-The multitude of stations should make sure that there's always a station close-by, no matter where you want to end your trip.
+In Citi Bike NYC, the multitude of stations should make sure that there's always a station close-by, no matter where you want to end your trip, including shorter stops.
 
 \paragraph{Reliability}
 Both Bycyklen and Citibike NYC have web apps with a map showing stations, along with an indication of how many bikes are available at the different stations.
 Citibike NYC also has native mobile apps, while Bycyklen only has the web app.
 
-The reservation system of Bycyklen cannot ensure that a bike will be available, as it will only attempt to lock a bike half an hour before the reservation time, if no bikes are available, instead a message about this is received.
+The reservation system of Bycyklen cannot ensure that a bike will be available, as it will only attempt to lock a bike 45 minutes before the reservation time if a bike is available.
 
-Citibike NYC has no reservation system, one must consult an app for available bikes at stations, but the multitudes of bikes should ensure that there's always a bike.
+Citibike NYC has no reservation system, one must consult an app for available bikes at stations, but the multitudes of bikes should ensure that there's always a bike, and the multitude of stations should ensure that you won't have to go far if no bike was at the first visited station.
 
 \paragraph{Broken bikes}
 Before using a Bycyklen bike, all errors must be reported, or else the user can be charged for errors found by the next user.
@@ -93,12 +95,26 @@ Errors must also be reported during use, and if errors hinters a trip, refunds c
 Using the mounted tablet on a Citibike NYC bike, one can report errors/damages by pressing a wrench-icon button.
 If errors are found during use, the bike is simply returned at a station and the aforementioned button is pressed.
 
+\subsection{Conclusion}
+\mikael{What is our conclusion?}
+Both systems do well in handling all the described problems.
+However, despite Bycyklen having a booking system, it doesn't quite provide the sought-after reliability.
+And perhaps 20 stations isn't quite enough if you want to take a bike from near home, take it to work, park it somewhere near work for around 8 hours.
+The lack of stations isn't a problem during trips though, as the analogue lock can be used for up to 2 hours.
+
+Citibike NYC seems to solve all the problems by providing a vast number of both stations and bikes.
+This might not be possible in a city like Aalborg with a smaller population and population density.\mikael{This is just guesswork.}
+
 \paragraph{Social aspects}
-Aalborg and Nørresundby: 130853
-København and Frederiksberg: 672274
-\cite{bef44}
-Manhattan: 1626159
-Brooklyn: 2592149
-NYC: 8405837
-\cite{nyc}
+Aalborg/Nørresundby, Copenhagen/Frederiksberg, and New York City are very different.
 \mikael{I don't really know what to say here}
+\begin{description}
+\item[Aalborg and Nørresundby\cite{bef44}] 130,853
+\item[København and Frederiksberg\cite{bef44}] 672,274
+\item[NYC\cite{nyc}] 8,405,837
+\begin{description}
+\item[Manhattan\cite{nyc}] 1,626,159
+\item[Brooklyn\cite{nyc}] 2,592,149
+\end{description}
+\end{description}
+
