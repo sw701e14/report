@@ -71,7 +71,7 @@ We denote this probability as $\tau_{ij}$ and note that it must hold that:
 That is, there is probability 1 that the process will transition to its \emph{next state} when it transitions to its next state.
 
 \paragraph{Visual representation}
-Markov chains are typically represented using a directed acyclic graph.
+Markov chains are typically represented using a DAG\footnote{Directed Acyclic Graph}.
 In such a graph nodes represent states and the weight of edges represent the probability of transitioning between two states.
 Because of the Markov property, processes can be represented using this very simple graphical representation.
 
@@ -106,3 +106,43 @@ bend angle=15,
 \caption{A state diagram describing a Markov chain with states $\{A, B, C\}$}
 \label{markov:model:example1}
 \end{figure}
+
+\subsection{Determining probabilities}
+
+As a Markov chain can be represented using a DAG, it can also be thought of as an adjacency matrix $P$.
+And similarly we can represent a set of probabilities of being in each state using a row-vector $r$.
+To identify such sets at different timestamps, we let $r_t$ define the row vector describing the probability of being in each state at time $t$, given that we started with an initial vector $r_0$.
+
+\begin{equation}
+P = \begin{bmatrix}
+    \tau_{{s_0}{s_0}} & \tau_{{s_0}{s_1}} & \tau_{{s_0}{s_2}} & \cdots & \tau_{{s_0}{s_n}} \\[0.3em]
+    \tau_{{s_1}{s_0}} & \tau_{{s_1}{s_1}} & \tau_{{s_1}{s_2}} & \cdots & \tau_{{s_1}{s_n}} \\[0.3em]
+    \tau_{{s_2}{s_0}} & \tau_{{s_2}{s_1}} & \tau_{{s_2}{s_2}} & \cdots & \tau_{{s_2}{s_n}} \\[0.3em]
+          \cdots      &      \cdots       &      \cdots       & \ddots &     \vdots \\[0.3em]
+   \tau_{{s_n}{s_0}} & \tau_{{s_n}{s_1}} & \tau_{{s_n}{s_2}} & \cdots & \tau_{{s_n}{s_n}}
+     \end{bmatrix}
+\end{equation}
+
+With the example given in \cref{markov:model:example1} we can define a matrix describing the transitions and an initial set of probabilities.
+As an example, we could start the process in state $A$.
+That is, there is probability 1 of being in state $A$ at time 0:
+
+\begin{equation}\label{markov:model:example1:initial}
+r_0 = \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}
+\quad\quad
+P = \begin{bmatrix}
+       0.7 & 0.3 & 0.0 \\[0.3em]
+       0.3 & 0.4 & 0.3 \\[0.3em]
+       0.9 & 0.1 & 0.0
+     \end{bmatrix}
+\end{equation}
+
+To determine the probability of the process being in the different states is a matter of calculating the product of the row-vector and probability matrix:
+$$r_n = r_{n-1} \cdot P$$
+As a row-vector is defined recursively in terms of its predecessor, as per the Markov property (see \cref{markov:property}), we can define it in terms of its k\superscript{th} predecessor.
+Using that we can describe any row-vector $r_n$ in terms of the initial row-vector $r_0$.
+\begin{align}
+r_n &= r_{n-k} \cdot P^k\\
+    &= r_{n - n} \cdot P^n\nonumber\\
+    &= r_0 \cdot P^n\nonumber
+\end{align}
