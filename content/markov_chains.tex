@@ -28,17 +28,17 @@ A stochastic process is said to have the Markov property if for a given state in
 In general we can describe the transitions between states in a stochastic process as the following:
 
 Let $X_n$ denote the state of a process after $n$ transitions and $P_{i,j}$ describe the probability that a process transitions from state $i$ to state $j$.
-A stochastic process then has a finite set of states, given by $S = \{X_0, X_1, X_2,\cdots, X_{m-1}, X_m\}$.
+A stochastic process then has a finite set of states, given by $S = \{X_0, X_1, X_2,\dots, X_{m-1}, X_m\}$.
 Given an initial state $X_0$ we have that:
 \begin{align*}
 P_{X_0,X_1} = \mathbf{P}&(X_1 \mid X_0)\\
 P_{X_1,X_2} = \mathbf{P}&(X_2 \mid X_1, X_0)\\
 \vdots\\
-P_{X_{m-1},X_m} = \mathbf{P}&(X_m \mid X_{m-1}, \cdots, X_1, X_0)
+P_{X_{m-1},X_m} = \mathbf{P}&(X_m \mid X_{m-1}, \dots, X_1, X_0)
 \end{align*}
 That is, we can describe the probability of each transition in a stochastic process in terms of its preceding transitions:
 \begin{equation}\label{markov:eq:stochastic_prob}
-P_{i,j} = \mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \cdots, X_0)
+P_{i,j} = \mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \dots, X_0)
 \end{equation}
 
 The Markov property states that any given any state $i \in S$ in a process we can determine the next state $j$ without knowledge of any states prior to $i$.
@@ -46,7 +46,7 @@ This allows us to simplify \cref{markov:eq:markov_prob} for Markov chains and pr
 
 If for all $i \neq j \in S$ in a stochastic process it is true that:
 \begin{align}\label{markov:eq:markov_prob}
-P_{i,j} = &\mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \cdots, X_0) \nonumber\\
+P_{i,j} = &\mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \dots, X_0) \nonumber\\
         = &\mathbf{P}(X_{n+1} = j \mid X_n = i)
 \end{align}
 then the process has the Markov property and thus it is called a Markov process/Markov chain.
@@ -60,7 +60,7 @@ A discrete-time Markov chain can be represented as a 2-tuple.
 Below is given such a definition of Markov chains using such a representation:
 \begin{align}
 M & = (S, \tau)\\
-S & = \{X_0, X_1, \cdots, X_n\} \nonumber\\
+S & = \{X_0, X_1, \dots, X_n\} \nonumber\\
 \tau & \; : \; S \times S \rightarrow [0; 1] \nonumber
 \end{align}
 Where $S$ is a finite set of states in the process, as described in \cref{markov:property} and $\tau$ is a function that given two states $i$ and $j$ returns the probability of transitioning from state $i$ to $j$.
