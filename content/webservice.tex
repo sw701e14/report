@@ -19,7 +19,7 @@ Additionally there are OPTIONS, HEAD, TRACE, and CONNECT.
 \subsection{REST}
 Representational State Transfer (REST) is an architectural style, which provides guidelines for what are called RESTful services.
 
-In effect, all web pages (those which are normally viewed through a browser) are RESTful services, as they adhere to Fielding's specifications.
+In effect, all web pages (those which are normally viewed through a browser) are RESTful services, as they adhere to Fielding's specifications\alexander{Source?}.
 The most important are that they use the HTTP protocol and take advantage of the HTTP-provided methods, and are HyperText-driven (in the case of normal web pages: HyperText Markup Language -- HTML).
 
 \paragraph{ROA} is meant as a standardisable way of accessing resources through an easy-to-understand interface.
@@ -34,25 +34,25 @@ POST and PUT, however, needs information about the new resource (POST) or the re
 
 \begin{lstlisting}
 GET /books HTTP/1.1
-host: www.mikaels-bookshop.com
+host: www.my-bookshop.com
 \end{lstlisting}
 would get back as a response, a list of all available books.
-Whereas a the request
+Whereas the request:
 \begin{lstlisting}
 GET /books/10 HTTP/1.1
-host: www.mikaels-bookshop.com
+host: www.my-bookshop.com
 \end{lstlisting}
-would retrieve information for a single book (the one with ID  10).
-Whereas the latter example points to a specific resource, it is also possible to provide scoping information to the first request, in order to filter the list of books to retrieve.
-This is done by appending the URL, either by extending the path
+would retrieve information for a single book (the one with ID 10).
+The latter example points to a specific resource, it is also possible to provide scoping information to the first request, in order to filter the list of books to retrieve.
+This is done by appending the URL, either by extending the path as the request:
 \begin{lstlisting}
 GET /books/author/sw701 HTTP/1.1
-host: www.mikaels-bookshop.com
+host: www.my-bookshop.com
 \end{lstlisting}
-or by adding request parameters
+or by adding request parameters as the request:
 \begin{lstlisting}
 GET /books?author=sw701 HTTP/1.1
-host: www.mikaels-bookshop.com
+host: www.my-bookshop.com
 \end{lstlisting}
 
 \subsection{RPC}
@@ -71,4 +71,4 @@ Then it is up to the server to deserialize the entity body, handle the request a
 SOAP is a well-defined RPC-style web service architecture.
 It implements XML-RPC and traditionally uses HTTP for messaging, but can also use other protocols such as Secure Mail Transfer Protocol (SMTP).
 It has a heavy use of XML schemas for defining the headers and bodies of its messages.
-For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available and which parameters must be supplied.
+For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available; and which parameters must be supplied.
