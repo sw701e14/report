@@ -1,27 +1,14 @@
 \section{Markov Chains}\label{markov}
-When modeling transitions between different states in a complex system it is often beneficial to model the process using a Markov chain.
-A Markov chain describes the rates at which a stochastic process (see \cref{markov:stochastic}) transitions between different states while maintaining the Markov property (see \cref{markov:property}).
-Thus Markov chains are also known as Markov processes.
+The system needs a way to make predictions of where a bike is likely to be in the future.
+The users of the bikes will use this feature to look for a bike that will arrive in their vicinity in the near future.
 
-\subsection{Stochastic process}\label{markov:stochastic}
-A stochastic process describes a nondeterministic process, in terms of the probabilities of it being in different \emph{states} over time.
-Such processes allow for the modeling of systems that have no single correct processing order.
-Instead these processes are mapped in terms of the probability of what \emph{the next step} is.
-The result of this is that the output of a stochastic process cannot be predetermined, only the probabilities of different outputs.
-
-\paragraph{Classifications}
-Stochastic processes are classified in terms of the cardinality of their index and state space.
-Let $t$ refer to a timestamp and $X_t$ to the state of a stochastic process at time $t$, then if both $t$ and $X_t$ belong to $\mathbb{N}$ then the process can be modeled using Markov chains, given that the process has the Markov propery (\cref{markov:property}).
-
-It is also possible to model a Markov chain using continuous time.
-The advantage to this approach is the ability to be more exact in terms of time passed between state changes.
-In a discrete time model, time can be considered as a collection of timestamps with a fixed interval.
+In order to do this we need a way to model the behaviour of the bikes, i.e. how the bikes move from one hotspot to another.
+This behaviour contains a degree of uncertainty, and a stochastic model is therefore appropriate \cite[p. ~296]{bertsekas2002introduction}.
 
 \mikkel{Insert reference to section about GPS units, when it is written.}
 The data received from the GPS units mounted on the bikes will be delivered to the system at some fixed interval.
-Thus the data that the Markov chain is to model is quite sparse.
-Using continuous time to model a process with such data will therefore not yield any additional information as opposed to a discrete time model.
-As a continuous time model is more complex \mikkel{I am in need of citation} to model and will not yield better results, \projectname{} will use a discrete time model.
+This suggest that a discrete markov chain model may be used.
+The following will provide a short description on markov chains based on \citet[chapter 7]{bertsekas2002introduction}
 
 \subsection{Markov property}\label{markov:property}
 A stochastic process is said to have the Markov property if for a given state in the process the next state can be determined without knowledge of prior states.
@@ -50,6 +37,13 @@ P_{i,j} = &\mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \dots, X_0) \nonumber\\
         = &\mathbf{P}(X_{n+1} = j \mid X_n = i)
 \end{align}
 then the process has the Markov property and thus it is called a Markov process/Markov chain.
+
+For simplicity we will assume the markov chain to be time homogenous, meaning that the probability of transitions are independent of the transition n, as stated in the following equation
+
+
+\begin{align}
+\mathbf{P}(X_{n+1} = x \mid X_n = y) = \mathbf{P}(X_{n} = x \mid X_{n-1} = y)
+\end{align}
 
 \subsection{Representing a Markov chain}
 In the sections above the property describing a Markov chain were presented as well as the overall type of processes that are modeled using Markov chains.
