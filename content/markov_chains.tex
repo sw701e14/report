@@ -13,7 +13,7 @@ The following will provide a short description on markov chains based on \citet[
 \subsection{Discrete markov chains}\label{markov:intro}
 In a discrete markov chain model the state changes at discrete time intervals. 
 These intervals are indexed by an integer variable $ n $ and the corresponding states are denoted by $ X_n $.
-The markov chain has a finite set of states, given by $S = \{X_0, X_1, X_2,\dots, X_{m-1}, X_m\}$ also known as the state space.
+The markov chain has a finite set of states, given by $S = \{X_0, X_1, X_2,\dots, X_{m-1}, X_m\}$\alexander{\giovanni{No it is $X_i \epsilon S$}} also known as the state space.
 
 A markov chain can be described by its transitional probabilities \begin{align}
 P_{i,j} = \mathbf{P} (X_{n+1} = j\mid X_n = i)
@@ -52,7 +52,7 @@ In the sections above the property describing a Markov chain were presented as w
 Below is given a formal definition of Markov chains, in terms of their mathematical and visual representations:
 
 \paragraph{Mathematical representation}
-A discrete-time Markov chain can be represented as a 2-tuple.
+A discrete-time Markov chain can be represented as a 2-tuple\alexander{\giovanni{2-tuple == pair?}}.
 Below is given such a definition of Markov chains using such a representation:
 \begin{align}
 M & = (S, \tau)\\
@@ -142,3 +142,5 @@ r_n &= r_{n-k} \cdot P^k\\
     &= r_{n - n} \cdot P^n\nonumber\\
     &= r_0 \cdot P^n\nonumber
 \end{align}
+
+\alexander{\giovanni{What does $r_n$ represent?}}
