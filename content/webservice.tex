@@ -1,115 +1,28 @@
-\section{Web Services}
-\giovanni{\#20 too detailed, not clear how it relates to the project}
-When designing a web service we must decide on the architecture style which the web service should follow.
-The two overall architecture styles are REST and RPC. The theory behind these styles can be found in \citet{restful_web_services} and \citet{fielding_dissertation}, which also is the grounds for the following descriptions.
+\section{Web Service}
+In order to increase availability, but without having to implement the system on all platforms ourselves, we can define and create a web service.
+This will make it possible for others to use the web service, in order to create actual platform implementations.
 
-\alexander{Removed HTTP as it has no direct importance to our project.}
+When designing a web services, there are two overall architecture styles; REST and RPC.
+Before choosing a solution, the two possiblities will be shortly explored.
+The following sections will be based on \citet{restful_web_services}.
 
 \subsection{REST}
-Representational State Transfer (REST) is an architectural style, which provides guidelines for what are called RESTful services.
-Most important are that they use the HTTP\cite{http_specification} protocol and take advantage of the HTTP-provided methods (GET, POST, PUT, DELETE), and are HyperText-driven.
-\alexander{Removed mention of web pages as they have no direct importance to our project}
-\alexander{What would be the pros and cons of this style in terms of a web service API as ours?}
-
+Representational State Transfer (REST) is an architectural style, which provides guidelines for what are called RESTful web services.
+Most important are that they use the HTTP protocol\cite{http_specification} and take advantage of the HTTP-provided methods (GET, POST, PUT, DELETE, etc).
 
 \paragraph{Resource-Oriented Architecture (ROA)} is meant as a standardisable way of accessing resources through an easy-to-understand interface.
 Resources are made available through URLs, where each URL points to a specific resource (or collection of same-type resources).
 However, in order to generalize the access of similar resources, scoping information can be put in the URL.
-What you want to do with the resource, is determined by the HTTP method.
-\alexander{Removed description of where to use HTTP methods, as I deemed it too detailed. Still the examples could be a nice?}
-\alexander{What makes ROA more beneficial to our web service than other REST implementations?}
+What you want to do with the resource is determined by the HTTP method.
 
 \subsection{RPC}
 Remote Procedure Call (RPC) is a procedure-oriented architectural style.
-\alexander{Removed `comparison' to REST as it should describe the contributions to our project and not be compared directly.}
-
 RPC-style architectures usually make use of only one HTTP method; POST.
 The actual method information is supplied in the entity body of the request.
-\alexander{What would be the pros and cons of this style in terms of a web service API as ours?}
-
-\alexander{Removed XML-RPC and JSON-RPC as it is theory through and through. The reader can look it up if he is more interested.}
 
 \paragraph{SOAP}
 SOAP is a well-defined RPC-style web service architecture.
-It implements XML-RPC\alexander{cite link to XML-RPC?} and traditionally uses HTTP for messaging, but can also use other protocols such as Secure Mail Transfer Protocol (SMTP).
+It implements XML-RPC\cite{xmlrpc_specification} and traditionally uses HTTP for messaging, but can also use other protocols such as Secure Mail Transfer Protocol (SMTP).
 It has a heavy use of XML schemas for defining the headers and bodies of its messages.
-For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available; and which parameters must be supplied.
-\alexander{What makes SOAP more beneficial to our web service than other RPC implementations?}
+For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available and which parameters must be supplied.
 
-
-
-
-%This section will introduce the needed background information, before presenting the two overall, and opposing, architectural styles for designing a web service; REST and RPC.
-%The section is loosely based on \citet{restful_web_services}.
-%The specifications for RESTful web services is taken from \citet{fielding_dissertation}.
-%
-%\paragraph{HTTP\cite{http_specification}} (HyperText Transfer Protocol) is a very simple transfer protocol, serving an entity body, enclosed in an envelope.
-%The envelope contains a number of key-value pairs, where only one is obligatory and the rest are optional and customizable.
-%Before stating key-value pairs, the HTTP METHOD, followed by a path and HTTP version, must be provided.
-%The non-optional key-value pair is the host.
-%All other key-value pairs typically serve as META-data, but anything can be put here.
-%Depending on the type of request, an entity body can be provided, containing just about anything.
-%
-%The server will then handle the request and return a HTTP response, which is another envelope, and possibly an entity body.
-%The only obligatory line of the envelope of the response is a status line, which states the HTTP version and the status (status-code and status-message) of the processing of the request.
-%
-%\subparagraph{HTTP Methods} are, as mentioned above, mandatory for every HTTP request.
-%The main HTTP methods are GET, POST, PUT, and DELETE, and they correspond to Create, Read, Update, and Delete (CRUD) operations.
-%Additionally there are OPTIONS, HEAD, TRACE, and CONNECT.
-%
-%\subsection{REST}
-%Representational State Transfer (REST) is an architectural style, which provides guidelines for what are called RESTful services.
-%
-%In effect, all web pages (those which are normally viewed through a browser) are RESTful services, as they adhere to Fielding's specifications.
-%The most important are that they use the HTTP protocol and take advantage of the HTTP-provided methods, and are HyperText-driven (in the case of normal web pages: HyperText Markup Language -- HTML).
-%
-%\paragraph{ROA} is meant as a standardisable way of accessing resources through an easy-to-understand interface.
-%Resources are made available through URLs, where each URL points to a specific resource (or collection of same-type resources).
-%However, in order to generalize the access of similar resources, scoping information can be put in the URL.
-%What you want to do with the resource, is determined by the HTTP method.
-%When simply retrieving resources, the GET method is used, and no additional data is provided (other than potential scoping information).
-%When manipulating resources, the POST, PUT, and DELETE methods are used.
-%DELETE needs no additional data, as it is directed to a resource through the URL.
-%POST and PUT, however, needs information about the new resource (POST) or the resource to be updated (PUT).
-%\subparagraph{Example:} The request:
-%
-%\begin{lstlisting}
-%GET /books HTTP/1.1
-%host: www.my-bookshop.com
-%\end{lstlisting}
-%would get back as a response, a list of all available books.
-%Whereas the request:
-%\begin{lstlisting}
-%GET /books/10 HTTP/1.1
-%host: www.my-bookshop.com
-%\end{lstlisting}
-%would retrieve information for a single book (the one with ID 10).
-%The latter example points to a specific resource, it is also possible to provide scoping information to the first request, in order to filter the list of books to retrieve.
-%This is done by appending the URL, either by extending the path as the request:
-%\begin{lstlisting}
-%GET /books/author/sw701 HTTP/1.1
-%host: www.my-bookshop.com
-%\end{lstlisting}
-%or by adding request parameters as the request:
-%\begin{lstlisting}
-%GET /books?author=sw701 HTTP/1.1
-%host: www.my-bookshop.com
-%\end{lstlisting}
-%
-%\subsection{RPC}
-%Remote Procedure Call (RPC) is, like REST, an architectural style to apply to web services.
-%Unlike REST, it is procedure-oriented.
-%
-%RPC-style architectures usually make use of only one HTTP method; POST.
-%The actual method information is supplied in the entity body of the request.
-%
-%\paragraph{XML-RPC and JSON-RPC} are two very popular RPC architectures.
-%The entity body of both request and response are in the appropriate notation (XML or JSON).
-%Since all the needed information about which procedure to call, and possible parameters, are contained in the entity body, all requests can be directed at the same path.
-%Then it is up to the server to deserialize the entity body, handle the request appropriately, and finally serialize and serve the response.
-%
-%\paragraph{SOAP}
-%SOAP is a well-defined RPC-style web service architecture.
-%It implements XML-RPC and traditionally uses HTTP for messaging, but can also use other protocols such as Secure Mail Transfer Protocol (SMTP).
-%It has a heavy use of XML schemas for defining the headers and bodies of its messages.
-%For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available; and which parameters must be supplied.
