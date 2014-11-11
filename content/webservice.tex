@@ -1,28 +1,32 @@
 \section{Web Service}
-In order to increase availability, but without having to implement the system on all platforms ourselves, we can define and create a web service.
-This will make it possible for others to use the web service, in order to create actual platform implementations.
+As we have very little knowledge of our target group, we would want our system as available as possible.
+One way to do this, is to implement it on a multitude of platforms, e.g. PC, Android devices, iOS devices.
+However, this would require massive work, as all these platforms are very different and would therefore require very different implementations.
 
-When designing a web services, there are two overall architecture styles; REST and RPC.
-Before choosing a solution, the two possiblities will be shortly explored.
-The following sections will be based on \citet{restful_web_services}.
+Another way to make the system available, but without implementing it on all these platforms, would be to create a web service, for other developers (or hobbyists) to use, making their own platform implementations.
 
-\subsection{REST}
+This section will shortly describe the possibilities when designing a web service, before arguing why a RESTful web service is the correct choice for our system.
+
+\subsection{Types of web services}
+When designing a web services, there are two overall architectural styles; REST and RPC.
+The following sections will be based on \citet{restful_web_services} and will therefore have a REST-centric view.
+
+\subsubsection{REST}
 Representational State Transfer (REST) is an architectural style, which provides guidelines for what are called RESTful web services.
+These guidelines were defined by Fielding in his dissertation\cite{fielding_dissertation}.
 Most important are that they use the HTTP protocol\cite{http_specification} and take advantage of the HTTP-provided methods (GET, POST, PUT, DELETE, etc).
 
 \paragraph{Resource-Oriented Architecture (ROA)} is meant as a standardisable way of accessing resources through an easy-to-understand interface.
 Resources are made available through URLs, where each URL points to a specific resource (or collection of same-type resources).
 However, in order to generalize the access of similar resources, scoping information can be put in the URL.
-What you want to do with the resource is determined by the HTTP method.
+What you want to do with the resource(s) is determined by the HTTP method.
 
-\subsection{RPC}
+\subsubsection{RPC}
 Remote Procedure Call (RPC) is a procedure-oriented architectural style.
 RPC-style architectures usually make use of only one HTTP method; POST.
 The actual method information is supplied in the entity body of the request.
 
-\paragraph{SOAP}
-SOAP is a well-defined RPC-style web service architecture.
-It implements XML-RPC\cite{xmlrpc_specification} and traditionally uses HTTP for messaging, but can also use other protocols such as Secure Mail Transfer Protocol (SMTP).
+\paragraph{SOAP} is a well-defined RPC-style web service architecture.
+It implements XML-RPC\cite{xmlrpc_specification} and traditionally uses HTTP for messaging, but can also use other protocols, such as Secure Mail Transfer Protocol (SMTP).
 It has a heavy use of XML schemas for defining the headers and bodies of its messages.
-For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available and which parameters must be supplied.
-
+For instance, it uses Web Service Definition Language (WSDL), which states how the service is to be used; which procedures are available and which parameters must be supplied to those procedures.
