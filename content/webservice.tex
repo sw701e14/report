@@ -9,17 +9,19 @@ This section will shortly describe the possibilities when designing a web servic
 
 \subsection{Types of web services}
 When designing a web services, there are two overall architectural styles; REST and RPC.
-The following sections will be based on \citet{restful_web_services} and will therefore have a REST-centric view.
+The following sections will be based on \citet{restful_web_services}.
 
 \subsubsection{REST}
-Representational State Transfer (REST) is an architectural style, which provides guidelines for what are called RESTful web services.
-These guidelines were defined by Fielding in his dissertation\cite{fielding_dissertation}.
-Most important are that they use the HTTP protocol\cite{http_specification} and take advantage of the HTTP-provided methods (GET, POST, PUT, DELETE, etc).
+Representational State Transfer (REST) is an architectural style, which provides design criteria for what are called RESTful web services.
+These criteria were defined in \citet{fielding_dissertation}.
+However, these criteria are in no way enforced, making it possible to design web services that are intended to be RESTful, but actually might not be.
 
-\paragraph{Resource-Oriented Architecture (ROA)} is meant as a standardisable way of accessing resources through an easy-to-understand interface.
-Resources are made available through URLs, where each URL points to a specific resource (or collection of same-type resources).
-However, in order to generalize the access of similar resources, scoping information can be put in the URL.
-What you want to do with the resource(s) is determined by the HTTP method.
+\paragraph{Resource-Oriented Architecture (ROA)} is an architecture, upholding the aforementioned design criteria.
+This is done by organizing and accessing resources in a predefined manner.
+Resources are made available through URLs, where each URL points to a specific resource.
+If a resource has resources of its own, this generates a sub-URL for each sub-resource.
+In order to generalize the access of same-type resources, but wanting to filter the result, scoping information can be put in the URL as parameters.
+What you want to do with the resource(s) is determined by the HTTP method (e.g. GET, PUT).
 
 \subsubsection{RPC}
 Remote Procedure Call (RPC) is a procedure-oriented architectural style.
