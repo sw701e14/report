@@ -1,6 +1,6 @@
 \chapter{Clustering}
 
-In order to make predictions on when a bike will arrive we will need to have a concept of hotspots where the bikes are the most.
+In order to make predictions on when a bike will arrive we introduce the concept of hotspots which is an area where there are a lot of bikes.
 
 We need to group our gps points into clusters that represent these hotspots of activity.
 
@@ -67,7 +67,7 @@ A cluster is a dense region surrounded by a low density region.
 
 This section will explore the techniques that exist in cluster analysis.
 
-\subsection{K-means}
+\subsection{K-means}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
 
 K-means is a technique that creates a partitioning from prototypes where the prototypes are the center of the clusters.
 
@@ -93,34 +93,11 @@ Calculate the centerpoint of the newly formed clusters \label{recalculate}\\
 
 Because most of the convergence happens in the initial iterations the condition in \cref{repeatcondition} can be replaced by a weaker condition, like repeat until only 1\% of the points change clusters.
 
-\begin{comment}
-\paragraph{Assignment of points} The assignment of points to cluster differ depending on the data.
-If the data is in the Euclidean space Euclidean distance may be appropriate, while other data types will need to use another similarity measure.
-
-\paragraph{Calculate center points} In \cref{recalculate} of the algorithm it is stated that it needs to ``Calculate the center point of the newly formed clusters''. 
-This statement is very general in the sense that it depends on the data, and even on a particular type of data it can be done in different ways.
-Again considering Euclidean space data points, the quality of a selected center point can be measured by the Sum of Squared Errors (SSE) of the distance to the center point of each data point.
-In this way it is preferred to choose a clustering with the lowest SSE value.
-
-\paragraph{Choosing initial center points}
-The selection of the initial center points are very important because poor initial center points risk producing a local minimum instead of the global minimum, and thus a suboptimal clustering.
-
-The easiest approach, but also the one with the highest risk of producing poor results, is randomly generated points. 
-An improvement to this approach is to generate more than one set of initial points and choosing the set with the lowest SSE value. 
-
-Another more refined way of choosing initial center point is to take a sample of the points and perform a hierarchical clustering algorithm of this subset.
-K clusters can then be extracted from the hierarchical clustering and their centers are found.
-
-A third method is to take one random point and then selecting the point farthest away from all selected points until K points are selected.
-This method ensures that the points are separated, but risk choosing outliers that do not represent any cluster.
-
-\end{comment}
-
 \paragraph{Strengths and weaknesses}
 the K-means algorithm can have some difficulty finding clusters where the data is placed in shapes very different from globular. 
 Also very big differences in size of cluster may make it difficult for K-means to differentiate the clusters.
 
-\subsection{Hierarchical Clustering}
+\subsection{Hierarchical Clustering}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
 
 Hierarchical clustering arranges the points in a hierarchy depending on the distance between points.
 Hierarchical clustering can be performed either by starting at the top of the tree or at the bottom.
