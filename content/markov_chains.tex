@@ -1,3 +1,73 @@
+\section{Choosing prediction method}\label{markov}
+We strive to create a system which can predict the movement of city bikes at a given time. With this kind of system we should be able to answer the two questions:
+\begin{itemize}
+\item How likely is it that a city bike will be nearby within x minutes?
+\item What is the probability to find a city bike nearby within a given time interval (e.g. from 16.25 to 16.35)?
+\end{itemize}
+
+The location of the city bikes are abstracted by creating hotspots, as described in \cref{hotspots}. Thus predicting the movement of an average city bike can be done by answering the following question:
+
+\begin{itemize}
+\item What is the probability to find the average city bike at a given hotspot within a given time or interval?
+\end{itemize}
+
+To answer this question we need to model the behavior of this average city bike, i.e. a formal description of a single city bikes movement, on average, from one hotspot to another.
+
+\subsection{Choosing abstraction model}
+When modeling the behavior of the average city bike, uncertainty is expected as the behavior should represent the collective behavior of all city bikes.
+Further as we do not store information about the users, we can not distinguish between the users and their personal routes.
+Another thing to consider, when choosing abstraction model, is that the location data is provided through GPS units mounted on each city bike. The GPS units provides data at a fixed time interval and can have a low accuracy at times.
+
+Taking all that into account, it is reasonable to suggest the abstraction model, for the behavior of the average city bike, being a discrete-time Markov chain, where the states are used to represent hotspots. 
+
+
+
+
+\subsection{Markov Chains}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Markov Chains}\label{markov}
 The system needs a way to make predictions of where a bike is likely to be in the future.
 The users of the bikes will use this feature to look for a bike that will arrive in their vicinity in the near future.
