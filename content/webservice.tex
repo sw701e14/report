@@ -8,34 +8,34 @@ Another way to make the system available, but without implementing it on all the
 This section will shortly describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
 
 \subsection{Choosing an architecture}
-When designing a web services, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).
-What we want to do is expose our resource state (bikes with their current locations and current hotspots).
+When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).
+What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
 As an RPC-style web service is per definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
 The following section will describe RESTful web services (specifically ROA), based on  \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 
 \subsubsection{REST}
-Representational State Transfer (REST) is an architectural style, which provides design criteria for designing network-based software architectures.
+Representational State Transfer (REST) is an architectural style, which provides design criteria for network-based software architectures.
 Web services adhering to these design criteria are referred to as RESTful web services.
 These criteria were defined in \citet{fielding_dissertation}.
 As REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA) as described in \citet{restful_web_services}.
 
 \subsubsection{ROA}
 ROA is an architecture, upholding the REST design criteria.
-This is done by organizing and accessing resources in a standardized manner, mainly due to following and taking full advantage of the HTTP/1.1 specification.
+This is done by organizing and accessing resources in a standardized manner, and by following and taking full advantage of the HTTP/1.1 specification.
 
-The following description will be closely linked to \citet{restful_web_services}, as it will be based on the four concepts: \textit{resources, URIs, representing resources, linking resources}, along with the four properties: \textit{addressability, statelessness, connectedness, uniform interface} from chapter 4.
+In order to ensure that a ROA implementation will comply with the REST design criteria, it will have to adhere to the four concepts: \textit{resources, URIs, representing resources, linking resources}, along with the four properties: \textit{addressability, statelessness, connectedness, uniform interface}.\cite[Chapter 4,]{restful_web_services}
 
-\paragraph{Resources} are a subset of the resource state (the server and its data).
-A resource is a single entity, important enough to be a thing in itself.
+\paragraph{Resources} are a subset of the resource state.
+A single resource is an entity important enough to be a thing in itself.
 
 Each resource should have at least one \textit{URI} (Unique Resource Identifier), but it is possible to have more in order to ease the use of often-accessed resources.
 URIs ensure that each resource can be uniquely identified, directly handling the \textit{addressability} property.
 
 \subparagraph{Representations} of resources depends on the desired use.
-A representation of a specific resource should be any useful information about that resource's state.
+A representation of a specific resource should be any useful information about that resource's state, defined by properties and sub-resources.
 
-\paragraph{Connectedness and linking resources} depend on the URIs.
-As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can be done so by linking to its URI. 
+\paragraph{Connectedness and linking resources} are highly dependent on URIs.
+As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI. 
 
 \paragraph{Statelessness} is handled by providing, if any, state-relevant parameters on each request.
 This makes the server independent of clients and previous requests, as it is up to each individual client to handle its own application state (not to be confused with the server's resource state) and providing it when needed.
@@ -44,10 +44,6 @@ This makes the server independent of clients and previous requests, as it is up 
 By taking advantage of the HTTP methods GET, POST, PUT, DELETE, HEAD, and OPTIONS, every resource is handled the same way.
 GET, POST, PUT, and DELETE correspond to the Create, Read, Update, Delete (CRUD) operations.
 HEAD is for retrieving the resource's meta-data, without the actual representation.
-OPTIONS is for seeing available methods for a given resource (additionally, by providing the Authorization header, actions can be restricted based on client permissions).
+OPTIONS is for seeing allowed methods for a given resource (additionally, by providing the Authorization header, actions can be restricted based on client permissions).
 
 Any feedback needed to be given to clients from the server is handled through HTTP status codes (e.g. '200 OK', '404 Not Found').
-
-\subsection{Implementation}
-Our web service is implemented using ASP.NET Web Api 2\cite{aspnet_webapi_reference}.
-\lstinline[style=csharp]!ApiController!
