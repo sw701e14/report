@@ -1,4 +1,4 @@
-\chapter{Clustering}
+\section{Clustering}
 
 In order to make predictions on when a bike will arrive we introduce the concept of hotspots which is an area where there are a lot of bikes.
 
@@ -7,7 +7,7 @@ We need to group our gps points into clusters that represent these hotspots of a
 A technique for making these divisions is called clustering.
 This section will describe the concepts of clustering as well as the possible algorithms as described in \citet{pang2006introduction}
 
-\section{Cluster Analysis}
+\subsection{Cluster Analysis}
 Cluster analysis is a technique used to group data objects based only on the information the data itself contains.
 The requirement for membership in a certain cluster is often vague, as several acceptable clusterings can be made on the same dataset.
 An example of this can be seen on \cref{clusterings} where the same dataset has been clustered in three radically different ways, even though all three could be regarded as correct, depending on the purpose of the clustering.
@@ -21,7 +21,7 @@ The definition of a cluster therefore depends on the dataset and the purpose of 
 \caption{Different clusterings on the same dataset. From \citet{pang2006introduction}}
 \end{figure}
 
-\section{Types of clusterings}
+\subsection{Types of clusterings}
 
 A clustering is a collection of clusters.
 This section will introduce the terminology used to describe clusterings. 
@@ -41,7 +41,7 @@ If a weight is used to describe the membership of sets the clustering is said to
 
 A \textit{complete} clustering has every object assigned to a cluster while a \textit{partial} clustering can have outliers that do not belong to any cluster.
 
-\section{Types of clusters}
+\subsection{Types of clusters}
 The idea of a cluster depend very much on the data set it is applied on.
 In this section the different notions of a cluster will be presented
 
@@ -63,11 +63,11 @@ If the data can be represented as a graph with the objects as nodes, clusters ca
 A cluster is defined by the density of the data objects.
 A cluster is a dense region surrounded by a low density region.
 
-\section{Techniques}
+\subsection{Techniques}
 
 This section will explore the techniques that exist in cluster analysis.
 
-\subsection{K-means}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
+\subsubsection{K-means}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
 
 K-means is a technique that creates a partitioning from prototypes where the prototypes are the center of the clusters.
 
@@ -97,7 +97,7 @@ Because most of the convergence happens in the initial iterations the condition 
 the K-means algorithm can have some difficulty finding clusters where the data is placed in shapes very different from globular. 
 Also very big differences in size of cluster may make it difficult for K-means to differentiate the clusters.
 
-\subsection{Hierarchical Clustering}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
+\subsubsection{Hierarchical Clustering}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
 
 Hierarchical clustering arranges the points in a hierarchy depending on the distance between points.
 Hierarchical clustering can be performed either by starting at the top of the tree or at the bottom.
@@ -132,7 +132,7 @@ This method is called Ward's method.
 Hierarchical clustering is ideal when some kind of taxonomy needs to be created of the data.
 This however comes at the cost of computational and space complexity.
 
-\subsection{DBSCAN}
+\subsubsection{DBSCAN}
 DBSCAN in a densitybased clusteringalgorithm that locates regions of high density that are separated by regions of low density.
 
 \paragraph{Center based point density}
@@ -162,7 +162,7 @@ Assign each border point to one of the clusters associated with the border point
 DBScan is resistant to noise and can also handle clusters that vary in size.
 DBScan can have some trouble finding clusters that vary in density.
 
-\subsection{Choosing an algorithm}
+\subsubsection{Choosing an algorithm}
 \stefan{maybe in analysis?}
 The previous sections have describes the available algorithms for clustering.
 We can now choose an algorithm based on our data and purpose.
