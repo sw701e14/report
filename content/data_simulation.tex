@@ -1,0 +1,27 @@
+\section{Data input simulation}
+
+In the running system data points will be collected from a GPS sender in the bikes.
+Because we do not have a running system we will need to create a simulation of the behaviour the real system will have.
+
+\subsection{The real system}
+In the running system the data will be provided by a GPS sender and a receiver will interpret the data.
+The sender will send at a set interval but it cannot be guaranteed that the interval will be consistent. 
+There is also a chance that the sender will lose GPS signal, and thus it is not guaranteed that a point will be received at every interval.
+
+The real system will consist of more than 100 bikes that send GPS points independent of each other.
+
+\subsection{GPS receiver}
+In order to accommodate for both the running system and our simulation we will construct an interface that handles incoming points.
+This interface will be able to receive the points from any source so it will be easy to change the source from our simulated data to a real data source.
+
+\subsection{Point generation}
+Because we do not have access to a running system with 100 bikes sending GPS points, we have created a simulation of the real system.
+This system creates GPS points at an interval and uses Google Directions to create realistic looking routes.
+In order to generate points that are as realistic as possible we have used the following approach for generating GPS points.
+
+\begin{itemize}
+\item Generate a number of bike routes with the Google Directions API
+\item Use the generated data points to generate the same route, but with a GPS point for each predefined interval.
+\item Move each point a random distance at a random angle in order to simulate GPS precision.
+\item 
+\end{itemize}
