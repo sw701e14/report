@@ -1,15 +1,22 @@
 \section{Web Service API}
 The web service API was implemented using ASP.NET Web API 2.3.\cite{aspnet_webapi}
+ASP.NET Web API uses ASP.NET MVC\cite{aspnet_mvc}, with the use of \texttt{ApiController}, which is a specialization of the regular \texttt{Controller}.
 
-ASP.NET Web API uses ASP.NET MVC.
-In this context, \textit{Model} is simply used to describe the resource representations, as the real model is already found in \texttt{Data}'s model.
-\textit{View} is the serialized resource representation that the user can obtain by performing requests against the API.
-\textit{Controller} represents the handling of resources, which primarily consists of transforming the actual model, into the resources to be returned as response to requests.
+\paragraph{Model} is simply used to describe the resource representations, as the real model is already found in \texttt{Data}'s model.
+\mikael{Some kind of reference to architecture description.}
+A resource is an object, containing named properties, along with sub-resources.
+Sub-resources are represented as simple objects, containing only its relative URL.
 
-The web service API also follows the criteria set by ROA, as described in \cref{webservice:roa}.
+\paragraph{View} can be seen as the serialized resource representation that the user obtains by performing requests against the API.
+Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header, this can be set to \texttt{application/json}.
+
+\paragraph{Controller} represents the handling of resources, which primarily consists of transforming the actual model, into the resources model, to be serialized and returned as response to requests.
+The routing to controllers is handled by the attributes \texttt{[RoutePrefix]} and \texttt{[Route]}.
+In order to handle the different HTTP methods, controller methods are also annotated with an appropriate \texttt{[Http\{Method\}]} attribute (e.g. \texttt{[HttpGet]}).
+
+\paragraph{ROA} criteria, as described in \cref{webservice:roa}, will be followed.
 
 \subsection{Resources}
-
 % Command for displaying url, properties, and sub-resource of each resource
 \newcommand{\resource}[5]{\begin{description}
 \item[URL:]{\texttt{#1}}
@@ -19,25 +26,33 @@ The web service API also follows the criteria set by ROA, as described in \cref{
 \item[Responses:]{\texttt{#5}}
 \end{description}}
 
-\subsubsection{Root}
 \resource{/}{version}{availablebikes, hotspots, bikes}{GET}{200 OK}
-The root path \texttt{/} serves as the entry point for the API.
-It has a single property; current version, and a sub-resource for each actual resource.
+The root path serves as the entry point for the API.
+It has a single property; version, to be used for asserting that the API has changes that implementations should react to.
+More importantly, it contains a sub-resource for each main resource.
 
-\subsubsection{Available Bikes}
-\resource{/availablebikes}{count}{\{bikeId\}}{GET}{200 OK}
-This resource contains a list of all available bike resources, along with a count of how many available bikes there are.
+\noindent\hrulefill
 
-\paragraph{Available Bike}
+\resource{/availablebikes}{count}{List of availablebikes}{GET}{200 OK}
+This resource contains a list of all \texttt{availablebike} resources, along with a count of how many there are.
+
+\noindent\hrulefill
+
 \resource{/availablebikes/\{bikeId\}}{latitude, longitude}{}{GET}{200 OK, 404 Not Found}
+This is the actual \texttt{availablebike} resource.
+In case a client tries to request a bike that is not available, it will be met with a \texttt{404 Not Found} response.
 
-\subsubsection{Hotspots}
-\mikael{Not implemented yet}
+\noindent\hrulefill
+
 \resource{/hotspots}{hotspots}{}{GET}{200 OK}
+\mikael{Has not been implemented.}
 
-\subsubsection{All Bikes}
-\mikael{Not implemented yet}
-\resource{/bikes}{count}{{bikeId}}{GET}{200 OK, 401 Unauthorized}
+\noindent\hrulefill
 
-\paragraph{Bike}
-\resource{/bikes/{bikeId}}{latitude, longitude, immobileSince}{}{GET}{200 OK, 401 Unauthorized, 404 Not Found}
+\resource{/bikes}{count}{List of bikes}{GET}{200 OK, 401 Unauthorized}
+\mikael{Has not been implemented.}
+
+\noindent\hrulefill
+
+\resource{/bikes/\{bikeId\}}{latitude, longitude, immobileSince}{}{GET}{200 OK, 401 Unauthorized, 404 Not Found}
+\mikael{Has not been implemented.}
