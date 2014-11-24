@@ -3,10 +3,32 @@ Introduction\dots ASP.NET MVC Web API 2.3\dots
 
 \subsection{Resources}
 
+% Command for displaying url, properties, and sub-resource of each resource
+\newcommand{\resource}[3]{\begin{description}
+\item[URL:]{\texttt{#1}}
+\item[Properties:]{\texttt{#2}}
+\item[Resources:]{\texttt{#3}}
+\end{description}}
+
 \subsubsection{Root}
+\resource{/}{version}{availablebikes, hotspots, bikes}
+The root path \texttt{/} serves as the entry point for the API.
+It has a single property; current version, and a sub-resource for each actual resource.
 
 \subsubsection{Available Bikes}
+\resource{/availablebikes}{count}{\{bikeId\}}
+This resource contains a list of all available bike resources, along with a count of how many available bikes there are.
+
+\paragraph{Available Bike}
+\resource{/availablebikes/\{bikeId\}}{latitude, longitude}{}
 
 \subsubsection{Hotspots}
+\mikael{Not implemented yet}
+\resource{/hotspots}{hotspots}{}
 
 \subsubsection{All Bikes}
+\mikael{Not implemented yet}
+\resource{/bikes}{count}{{bikeId}}
+
+\paragraph{Bike}
+\resource{/bikes/{bikeId}}{latitude, longitude, immobileSince}{}
