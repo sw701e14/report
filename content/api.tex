@@ -1,5 +1,11 @@
 \section{Web Service API}
-Introduction\dots ASP.NET MVC Web API 2.3\dots
+The web service API was implemented using ASP.NET Web API 2.3.\cite{aspnet_webapi}
+It follows the criteria set by ROA, as described in \cref{webservice:roa}.
+
+Furthermore, the implementation uses ASP.NET MVC.
+In this context, \textit{Model} is simply used to describe the resource representations, as the real model is already found in \texttt{Data}'s model.
+\textit{View} is the serialized resource representation that the user can obtain by performing requests against the API.
+\textit{Controller} represents the handling of resources, which primarily consists of transforming the actual model, into the resources to be returned as response to requests.
 
 \subsection{Resources}
 
