@@ -1,0 +1,54 @@
+\begin{tikzpicture}[
+	path/.style={
+		->,
+		>=stealth
+	},
+	every node/.style={font=\sffamily},
+	database/.style={
+	      cylinder,
+	      cylinder uses custom fill,
+	      cylinder body fill=yellow!50,
+	      cylinder end fill=yellow!50,
+	      shape border rotate=90,
+	      aspect=0.25,
+	      draw
+	      }
+]
+
+% Boxes
+\node [
+	draw,
+	yshift=2cm,
+	minimum width=4cm,
+] (webservice) {Web Service};
+\node [
+	draw,
+	minimum width=4cm
+] (library) {Library};
+\node [
+	draw,
+	xshift= -2cm,
+	yshift=-2cm,
+	minimum width=4cm,
+] (data) {Data};
+
+\node[draw, minimum width = 4cm, left= of webservice
+] (program) {Program};
+
+\node[draw, minimum width = 4cm, left=of library
+](pointreceiver){GPS point Receiver};
+
+\node[database,below=of data
+](database){Database};
+
+% Connecting Arrows
+\draw[path] (webservice.south) -- (library.north);
+\draw[path] (library.south) -- (data.north);
+
+\draw[path] (program.south) -- (pointreceiver.north);
+
+\draw[path] (pointreceiver.south) -- (data.north);
+
+\draw[path] (data.south) -- (database.north);
+
+\end{tikzpicture}
