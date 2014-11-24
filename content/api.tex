@@ -11,31 +11,33 @@ The web service API also follows the criteria set by ROA, as described in \cref{
 \subsection{Resources}
 
 % Command for displaying url, properties, and sub-resource of each resource
-\newcommand{\resource}[3]{\begin{description}
+\newcommand{\resource}[5]{\begin{description}
 \item[URL:]{\texttt{#1}}
 \item[Properties:]{\texttt{#2}}
 \item[Resources:]{\texttt{#3}}
+\item[Methods:]{\texttt{#4}}
+\item[Responses:]{\texttt{#5}}
 \end{description}}
 
 \subsubsection{Root}
-\resource{/}{version}{availablebikes, hotspots, bikes}
+\resource{/}{version}{availablebikes, hotspots, bikes}{GET}{200 OK}
 The root path \texttt{/} serves as the entry point for the API.
 It has a single property; current version, and a sub-resource for each actual resource.
 
 \subsubsection{Available Bikes}
-\resource{/availablebikes}{count}{\{bikeId\}}
+\resource{/availablebikes}{count}{\{bikeId\}}{GET}{200 OK}
 This resource contains a list of all available bike resources, along with a count of how many available bikes there are.
 
 \paragraph{Available Bike}
-\resource{/availablebikes/\{bikeId\}}{latitude, longitude}{}
+\resource{/availablebikes/\{bikeId\}}{latitude, longitude}{}{GET}{200 OK, 404 Not Found}
 
 \subsubsection{Hotspots}
 \mikael{Not implemented yet}
-\resource{/hotspots}{hotspots}{}
+\resource{/hotspots}{hotspots}{}{GET}{200 OK}
 
 \subsubsection{All Bikes}
 \mikael{Not implemented yet}
-\resource{/bikes}{count}{{bikeId}}
+\resource{/bikes}{count}{{bikeId}}{GET}{200 OK, 401 Unauthorized}
 
 \paragraph{Bike}
-\resource{/bikes/{bikeId}}{latitude, longitude, immobileSince}{}
+\resource{/bikes/{bikeId}}{latitude, longitude, immobileSince}{}{GET}{200 OK, 401 Unauthorized, 404 Not Found}
