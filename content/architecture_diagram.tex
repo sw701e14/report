@@ -7,8 +7,6 @@
 	database/.style={
 	      cylinder,
 	      cylinder uses custom fill,
-	      cylinder body fill=yellow!50,
-	      cylinder end fill=yellow!50,
 	      shape border rotate=90,
 	      aspect=0.25,
 	      draw
@@ -20,7 +18,11 @@
 	draw,
 	yshift=2cm,
 	minimum width=4cm,
-] (webservice) {Web Service};
+] (mvc) {ASP.net MVC};
+
+\node[above=of mvc, yshift=-0.9cm, xshift=-0.9cm](webservice){Web Service};
+
+\draw ($ (mvc.north west) + (-0.3,0.9) $) rectangle ($ (mvc.south east)+(0.3,-0.3) $);
 
 % %% Library
 \node [
@@ -31,6 +33,7 @@
 \node[draw, minimum width = 4cm, below=of libraryinterface
 ](business){Business logic};
 
+\draw ($ (libraryinterface.north west) + (-0.3,0.9) $) rectangle ($ (business.south east)+(0.3,-0.3) $);
 
 % Data
 \node [
@@ -42,10 +45,6 @@
 
 
 % Data import
-\node[draw, minimum width = 4cm, left= of webservice
-] (program) {Program};
-
-
 % Interface
 \node[draw, minimum width = 4cm, left=of libraryinterface
 ](importinterface){Interface};
@@ -56,13 +55,16 @@
 
 \draw ($ (importinterface.north west) + (-0.3,0.9) $) rectangle ($ (importinterface.south east)+(0.3,-0.3) $);
 
-\draw ($ (libraryinterface.north west) + (-0.3,0.9) $) rectangle ($ (business.south east)+(0.3,-0.3) $);
+
+
+\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](program){GPS data source};
+
 
 \node[database,below=of data
 ](database){Database};
 
 % Connecting Arrows
-\draw[path] (webservice.south) -- (libraryinterface.north);
+\draw[path] (mvc.south) -- (libraryinterface.north);
 
 \draw[path] (libraryinterface.south) -- (business.north);
 
