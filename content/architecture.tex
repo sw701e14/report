@@ -20,9 +20,11 @@ The handling of incoming GPS data points is described in \cref{design:datareceiv
 
 \subsection{Location source}
 The \texttt{Location source} is as the name states our source for location data.
+This component contains an \texttt{Interface} that has a \texttt{GetData} method 
 In the running system the source will be the GPS receivers on the bikes and the \texttt{Location source} will receive the data from the GPS receivers and prepare it for the database.
 In our prototype system we will simulate the bikes and the location source will generate the points before making them available to the \texttt{Data Collector}
-More details on the simulation of GPS data can be found in \cref{design:datasimulation}
+More details on the \texttt{Location Source} can be found in \cref{} \stefan{ref to Location source}
+
 
 \subsection{Database}
 The database will contain all the data of the running system.
@@ -40,4 +42,15 @@ The web service consists of an ASP.net MVC project and will be discussed further
 
 \subsection{Library}
 The library contains the main functionality of the system 
-It is split into two components, the interface and the business Logic
+It is split into two layers, the \texttt{Interface} and the \texttt{Business Logic}.
+
+\subsubsection{Business Logic}
+This layer contains the bulk of the application, the business logic.
+This layer will contain methods operating on the data in the database that performs the operations needed for the operations that the \texttt{Web Service} make available for the users.
+
+\subsubsection{Interface}
+The interface provides access to the business logic for user interfaces.
+
+
+
+
