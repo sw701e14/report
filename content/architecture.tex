@@ -1,35 +1,43 @@
 \section{Architecture}
 
-The project has been structured in order to make it easier to maintain. 
+The project has been structured in order to make it easier to maintain, and makes it possible to change components without breaking the system.
 The overall architecture can be seen on \cref{arch}.
-
-The system is made of five main components, the GPS data source, a GPS data receiver, a database, a library and a web service exposing the functions of this library.
-
-The following will elaborate on the details of these components
-
-\subsection{GPS data source}
-The GPS data source is as the name states our source for GPS points.
-In the running system this will be the GPS senders on the bikes, but in our system we will simulate the bikes.
-More details on the simulation of GPS data can be found in \cref{design:datasimulation}
-
-\subsection{GPS data receiver}
-The data receiver will handle each point and insert it into the database. 
-The handling of incoming GPS data points is described in \cref{design:datareceiver}.
-
-\subsection{Database}
-The database will contain all the data of the running system.
-The design of the database can be found in \stefa{databasedesign}.
-
-A wrapper for the database 
-
-\subsection{Library}
-
-\subsection{Web service}
-
 
 \begin{figure}[h]
 \center
 \input{content/architecture_diagram.tex}
-\caption{The architecture design of the system}
+\caption{The architecture of the system}
 \label{arch}
 \end{figure}
+
+The system is made of five main components, the GPS data source, a GPS data receiver, a database, a library and a web service exposing the functionality of the library to a user.
+
+The following will elaborate on the details of these components.
+
+\subsection{Data Collector}
+The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new points and will insert them into the database. 
+The handling of incoming GPS data points is described in \cref{design:datareceiver}.
+
+\subsection{Location source}
+The \texttt{Location source} is as the name states our source for location data.
+In the running system the source will be the GPS receivers on the bikes and the \texttt{Location source} will receive the data from the GPS receivers and prepare it for the database.
+In our prototype system we will simulate the bikes and the location source will generate the points before making them available to the \texttt{Data Collector}
+More details on the simulation of GPS data can be found in \cref{design:datasimulation}
+
+\subsection{Database}
+The database will contain all the data of the running system.
+The design of the database can be found in \stefan{databasedesign}.
+
+A wrapper for the database has been created to make the access to the database consistent. 
+Both the GPS data receiver and the business logic layers use this layer to access the database.
+\stefan{design of this wrapper?}
+
+\subsection{Web Service}
+The webservice is the main interface provided to the users of the system.
+The web service will expose an API that the user can use to query data from the system.
+
+The web service consists of an ASP.net MVC project and will be discussed further in \stefan{reference til webservice}
+
+\subsection{Library}
+The library contains the main functionality of the system 
+It is split into two components, the interface and the business Logic

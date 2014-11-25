@@ -49,7 +49,7 @@
 \node[draw, minimum width = 4cm, left=of libraryinterface
 ](importinterface){Interface};
 
-\node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](gpspointreceiver){GPS point receiver};
+\node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](locationsource){Location source};
 
 \node[above=of libraryinterface, yshift=-0.9cm, xshift=-1.4cm](library){Library};
 
@@ -57,7 +57,7 @@
 
 
 
-\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](program){GPS data source};
+\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](datacollector){Data Collector};
 
 
 \node[database,below=of data
@@ -70,7 +70,7 @@
 
 \draw[path] (business.south) -- (data.north);
 
-\draw[path] (program.south) -- (importinterface.north);
+\draw[path] (datacollector.south) -- (importinterface.north);
 
 \draw[path] (importinterface.south) -- (data.north);
 
