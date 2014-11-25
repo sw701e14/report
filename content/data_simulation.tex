@@ -1,4 +1,4 @@
-\section{Data input simulation}
+\section{Data input simulation}\label{design:datasimulation}
 
 In the running system data points will be collected from a GPS sender in the bikes.
 Because we do not have a running system we will need to create a simulation of the behaviour the real system would have.
@@ -11,7 +11,7 @@ This will be reported as the accuracy of the measurement by the GPS sender.
 
 The real system will consist of more than 100 bikes that send GPS points independent of each other.
 
-\subsection{GPS point receiver}
+\subsection{GPS point receiver}\label{design:datareceiver}
 In order to accommodate for both the running system and our simulation we will construct an interface that handles incoming points.
 This interface will be able to receive the points from any source so it will be easy to change the source from our simulated data to a real data source.
 

@@ -1,0 +1,79 @@
+\begin{tikzpicture}[
+	path/.style={
+		->,
+		>=stealth
+	},
+	every node/.style={font=\sffamily},
+	database/.style={
+	      cylinder,
+	      cylinder uses custom fill,
+	      shape border rotate=90,
+	      aspect=0.25,
+	      draw
+	      }
+]
+
+% Webservice
+\node [
+	draw,
+	yshift=2cm,
+	minimum width=4cm,
+] (mvc) {ASP.net MVC};
+
+\node[above=of mvc, yshift=-0.9cm, xshift=-0.9cm](webservice){Web Service};
+
+\draw ($ (mvc.north west) + (-0.3,0.9) $) rectangle ($ (mvc.south east)+(0.3,-0.3) $);
+
+% %% Library
+\node [
+	draw,
+	minimum width=4cm
+] (libraryinterface) {Interface};
+
+\node[draw, minimum width = 4cm, below=of libraryinterface
+](business){Business logic};
+
+\draw ($ (libraryinterface.north west) + (-0.3,0.9) $) rectangle ($ (business.south east)+(0.3,-0.3) $);
+
+% Data
+\node [
+	draw,
+	below=of business,
+	xshift= -2cm,
+	minimum width=4cm,
+] (data) {Data};
+
+
+% Data import
+% Interface
+\node[draw, minimum width = 4cm, left=of libraryinterface
+](importinterface){Interface};
+
+\node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](gpspointreceiver){GPS point receiver};
+
+\node[above=of libraryinterface, yshift=-0.9cm, xshift=-1.4cm](library){Library};
+
+\draw ($ (importinterface.north west) + (-0.3,0.9) $) rectangle ($ (importinterface.south east)+(0.3,-0.3) $);
+
+
+
+\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](program){GPS data source};
+
+
+\node[database,below=of data
+](database){Database};
+
+% Connecting Arrows
+\draw[path] (mvc.south) -- (libraryinterface.north);
+
+\draw[path] (libraryinterface.south) -- (business.north);
+
+\draw[path] (business.south) -- (data.north);
+
+\draw[path] (program.south) -- (importinterface.north);
+
+\draw[path] (importinterface.south) -- (data.north);
+
+\draw[path] (data.south) -- (database.north);
+
+\end{tikzpicture}
