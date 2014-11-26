@@ -11,5 +11,11 @@ We will implement the data flow shown in \cref{fig:dataFlowDiagram} in our web s
 The data flow illustrates how the web service has four external interfaces, the city bikes, the public users, Aalborg Kommune, and our own Inactivity Agent.
 Each of these four external interfaces interacts and shares data with our web service.
 
-\paragraph{The City Bikes} transmits their GPS data to our web service every 5 minutes, thus 
+\paragraph{The City Bikes} transmits their GPS data to our web service every 5 minutes. When our web service receives GPS data it updates the correct data in the database.
+Our web service then clusters the GPS data and calculates hotspots and stores them into the database.
 
+\paragraph{The public user and Aalborg Kommune} interacts with our web service by sending requests to it.
+Each method, invoked by the request, then loads the needed data from the database and returns an appropriate response.
+
+\paragraph{The Inactivity Agent} request our web service, to calculate the location and times of all inactive city bikes, at a given interval. The web service is then responsible for, fetching the needed data from the database, and returning the location and times of all inactive city bikes to the inactivity agent.
+The inactivity agent will then determine if there is sufficient reason to alert Aalborg Kommune of the city bikes position.
