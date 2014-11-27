@@ -1,6 +1,6 @@
-\section{Web Service API}
+\subsection{Web Service API}\label{design:web_service}
 The web service API was implemented using ASP.NET Web API 2.3.\cite{aspnet_webapi}
-ASP.NET Web API uses ASP.NET MVC\cite{aspnet_mvc}, with the use of \texttt{ApiController}, which is a specialization of the regular \texttt{Controller}.
+ASP.NET Web API uses ASP.NET MVC\cite{aspnet_mvc}, with the use of \texttt{ApiController}, instead of the regular \texttt{Controller}.
 
 \paragraph{Model} is simply used to describe the resource representations, as the real model is already found in \texttt{Data}'s model.
 \mikael{Some kind of reference to architecture description.}
@@ -8,11 +8,12 @@ A resource is an object, containing named properties, along with sub-resources.
 Sub-resources are represented as simple objects, containing only its relative URL.
 
 \paragraph{View} can be seen as the serialized resource representation that the user obtains by performing requests against the API.
-Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header, this can be set to \texttt{application/json}.
+Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header \bruno{Add source on what a header is and what accept does.}, this can be set to \texttt{application/json}.
 
 \paragraph{Controller} represents the handling of resources, which primarily consists of transforming the actual model, into the resources model, to be serialized and returned as response to requests.
 The routing to controllers is handled by the attributes \texttt{[RoutePrefix]} and \texttt{[Route]}.
 In order to handle the different HTTP methods, controller methods are also annotated with an appropriate \texttt{[Http\{Method\}]} attribute (e.g. \texttt{[HttpGet]}).
+\bruno{Add source on Routing with the ASP.NET WEB API}
 
 \paragraph{ROA} criteria, as described in \cref{webservice:roa}, will be followed.
 

@@ -48,7 +48,9 @@
 \node[database,below=of data
 ](database){Database};
 
-\draw ($ (data.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.6) $);
+\node[above=of data, yshift=-0.9cm, xshift=-1.7cm](persistency){Database};
+
+\draw ($ (persistency.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.6) $);
 
 % Data import
 % Interface
@@ -58,6 +60,8 @@
 \node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](locationsource){Location source};
 
 \node[above=of libraryinterface, yshift=-0.9cm, xshift=-1.4cm](library){Library};
+
+
 
 \draw ($ (importinterface.north west) + (-0.3,0.9) $) rectangle ($ (importinterface.south east)+(0.3,-0.3) $);
 
@@ -80,3 +84,4 @@
 \draw[path] (data.south) -- (database.north);
 
 \end{tikzpicture}
+\bruno{We should probably add an interface for easily substitution of the Data Layer}

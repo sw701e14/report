@@ -1,0 +1,23 @@
+\subsection{Location Source}\label{design:location_source}
+In order to accommodate for the running system we will construct an interface that handles incoming locations.
+This interface will be able to receive the locations from any source so it will be easy to change the source.
+
+The location receiver handles every location that is coming from the bikes.
+Every location is stored as a \texttt{GPSData} type.
+In order to decrease the number of locations as well as to make it easier to find bikes that are not moving, the location receiver will analyse every incoming location and check if the bike has moved since the last update.
+If the bike has not moved a boolean value is set on the previously recorded location in the database, and the incoming location will not be inserted in the database.
+This check is done by comparing the distance between the two locations and the accuracy of the locations, as reported by the GPS receiver.
+The algorithm used for this is displayed in \cref{withinacc}.
+Here the distance function calculates the distance between the two locations contained in the \texttt{GPSData}, which has accuracy as a property.
+
+\begin{algorithm}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+\Input{Two \texttt{GPSData} gps1 and gps2}
+\Output{True if the points can be regarded as the same due to accuracy, false if not}
+
+dist = distance(gps1,gps2)\\
+\Return gps1.accuracy + gps2.accuracy >= dist
+
+\caption{WithinAccuracy}
+\label{withinacc}
+\end{algorithm}

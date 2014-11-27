@@ -10,18 +10,19 @@ The overall architecture can be seen on \cref{arch}.
 \label{arch}
 \end{figure}
 
-The system is made of five main components, the GPS data source, a GPS data receiver, a database, a library and a web service exposing the functionality of the library to a user.
+The system is made of five main components, a location source, a data collector, a database, a library and a web service exposing the functionality of the library to a user.
 
-The following will elaborate on the details of these components.
+The following will be a short overview of the different layers.
 
 \paragraph{Data Collector}
-The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new points and will insert them into the database. 
-The handling of incoming GPS data points is described in \cref{design:datareceiver}.
+The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new \texttt{GPSData} and will insert them into the database. 
+The handling of incoming \texttt{GPSData} is described in  \cref{}.
+\bruno{ref til Data Collector}
 
 \paragraph{Location source}
 The \texttt{Location source} is as the name states our source for location data.
-This component contains an \texttt{Interface} that has a \texttt{GetData} method that provides the next available point.
-More details on the \texttt{Location Source} can be found in \cref{}. \stefan{ref to Location source}
+This component contains an \texttt{Interface} that has a \texttt{GetData} method that provides the next available \texttt{GPSData}.
+More details on the \texttt{Location Source} can be found in \cref{design:design:location_source}.
 
 
 \paragraph{Database}
@@ -29,14 +30,14 @@ The database will contain all the data of the running system.
 The design of the database can be found in \stefan{databasedesign}.
 
 A wrapper for the database has been created to make the access to the database consistent. 
-Both the GPS data receiver and the business logic layers use this layer to access the database.
+Both the \texttt{location source} and the \texttt{business logic} layers use this layer to access the database.
 \stefan{design of this wrapper?}
 
 \paragraph{Web Service}
 The webservice is the main interface provided to the users of the system.
 The web service will expose an API that the user can use to query data from the system.
 
-The web service consists of an ASP.net MVC project and will be discussed further in \stefan{reference til webservice}
+The web service consists of an ASP.net MVC project and will be discussed further in \cref{design:web_service}.
 
 \paragraph{Library}
 The library contains the main functionality of the system 
