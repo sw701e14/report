@@ -16,12 +16,13 @@ The following will elaborate on the details of these components.
 
 \paragraph{Data Collector}
 The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new \texttt{GPSData} and will insert them into the database. 
-The handling of incoming \texttt{GPSData} is described in \cref{design:datareceiver}.
+The handling of incoming \texttt{GPSData} is described in  \cref{}.
+\bruno{ref til Data Collector}
 
 \paragraph{Location source}
 The \texttt{Location source} is as the name states our source for location data.
 This component contains an \texttt{Interface} that has a \texttt{GetData} method that provides the next available \texttt{GPSData}.
-More details on the \texttt{Location Source} can be found in \cref{}. \stefan{ref to Location source}
+More details on the \texttt{Location Source} can be found in \cref{design:design:location_source}.
 
 
 \paragraph{Database}
@@ -36,7 +37,7 @@ Both the \texttt{location source} and the \texttt{business logic} layers use thi
 The webservice is the main interface provided to the users of the system.
 The web service will expose an API that the user can use to query data from the system.
 
-The web service consists of an ASP.net MVC project and will be discussed further in \stefan{reference til webservice}
+The web service consists of an ASP.net MVC project and will be discussed further in \cref{design:web_service}.
 
 \paragraph{Library}
 The library contains the main functionality of the system 
