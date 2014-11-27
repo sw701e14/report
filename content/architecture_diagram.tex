@@ -39,29 +39,36 @@
 \node [
 	draw,
 	below=of business,
+	yshift=-0.5cm,
 	xshift= -2cm,
 	minimum width=4cm,
 ] (data) {Data};
 
+
+\node[database,below=of data
+](database){Database};
+
+\node[above=of data, yshift=-0.9cm, xshift=-1.7cm](persistency){Database};
+
+\draw ($ (persistency.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.6) $);
 
 % Data import
 % Interface
 \node[draw, minimum width = 4cm, left=of libraryinterface
 ](importinterface){Interface};
 
-\node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](gpspointreceiver){GPS point receiver};
+\node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](locationsource){Location source};
 
 \node[above=of libraryinterface, yshift=-0.9cm, xshift=-1.4cm](library){Library};
+
+
 
 \draw ($ (importinterface.north west) + (-0.3,0.9) $) rectangle ($ (importinterface.south east)+(0.3,-0.3) $);
 
 
 
-\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](program){GPS data source};
+\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](datacollector){Data Collector};
 
-
-\node[database,below=of data
-](database){Database};
 
 % Connecting Arrows
 \draw[path] (mvc.south) -- (libraryinterface.north);
@@ -70,10 +77,11 @@
 
 \draw[path] (business.south) -- (data.north);
 
-\draw[path] (program.south) -- (importinterface.north);
+\draw[path] (datacollector.south) -- (importinterface.north);
 
 \draw[path] (importinterface.south) -- (data.north);
 
 \draw[path] (data.south) -- (database.north);
 
 \end{tikzpicture}
+\bruno{We should probably add an interface for easily substitution of the Data Layer}
