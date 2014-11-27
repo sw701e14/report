@@ -39,10 +39,16 @@
 \node [
 	draw,
 	below=of business,
+	yshift=-0.5cm,
 	xshift= -2cm,
 	minimum width=4cm,
 ] (data) {Data};
 
+
+\node[database,below=of data
+](database){Database};
+
+\draw ($ (data.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.6) $);
 
 % Data import
 % Interface
@@ -59,9 +65,6 @@
 
 \node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](datacollector){Data Collector};
 
-
-\node[database,below=of data
-](database){Database};
 
 % Connecting Arrows
 \draw[path] (mvc.south) -- (libraryinterface.north);
