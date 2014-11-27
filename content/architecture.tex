@@ -10,9 +10,9 @@ The overall architecture can be seen on \cref{arch}.
 \label{arch}
 \end{figure}
 
-The system is made of five main components, the GPS data source, a GPS data receiver, a database, a library and a web service exposing the functionality of the library to a user.
+The system is made of five main components, a location source, a data collector, a database, a library and a web service exposing the functionality of the library to a user.
 
-The following will elaborate on the details of these components.
+The following will be a short overview of the different layers.
 
 \paragraph{Data Collector}
 The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new \texttt{GPSData} and will insert them into the database. 
