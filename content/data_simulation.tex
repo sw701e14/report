@@ -1,40 +1,8 @@
-\section{Data input simulation}\label{design:datasimulation}
+\section{Data Input Simulation}\label{design:datasimulation}
 \bruno{GPS receiver: A GPS receiver uses satellites from the GPS to calculate its location and then can eg. send the location}
 \bruno{Maybe a section about GPS in theory or something... }
 In the running system data points will be retrieved from a GPS reciever attached on the bikes.
 Because we do not have bikes with GPS receivers at our disposal, we will need to create a simulation of the behaviour the real system would have.
-
-\subsection{The real system}
-In the running system the data will be provided by a GPS receiver which will send the calculated location to a GPS location receiver.
-The receiver will send at a set interval but it cannot be guaranteed that the interval will be consistent.
-It is also not to be guaranteed that the reported GPS locations will be exact.
-This will be reported as the accuracy of the measurement by the GPS receiver.
-
-The real system will consist of more than 100 bikes that send GPS points independent of each other.
-
-\subsection{Location receiver}\label{design:datareceiver}
-In order to accommodate for both the running system and our simulation we will construct an interface that handles incoming locations.
-This interface will be able to receive the points from any source so it will be easy to change the source from our simulated data to a real data source.
-
-The location receiver handles every location that is coming from the bikes.
-In order to decrease the number of locations as well as to make it easier to find bikes that are not moving, the location receiver will analyse every incoming location and check if the bike has moved since the last update.
-If the bike has not moved a boolean value is set on the previously recorded location in the database, and the incoming location will not be inserted in the database.
-This check is done by comparing the distance between the two locations and the accuracy of the locations, as reported by the GPS receiver.
-The algorithm used for this is displayed in \cref{withinacc}.
-Here the distance function calculates the distance between the two locations contained in the GPS points and accuracy is a property of the GSP points.
-
-\begin{algorithm}
-\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-\Input{Two gps points gps1 and gps2}
-\Output{True if the points can be regarded as the same due to accuracy, false if not}
-
-dist = distance(gps1,gps2)\\
-\Return gps1.accuracy + gps2.accuracy >= dist
-
-\caption{WithinAccuracy}
-\label{withinacc}
-\end{algorithm}
-\stefan{pseudo unnecessary?}
 
 \subsection{Point generation}
 Because we do not have access to a running system with 100 bikes sending GPS points, we have created a simulation of the real system.
@@ -51,7 +19,7 @@ The details of these steps will be explained in the following.
 
 \subsubsection{Creating routes with Google directions}
 
-The Google Directions API \cite{gdirections} have been used to create realistic looking bike routes.
+The Google Directions API \cite{gdirections} has been used to create realistic looking bike routes.
 The api has a variety of settings to restrict the results, including a setting to only get bike routes.
 The result can be either XML or JSON and contains the route structured by a number of  ``legs'' which contains a number of ``steps''.
 A leg is a part of a journey and a new leg will be created when changing means of transport or at waypoints.
