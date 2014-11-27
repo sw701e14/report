@@ -8,7 +8,7 @@ A resource is an object, containing named properties, along with sub-resources.
 Sub-resources are represented as simple objects, containing only its relative URL.
 
 \paragraph{View} can be seen as the serialized resource representation that the user obtains by performing requests against the API.
-Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header \bruno{Add source on what a header is and what accept does.}, this can be set to \texttt{application/json}.
+Per default, this is \texttt{text/xml}\mikael{Lies, it is Chrome that defaults it.}, however, by adding the \texttt{Accept} header \bruno{Add source on what a header is and what accept does.}, this can be set to \texttt{application/json}.
 
 \paragraph{Controller} represents the handling of resources, which primarily consists of transforming the actual model, into the resources model, to be serialized and returned as response to requests.
 The routing to controllers is handled by the attributes \texttt{[RoutePrefix]} and \texttt{[Route]}.
