@@ -14,19 +14,17 @@ The system is made of five main components, the GPS data source, a GPS data rece
 
 The following will elaborate on the details of these components.
 
-\subsection{Data Collector}
+\paragraph{Data Collector}
 The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new points and will insert them into the database. 
 The handling of incoming GPS data points is described in \cref{design:datareceiver}.
 
-\subsection{Location source}
+\paragraph{Location source}
 The \texttt{Location source} is as the name states our source for location data.
-This component contains an \texttt{Interface} that has a \texttt{GetData} method 
-In the running system the source will be the GPS receivers on the bikes and the \texttt{Location source} will receive the data from the GPS receivers and prepare it for the database.
-In our prototype system we will simulate the bikes and the location source will generate the points before making them available to the \texttt{Data Collector}
-More details on the \texttt{Location Source} can be found in \cref{} \stefan{ref to Location source}
+This component contains an \texttt{Interface} that has a \texttt{GetData} method that provides the next available point.
+More details on the \texttt{Location Source} can be found in \cref{}. \stefan{ref to Location source}
 
 
-\subsection{Database}
+\paragraph{Database}
 The database will contain all the data of the running system.
 The design of the database can be found in \stefan{databasedesign}.
 
@@ -34,22 +32,20 @@ A wrapper for the database has been created to make the access to the database c
 Both the GPS data receiver and the business logic layers use this layer to access the database.
 \stefan{design of this wrapper?}
 
-\subsection{Web Service}
+\paragraph{Web Service}
 The webservice is the main interface provided to the users of the system.
 The web service will expose an API that the user can use to query data from the system.
 
 The web service consists of an ASP.net MVC project and will be discussed further in \stefan{reference til webservice}
 
-\subsection{Library}
+\paragraph{Library}
 The library contains the main functionality of the system 
 It is split into two layers, the \texttt{Interface} and the \texttt{Business Logic}.
 
-\subsubsection{Business Logic}
-This layer contains the bulk of the application, the business logic.
+The business logic layer contains the bulk of the application.
 This layer will contain methods operating on the data in the database that performs the operations needed for the operations that the \texttt{Web Service} make available for the users.
+The interface will make this functionality available other components, such as the web service.
 
-\subsubsection{Interface}
-The interface provides access to the business logic for user interfaces.
 
 
 
