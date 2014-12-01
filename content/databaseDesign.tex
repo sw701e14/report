@@ -1,0 +1,42 @@
+\section{Database Design}
+\stefan{This section may be redundant, and an entry in appendix may be better.}
+To store the data we use a MySQL database.
+The following will describe the database design and the choices involved.
+
+When data is collected and stored, it is stored in the \texttt{GPS\_data} table.
+This table contains all information necessary for storing a GPS point as well as the field "hasNotMoved" which is used to indicate whether the bike is standing still or if it has moved since the point was insertet into the database.
+This has been done in order to reduce redundant data in the database.
+The GPS\_data table can be seen in \cref{tbl_gpsdata}
+
+\begin{lstlisting}[caption=Table for GPS\_data, label=tbl_gpsdata, language=SQL]
+CREATE TABLE gps_data (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+	bikeId INT UNSIGNED NOT NULL,
+	latitude DECIMAL(10,8) NOT NULL,
+	longitude DECIMAL(11,8) NOT NULL,
+	accuracy TINYINT UNSIGNED NOT NULL,
+	queried DATETIME NOT NULL,
+	hasNotMoved BOOL NOT NULL DEFAULT FALSE
+);
+\end{lstlisting}
+
+In order to query information about a single bike, and to keep track of the bikes currently available in the system.
+The table for this is very simple and can be seen in \cref{tbl_bikes}
+
+\begin{lstlisting}[caption=Table for bikes, label=tbl_bikes]
+CREATE TABLE bikes (
+ id INT UNSIGNED NOT NULL UNIQUE PRIMARY KEY
+);
+
+\end{lstlisting}
+
+The hotspots created by the DBSCAN algorithm are also saved in the database.
+A hotspot is described by a convex hull of the points that describe the area of the hotspot.
+This convex hull is saved as binary data (a blob).
+
+\begin{lstlisting}[caption=Table for hotspots, label=tbl]
+CREATE TABLE hotspots (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+	convex_hull BLOB NOT NULL
+);
+\end{lstlisting}
