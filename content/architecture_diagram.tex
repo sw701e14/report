@@ -42,7 +42,7 @@ minimum width=4cm,
 \node[database,below=of data
 ](database){Database};
 
-\node[above=of updater.north east,yshift=-1cm,xshift=0.7cm](persistency){Database};
+\node[above=of updater.north east,yshift=-1cm,xshift=0.7cm](persistency){Business logic};
 
 \draw ($ (persistency.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.9) $);
 
