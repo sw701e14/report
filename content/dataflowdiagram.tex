@@ -16,12 +16,13 @@ The database is explained \cref{} \bruno{ref når det er skrevet.}
 \paragraph{From raw location data to \texttt{GPS data}}
 Each bike is equipped with a GPS receiver which uses this to calculate its location.
 The data is then send containing the location and a number indicating the accuracy of the location.
-The data received is read and transformed to an object.
-The object is inserted into the database.
+The data received is read and saved as an object, \texttt{GPS data}.
+\texttt{GPS data} is inserted into the database.
+This happens for each bike.
 
 \paragraph{From \texttt{GPS data} to Hotpots}
 The \texttt{GPS data} are available from the database and is used by the clustering algorithm DBSCAN(\cref{clustering:DBSCAN}) to find all clusters.
-By using convex hull (\cref{} \bruno{ref til convex hull - hvis vi skriver om det ellers bare en ekstern ref}) on each cluster the amount of \texttt{GPS data} is greatly minimized and is saved as a \texttt{Hotspot}.
+By using convex hull (\cref{} \bruno{ref til convex hull - hvis vi skriver om det ellers bare en ekstern ref}) on each cluster the number of \texttt{GPS data} is greatly minimized and is saved as a \texttt{Hotspot}.
 The \texttt{Hotspot}'s are then saved to the database.
 
 \paragraph{From Hotspots to Markov Chain}
