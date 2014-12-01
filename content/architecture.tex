@@ -1,6 +1,6 @@
 \section{Architecture}
 
-The project has been structured in order to make it easier to maintain, and makes it possible to change components without breaking the system.
+The project has been structured in order to make it easier to maintain, scalable, and makes it possible to change  layers and components without breaking the system.
 The overall architecture can be seen on \cref{arch}.
 
 \begin{figure}[h]
@@ -14,8 +14,7 @@ The system is made of three main components, a data collector, the business logi
 
 The following will be a short overview of the different components.
 
-\paragraph{Data Collector}
-
+\paragraph{Data Loading}
 The data loading component has responsibility for fetching data from a data source.
 The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new \texttt{GPSData} and will insert them into the database. 
 The handling of incoming \texttt{GPSData} is described in  \cref{}.
@@ -24,11 +23,11 @@ The handling of incoming \texttt{GPSData} is described in  \cref{}.
 \paragraph{Business Logic}
 The business logic contains the main functionality of the system.
 
-The model updater contains the main funcitonality of the application.
+The model updater contains the main functionality of the application.
 It updates the model by finding hotspots and running the markov chain algorithm to calculate the predictions that the users will be shown.
 The \texttt{Data} layer provides access to the \texttt{Database}.
 The database contains all the data of the running system.
-The design of the database can be found in \stefan{databasedesign}.
+The design of the database can be found in \cref{database_design}.
 
 \paragraph{Web Service}
 The webservice is the main interface provided to the users of the system.
