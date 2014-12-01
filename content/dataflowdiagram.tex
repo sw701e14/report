@@ -1,21 +1,30 @@
-\section{Data Flow Diagram}
- \begin{figure}[H]
-\includegraphics[width=\textwidth]{dataflowdiagram.pdf}
+\section{Data Flow}
+This section is about the data flow. More precisely how the data that is received from the GPS receiver is send to the database and what it is used for.
+A diagram of the flow can be seen below on \cref{fig:dataFlowDiagram}.
+The diagram is explained in the following.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth, trim={0 25cm 8cm 0}]{dataflowdiagram.pdf}
 \caption{The data flow diagram of our solution}
 \label{fig:dataFlowDiagram}
 \end{figure}
-\pagebreak
+\pagebreak 
 
-We will implement the data flow shown in \cref{fig:dataFlowDiagram} in our web service. The figure uses rectangles to illustrate external interfaces, round edged rectangles to illustrate our web service processes, and open rectangles to illustrate data storage.
+\paragraph{Database}
+The database is explained \cref{} \bruno{ref når det er skrevet.}
 
-The data flow illustrates how the web service has four external interfaces, the city bikes, the public users, Aalborg Kommune, and our own Inactivity Agent.
-Each of these four external interfaces interacts and shares data with our web service.
+\paragraph{From raw location data to \texttt{GPS data}}
+Each bike is equipped with a GPS receiver which uses this to calculate its location.
+The data is then send containing the location and a number indicating the accuracy of the location.
+The data received is read and saved as an object, \texttt{GPS data}.
+\texttt{GPS data} is inserted into the database.
+This happens for each bike.
 
-\paragraph{The City Bikes} transmits their GPS data to our web service every 5 minutes. When our web service receives GPS data it updates the correct data in the database.
-Our web service then clusters the GPS data and calculates hotspots and stores them into the database.
+\paragraph{From \texttt{GPS data} to Hotpots}
+The \texttt{GPS data} are available from the database and is used by the clustering algorithm DBSCAN(\cref{clustering:DBSCAN}) to find all clusters.
+By using convex hull (\cref{} \bruno{ref til convex hull - hvis vi skriver om det ellers bare en ekstern ref}) on each cluster the number of \texttt{GPS data} is greatly minimized and is saved as a \texttt{Hotspot}.
+The \texttt{Hotspot}'s are then saved to the database.
 
-\paragraph{The public user and Aalborg Kommune} interacts with our web service by sending requests to it.
-Each method, invoked by the request, then loads the needed data from the database and returns an appropriate response.
-
-\paragraph{The Inactivity Agent} request our web service, to calculate the location and times of all inactive city bikes, at a given interval. The web service is then responsible for, fetching the needed data from the database, and returning the location and times of all inactive city bikes to the inactivity agent.
-The inactivity agent will then determine if there is sufficient reason to alert Aalborg Kommune of the city bikes position.
+\paragraph{From Hotspots to Markov Chain}
+This is building the Markov Chain(\cref{markov}) from the routes and \texttt{Hotspot}'s stored in the database.
+The Markov Chain is then saved in the database.
