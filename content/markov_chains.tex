@@ -1,4 +1,4 @@
-\section{Choosing prediction method}\label{markov}
+\section{Predicting behavior}
 We strive to create a system which can predict the movement of city bikes at a given time.
 With this kind of system we should be able to answer the two questions:
 \begin{itemize}
@@ -15,7 +15,7 @@ Thus predicting the movement of an average city bike can be done by answering th
 
 To answer this question we need to model the behavior of this average city bike, i.e. a formal description of a single city bikes movement, on average, from one hotspot to another.
 
-\subsection{Choosing abstraction model}
+\subsection{Abstraction model}
 When modeling the behavior of the average city bike, uncertainty is expected as the behavior should represent the collective behavior of all city bikes.
 Further as we do not store information about the users, we can not distinguish between the users and their personal routes.
 Another thing to consider, when choosing abstraction model, is that the location data is provided through GPS units mounted on each city bike.
@@ -23,7 +23,7 @@ The GPS units provides data at a fixed time interval and can have a low accuracy
 
 Taking all that into account, it is reasonable to suggest the abstraction model, for the behavior of the average city bike, being a discrete-time Markov chain, where the states are used to represent hotspots.
 
-\subsection{Discrete Markov Chains}
+\subsection{Discrete Markov Chains}\label{markov}
 A discrete Markov chain models the state changes at discrete time intervals.
 These intervals are indexed by an integer variable $ n $ and the corresponding states are denoted by $ X_n $.
 The Markov chain has a finite set of states, given $X_i \in S$, which have the Markov property.
