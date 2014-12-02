@@ -1,30 +1,27 @@
 \section{Data Flow}
-This section is about the data flow. More precisely how the data that is received from the GPS receiver is send to the database and what it is used for.
-A diagram of the flow can be seen below on \cref{fig:dataFlowDiagram}.
-The diagram is explained in the following.
+This section describes the data flow from city bike(s) to database. More precisely how the data that is received from the GPS receiver is send to the database and what it is used for.
+A diagram of the data flow can be seen in \cref{fig:dataFlowDiagram}.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth, trim={0 25cm 8cm 0}]{dataflowdiagram.pdf}
 \caption{The data flow diagram of our solution}
 \label{fig:dataFlowDiagram}
 \end{figure}
-\pagebreak 
-
-\paragraph{Database}
-The database is explained \cref{} \bruno{ref når det er skrevet.}
 
 \paragraph{From raw location data to \texttt{GPS data}}
-Each bike is equipped with a GPS receiver which uses this to calculate its location.
-The data is then send containing the location and a number indicating the accuracy of the location.
-The data received is read and saved as an object, \texttt{GPS data}.
-\texttt{GPS data} is inserted into the database.
-This happens for each bike.
+Each bike is equipped with a GPS receiver which transmits, its location and accuracy of the location, to our web service.
+The data received is read and processed, then stored as an \texttt{GPS data} object in the database.
+
+This process is repeated every 5 minutes for each bike.
 
 \paragraph{From \texttt{GPS data} to Hotpots}
-The \texttt{GPS data} are available from the database and is used by the clustering algorithm DBSCAN(\cref{clustering:DBSCAN}) to find all clusters.
-By using convex hull (\cref{} \bruno{ref til convex hull - hvis vi skriver om det ellers bare en ekstern ref}) on each cluster the number of \texttt{GPS data} is greatly minimized and is saved as a \texttt{Hotspot}.
-The \texttt{Hotspot}'s are then saved to the database.
+The \texttt{GPS data} are available from the database and is used by the clustering algorithm DBSCAN (see \cref{clustering:DBSCAN}) to find all clusters.
+By using convex hull (see \cite[page 1031]{aadbook}) on each cluster the number of \texttt{GPS data} needed to describe a \texttt{Hotspot} is greatly minimized.
+The \texttt{Hotspot}s are then stored in the database.
 
 \paragraph{From Hotspots to Markov Chain}
-This is building the Markov Chain(\cref{markov}) from the routes and \texttt{Hotspot}'s stored in the database.
-The Markov Chain is then saved in the database.
+A Markov Chain (see \cref{markov}) is build from the routes and \texttt{Hotspot}s stored in the database.
+The Markov Chain is then stored in the database.
+
+\paragraph{Database}
+The database design and structure are explained in \cref{database_design}.

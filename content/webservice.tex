@@ -1,38 +1,40 @@
 \section{Web Service}
-As we have very little knowledge of our target group, we would want our system to be as available as possible.
+As we have very little knowledge of our target group\mikael{What is our target group?}, we would want our system to be as available as possible.
 One way to do this, is to implement it on a multitude of platforms (e.g. PC, Android devices, iOS devices).
 However, this would require massive work, as all these platforms are different and would therefore require different implementations.
+Additionally, it would not be very flexible, as new platforms and devices are introduced on the market, requiring even further implementation.
 
-Another way to make the system available, but without implementing it on all these platforms, would be to create a web service, for other developers (or hobbyists) to use, making their own platform implementations.
+Another way to make the system available, but without making it platform-dependent, would be to create a common web service that provides the most significant functionality of the system.
 
 This section will shortly describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
 
 \subsection{Choosing an architecture}
-When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).
+When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).\cite{restful_web_services}
 What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
-As an RPC-style web service is per definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
+As an RPC-style web service is by definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
+
 The following section will describe RESTful web services (specifically Resource-Oriented Architecture), based on  \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 
-\subsubsection{REST}
-Representational State Transfer (REST) is an architectural style, which provides design criteria for network-based software architectures.
+\subsubsection{Representational State Transfer}
+REST is an architectural style, which provides design criteria for network-based software architectures.
 Web services adhering to these design criteria are referred to as RESTful web services.
 These criteria were defined in \citet{fielding_dissertation}.
 As REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA) as described in \citet{restful_web_services}.
 
-\subsubsection{ROA}
+\subsubsection{Resource-Oriented Architecture}
 ROA is an architecture, upholding the REST design criteria.
 This is done by organizing and accessing resources in a standardized manner, and by following and taking full advantage of the HTTP/1.1 specification.
 
-In order to ensure that a ROA implementation will comply with the REST design criteria, it will have to adhere to the four concepts: \textit{resources, URIs, representing resources, linking resources}, along with the four properties: \textit{addressability, statelessness, connectedness, uniform interface}.\cite[Chapter 4,]{restful_web_services}
+In order to ensure that a ROA implementation will comply with the REST design criteria, it will have to adhere to the four concepts: \textit{resources, URIs, representing resources, linking resources}, along with the four properties: \textit{addressability, statelessness, connectedness, uniform interface}.\cite[Chapter 4]{restful_web_services}
 
 \paragraph{Resources} are a subset of the resource state.
 A single resource is an entity important enough to be a thing in itself.
 
-Each resource should have at least one \textit{URI} (Unique Resource Identifier), but it is possible to have more in order to ease the use of often-accessed resources.
+Each resource should have at least one \textit{URI} (Unique Resource Identifier).
 URIs ensure that each resource can be uniquely identified, directly handling the \textit{addressability} property.
 
 \subparagraph{Representations} of resources depends on the desired use.
-A representation of a specific resource should be any useful information about that resource's state, defined by properties and sub-resources.
+A representation of a specific resource is a collection of any useful information about that resource's state, defined by properties and sub-resources.
 
 \paragraph{Connectedness and linking resources} are highly dependent on URIs.
 As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI. 
