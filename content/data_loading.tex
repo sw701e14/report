@@ -1,7 +1,10 @@
 \section{The Data Loading component}
-The data loading component has the responsibility for fetching GPS points and process them before inserting them into the database.
+The data loading component has the responsibility for fetching GPS points and processing them before inserting them into the database.
+The component consists of a \texttt{Data Collector} and a \texttt{Location Source} as well as a \texttt{Common} layer that contains an interface and data transfer objects.
 
-\begin{figure}	\centering
+The parts of this component will be described in this section.
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}[
 path/.style={
 	->,
@@ -25,26 +28,32 @@ every node/.style={font=\sffamily,minimum height=1cm}]
 \label{dataloadingcomponent}
 \end{figure}
 
+\subsection{Common}
+The \texttt{Data Loading} component contains interfaces and data transfer objects for the \texttt{Data Loading} component.
+
+The \lstinline!GPSInput! class works as a data transfer object for \lstinline!GPSData! in the \texttt{Model} layer of the \texttt{Business Logic} component.
+
+The \lstinline!IDataSource! interface defines the behaviour of a data source in the system enabling the source to be changed.
+The interface can be seen in \cref{idatasourcecode}.
+
+\begin{lstlisting}[language=C,caption=The IDataSource interface,label=idatasourcecode]
+public interface IDataSource
+{
+	GPSInput GetData();
+}
+\end{lstlisting}
+
+The \lstinline!GetData();! method returns the oldest \lstinline!GPSInput! available if any is available.
+If no \lstinline!GPSInput! is available it returns null.
+
+\subsection{Data Collector}
+The \texttt{Data Loader} works as an independent program that continuously asks the \lstinline!Location Source! for new \lstinline!GPSInput!.
+The \lstinline!Location Source! is an implementation of the \lstinline!IDataSource! and the \texttt{Data Loader} can therefore use any source that implements this interface.
+
+
 \subsection{Location Source}\label{design:location_source}
-In order to accommodate for the running system we will construct an interface that handles incoming locations.
-This interface will be able to receive the locations from any source so it will be easy to change the source.
+The \texttt{Location Source} contains implementations of the \lstinline!IDataSource! and will therefore contain an implementation of the simulation of bikes.
+In the real system an implementation will be made where the data is fetched from GPS trackers on bikes instead.
 
-The location receiver handles every location that is coming from the bikes.
-Every location is stored as a \texttt{GPSData} type.
-In order to decrease the number of locations as well as to make it easier to find bikes that are not moving, the location receiver will analyse every incoming location and check if the bike has moved since the last update.
-If the bike has not moved a boolean value is set on the previously recorded location in the database, and the incoming location will not be inserted in the database.
-This check is done by comparing the distance between the two locations and the accuracy of the locations, as reported by the GPS receiver.
-The algorithm used for this is displayed in \cref{withinacc}.
-Here the distance function calculates the distance between the two locations contained in the \texttt{GPSData}, which has accuracy as a property.
-
-\begin{algorithm}
-\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-\Input{Two \texttt{GPSData} gps1 and gps2}
-\Output{True if the points can be regarded as the same due to accuracy, false if not}
-
-dist = distance(gps1,gps2)\\
-\Return gps1.accuracy + gps2.accuracy >= dist
-
-\caption{WithinAccuracy}
-\label{withinacc}
-\end{algorithm}
+The implementation of the implementation of the bike simulation will be described in \cref{design:datasimulation}.
+ 
