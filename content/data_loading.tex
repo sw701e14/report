@@ -12,17 +12,22 @@ path/.style={
 },
 every node/.style={font=\sffamily,minimum height=1cm}]
 
-\node[draw,minimum width=4cm,xshift=0.5cm](datacollector){Data Collector};
+\node[draw,minimum width=3cm,xshift=0.5cm](datacollector){Data Collector};
 
 \node[draw,below=of datacollector](locationsource){Location source};
 
-\node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-0.9cm,yshift=-0.5cm, minimum width=2.5cm](common){Common};
+\node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-1cm,yshift=-0.5cm, minimum width=3cm](common){Common};
 
 \node[above=of datacollector, yshift=-1.2cm,xshift=-0.9cm](dataloading){Data loading};
 
 \draw ($ (dataloading.north west) + (-0.3,0.3) $) rectangle ($ (common.south west)+(0.3,-0.7) $);
 
 \draw[path] (datacollector.south) -- (locationsource.north);
+
+\draw[path] (datacollector.east) -- (common.north);
+
+\draw[path] (locationsource.east) -- (common.north);
+
 \end{tikzpicture}
 \caption{The Data Loading Component. The full diagram can be seen on \cref{arch}}
 \label{dataloadingcomponent}
