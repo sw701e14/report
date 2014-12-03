@@ -1,0 +1,63 @@
+\subsection{Data Loading Component}\label{arch:data_loading_component}
+The data loading component has the responsibility for fetching GPS points and processing them before inserting them into the database.
+The component consists of a \texttt{Data Collector}, a \texttt{Location Source}, and a \texttt{Common} layer that contains an interface and data transfer objects.
+
+The parts of this component will be described in this section.
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+path/.style={
+	->,
+	>=stealth
+},
+every node/.style={font=\sffamily,minimum height=1cm}]
+
+\node[draw,minimum width=3cm,xshift=0.5cm](datacollector){Data Collector};
+
+\node[draw,below=of datacollector](locationsource){Location source};
+
+\node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-1cm,yshift=-0.5cm, minimum width=3cm](common){Common};
+
+\node[above=of datacollector, yshift=-1.2cm,xshift=-0.9cm](dataloading){Data loading};
+
+\draw ($ (dataloading.north west) + (-0.3,0.3) $) rectangle ($ (common.south west)+(0.3,-0.7) $);
+
+\draw[path] (datacollector.south) -- (locationsource.north);
+
+\draw[path] (datacollector.east) -- (common.north);
+
+\draw[path] (locationsource.east) -- (common.north);
+
+\end{tikzpicture}
+\caption{The Data Loading Component. The full diagram can be seen on \cref{arch}}
+\label{dataloadingcomponent}
+\end{figure}
+
+\subsubsection{Common}
+The \texttt{Data Loading} component contains interfaces and data transfer objects for the \texttt{Data Loading} component.
+
+The \lstinline!GPSInput! class works as a data transfer object for \lstinline!GPSData! in the \texttt{Model} layer of the \texttt{Business Logic} component.
+
+The \lstinline!IDataSource! interface defines the behaviour of a data source in the system enabling the source to be changed.
+The interface can be seen in \cref{idatasourcecode}.
+
+\begin{lstlisting}[language=C,caption=The IDataSource interface,label=idatasourcecode]
+public interface IDataSource
+{
+	GPSInput GetData();
+}
+\end{lstlisting}
+
+The \lstinline!GetData();! method returns the oldest \lstinline!GPSInput! available if any is available.
+If no \lstinline!GPSInput! is available it returns null.
+
+\subsubsection{Data Collector}
+The \texttt{Data Loader} works as an independent program that continuously asks the \lstinline!Location Source! for new \lstinline!GPSInput!.
+The \lstinline!Location Source! is an implementation of the \lstinline!IDataSource! and the \texttt{Data Loader} can therefore use any source that implements this interface.
+
+\subsubsection{Location Source}\label{design:location_source}
+The \texttt{Location Source} contains implementations of the \lstinline!IDataSource! and will therefore contain an implementation of the simulation of bikes.
+In the real system an implementation will be made where the data is fetched from the GPS trackers on the bikes instead.
+
+The implementation of the bike simulation will be described in \cref{design:datasimulation}.
+ 

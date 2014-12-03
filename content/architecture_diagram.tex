@@ -3,7 +3,7 @@
 		->,
 		>=stealth
 	},
-	every node/.style={font=\sffamily},
+	every node/.style={font=\sffamily,minimum height=1cm},
 	database/.style={
 	      cylinder,
 	      cylinder uses custom fill,
@@ -13,75 +13,73 @@
 	      }
 ]
 
-% Webservice
-\node [
-	draw,
-	yshift=2cm,
-	minimum width=4cm,
-] (mvc) {ASP.net MVC};
-
-\node[above=of mvc, yshift=-0.9cm, xshift=-0.9cm](webservice){Web Service};
-
-\draw ($ (mvc.north west) + (-0.3,0.9) $) rectangle ($ (mvc.south east)+(0.3,-0.3) $);
-
-% %% Library
-\node [
-	draw,
-	minimum width=4cm
-] (libraryinterface) {Interface};
-
-\node[draw, minimum width = 4cm, below=of libraryinterface
-](business){Business logic};
-
-\draw ($ (libraryinterface.north west) + (-0.3,0.9) $) rectangle ($ (business.south east)+(0.3,-0.3) $);
 
 % Data
+
+\node[database](database){Database};
+
 \node [
-	draw,
-	below=of business,
-	yshift=-0.5cm,
-	xshift= -2cm,
-	minimum width=4cm,
-] (data) {Data};
+draw,
+above=of database,
+minimum width=4cm,
+] (data) {Data Access Layer};
+
+\node[above=of data,xshift=-1.7cm,yshift=-1cm](shared) {Shared};
+
+\node [
+draw,
+right=of data,
+minimum width=4cm,
+] (dto) {DTO};
+
+\draw ($ (shared.north west) + (-1,0.3) $) rectangle ($ (dto.south east) +(4,-0.3) $);
 
 
-\node[database,below=of data
-](database){Database};
+% Webservice
 
-\node[above=of data, yshift=-0.9cm, xshift=-1.7cm](persistency){Database};
+\node[draw,circle,minimum size=1cm,inner sep=0pt, above=of data, xshift=-2.5cm,yshift=1.5cm] (M){M};
 
-\draw ($ (persistency.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.6) $);
+\node[draw,circle,minimum size=1cm,inner sep=0pt, yshift=-0.5cm,xshift=0.7cm,above=of M] (V){V};
+
+\node[draw,circle,minimum size=1cm,inner sep=0pt, xshift=-0.5cm,right=of M] (C){C};
+
+\node[above=of V, yshift=-1cm](webservice){Web Service};
+
+\draw ($ (webservice.north west) + (-0.3,0.3) $) rectangle ($ (C.south east)+(0.6,-0.6) $);
+
 
 % Data import
-% Interface
-\node[draw, minimum width = 4cm, left=of libraryinterface
-](importinterface){Interface};
+\node[draw,above=of data,xshift=3cm,yshift=1.5cm] (locationsource) {Location source};
 
-\node[above=of importinterface, yshift=-0.9cm, xshift=-0.3cm](locationsource){Location source};
+\node[draw,minimum width=3cm,above=of locationsource](datacollector){Data Collector};
 
-\node[above=of libraryinterface, yshift=-0.9cm, xshift=-1.4cm](library){Library};
+\node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-1cm,yshift=-0.5cm, minimum width=3cm](common){Common};
 
+\node[above=of datacollector, yshift=-1.2cm,xshift=-0.9cm](dataloading){Data loading};
 
+\draw ($ (dataloading.north west) + (-0.3,0.3) $) rectangle ($ (common.south west)+(0.6,-0.5) $);
 
-\draw ($ (importinterface.north west) + (-0.3,0.9) $) rectangle ($ (importinterface.south east)+(0.3,-0.3) $);
+%modelupdater
 
-
-
-\node[draw,minimum width=4cm,yshift=0.2cm,above=of importinterface](datacollector){Data Collector};
-
+\node[draw,above=of data,xshift=8.5cm,yshift=1.5cm](modelupdater){Model Updater};
 
 % Connecting Arrows
-\draw[path] (mvc.south) -- (libraryinterface.north);
 
-\draw[path] (libraryinterface.south) -- (business.north);
+\draw[path] (V.south) -- (M.north);
+\draw[path] (C.west) -- (M.east);
+\draw[path] (C.north) -- (V.south);
 
-\draw[path] (business.south) -- (data.north);
+\draw[path] (datacollector.south) -- (locationsource.north);
+\draw[path] (datacollector.east) -- (common.north);
+\draw[path] (locationsource.east) -- (common.north);
 
-\draw[path] (datacollector.south) -- (importinterface.north);
+\draw[path] (datacollector.west) -- ($(data.north)+(0.3,5.02)$)  --  ($(data.north) + (0.3,1.3)$);
 
-\draw[path] (importinterface.south) -- (data.north);
+
+\draw[path] (M.south) -- ($(data.north) + (-2.5,1.3)$);
+
+\draw[path] (modelupdater.south) -- ($(data.north) + (8.5,1.3)$);
 
 \draw[path] (data.south) -- (database.north);
 
 \end{tikzpicture}
-\bruno{We should probably add an interface for easily substitution of the Data Layer}

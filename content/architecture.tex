@@ -1,6 +1,5 @@
 \section{Architecture}
-
-The project has been structured in order to make it easier to maintain, and makes it possible to change components without breaking the system.
+The project has been build up around an architecture in order to make it easier to maintain and scalable.
 The overall architecture can be seen on \cref{arch}.
 
 \begin{figure}[h]
@@ -10,42 +9,32 @@ The overall architecture can be seen on \cref{arch}.
 \label{arch}
 \end{figure}
 
-The system is made of five main components, a location source, a data collector, a database, a library and a web service exposing the functionality of the library to a user.
+The system is made of five main components, a \texttt{Data Loading}, a Shared, a \texttt{Model Updater}, a \texttt{Database} and a \texttt{Web Service} exposing the functionality to a user.
+The following will be a short overview of the different components.
 
-The following will be a short overview of the different layers.
-
-\paragraph{Data Collector}
+\paragraph{Data Loading}
+The data loading component has responsibility for fetching data from a data source.
 The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new \texttt{GPSData} and will insert them into the database. 
-The handling of incoming \texttt{GPSData} is described in  \cref{}.
-\bruno{ref til Data Collector}
+The handling of incoming \texttt{GPSData} is described in  \cref{data_flow}.
+The common layer consists of shared types for this component.
+The in depth description of the component can be found in \cref{arch:data_loading_component}.
 
-\paragraph{Location source}
-The \texttt{Location source} is as the name states our source for location data.
-This component contains an \texttt{Interface} that has a \texttt{GetData} method that provides the next available \texttt{GPSData}.
-More details on the \texttt{Location Source} can be found in \cref{design:design:location_source}.
+\paragraph{Model Updater}
+The model updater contains the main functionality of the application.
+It updates the model by finding hotspots and running the markov chain algorithm to calculate the predictions that the users will be shown.
 
+\paragraph{Shared}
+The \texttt{Data Access Layer} provides access to the \texttt{Database}.
+The \texttt{Data Transfer Object} layer contains all shared types across the architecture.
 
 \paragraph{Database}
-The database will contain all the data of the running system.
-The design of the database can be found in \stefan{databasedesign}.
-
-A wrapper for the database has been created to make the access to the database consistent. 
-Both the \texttt{location source} and the \texttt{business logic} layers use this layer to access the database.
-\stefan{design of this wrapper?}
+The database contains all the data of the running system.
+The design of the database can be found in \cref{database_design}.
 
 \paragraph{Web Service}
 The webservice is the main interface provided to the users of the system.
 The web service will expose an API that the user can use to query data from the system.
-
 The web service consists of an ASP.net MVC project and will be discussed further in \cref{design:web_service}.
-
-\paragraph{Library}
-The library contains the main functionality of the system 
-It is split into two layers, the \texttt{Interface} and the \texttt{Business Logic}.
-
-The business logic layer contains the bulk of the application.
-This layer will contain methods operating on the data in the database that performs the operations needed for the operations that the \texttt{Web Service} make available for the users.
-The interface will make this functionality available other components, such as the web service.
 
 
 
