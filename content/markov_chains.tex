@@ -19,29 +19,50 @@ By abstracting the locations to be hotspots the above questions can be rephrased
 To answer these questions we need to model the behavior of an \textit{average} bike.
 In other words, we need to provide a formal description of the movement of a single bike representing the movement, on average, of all bikes.
 
-\subsection{Abstraction model}
-When modeling the behavior of the average city bike, uncertainty is expected as the behavior should represent the collective behavior of all city bikes.
-Further as we do not store information about the users, we can not distinguish between the users and their personal routes.
-Another thing to consider, when choosing abstraction model, is that the location data is provided through GPS units mounted on each city bike.
-The GPS units provides data at a fixed time interval and can have a low accuracy at times.
+\subsection{Abstraction Model}
+As the system is based on anonymous usage no user sensitive information is collected.
+Because of this uncertainty in the modeling is expected, as all bikes (and thus all users) are modeled as a single \textit{average bike}.
+Modeling the movement of all bikes will be done by modeling the movement of this average bike.
 
-Taking all that into account, it is reasonable to suggest the abstraction model, for the behavior of the average city bike, being a discrete-time Markov chain, where the states are used to represent hotspots.
+Asides from that we must also consider that our model will be working on discrete-time location data.
+The GPS units that the bikes will be equipped with will only report the location of a bike at a \textit{fixed} interval.
+Additionally the accuracy of each of these measurements can be low, resulting in even more in-precision.
 
-\subsection{Discrete Markov Chains}\label{markov}
-A discrete Markov chain models the state changes at discrete time intervals.
-These intervals are indexed by an integer variable $ n $ and the corresponding states are denoted by $ X_n $.
-The Markov chain has a finite set of states, given $X_i \in S$, which have the Markov property.
+As we are modeling the average bike, we can represent the state of the process as the location of the bike.
+The location of the bike can be seen as which hotspot the bike i currently located at.
+Using this definition we can describe the movement of the bike as an infinite route $h_1, h_2, h_3, \dots$ where $h_i \in H \mid i \in \mathbb{N}$ and $H$ is the set of hotspots in the system.
+
+Using this representation of the average bike we see that the average bike must move from one hotspot $h_i$ to another $h_{i+1}$ in one \textit{timestep}.
+Note that it could be that $h_i = h_{i+1}$, meaning that the bike has moved to the hotspot it departed.
+This is also used to indicate that the bike has not moved.
+In \cref{markov:modeling} we will describe the modeling of the average city bike in greater detail.
+
+Taking all of the above into account, it is reasonable to suggest the abstraction model, for the behavior of the average city bike, being a discrete-time Markov chain, where the states are used to represent hotspots.
+
+\subsection{Discrete-Time Markov Chains}\label{markov}
+A discrete-time Markov chain models state changes in a process at discrete time intervals.
+It can be viewed as a sequence (chain) of random variables $X_1, X_2, X_3, \dots$ where each such variable is a function $X_i:S \rightarrow x$.
+Here $S$ is a countable set of states representing the possible states (hotspots) in the process described by the Markov chain and $x$ is a \textit{random} state from $S$.
+The subscript describes the time associated with each of the variables.
+Thus $X_i$ represents the possible states of the process at time $i$.
+This notation allows us to establish a timespan as each step refers to a fixed interval.
+
+This randomness will be biased towards certain states given its current state (and possibly time) resulting in a set of probabilities for each state given a random variable.
+Let $\mathbb{P}(X_i = x)$ be the probability of $X_i$ being in state $x$.
+The above will then allow us to express the probability of moving to a state $y$ given the path we have traversed.
+In other words, knowing what state we are in and how we got to it allows us to determine the probability of the next state being $y$:
+
+$$\mathbb{P}(X_{n+i} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)$$
 
 \paragraph{Markov property}\label{markov:property}
-The Markov property states that any given state $i \in S$ in a process we can determine the next state $j$ without knowledge of any states prior to $i$.
-This allows us to simplify \cref{markov:eq:markov_prob} for Markov chains and provide a definition of the Markov property:
+For the sequence to describe a Markov chain it must additionally have the Markov property.
+The Markov property states that for any state $x$ we can determine the probability of the next state being $y$ without any knowledge of the path that led to $x$.
+We can formalize this as:
 
-\begin{align}\label{markov:eq:markov_prob}
-P_{i,j} = &\mathbf{P}(X_{n+1} = j \mid X_n = i, X_{n-1}, \dots, X_0) \nonumber\\
-        = &\mathbf{P}(X_{n+1} = j \mid X_n = i)
-\end{align}
-
-Thus saying that the behavior of the Markov chain will be the same at the current position regardless of previous visits.
+\begin{align*}\label{markov:eq:markov_prob}
+\mathbb{P}(&X_{n+i} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)\\
+= \mathbb{P}(&X_{n+i} = y \mid X_n = x)
+\end{align*}
 
 
 \paragraph{Visual representation}
