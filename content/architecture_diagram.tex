@@ -47,12 +47,12 @@ minimum width=4cm,
 \draw ($ (persistency.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.9) $);
 
 % Data import
-\node[draw,minimum width=4cm,right=of model,xshift=0.5cm](datacollector){Data Collector};
+\node[draw,minimum width=3cm,right=of model,xshift=0.5cm](datacollector){Data Collector};
 
 % Interface
 
 \node[draw,below=of datacollector](locationsource){Location source};
-\node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-0.9cm,yshift=-0.5cm, minimum width=2.5cm](common){Common};
+\node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-1cm,yshift=-0.5cm, minimum width=3cm](common){Common};
 
 \node[above=of datacollector, yshift=-1.2cm,xshift=-0.9cm](dataloading){Data loading};
 
@@ -73,6 +73,8 @@ minimum width=4cm,
 
 \draw[path] (datacollector.west) -- (model.east);
 \draw[path] (datacollector.south) -- (locationsource.north);
+\draw[path] (datacollector.east) -- (common.north);
+\draw[path] (locationsource.east) -- (common.north);
 
 \draw[path] (M.south) -- (model.north);
 \draw[path] (model.south) -- (data.north);
