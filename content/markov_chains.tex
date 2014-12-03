@@ -59,16 +59,34 @@ For the sequence to describe a Markov chain it must additionally have the Markov
 The Markov property states that for any state $x$ we can determine the probability of the next state being $y$ without any knowledge of the path that led to $x$.
 We can formalize this as:
 
-\begin{align*}\label{markov:eq:markov_prob}
-\mathbb{P}(&X_{n+i} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)\\
+\begin{align}\label{markov:eq:markov_prob}
+\mathbb{P}(&X_{n+i} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)\nonumber\\
 = \mathbb{P}(&X_{n+i} = y \mid X_n = x)
-\end{align*}
+\end{align}
 
+\paragraph{Time-homogeneous Markov chains}
+In an effort to simplify the problem of predicting the behavior of the average bike we will be using time-homogeneous Markov chains.
+\mikkel{Do we have a better argument as to why we choose this approach?}
+A Time-homogeneous Markov chain can also be thought of as a time-independent chain.
+In other words, predicting the next state of the chain can be done without knowledge of the time:
+\begin{equation}
+\mathbb{P}(X_{m+1} = y \mid X_m = x) = \mathbb{P}(X_{n+1} = y \mid X_n = x)
+\end{equation}
+
+\textit{This simplification will mean that we are unable to determine a difference in behavior at different times in the process.
+Thus we cannot, using a single model, represent different behaviors of the average bike in the morning/afternoon or in different days of the week.
+To allow for this distinction multiple models could be generated, representing different datasets.
+The system would then simply select the model that corresponds to the current time-of-day/day-of-week.}
+
+\paragraph{Mathematical representation}
+From the above definitions we have that a Markov chain $\mathcal{M}$ can be described as a function $\tau_M:S\times S \rightarrow [0;1]$ such that $\tau_M(x, y) = \mathbb{P}(X_{n + 1} = y \mid X_n = x)$.
+As the chain is independent of time we can represent it using a single matrix containing all its transitional probabilities.
+This is a simple representation that allows us to predict multiple steps into the future by applying the same matrix to some initial state multiple times.
 
 \paragraph{Visual representation}
-Markov chains are typically represented using a DAG\footnote{Directed Acyclic Graph}.
+Markov chains are typically represented using a DAG\footnote{Directed Acyclic Graph} with weight on its edges.
 In such a graph nodes represent states and the weight of edges represent the probability of transitioning between two states.
-Because of the Markov property, processes can be represented using this very simple graphical representation.
+This is a direct mapping of the matrix described above.
 
 In \cref{markov:model:example1} is an example Markov chain with states $\{A, B, C\}$.
 From the diagram we see that the process will transition from state $C$ to state $A$ with probability $0.9$ and to state $B$ with probability $0.1$.
@@ -76,6 +94,8 @@ There is zero probability of the process \textit{staying} in state $C$.
 Any such edges can be removed from the graph to simplify it.
 Thus all \emph{missing} edges should be considered edges with weight 0.
 We can also see from the graph that the sum of the weights of all outgoing edges on each node is 1.
+\mikkel{This paragraph is included intentionally as we will have some edges with weight 0.
+This will be described in \cref{markov:modeling}.}
 
 \begin{figure}[H]
 \centering
@@ -100,8 +120,11 @@ bend angle=15,
 \end{tikzpicture}
 \caption{A state diagram describing a Markov chain with states $\{A, B, C\}$}
 \label{markov:model:example1}
+\mikkel{This diagram should be replaced by the one representing bikes in the next section.}
 \end{figure}
 
 \subsection{Modeling the average bike}\label{markov:modeling}
+\mikkel{This section will describe a few problems in the simple state-set described in this section and how we have chosen to expand on it.}
 
-\alexander{Conclusion of section?}
+\input{content/markov_model_simple}
+\input{content/markov_model_complex}
