@@ -9,7 +9,7 @@ A diagram of the data flow can be seen in \cref{fig:dataFlowDiagram}.
 \end{figure}
 
 \paragraph{From raw location data to \texttt{GPS data}}
-Each bike is equipped with a GPS receiver which transmits, its location and accuracy of the location, to our web service.
+Each bike is equipped with a GPS receiver which transmits, its location and accuracy of the location, to our data collector.
 The data received is read and processed, then stored as an \texttt{GPS data} object in the database.
 
 This process is repeated every 5 minutes for each bike.
