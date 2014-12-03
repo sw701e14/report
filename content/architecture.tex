@@ -9,7 +9,7 @@ The overall architecture can be seen on \cref{arch}.
 \label{arch}
 \end{figure}
 
-The system is made of five main components, a \texttt{Data Loading}, a <insert name of component>, a \texttt{Model Updater}, a \texttt{Database} and a \texttt{Web Service} exposing the functionality to a user.
+The system is made of five main components, a \texttt{Data Loading}, a Shared, a \texttt{Model Updater}, a \texttt{Database} and a \texttt{Web Service} exposing the functionality to a user.
 The following will be a short overview of the different components.
 
 \paragraph{Data Loading}
@@ -23,7 +23,7 @@ The in depth description of the component can be found in \cref{arch:data_loadin
 The model updater contains the main functionality of the application.
 It updates the model by finding hotspots and running the markov chain algorithm to calculate the predictions that the users will be shown.
 
-\paragraph{<insert name of component>}
+\paragraph{Shared}
 The \texttt{Data Access Layer} provides access to the \texttt{Database}.
 The \texttt{Data Transfer Object} layer contains all shared types across the architecture.
 
