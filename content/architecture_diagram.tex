@@ -13,72 +13,72 @@
 	      }
 ]
 
-% Webservice
-
-\node[draw,circle,minimum size=1cm,inner sep=0pt, xshift=1cm,yshift=-3cm] (V){V};
-
-\node[draw,circle,minimum size=1cm,inner sep=0pt,  xshift=-1cm,yshift=-3cm] (M){M};
-
-\node[draw,circle,minimum size=1cm,inner sep=0pt, above=of V, xshift=-1cm] (C){C};
-
-\node[above=of C, yshift=-1cm](webservice){Web Service};
-
-\draw ($ (webservice.north west) + (-0.8,0.3) $) rectangle ($ (V.south east)+(0.6,-0.6) $);
-
-
-
-\node[draw,minimum width=4cm,below=of V, yshift=-1.5cm,
-xshift= -2cm,](model){Model};
-
-\node[draw,minimum width=3cm,yshift=0.3cm,left=of model,rotate=90](updater){Model Updater};
 
 % Data
+
+\node[database](database){Database};
+
 \node [
 draw,
-below=of model,
+above=of database,
 minimum width=4cm,
-] (data) {Data};
+] (data) {Data Access Layer};
 
-\node[database,below=of data
-](database){Database};
+\node[above=of data,xshift=-1.7cm,yshift=-1cm](shared) {Shared};
 
-\node[above=of updater.north east,yshift=-1cm,xshift=0.7cm](persistency){Business logic};
+\node [
+draw,
+right=of data,
+minimum width=4cm,
+] (dto) {DTO};
 
-\draw ($ (persistency.north west) + (-0.3,0.3) $) rectangle ($ (data.east)+ (database.south) - (data.south) +(0.3,-.9) $);
+\draw ($ (shared.north west) + (-1,0.3) $) rectangle ($ (dto.south east) +(4,-0.3) $);
+
+
+% Webservice
+
+\node[draw,circle,minimum size=1cm,inner sep=0pt, above=of data, xshift=-2.5cm,yshift=1.5cm] (M){M};
+
+\node[draw,circle,minimum size=1cm,inner sep=0pt, yshift=-0.5cm,xshift=0.7cm,above=of M] (V){V};
+
+\node[draw,circle,minimum size=1cm,inner sep=0pt, xshift=-0.5cm,right=of M] (C){C};
+
+\node[above=of V, yshift=-1cm](webservice){Web Service};
+
+\draw ($ (webservice.north west) + (-0.3,0.3) $) rectangle ($ (C.south east)+(0.6,-0.6) $);
+
 
 % Data import
-\node[draw,minimum width=3cm,right=of model,xshift=0.5cm](datacollector){Data Collector};
+\node[draw,above=of data,xshift=3cm,yshift=1.5cm] (locationsource) {Location source};
 
-% Interface
+\node[draw,minimum width=3cm,above=of locationsource](datacollector){Data Collector};
 
-\node[draw,below=of datacollector](locationsource){Location source};
 \node[draw,right=of datacollector, rotate=90,anchor=south,xshift=-1cm,yshift=-0.5cm, minimum width=3cm](common){Common};
 
 \node[above=of datacollector, yshift=-1.2cm,xshift=-0.9cm](dataloading){Data loading};
 
+\draw ($ (dataloading.north west) + (-0.3,0.3) $) rectangle ($ (common.south west)+(0.6,-0.5) $);
 
+%modelupdater
 
-\draw ($ (dataloading.north west) + (-0.3,0.3) $) rectangle ($ (common.south west)+(0.3,-0.7) $);
-
-
-
-
-
+\node[draw,above=of data,xshift=8.5cm,yshift=1.5cm](modelupdater){Model Updater};
 
 % Connecting Arrows
 
-\draw[path] (V.west) -- (M.east);
-\draw[path] (C.south) -- (M.north);
-\draw[path] (C.south) -- (V.north);
+\draw[path] (V.south) -- (M.north);
+\draw[path] (C.west) -- (M.east);
+\draw[path] (C.north) -- (V.south);
 
-\draw[path] (datacollector.west) -- (model.east);
 \draw[path] (datacollector.south) -- (locationsource.north);
 \draw[path] (datacollector.east) -- (common.north);
 \draw[path] (locationsource.east) -- (common.north);
 
-\draw[path] (M.south) -- (model.north);
-\draw[path] (model.south) -- (data.north);
-\draw[path] (updater.south) + (0,1.2) -- (model.west);
+\draw[path] (datacollector.west) -- ($(data.north)+(0.3,5.02)$)  --  ($(data.north) + (0.3,1.3)$);
+
+
+\draw[path] (M.south) -- ($(data.north) + (-2.5,1.3)$);
+
+\draw[path] (modelupdater.south) -- ($(data.north) + (8.5,1.3)$);
 
 \draw[path] (data.south) -- (database.north);
 
