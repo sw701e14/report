@@ -1,5 +1,5 @@
 \section{Web Service}
-As we have very little knowledge of our target group\mikael{What is our target group?}, we would want our system to be as available as possible.
+As we have very little knowledge of our target group\alexander{\mikael{What is our target group?}Developers with connections to city bikes?}, we would want our system to be as available as possible.
 One way to do this, is to implement it on a multitude of platforms (e.g. PC, Android devices, iOS devices).
 However, this would require massive work, as all these platforms are different and would therefore require different implementations.
 Additionally, it would not be very flexible, as new platforms and devices are introduced on the market, requiring even further implementation.
@@ -11,9 +11,9 @@ This section will shortly describe the possibilities when designing a web servic
 \subsection{Choosing an architecture}
 When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).\cite{restful_web_services}
 What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
-As an RPC-style web service is by definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
+As a RPC-style web service is by definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
 
-The following section will describe RESTful web services (specifically Resource-Oriented Architecture), based on  \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
+The following section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 
 \subsubsection{Representational State Transfer}
 REST is an architectural style, which provides design criteria for network-based software architectures.
