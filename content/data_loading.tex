@@ -1,4 +1,4 @@
-\section{Data Loading Component}
+\subsection{Data Loading Component}\label{arch:data_loading_component}
 The data loading component has the responsibility for fetching GPS points and processing them before inserting them into the database.
 The component consists of a \texttt{Data Collector}, a \texttt{Location Source}, and a \texttt{Common} layer that contains an interface and data transfer objects.
 
@@ -32,9 +32,8 @@ every node/.style={font=\sffamily,minimum height=1cm}]
 \caption{The Data Loading Component. The full diagram can be seen on \cref{arch}}
 \label{dataloadingcomponent}
 \end{figure}
-\alexander{Shouldn't there be arrows from `Data Collector' and `Location Source' to `Common'?}
 
-\subsection{Common}
+\subsubsection{Common}
 The \texttt{Data Loading} component contains interfaces and data transfer objects for the \texttt{Data Loading} component.
 
 The \lstinline!GPSInput! class works as a data transfer object for \lstinline!GPSData! in the \texttt{Model} layer of the \texttt{Business Logic} component.
@@ -52,11 +51,11 @@ public interface IDataSource
 The \lstinline!GetData();! method returns the oldest \lstinline!GPSInput! available if any is available.
 If no \lstinline!GPSInput! is available it returns null.
 
-\subsection{Data Collector}
+\subsubsection{Data Collector}
 The \texttt{Data Loader} works as an independent program that continuously asks the \lstinline!Location Source! for new \lstinline!GPSInput!.
 The \lstinline!Location Source! is an implementation of the \lstinline!IDataSource! and the \texttt{Data Loader} can therefore use any source that implements this interface.
 
-\subsection{Location Source}\label{design:location_source}
+\subsubsection{Location Source}\label{design:location_source}
 The \texttt{Location Source} contains implementations of the \lstinline!IDataSource! and will therefore contain an implementation of the simulation of bikes.
 In the real system an implementation will be made where the data is fetched from the GPS trackers on the bikes instead.
 
