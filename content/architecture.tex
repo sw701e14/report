@@ -1,6 +1,6 @@
 \section{Architecture}
 
-The project has been structured in order to make it easier to maintain, scalable, and makes it possible to change  layers and components without breaking the system.
+The project has been structured in order to make it easier to maintain and scalable.
 The overall architecture can be seen on \cref{arch}.
 
 \begin{figure}[h]
@@ -19,6 +19,7 @@ The data loading component has responsibility for fetching data from a data sour
 The \texttt{Data Collector} will periodically ask the \texttt{Location source} for new \texttt{GPSData} and will insert them into the database. 
 The handling of incoming \texttt{GPSData} is described in  \cref{}.
 \bruno{ref til Data Collector}
+The common layer consists of shared types for this component.
 
 \paragraph{Business Logic}
 The business logic contains the main functionality of the system.
