@@ -1,0 +1,11 @@
+\subsection{Scalability}
+An important factor in the choosing of architecture, is scalability.
+And by scalability, it is meant as both increase in user-load and amount of data.
+Since we have little knowledge of who and how many users there are, we could easily be facing performance problem and needing to either scale up or scale out.
+Additionally, depending on popularity, the system should be able to introduce additional bikes, which will greatly increase the data size, as new bikes means more GPS location updates and everything dependent there on.
+
+The way we've chosen to handle scalability is to have a secluded Shared component, which handles all data communication.
+This enables us to change or add to the database, without having to change the dependent components, such as the web service.
+It also enables us to add additional web services, using the same Shared component, without having to make big changes.
+
+This separation allows us to more easily implement scaling techniques, such as Content-Aware Caching, Content-Blind Caching, and Data Replication.\cite{scalability}
