@@ -99,7 +99,28 @@ This also means that any \textit{missing} edge between two states $s_1$ and $s_2
 Examples of this can be seen in \cref{markov:model:complex} where states $D_1$ and $D_2$ are not connected.
 
 \subsection{Modeling the average bike}\label{markov:modeling}
-\mikkel{This section will describe a few problems in the simple state-set described in this section and how we have chosen to expand on it.}
-
+Throughout this section we have described the modeling of the average bike as an infinite path of hotspots.
+We represent a simple example of this, using only two hotspots, in \cref{markov:model:simple}.
 \input{content/markov_model_simple}
+Using this system we will be able to predict the path of the bike in the system.
+To do this we require an initial state for the system.
+This state should represent the current (the time of a query) location of the bikes in the system.
+Using this representation we will be able to predict where the bikes are after a number of time steps.
+
+\paragraph{Insufficient states}
+As we are looking to use the Markov chains to predict whether or not a bike is available at a hotspot we must also be able to represent whether they are in use or not.
+The modeling described so far only allows for a bike to be at a hotspot and thus we are not able to give a direct representation of a bike in transit.
+
+To accommodate this restriction we introduce an additional state for each of the hotspots.
+These states are called departure states and the departure state associated with hotspot $H_i$ is denoted as $D_i$.
+The simple two-hotspots model described above can then be expanded with two additional states, as seen in \cref{markov:model:complex}.
+
 \input{content/markov_model_complex}
+
+These states allow us to represent bikes that are not currently located at a hotspot.
+Note that in this model some transitions are not possible.
+These are $D_i \rightarrow D_j \mid i \neq j$ and $H_i \rightarrow D_j \mid i \neq j$ transitions.
+They are not possible, simply because as a bike must travel through $H_j$ before it can arrive at its departure state $D_j$.
+
+This model allows us to initialize a Markov chain using some initial state representing the current (the time of a query) location of the bikes and then predict where the bikes will be located after a number of time steps.
+From this prediction it is then possible to read exactly how many bikes should be available at a given hotspot in a given timespan.
