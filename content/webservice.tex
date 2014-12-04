@@ -7,20 +7,20 @@ Another way to make the system available, but without making it platform-depende
 
 This section will shortly describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
 
-\subsection{Choosing an architecture}
+\section{Choosing an architecture}
 When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).\cite{restful_web_services}
 What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
 As a RPC-style web service is by definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
 
 The following section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 
-\subsubsection{Representational State Transfer}
+\subsection{Representational State Transfer}
 REST is an architectural style, which provides design criteria for network-based software architectures.
 Web services adhering to these design criteria are referred to as RESTful web services.
 These criteria were defined in \citet{fielding_dissertation}.
 As REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA) as described in \citet{restful_web_services}.
 
-\subsubsection{Resource-Oriented Architecture}
+\subsection{Resource-Oriented Architecture}
 ROA is an architecture, upholding the REST design criteria.
 This is done by organizing and accessing resources in a standardized manner, and by following and taking full advantage of the HTTP/1.1 specification.
 
