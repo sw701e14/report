@@ -1,8 +1,8 @@
 \section{Predicting behavior}
 As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \mikkel{Insert reference to problem statement}), it must be able to answer questions such as the following:
 \begin{itemize}
-\item How long time will it take before a bike, with probability 90\%, will be in my vicinity?
-\item What is the probability of find a bike nearby from 16.25 to 16.35?
+\item How much time will it take before a bike, with probability 90\%, will be in my vicinity?
+\item What is the probability of finding a bike nearby from 16.25 to 16.35?
 \end{itemize}
 
 The location of the bikes are abstracted by creating hotspots, as described in \cref{hotspots}.
@@ -12,8 +12,8 @@ However the theory and methods described in the following sections apply regardl
 By abstracting the locations to be hotspots the above questions can be rephrased as:
 
 \begin{itemize}
-\item How long time will it take before a bike, with probability 90\%, will be \textit{in a given hotspot}?
-\item What is the probability of find a bike \textit{in a given hotspot} from 16.25 to 16.35?
+\item How much time will it take before a bike, with probability 90\%, will be \textit{in a given hotspot}?
+\item What is the probability of finding a bike \textit{in a given hotspot} from 16.25 to 16.35?
 \end{itemize}
 
 To answer these questions we need to model the behavior of an \textit{average} bike.
@@ -29,11 +29,11 @@ The GPS units that the bikes will be equipped with will only report the location
 Additionally the accuracy of each of these measurements can be low, resulting in even more in-precision.
 
 As we are modeling the average bike, we can represent the state of the process as the location of the bike.
-The location of the bike can be seen as which hotspot the bike i currently located at.
+The location of the bike can be seen as which hotspot the bike is currently located at.
 Using this definition we can describe the movement of the bike as an infinite route $h_1, h_2, h_3, \dots$ where $h_i \in H \mid i \in \mathbb{N}$ and $H$ is the set of hotspots in the system.
 
 Using this representation of the average bike we see that the average bike must move from one hotspot $h_i$ to another $h_{i+1}$ in one \textit{timestep}.
-Note that it could be that $h_i = h_{i+1}$, meaning that the bike has moved to the hotspot it departed.
+Note that it could be that $h_i = h_{i+1}$, meaning that the bike has moved to the same hotspot as it departed from.
 This is also used to indicate that the bike has not moved.
 In \cref{markov:modeling} we will describe the modeling of the average city bike in greater detail.
 
@@ -52,7 +52,7 @@ Let $\mathbb{P}(X_i = x)$ be the probability of $X_i$ being in state $x$.
 The above will then allow us to express the probability of moving to a state $y$ given the path we have traversed.
 In other words, knowing what state we are in and how we got to it allows us to determine the probability of the next state being $y$:
 
-$$\mathbb{P}(X_{n+i} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)$$
+$$\mathbb{P}(X_{n+1} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)$$
 
 \paragraph{Markov property}\label{markov:property}
 For the sequence to describe a Markov chain it must additionally have the Markov property.
@@ -60,8 +60,8 @@ The Markov property states that for any state $x$ we can determine the probabili
 We can formalize this as:
 
 \begin{align}\label{markov:eq:markov_prob}
-\mathbb{P}(&X_{n+i} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)\nonumber\\
-= \mathbb{P}(&X_{n+i} = y \mid X_n = x)
+\mathbb{P}(&X_{n+1} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)\nonumber\\
+= \mathbb{P}(&X_{n+1} = y \mid X_n = x)
 \end{align}
 
 \paragraph{Time-homogeneous Markov chains}
