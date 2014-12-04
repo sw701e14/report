@@ -1,11 +1,11 @@
-\begin{figure}
+\begin{figure}[H]
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
   thick,main node/.style={circle,fill=blue!20,draw,font=\sffamily\Large\bfseries}]
 
-  \node[main node] (B1) {$B_1$};
+  \node[main node] (B1) {$H_1$};
   \node[main node,font=\sffamily\small] (D1) [right = 2cm of B1] {$D_1$};
   \node[main node,font=\sffamily\small] (D2) [right of=D1] {$D_2$};
-  \node[main node] (B2) [right = 2cm of D2] {$B_2$};
+  \node[main node] (B2) [right = 2cm of D2] {$H_2$};
 
   \path[every node/.style={font=\sffamily\small}]
     (B1) edge [bend left] node {0.05} (B2)
@@ -21,7 +21,7 @@
          edge [loop left] node {0.7} (D2)
          edge [bend left] node[above right] {0.2} (B1);
 \end{tikzpicture}
-\caption{A Markov chain model of two bike stations with departure states}
+\caption{A Markov chain model with two hotspots and departure states}
 \label{markov:model:complex}
 \end{figure}
 

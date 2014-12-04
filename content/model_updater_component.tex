@@ -1,0 +1,6 @@
+\section{Model Updater Component}
+The \texttt{Model Updater} component contains the \lstinline!Model Updater Agent!.\alexander{Find source and description of the term Agent.}
+It has access to the \texttt{Shared} component for database access and data types.
+
+\paragraph{The Model Updater Agent} is an independent program which updates the Markov Chain. First the agent fetches the data types hotspots and routes, defined in the DTO layer, through the DAL. Then it calculates the Markov Chain and lastly it puts the new Markov Chain into the database through the DAL.
+\alexander{Define `route' as all connected GPSPoints for a single bike.}
