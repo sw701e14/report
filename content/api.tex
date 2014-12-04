@@ -1,4 +1,4 @@
-\subsection{Web Service API}\label{design:web_service}
+\section{Web Service API}\label{design:web_service}
 The web service API was implemented using ASP.NET Web API 2.3.\cite{aspnet_webapi}
 ASP.NET Web API uses ASP.NET MVC\cite{aspnet_mvc}, with the use of \texttt{ApiController}, instead of the regular \texttt{Controller}.
 
@@ -17,7 +17,7 @@ In order to handle the different HTTP methods, controller methods are also annot
 
 \paragraph{ROA} criteria, as described in \cref{webservice:roa}, will be followed.
 
-\subsubsection{Resources}
+\subsection{Resources}
 % Command for displaying url, properties, and sub-resource of each resource
 \newcommand{\resource}[5]{\begin{description}
 \item[URL:]{\texttt{#1}}
@@ -46,14 +46,3 @@ In case a client tries to request a bike that is not available, it will be met w
 \noindent\hrulefill
 
 \resource{/hotspots}{hotspots}{}{GET}{200 OK}
-\mikael{Has not been implemented.}
-
-\noindent\hrulefill
-
-\resource{/bikes}{count}{List of bikes}{GET}{200 OK, 401 Unauthorized}
-\mikael{Has not been implemented.}
-
-\noindent\hrulefill
-
-\resource{/bikes/\{bikeId\}}{latitude, longitude, immobileSince}{}{GET}{200 OK, 401 Unauthorized, 404 Not Found}
-\mikael{Has not been implemented.}
