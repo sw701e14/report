@@ -66,12 +66,15 @@ We can formalize this as:
 
 \paragraph{Time-homogeneous Markov chains}
 In an effort to simplify the problem of predicting the behavior of the average bike we will be using time-homogeneous Markov chains.
-\mikkel{Do we have a better argument as to why we choose this approach?}
 A Time-homogeneous Markov chain can also be thought of as a time-independent chain.
 In other words, predicting the next state of the chain can be done without knowledge of the time:
 \begin{equation}
 \mathbb{P}(X_{m+1} = y \mid X_m = x) = \mathbb{P}(X_{n+1} = y \mid X_n = x)
 \end{equation}
+
+Time-homogeneous Markov chains provides us with a much simpler method of modeling the average bike.
+A time-homogeneous Markov chain is very simple to represent (as is described below) and easy to use when predicting the state of the average bike multiple steps into the future.
+For these reasons we have chosen to simplify our Markov chain models.
 
 \textit{This simplification will mean that we are unable to determine a difference in behavior at different times in the process.
 Thus we cannot, using a single model, represent different behaviors of the average bike in the morning/afternoon or in different days of the week.
