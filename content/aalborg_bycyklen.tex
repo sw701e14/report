@@ -1,48 +1,52 @@
-\section{Aalborg Bycyklen}\label{aalborg_bycyklen}
-Aalborg Bycyklen is a bike renting service located in Aalborg, Denmark.
+\section{\citybike}\label{aalborg_bycyklen}
+\citybike is a communal bike service located in Aalborg, Denmark.
+It is a public service and therefore available to anyone living in or visiting the city of Aalborg.
+The service is available from the 1st of May until the end of October.\cite{aalborgbycyklenbagcyklen}
 
-It is a public service and available to all visiting and living in the city of Aalborg.
-The service is available from the 1st of May to the end of October.\cite{aalborgbycyklenbagcyklen}
-
-\paragraph{Components}
-The service provides:
+\noindent The service consists of:
 \begin{itemize}
-\item 200 bikes(140 active) and 
-\item 21 bike stations with room for 170 bikes in total.
+\item 200 bikes (140 active) and 
+\item 21 bike stations, with room for 170 bikes in total.
 \end{itemize}
-Each bike is provided with a lock that can be used at stations only:
-it can be unlocked by putting in a coin(20 DKK) and when the bike is locked again the coin is released.
+Each bike is provided with a lock, that enables locking a bike to a station (similar to shopping cart systems).
+The bike is unlocked by depositing a coin (20 DKK) into the bike, after which it is freely available for the user.
+By returning the bike to a station, and re-applying the lock at a free stand, the deposited coin is returned.
 
-\paragraph{A typical utilization of the service can be summarized as follows:}
-\begin{itemize}
-\item The user rents a bike at a station by unlocking it with a coin of 20 DKK as deposit.
-\item The user can freely cycle in the city. There is no time limit.
-\item The user can give back the bike at any station by locking the bike.
-\end{itemize}
+\paragraph{Missing and broken bikes} are reported through a form on the \citybike web-site; \url{http://www.aalborgbycyklen.dk/}.
 
-\subsection{Problems in the current system}\label{aalborg_bycyklen:challenges}
-This section will consider the challenges associated with Aalborg Bycyklen.
+\paragraph{The general utilization of the service} can be summarized as follows:
+\begin{enumerate}
+\item A user unlocks a bike at a station, by inserting 20 DKK into a locked bike.
+\item The user can freely use the bike around the city.
+\item The user can return the bike at any station by locking the bike.
+\end{enumerate}
+
+\subsection{Problems in the current system} \label{aalborg_bycyklen:challenges}
+This section will consider the challenges associated with \citybike.
 The challenges described are devised from our own experience and perspective but still considered reasonable.
-\giovanni{"Consider to collect some interviews from users."}
+As no target group could be identified, even with help from the domain experts (Aalborg Kommune), it was not possible to carry out usable interviews/questionnaires.
+\mikael{Is this crazy?}
 
 %http://nordjyske.dk/nyheder/bycykler-ude-af-drift/e7a38ecd-3b1d-4290-8d2f-0f0e1a5d0fa6/4/1513
 \paragraph{Bikes disappear}
-The low deposit fee leads to many users who feel they do not have the obligation to stop at a station near their destination.
-Instead they cycle straight to their destination and leave the bike there.
-The obvious problem is that when someone needs a bike they might not find one at a station.
-Another problem is that Aalborg Bycyklen has to collect the bikes and return them to the stations.
-\giovanni{"Write better."}
+The low deposit fee enables users to leave bikes, away from stations, without consequence other than the loss of 20 DKK.
+It is possible to ride straight to another destination, outside a station, and leave the bike there.
+The problem with this is that when someone else needs a bike, they might not be able to find one at a station, and without the possibility of knowing where they might be outside of the stations.
+Additionally, \citybike has to find the unused bikes outside stations, collect them, and return them to the stations.
 
 \paragraph{Flexibility}
 The bikes can only be locked at stations.
-This means that when a user cycles around and wants to make a stop where there is no bike station he has to leave his bike unlocked.
-This entails a risk that someone else takes the bike and the original user has to find another way of transportation, undermining the whole idea of using Aalborg Bycyklen.
-The flexibility of Aalborg Bycyklen is therefore deeply dependent on the bike stations and are restricted to areas covered by bike stations.
+This means that when a user, during a ride, wants to make a stop where there is no bike station, he has to leave his bike unlocked.
+This entails a risk that a new user comes along and takes the bike (which now can be done without 20 DKK deposit, as it is not locked at a station), leaving the original user without a bike.
+The original user now has to go to a station to acquire a new bike, hope to get lucky and find another bike nearby, or find another source of transportation from this point on.
+The flexibility of \citybike is therefore deeply dependent on the bike stations and are restricted to areas covered by bike stations.
 
-Another example of flexibility and restriction challenges are areas where there are no bike stations. This will forbid the user from parking the bike, making it available to other users and retrieve the deposit.
+Another example of flexibility challenges are areas where there are no bike stations.
+Strictly speaking this shouldn't be possible, as it is not allowed to park a bike outside a station.
+Practically speaking it is possible to do, and when done the problem as described in \textbf{Bikes disappear} emerges.
 
 \paragraph{Reliability}
-There are two main challenges regarding the reliability of Aalborg Bycyklen:
+There are two main challenges regarding the reliability of \citybike:
 \begin{itemize}
 \item When users want to use a bike, they have to go to a station and see if there are any available bikes.
 They have no way of knowing whether there is a bike at a station or not.
@@ -52,4 +56,3 @@ They have no way of knowing whether there is a bike at a station or not.
 \paragraph{Broken bikes}
 Aalborg Bycyklen does not know when a bike is in need of repair and rely solely on the users to report broken bikes.
 Potentially there could be bikes left outside the common-usage-area in need of repair. These bikes would be out of service for a long time.
-This coupled with the flexibility issues could strictly limit the available bikes.

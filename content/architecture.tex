@@ -39,7 +39,7 @@ The macro component's task is to process and store location data directly from t
 \paragraph{The Data Collector layer} gathers the data from the \texttt{Location Source} layer and processes it according to the standards of the \texttt{Data Transfer Object} layer. The data is then stored through the \texttt{Data Access} layer.
 
 
-\subsection*{Model Agent}\texttt{Model Agent} is the macro component containing the \texttt{Model Updater} layer.
+\subsection*{Model Agent\footnote{An agent is defined as a program that invoke a given task, when a condition is satisfied, then returning to a sleeping state, until the condition is satisfied again.\cite{definitionagent}}}\texttt{Model Agent} is the macro component containing the \texttt{Model Updater} layer.
 The macro component's task is to generate and update the model in the system, i.e. Markov chains.
 
 \paragraph{The Model Updater layer} handles the calculation and generation of the models.
@@ -50,6 +50,6 @@ The macro component's task to provide a web service for public use.\alexander{Re
 
 \paragraph{The Model} manages the application domain and handles data and actions possible for each data type.
 
-\paragraph{The View} manages the display of the model.
+\paragraph{The View} manages the display of the \texttt{Model}.
 
 \paragraph{The Controller} handles the user interaction. Based on the user request, the \texttt{Controller} sends commands to the \texttt{Model} and \texttt{View}.
