@@ -1,15 +1,28 @@
 This section contains the main problem for this project and the form of solution required.
-Further the scope and the limitations are also defined here.
+
 \subsection{The problem}
-The basis of this project is Aalborg Bycyklen, detailed in \cref{aalborg_bycyklen}.
-The challenges described in \cref{aalborg_bycyklen:challenges} are the ones that needs to be solved.
-The main problems are to:
+The analysis was based on the initial problem: \textit{How can the current \citybike system be improved, in order to make it more usable?}.
+From the analysis, it was found that the current \citybike has several problems, limiting the overall usability (as described in \cref{aalborg_bycyklen:challenges}).
+
+The main problems identified were:
 \begin{itemize}
-\item Improve flexibility
-\item Improve reliability
-\item Find lost bikes
-\item Handle repairment of bikes
+\item Missing bikes (Left outside stations)
+\item Flexibility (No certainty when going to station, or when a bike will be available)
+\item Reliability (No lock for short stops)
+\item Broken bikes (Possibly left for a long time)
 \end{itemize}
+
+Additionally, certain limitations were set by Aalborg Kommune, collected through the interview:
+
+\begin{itemize}
+\item Simplicity (No renting/booking)
+\end{itemize}
+
+\subsection{Scope}
+Due to the size of the problems described, as well as the limitations asserted by Aalborg Kommune, the following problem has will not be handled by this project: \textbf{Reliability}.
+
+Solving this problem is relying on a more complex locking system for the bikes, which is more interesting from a hardware perspective, but not as much from a software perspective.
+\mikael{Is this crazy?}
 
 \subsection{Solution}
 The biggest change to the current system, will be the addition of GPSs in the bikes.
@@ -37,42 +50,20 @@ A hot-spot is initialized when several bikes are available at the hot-spot locat
 This is determined by looking at the history of the bike usage.
 
 \paragraph{Locating bikes}
-By requesting GPS locations from the bikes, it will be possible to get an overview of all bikes.
-The system may then select an available bike nearby and guide the user to its location.
-It can also be used by Aalborg Kommune, to locate missing or stolen bikes.
-
-In regards to users locating bikes, they should have a more limited view, as compared to Aalborg Kommune.
-They should be restricted to viewing bikes that are available and nearby.
-A bike will be deemed available if it has been inactive for a given period of time.
-
-If a bike should leave the Aalborg area, Aalborg Kommune should be notified.
-If a bike is inactive for too long, it could mean that it is broken or parked too far away for anyone to use it.
-Then Aalborg Kommune could be notified, so someone can either repair or move it.
+By requesting GPS locations from the bikes, it will be possible to get an overview of all available bikes.
 
 \paragraph{Structure of the solution}
 The structure of the solution can be seen in \cref{fig:solution_structure}.
 The figure illustrates the software systems running on a server and what each system interact with.
+ 
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{our_solution.pdf}
+\caption{The overall structure of our solution}
+\label{fig:solution_structure}
+\end{figure}
 
 The location service continuously request GPS data from the bikes and stores it in the database.
 
 The web service handles requests from the users and returns a result based on the data in the database.
 
 The inactivity agent continuously look in the database to check if a bike has been inactive for too long, then notifies Aalborg Kommune.
-
-\subsection{Limitations}
-The limits presented in the list below:
-\begin{itemize}
-\item Time: The project is due the 19th December 2014.
-\item There is not provided any money for the project.
-\end{itemize}
-
-\subsection{Scope}
-Because of the limitations mentioned above this project will be developing a webservice, a location service and an agent.
-Which can be seen on \cref{fig:solution_structure} in the blue box.
- \alexander{Not necessary to have multiple agents? \giovanni{agent system?}}
- 
- \begin{figure}[H]
-\includegraphics[width=\textwidth]{our_solution.pdf}
-\caption{The overall structure of our solution}
-\label{fig:solution_structure}
-\end{figure}
