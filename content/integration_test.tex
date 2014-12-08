@@ -1,1 +1,21 @@
 \section{Integration test}
+
+In order to test that our modules interact together as we expect we have chosen to do an integration test.
+
+Integration testing has the purpose of testing that two units work together. 
+Traditionally integration testing is done by integrating two modules at a time either from the top of the dependency tree or from the bottom.
+There exists a variant which tests the whole system together from the beginning, called big bang integration testing.
+We have chosen to perform our test with this method because of time limitations. \cite{inttest}
+
+\subsection{Our test setup}
+The purpose of the test is to figure out if the system can produce sane predictions for the bikes in the system.
+
+We have made a system that can simulate the real world data. 
+The simulator gets a list of destinations as input and it is then possible to adjust the probability of the system choosing a certain destination. 
+This makes it possible to create a data set where it is possible to predict the expected result.
+
+The obvious test case is when the generated data has equal probability of choosing every destination. 
+In this case we would expect the probabilities of a bike arriving at every destination to be the same.
+
+Another test case is to weigh one destination higher than the others.
+In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
