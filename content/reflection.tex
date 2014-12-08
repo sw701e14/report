@@ -1,24 +1,46 @@
-\bruno{pls not - Not done at all!}
-\section{Using R-trees}
-R-trees\cite[Section 25.3.5.3]{database_system_concepts} could be introduced to optimize the process of e.g. checking whether bike locations are within hotspot.
+\bruno{More depth?}
+\paragraph{Faster Data Structures}
+To optimize the API, a more complex data structure should be introduced.
+E.g. the process of checking whether bike locations are within a hotspot would be improved.
+R-trees\cite[Section 25.3.5.3]{database_system_concepts} is a data structure that could be chosen for that purpose.
 
-\section{API Access}
-The API should have different user access levels.
-E.g. there should be a user and a maintainer access level.
-This means that the maintainer is the only one having access to all bikes location etc.
+\paragraph{API Access}
+The API developed in this project could be used for different purposes and users.
+Therefore it would be rather practically to introduce different user access levels.
+E.g. there could be the following access levels:
+\begin{itemize}
+\item Administrator (facilitator of the API - access to everything)
+\item User (standard access)
+\item Bike maintainer (access to e.g. all bikes location)
+\end{itemize}
+This change would be added in the \texttt{Controller} layer in the \texttt{Web Service} component.
 
-\section{Data Warehouse \cite{data_warehousing}}
+\paragraph{Data Warehouse \cite{data_warehousing}}
 To ease the maintenance of the bikes a data warehouse could be introduced.
 A data warehouse would provide statistics of the bike usage, e.g. frequently travelled paths.
-These statistics could be used for improving the physical system and the software system.
+These statistics could be used for improving the physical system(Aalborg Bycyklen, \cref{aalborg_bycyklen}) and the software system.
 
-\section{Model Updating}
-This section is about the process of updating the model, described in \cref{}\bruno{ref to 'creating markov chain' section}, especially how often.
-There are a lot of trade-off's.. fd,mjg  
-Model for all mornings e.g.
-model for all weekdays e.g.
-etc.
+\paragraph{Model Updating}
+There are some issues regarding the process of updating the model(\cref{}\bruno{ref to 'creating markov chain' section}) and how often it should be updated.
+There are many possibilities regarding this, because it is a rather complex matter.
+Below is a list trying to show the factors that influence the model:
+\begin{itemize}
+\item Time of day
+\item Weekday
+\item What kind of day(holidays, working day, etc.)
+\item Weather
+\item etc.
+\end{itemize}
+A simple model would be to update it every week, and don't take the different factors into account.
+A more complex model is to partition the day into mornings, afternoons and nights.
+And for each of these have a model for holidays and working days.
+As the example shows, to get the best results one model might not be enough.
 
-Should the data collected go back to a week, month, year?
+To find the best model one needs a collection of real data for testing which model gives the best results.
 
-\section{Accuracy and Convex Hull}
+\paragraph{Accuracy and Convex Hull}
+The algorithm that finds the convex hull\cref{}\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
+This means that some points that should be inside/outside the convex hull are not.
+This can give some unexpected results.
+When checking if a bike is inside a convex hull, the accuracy is not taking into account either.
+\bruno{Hvad er løsningen udover bare at gøre det?} 
