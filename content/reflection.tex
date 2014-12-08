@@ -1,4 +1,4 @@
-\bruno{Not done at all!}
+\bruno{More depth?}
 \paragraph{Faster Data Structures}
 To optimize the API, a more complex data structure should be introduced.
 E.g. the process of checking whether bike locations are within a hotspot would be improved.
@@ -21,16 +21,22 @@ A data warehouse would provide statistics of the bike usage, e.g. frequently tra
 These statistics could be used for improving the physical system and the software system.
 
 \paragraph{Model Updating}
-There are some issues regarding the process of updating the model, described in \cref{}\bruno{ref to 'creating markov chain' section} and how often it should be updated.
+There are some issues regarding the process of updating the model(\cref{}\bruno{ref to 'creating markov chain' section}) and how often it should be updated.
+There are many possibilities regarding this, because it is a rather complex matter.
+Below is a list trying to show the factors that influence the model:
+\begin{itemize}
+\item Time of day
+\item Weekday
+\item What kind of day(holidays, working day, etc.)
+\item Weather
+\item etc.
+\end{itemize}
+A simple model would be to update it every week, and don't take the different factors into account.
+A more complex model is to partition the day into mornings, afternoons and nights.
+And for each of these have a model for holidays and working days.
+As the example shows, to get the best results one model might not be enough.
 
-There are a lot of trade-off's.. fd,mjg  
-Model for all mornings e.g.
-model for all weekdays e.g.
-etc.
-
-Should the data collected go back to a week, month, year?
-
-How many models should be kept and based on what (day, week, time of day) ? How often should models be updated, and from what data (how far back) ?
+To find the best model one needs a collection of real data for testing which model gives the best results.
 
 \paragraph{Accuracy and Convex Hull}
 The algorithm that finds the convex hull\cref{}\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
