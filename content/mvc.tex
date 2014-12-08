@@ -1,4 +1,4 @@
-MVC or Model View Controller\citet{aspmvc} is used to separate responsibility of an application into three parts, the model, the view, and the controller.
+\paragraph{MVC} or Model View Controller\citet{aspmvc} is used to separate responsibility of an application into three parts, the model, the view, and the controller.
 The pattern can be seen as an architecture diagram on \cref{mvcdiagram}.
 
 \begin{figure}[h]
@@ -8,8 +8,14 @@ The pattern can be seen as an architecture diagram on \cref{mvcdiagram}.
 \label{mvcdiagram}
 \end{figure}
 
-\begin{itemize}
-\item[\textbf{Model}] The model contains the model of the application domain and takes care of fetching data and making them available through the model.
-\item[\textbf{View}] View displays the model to the user.
-\item[\textbf{Controller}] The controllers handle the interaction with users. Based on userinput the controller works on the model and selects what the view needs to be used for displaying the data.
-\end{itemize}
+\paragraph{The model } contains the model of the application domain and takes care of fetching data and making them available through the model.
+The model is making resources available.
+
+\paragraph{View} displays the model to the user.
+In this case the view is the serialized resource representation that the user obtains by performing requests against the API.
+Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header \bruno{Add source on what a header is and what accept does.}, this can be set to \texttt{application/json}.
+
+\paragraph{The controller} handles the interaction with users. Based on userinput the controller works on the model and selects what the view needs to be used for displaying the data.
+The routing to controllers is handled by the attributes \texttt{[RoutePrefix]} and \texttt{[Route]}.
+In order to handle the different HTTP methods, controller methods are also annotated with an appropriate \texttt{[Http\{Method\}]} attribute (e.g. \texttt{[HttpGet]}).
+\bruno{Add source on Routing with the ASP.NET WEB API}
