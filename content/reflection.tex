@@ -21,7 +21,8 @@ A data warehouse would provide statistics of the bike usage, e.g. frequently tra
 These statistics could be used for improving the physical system and the software system.
 
 \paragraph{Model Updating}
-This section is about the process of updating the model, described in \cref{}\bruno{ref to 'creating markov chain' section}, especially how often.
+There are some issues regarding the process of updating the model, described in \cref{}\bruno{ref to 'creating markov chain' section} and how often it should be updated.
+
 There are a lot of trade-off's.. fd,mjg  
 Model for all mornings e.g.
 model for all weekdays e.g.
@@ -29,4 +30,11 @@ etc.
 
 Should the data collected go back to a week, month, year?
 
+How many models should be kept and based on what (day, week, time of day) ? How often should models be updated, and from what data (how far back) ?
+
 \paragraph{Accuracy and Convex Hull}
+The algorithm that finds the convex hull\cref{}\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
+This means that some points that should be inside/outside the convex hull are not.
+This can give some unexpected results.
+When checking if a bike is inside a convex hull, the accuracy is not taking into account either.
+\bruno{Hvad er løsningen udover bare at gøre det?} 
