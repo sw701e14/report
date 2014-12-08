@@ -1,7 +1,7 @@
 \section{Scalability}
 An important factor in our overall architecture design, is making it scalable.
-This is due to the fact that we have high uncertainty in regards to users, so we would like to more easily handle an performance issues due to high user load.
-Additionally, we also want to handle an increase in bikes, which itself would lead to an increase in data; mainly GPS location updates, but this could possibly also lead to an increase in hotspots and prediction model complexity.
+This is due to the fact that we have high uncertainty in regards to the number of users, so we would like to more easily handle an performance issues due to high user load.
+Additionally, we also want to handle an increase in the number of bikes, which itself would lead to an increase in data; mainly GPS location updates, but this could possibly also lead to an increase in hotspots and prediction model complexity.
 
 The way the architecture handles this, is the separation between our main components; \texttt{Data Loading}, \texttt{Web Service}, \texttt{Model Updater} and the \texttt{Database}.
 This enables us to handle an increased user load, by adding more \texttt{Web Service} servers, with the possibility to implement scaling techniques, such as caching.\cite{scalability}
