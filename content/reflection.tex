@@ -1,8 +1,8 @@
-\bruno{More depth?}
 \paragraph{Faster Data Structures}
-\stefan{what is the problem, how are we doing it now?}
 To optimize the API, a more complex data structure should be introduced.
 E.g. the process of checking whether bike locations are within a hotspot would be improved.
+Because as of now the implementation uses a list, which means that every element is accessed in worst case.
+Therefore using another data structure would mean that some parts could be skipped.
 R-trees\cite[Section 25.3.5.3]{database_system_concepts} is a data structure that could be chosen for that purpose.
 
 \paragraph{API Access}
@@ -16,13 +16,7 @@ E.g. there could be the following access levels:
 \end{itemize}
 This change would be added in the \texttt{Controller} layer in the \texttt{Web Service} component.
 
-\paragraph{Data Warehouse \cite{data_warehousing}}
-To ease the maintenance of the bikes a data warehouse could be introduced.
-A data warehouse would provide statistics of the bike usage, e.g. frequently travelled paths.
-These statistics could be used for improving the physical system(Aalborg Bycyklen, \cref{aalborg_bycyklen}) and the software system.
-\stefan{examples?}
-
-\paragraph{Model Updating}
+\paragraph{Model Updating}\label{reflection:model_updating}
 There are some issues regarding the process of updating the model(\cref{}\bruno{ref to 'creating markov chain' section}) and how often it should be updated.
 There are many possibilities regarding this, because it is a rather complex matter.
 Below is a list trying to show the factors that influence the model:
@@ -34,11 +28,23 @@ Below is a list trying to show the factors that influence the model:
 \item etc.
 \end{itemize}
 A simple model would be to update it every week, and don't take the different factors into account.
-A more complex model is to partition the day into mornings, afternoons and nights.
+An example of a more complex model is to partition the day into mornings, afternoons and nights.
 And for each of these have a model for holidays and working days.
-As the example shows, to get the best results one model might not be enough. \stefan{what example?}
+As the example shows, to get the best results one model might not be enough. 
 
 To find the best model one needs a collection of real data for testing which model gives the best results.
+
+\paragraph{Data Warehouse \cite{data_warehousing}}
+To ease the maintenance of the bikes a data warehouse could be introduced.
+A data warehouse would provide statistics of the bike usage, e.g. frequently travelled paths.
+These statistics could be used for improving the physical system(Aalborg Bycyklen, \cref{aalborg_bycyklen}) and the software system.
+The statistics could improve/help the following processes:
+\begin{itemize}
+\item Where to add more cycle tracks
+\item Improve traffic lights
+\item When to update the model(s)
+\item etc.
+\end{itemize}
 
 \paragraph{Accuracy and Convex Hull}
 The algorithm that finds the convex hull\cref{}\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
