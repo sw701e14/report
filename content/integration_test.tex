@@ -16,6 +16,44 @@ We have made a system that can simulate the real world data.
 The simulator gets a list of destinations as input and it is then possible to adjust the probability of the system choosing a certain destination. 
 This makes it possible to create a data set where it is possible to predict the expected result.
 
+
+\subsection{Test Cases}
+
+We want to test the following parts of our system:
+
+\begin{itemize}
+\item Creation of hotspots
+\item Predictions 
+\end{itemize}
+
+\subsubsection{Creation of hotspots}
+The system relies on the clusters to be indicative of how the bikes are used. 
+All predictions uses the hotspots as a basis and misplaced hotspots can therefore skew the results and degrade the precision of the predictions.
+We therefore want to test if the hotspots generated are where they are expected to be.
+
+In order to test this we will generate a dataset using a list of addresses simulating the real usage of the system.
+We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
+
+This will give an indication of how well our hotspots are created.
+
+\paragraph{The test data}
+For this test a data set has been created.
+It consists of five addresses and their corresponding GPS coordinates.
+
+Three of the points are well separated in order to test the general cluster creation.
+The last two points are placed one street from each other to test how the clustering handles close points.
+\stefan{ikke sikker på om den del giver mening}
+
+
+\paragraph{Predictions}
+The users rely on the predictions of bikes to be somewhat telling of how the bikes move around in the city.
+It is therefore important to test how well the predictions work.
+
+To test this we create a number of controlled data sets.
+The data sets are controlled by assigning probabilities of choosing the destinations. 
+We then know there to expect the probabilities to be high.
+
+\paragraph{The test cases}
 The obvious test case is when the generated data has equal probability of choosing every destination. 
 In this case we would expect the probabilities of a bike arriving at every destination to be the same.
 
