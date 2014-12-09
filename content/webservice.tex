@@ -1,11 +1,12 @@
-As we have very little knowledge of our target group, we would want our system to be as available as possible.
+As we have no knowledge of our target group, we would want our system to be as available as possible.
 One way to do this, is to implement it on a multitude of platforms (e.g. PC, Android devices, iOS devices).
 However, this would require massive work, as all these platforms are different and would therefore require different implementations.
 Additionally, it would not be very flexible, as new platforms and devices are introduced on the market, requiring even further implementation.
 
 Another way to make the system available, but without making it platform-dependent, would be to create a common web service that provides the most significant functionality of the system.
 
-This section will shortly describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
+This section will describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
+At last the solution developed is presented.
 
 \section{Choosing an architecture}
 When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).\cite{restful_web_services}
@@ -14,13 +15,13 @@ As a RPC-style web service is by definition procedure-oriented, and what we want
 
 The following section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 
-\subsection{Representational State Transfer}
+\subsection{Representational State Transfer(REST)}
 REST is an architectural style, which provides design criteria for network-based software architectures.
 Web services adhering to these design criteria are referred to as RESTful web services.
 These criteria were defined in \citet{fielding_dissertation}.
 As REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA) as described in \citet{restful_web_services}.
 
-\subsection{Resource-Oriented Architecture}
+\subsection{Resource-Oriented Architecture(ROA)}\label{webservice:roa}
 ROA is an architecture, upholding the REST design criteria.
 This is done by organizing and accessing resources in a standardized manner, and by following and taking full advantage of the HTTP/1.1 specification.
 

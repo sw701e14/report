@@ -5,34 +5,43 @@ The analysis was based on the initial problem: \textit{How can the current \city
 From the analysis, it was found that the current \citybike has several problems, limiting the overall usability (as described in \cref{aalborg_bycyklen:challenges}).
 
 The main problems identified were:
-\begin{itemize}
-\item Missing bikes (Left outside stations)
-\item Flexibility (Limited stations, no locks)
-\item Reliability (No certainty when going to station, or when a bike will be available)
-\item Broken bikes (Possibly left for a long time)
-\end{itemize}
+\begin{enumerate}
+\item Bikes left outside stations
+\item Too few stations
+\item Making short stops
+\item No bikes at station
+\item No way of knowing when a bike will arrive
+\item Broken bikes
+\end{enumerate}
 
-Additionally, certain limitations were set by Aalborg Kommune, collected through the interview:
+Additionally, certain limitations and requests were set by Aalborg Kommune, collected through the interview:
 
-\begin{itemize}
+\begin{enumerate}
 \item Simplicity (No renting/booking)
-\end{itemize}
+\item Tracking usage
+\end{enumerate}
+
+\subsection{Scope}
+Due to the limited time and project members, certain restrictions will be set, as to focus on certain problems.
+
+\paragraph{Short stops} will be completely overlooked in this project, as any solution to this problem would require some added locking mechanisms, which would conflict with the limitations set by Aalborg Kommune.
+
+\paragraph{Tracking usage} is something Aalborg Kommune also requested.
+This, however, is deemed too far from the initial problem, as well as adding too the workload.
 
 \subsection{Solution}
-In relations to the initial problem, the most important identified problem is in regard to \textbf{Reliability}.
-
 Due to the need to keep the system relatively simple, as it is now, the hardware additions should be minimal.
 We have chosen to keep the same bikes, with the addition of a GPS chip on each individual bike, and completely removing the stations and bike locks.
 
-The GPS will enable the system to keep track of bikes, significantly decreasing the problems \textbf{Missing bikes, Broken bikes} and partly \textbf{Flexibility, Reliability}.
+\paragraph{GPS}
+\newcommand{\prob}[1]{\textbf{\##1}}
+By adding GPSs to all bikes, we will be able to track them.
 
-This leaves us with a system with the following requirements:
-\begin{enumerate}
-\item Find available bikes
-\item Find hotspots
-\item Find predictions (time or certainty)
-\end{enumerate}
+\paragraph{Hotspots}
+As a replacement for the stations, we want to introduce hotspots.
+Hotspots are certain areas of the map, where bikes are often parked.
 
+\paragraph{Software}
 A software solution is then to be developed, consisting of 3 main software components, and a shared database.
 The structure of the solution can be seen in \cref{fig:solution_structure}.
 
