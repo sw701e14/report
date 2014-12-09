@@ -33,14 +33,12 @@ This, however, is deemed too far from the initial problem, as well as adding too
 Due to the need to keep the system relatively simple, as it is now, the hardware additions should be minimal.
 We have chosen to keep the same bikes, with the addition of a GPS chip on each individual bike, and completely removing the stations and bike locks.
 
-The GPS will enable the system to keep track of bikes, significantly decreasing the problems \textbf{Missing bikes, Broken bikes} and partly \textbf{Flexibility, Reliability}.
+\paragraph{GPS}
+By adding GPSs to all bikes, we will be able to track them.
 
-This leaves us with a system with the following requirements:
-\begin{enumerate}
-\item Find available bikes
-\item Find hotspots
-\item Find predictions (time or certainty)
-\end{enumerate}
+\paragraph{Hotspots}
+As a replacement for the stations, we want to introduce hotspots.
+Hotspots are certain areas of the map, where bikes are often parked.
 
 A software solution is then to be developed, consisting of 3 main software components, and a shared database.
 The structure of the solution can be seen in \cref{fig:solution_structure}.
