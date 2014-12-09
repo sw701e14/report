@@ -8,9 +8,22 @@ Sub-resources are represented as simple objects, containing only its relative UR
 
 \input{content/mvc}
 
-\paragraph{ROA} criteria, as described in \cref{webservice:roa}, will be followed.
+\paragraph{Resource Oriented Architecture} criteria, as described in \cref{webservice:roa}, are followed and described in the next \cref{webservice:resources}.
 
-\subsection{Resources}
+\subsection{Resources}\label{webservice:resources}
+This section contains the resources designed and implemented in the web service.
+Each resource is described following this structure:
+\begin{itemize}
+\item \textbf{URL} the URL of the resource
+\item \textbf{Properties} a property which can be accessed from this resource
+\item \textbf{Resources} the resource(s) which can be accessed from this resource
+\item \textbf{Methods} HTTP methods which can be used on that resource
+\item \textbf{Responses} HTTP status codes which could be returned by this resource
+\end{itemize}
+
+\subsubsection{The resources implemented:}
+\bruno{Skal de i appendix eller skal det sættes op på en anden måde?}
+
 % Command for displaying url, properties, and sub-resource of each resource
 \newcommand{\resource}[5]{\begin{description}
 \item[URL:]{\texttt{#1}}
