@@ -2,13 +2,6 @@
 To ease the maintenance and ensure scalability, we have structured the project in an architecture which supports scalability.
 The architecture consists of four macro components and a database, as can be seen in \cref{fig:architecture}. The macro components are: Shared, Location Service, Model Agent, and Web Service.\alexander{Maybe change the component name of `Model Updater' so it does not conflict with the layer name? \alexander{Changed name of component to `Model Agent'.}}
 
-%\begin{figure}[h]
-%\center
-%\input{content/architecture_diagram.tex}
-%\caption{The architecture of the system}
-%\label{arch}
-%\end{figure}
-
 \begin{figure}[H]
 \includegraphics[width=\textwidth, trim={2cm 1cm 6cm 0}]{systemArchitecture.pdf}
 \caption{The architecture of the system}
@@ -25,6 +18,7 @@ The macro component's task is to provide extended capabilities to all other macr
 \paragraph{The Data Access layer} All SQL statements and communication with the database are encapsulated here providing the upper layers methods to communicate with the database.
 
 \paragraph{The Data Transfer Object layer} contains all the shared data types and their attributes, making it possible for all the macro components to treat the data uniformly.
+
 
 \subsection*{Location Service} processes and stores location data directly from a data source. 
 The \texttt{Location Service} consists of a \texttt{Location Source} which provides data points the \texttt{Data Collector}.
