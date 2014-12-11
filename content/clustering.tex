@@ -1,7 +1,7 @@
 \section{Clustering}\label{clustering}
 In order to find the hotspot(s) defined in \cref{hotspot}, a technique called clustering can be used.
 This section will describe the concepts of clustering as well as the possible algorithms.
-This section is based on \citet{pang2006introduction}. \bruno{Should this section maybe only present our chosen technique?}
+This section is based on \citet{pang2006introduction}.
 
 \subsection{Cluster Analysis}
 Cluster analysis is a technique used to group data objects based only on the information the data itself contains.
@@ -11,7 +11,7 @@ An example of this can be seen on \cref{clusterings} where the same dataset has 
 The definition of a cluster therefore depends on the dataset and the purpose of the clustering 
 
 \begin{figure}[H]
-\includegraphics[width=0.8\textwidth]{graphics/clusterings}
+\includegraphics[trim= 3.1cm 20.61cm 5cm 2.5cm, clip=true]{graphics/different_clusters}
 \centering
 \label{clusterings}
 \caption{Different clusterings on the same dataset. From \citet{pang2006introduction}}
@@ -74,7 +74,7 @@ It needs to be exclusive because we want the clusters to be separated from each 
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
 \subsection{Techniques}
-
+\bruno{I think we only should present DBSCAN and just mention the others with a cite.}
 This section will explore the techniques that exist in cluster analysis and evaluate them based on the requirements stated in the previous section.
 
 \subsubsection{K-means}
@@ -117,7 +117,14 @@ One point can be a border point to several core points.
 \noindent
 \textbf{Noise point} Any point that is neither a core point or a border point. 
 
-Given these definitions, the algorithm is described in \cref{dbscan-algo}
+\begin{figure}
+\fbox{\includegraphics[trim= 3.1cm 20.61cm 5cm 2.5cm, clip=true]{graphics/DBSCAN_point_types}}
+\caption{The three types of points in the clustering algorithm DBSCAN. Taken from \cite[page 528]{pang2006introduction}}
+\label{dbscan_point_types}
+\end{figure}
+
+A visual description can be seen on \cref{dbscan_point_types}.
+Given these definitions, the algorithm is described in \cref{dbscan-algo}.
 
 \begin{algorithm}
 Label all points as core point, border point or noise point \\
