@@ -1,23 +1,23 @@
-\paragraph{MVC} or Model View Controller\citet{aspmvc} is used to separate responsibility of an application into three parts, the model, the view, and the controller.
-The pattern can be seen as an architecture diagram on \cref{mvcdiagram}.
+\paragraph{MVC} or Model-View-Controller\cite{aspmvc} is used to separate responsibility of an application into three parts, the model, the view, and the controller.
+The pattern can be seen in \cref{mvcdiagram}.
 
 \begin{figure}[h]
 \center
 \includegraphics[width=0.4\textwidth]{graphics/mvc}
-\caption{The MVC design pattern. From \citet{aspmvc}}
+\caption{The MVC design pattern.\cite{aspmvc}}
 \label{mvcdiagram}
 \end{figure}
 
-\paragraph{The model } contains the model of the application domain and takes care of fetching data and making them available through the model.
+\paragraph{Model} contains the model of the application domain and takes care of fetching data and making it available through the model.
 
-The model is making resources available.
+In the case of our web service, the model is making resources available for the view.
 
 \paragraph{View} displays the model to the user.
+In our case the view is the serialized resource representation, that the user obtains by performing requests against the API.
+Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header, this can be set to \texttt{application/json}.\cite[Section 14]{http_specification}
 
-In this case the view is the serialized resource representation that the user obtains by performing requests against the API.
-Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header, this can be set to \texttt{application/json}.\cite[section 14]{http_specification}
-
-\paragraph{The controller} handles the interaction with users. Based on userinput the controller works on the model and selects what the view needs to be used for displaying the data.
+\paragraph{Controller} handles the interaction with users.
+Based on user input, the controller works on the model and selects what the view needs to be used for displaying the data.
 
 The routing to controllers is handled by the attributes \texttt{[RoutePrefix]} and \texttt{[Route]}.
 In order to handle the different HTTP methods, controller methods are also annotated with an appropriate \texttt{[Http\{Method\}]} attribute (e.g. \texttt{[HttpGet]}).\cite{asp_routing}
