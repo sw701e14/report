@@ -1,10 +1,11 @@
 \section{Scalability}
-Scalability is an important factor when designing a web service. In this project the main  potential growing assets are users and bikes.
+Scalability is an important factor when designing a web service. In this project the main potential growing assets are users and bikes.
 
 Users are important to take into account, since we have high uncertainty in regards to the number of users, which could lead to performance issues if not addressed.
 
-Additionally, the number of bikes increasable without causing problems in the system. If not addressed, it could lead to storage issues due to the increase in GPS data or slow response times for the users due to the increased complexity of the predictions.
+Additionally, the number of bikes should be increasable without causing problems in the system. If not addressed, it could lead to storage issues due to the increase in GPS data and increase in the time required to build the models.
+A high number of resulting hotspots will also result in slower response times for the users due to the increased complexity of the predictions.
 
-The easiest way to address these issues is to scale out (adding new hardware) or scale up (enhance existing hardware).
+The easiest way to address these issues is to scale out (adding new hardware) or scale up (enhance existing hardware). \cite{michael2007scale}
 
-\paragraph{Our system} is scalability due to the way the macro components are divided. By dividing the system into macro components with their own tasks, it would be easy to add more hardware. It should further be easy to implement additional functionality due to the \texttt{Shared} macro component.
+\paragraph{Our system} is scalable due to the way the macro components are divided. By dividing the system into macro components with their own tasks, it would be easy to add more hardware. It should further be easy to implement additional functionality due to the \texttt{Shared} macro component.
