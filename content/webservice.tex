@@ -5,15 +5,15 @@ Additionally, it would not be very flexible, as new platforms and devices are in
 
 Another way to make the system available, but without making it platform-dependent, would be to create a common web service that provides the most significant functionality of the system.
 
-This section will describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
-At last the solution developed is presented.
+The following section will describe the possibilities when designing a web service, arguing why a RESTful web service is the correct choice for our system.
+After the chosen architecture has been presented, the actual implementation will be presented.
 
 \section{Choosing an architecture}
 When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call).\cite{restful_web_services}
 What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
 As a RPC-style web service is by definition procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
 
-The following section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
+The remainder of this section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 
 \subsection{Representational State Transfer(REST)}
 REST is an architectural style, which provides design criteria for network-based software architectures.
