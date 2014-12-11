@@ -1,14 +1,15 @@
 \section{Web Service API}\label{design:web_service}
 The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi}.
 ASP.NET Web API uses ASP.NET MVC\cite{aspnet_mvc}, with the use of \texttt{ApiController}, instead of the regular \texttt{Controller}.
-In the architecture the web service is located in its own component \cref{arch:webservice}.
+In the architecture, the web service is defined as a component of its own (see \cref{arch:webservice}).
 
-\paragraph{A resource} is an object, containing named properties, along with sub-resources.
+\paragraph{Resources} are objects, containing named properties and sub-resources.
 Sub-resources are represented as simple objects, containing only its relative URL.
 
 \input{content/mvc}
 
-\paragraph{Resource Oriented Architecture} criteria, as described in \cref{webservice:roa}, are followed and described in the next \cref{webservice:resources}.
+\paragraph{Resource Oriented Architecture} criteria, as described in \cref{webservice:roa}, set the ground rules for designing the API.
+These criteria are therefore upheld by the API, as described in the following section.
 
 \subsection{Resources}\label{webservice:resources}
 This section contains the resources designed and implemented in the web service.
