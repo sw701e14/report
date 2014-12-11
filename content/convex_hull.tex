@@ -1,1 +1,13 @@
 \section{Convex Hull}\label{convex_hull}
+This section introduces convex hull and the theory is based on \citet[section 33.3]{aadbook}.
+
+Given a set of points the smallest convex polygon is the convex hull.
+The convex hull is represented by a set of points.
+Graham-Scan\cite[page 1031]{aadbook}, an algorithm for finding the convex hull, has been implemented.
+
+\bruno{Should maybe be in a section for it self - for rounding of the chapter or like a section for that is what we found out?}
+For each cluster the convex hull is calculated.
+This is so the representation of a cluster is a smaller subset of the actual set of the points in the cluster.
+Although there is a certain loss of information by doing that, this has been chosen because it fits the purpose of the project and saves space.
+The result, a set of points representing a polygon, is the representation of a hotspot.
+The project can easily be satisfied by this representation because the hotspots are only used to check whether there is a point in a hotspot or not.
