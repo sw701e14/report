@@ -1,14 +1,15 @@
 \section{Overview}
-To ease the maintenance and ensure scalability, we have structured the project in an architecture which supports scalability.
-The architecture consists of four macro components and a database, as can be seen in \cref{fig:architecture}. The macro components are: Shared, Location Service, Model Agent, and Web Service.\alexander{Maybe change the component name of `Model Updater' so it does not conflict with the layer name? \alexander{Changed name of component to `Model Agent'.}}
+A system architecture is introduced to ease maintenance and ensure scalability.
+The architecture consists of four macro components and a database, as can be seen in \cref{fig:architecture}. The macro components are: Shared, Location Service, Model Agent, and Web Service.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth, trim={2cm 1cm 6cm 0}]{systemArchitecture.pdf}
 \caption{The architecture of the system}
 \label{fig:architecture}
 \end{figure}
+\bruno{What is the difference between a square and circle? Is this maybe confusing?}
 
-\subsection{Database} The database used is a MySQL database, and is where all our data are stored.
+\subsection{Database} The database used is a MySQL database, and is where all our data is stored.
 The design of the database can be found in \cref{database_design}
 
 
