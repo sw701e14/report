@@ -1,8 +1,6 @@
-This chapter contains a definition of a hotspot and how to find them.
-It contains theory about the clustering techniques used.
-Further the chapter contains a section about convex hull.
+This chapter contains a definition of a hotspot and how we intend to find them based on our data.
+It contains theory about the clustering techniques used to group the data into hotspots as well as a section about the convex hull algorithm that we use to create a bounding rectangle to describe the cluster.
 
 \section{Hotspot}\label{hotspot}
-A hotspot is an area with a closer density of points compared to the rest of the data.
-The points have to be static to be a part of the hotspot.
-A static point in this context is a point which has not moved since the last time interval.
+We define a hotspot to be an area with a closer density of points compared to the rest of the data.
+The points considered have to be static to be a part of the hotspot meaning that we only consider points which has not moved since the last time interval.
