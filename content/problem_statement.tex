@@ -6,12 +6,12 @@ From the analysis, it was found that the current \citybike has several problems,
 
 The problems identified were:
 \begin{enumerate}
-\item Bikes left outside stations
-\item Too few stations
-\item Making short stops
-\item No bikes at station
-\item No way of knowing when a bike will arrive
-\item Broken bikes
+\item Bikes left outside stations \label{pr_stations}
+\item Too few stations \label{pr_few}
+\item Making short stops \label{pr_stops}
+\item No bikes at station \label{pr_nobikes}
+\item No way of knowing when a bike will arrive \label{pr_arrive}
+\item Broken bikes \label{pr_broken}
 \end{enumerate}
 
 Additionally, certain limitations and requests were made by Aalborg Kommune, collected through the interview:
@@ -40,20 +40,18 @@ The greatest changes to the current system is the addition of the GPS and the in
 Hotspots will serve as informal stations; areas of the map where bikes are often parked.
 By combining these two things, we want to improve on the problems with the current system.
 
-\bruno{We should consider restating the problems so that it is more covenient for the reader.}
+\subparagraph{\ref{pr_stations}: Bikes left outside stations} is handled by GPS, as bikes and their exact location now can be found, no matter if it is at a hotspot or not.
 
-\subparagraph{Problem 1} is handled by GPS, as bikes and their exact location now can be found, no matter if it is at a hotspot or not.
-
-\subparagraph{Problem 2} is automatically handled by the generation of hotspots.
+\subparagraph{\ref{pr_few}: Too few stations} is automatically handled by the generation of hotspots.
 Whenever an area is a popular place to be going from/to, a hotspot should emerge and reflect this.
 
-\subparagraph{Problem 3} was deemed out of scope.
+\subparagraph{\ref{pr_stops}: Making short stops} was deemed out of scope.
 
-\subparagraph{Problem 4} is handled by locating the exact location of an available bike, or looking up nearby hotspots.
+\subparagraph{\ref{pr_nobikes}: No bikes at station} is handled by locating the exact location of an available bike, or looking up nearby hotspots.
 
-\subparagraph{Problem 5} will be handled by modelling bike behaviour and predicting when a bike will be available at certain hotspot(s).
+\subparagraph{\ref{pr_arrive}: No way of knowing when a bike will arrive} will be handled by modeling bike behavior and predicting when a bike will be available at certain hotspot(s).
 
-\subparagraph{Problem 6} will not be directly handled, but it is possible to infer from looking at bike locations and seeing when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
+\subparagraph{Broken bikes} will not be directly handled, but it is possible to infer from looking at bike locations and seeing when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
 
 \paragraph{Software}
 A software solution is then to be developed, consisting of 3 main software components, and a shared database.

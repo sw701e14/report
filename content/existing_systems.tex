@@ -32,7 +32,7 @@ For short stops during a trip, the lock can be locked with an analogue lock, whi
 
 It is possible to reserve a bike by using their web page, which in all cases cost 10 DKK.
 This will hold a bike, by locking it, up to 45 minutes before it is needed.
-Half an hour before the reservation time, a text is sent to inform whether a bike was successfully held or not.
+Half an hour before the reservation time, a text message is sent to inform whether a bike was successfully held or not.
 Repeated reservations are allowed.
 
 Currently, there is a total of 20 stations and an estimated average of 15 bikes per station, giving a total of approximately 300 bikes.
@@ -69,27 +69,35 @@ The official website states that there are ''100s of stations'' and ''1000s of b
 The bikes are very simple, with no motor or GPS, and the tablet in front is only used for unlocking bikes with either pass-code or membership-key.
 
 \subsection{Evaluation}
-Based on the problems described in \cref{aalborg_bycyklen:challenges}, the existing systems will be evaluated in regards to whether they solve all or some of these problems.
-\mikael{Must be updated to new problems, in \cref{aalborg_bycyklen}}
+Based on the problems described in \cref{aalborg_bycyklen:challenges}, the existing systems will be evaluated in regards to whether they solve these problems.
 
-\paragraph{Bikes disappear}
-In Bycyklen, this is partially, indirectly solved by the hourly charges until the bike is returned, along with the additional fees if the bike is immobile for 2 hours or used for more than 10 hours.
+\paragraph{Bikes left outside stations}
+In Bycyklen, this is partially solved by the hourly charges until the bike is returned, along with the additional fees if the bike is immobile for 2 hours or used for more than 10 hours.
 Presumably, the GPS in the bikes can also be used to locating misplaced bikes (This is based on the fact that users agree to let Bycyklen collect anonymous data about start/end destination, and route usage).
 
 In Citibike NYC overcharge fees are continuously charged, after exceeding the allowed half hour trip, until it is returned to a bike station.
 Nothing can be found about whether this goes on forever or not.
 
-\paragraph{Flexibility}
+\paragraph{Too few stations}
+Bycyklen has 20 stations in Copenhagen making the solution difficult to use trips with a destination not close to a station. 
+
+Citi bikes tries to solve this problem by placing so many stations in the city that you are never far from a station.
+Whether or not this solution solves the problem is not know, but it seems like an expensive solution.
+
+\paragraph{Making short stops}
 Bycyklen provides an analogue lock, for short stops (2 hours) during use.
 However, when done using a bike it must be returned to a station.
 
 In Citi Bike NYC, the multitude of stations and the placement throughout the city should make sure that there is always a station close-by, no matter where you want to end your trip, including shorter stops.
 
-\paragraph{Reliability}
+\paragraph{No bikes at station}
 Both Bycyklen and Citibike NYC have web apps with a map showing stations, along with an indication of how many bikes are available at the different stations.
 Citibike NYC also has native mobile apps, while Bycyklen only has the web app.
 
-The reservation system of Bycyklen cannot ensure that a bike will be available, as it will only attempt to lock a bike 45 minutes before the reservation time if a bike is available.
+\paragraph{No way of knowing when a bike will arrive}
+Neither Bycyklen nor Citibike NYC has a prediction system, but they have solutions that attempt to address the problem.
+
+Bycyklen tries to solve the problem with reservations but they cannot ensure that a bike will be available, as it will only attempt to lock a bike 45 minutes before the reservation time if a bike is available.
 
 Citibike NYC has no reservation system, one must consult an app for available bikes at stations, but the multitude of  available bikes should ensure that there's always a bike, and the multitude of stations should ensure that you will not have to go far if no bike was at the first visited station.
 
