@@ -8,32 +8,6 @@ Everything is recursively grouped in Minimum-Bound-Rectangles (MBR).
 By putting everything in MBRs, it is possible to improve search time, for instance when we want to check whether a new bike location is within a hotspot.
 This could drastically improve performance in our system, both when updating the model, but also when receiving bike location updates.
 
-\section{Usage statistics for Aalborg Kommune}
-One of the requests from the interview with Aalborg Kommune (see \cref{interview:goals}) was that they wanted certain statistics about bike usage.
-
-Since the data is available, since bike locations are already being continuously collected, all that needed for this to be fulfilled, would be adding a data-warehouse.
-The data-warehouse would extract the newest bike location updates and form its own data, so that it could be easy to query on it, like the queries mentioned in \cref{interview:goals}.
-
-These statistics could be used for improving the physical system(Aalborg Bycyklen, \cref{aalborg_bycyklen}) and the software system.
-The statistics could improve/help the following processes:
-\begin{itemize}
-\item Where to add more cycle tracks
-\item Improve traffic lights
-\item When to update the model(s)
-\item etc.
-\end{itemize}
-
-\subsection{API Access}
-Adding different quieries for Aalborg Kommune, that should not be accessible to normal users, would require the API to be updated with security measures.
-Therefore it would be rather practically to introduce different user access levels.
-E.g. there could be the following access levels:
-\begin{itemize}
-\item Administrator (facilitator of the API - access to everything)
-\item User (standard access)
-\item Bike maintainer (access to e.g. all bikes location)
-\end{itemize}
-This change would be added in the \texttt{Controller} layer in the \texttt{Web Service} component.
-
 \section{Model Updating}\label{reflection:model_updating}
 There are some issues regarding the process of updating the model(\cref{}\bruno{ref to 'creating markov chain' section}) and how often it should be updated.
 There are many possibilities regarding this, because it is a rather complex matter.
@@ -58,4 +32,31 @@ The algorithm that finds the convex hull\cref{}\bruno{ref til convex hull - hvis
 This means that some points that should be inside/outside the convex hull are not.
 This can give some unexpected results.
 When checking if a bike is inside a convex hull, the accuracy is not taking into account either.
-\bruno{Hvad er løsningen udover bare at gøre det?} 
+\bruno{Hvad er løsningen udover bare at gøre det?}
+
+
+\section{Usage statistics for Aalborg Kommune}
+One of the requests from the interview with Aalborg Kommune (see \cref{interview:goals}) was that they wanted certain statistics about bike usage.
+
+Since the data is available, since bike locations are already being continuously collected, all that needed for this to be fulfilled, would be adding a data-warehouse.
+The data-warehouse would extract the newest bike location updates and form its own data, so that it could be easy to query on it, like the queries mentioned in \cref{interview:goals}.
+
+These statistics could be used for improving the physical system(Aalborg Bycyklen, \cref{aalborg_bycyklen}) and the software system.
+The statistics could improve/help the following processes:
+\begin{itemize}
+\item Where to add more cycle tracks
+\item Improve traffic lights
+\item When to update the model(s)
+\item etc.
+\end{itemize}
+
+\section{API Access}
+Adding different quieries for Aalborg Kommune, that should not be accessible to normal users, would require the API to be updated with security measures.
+Therefore it would be rather practically to introduce different user access levels.
+E.g. there could be the following access levels:
+\begin{itemize}
+\item Administrator (facilitator of the API - access to everything)
+\item User (standard access)
+\item Bike maintainer (access to e.g. all bikes location)
+\end{itemize}
+This change would be added in the \texttt{Controller} layer in the \texttt{Web Service} component.
