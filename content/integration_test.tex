@@ -12,8 +12,8 @@ The purpose of the test is to figure out if the system can produce sane predicti
 
 \stefan{coupling with problem statement}
 
-We have made a system that can simulate real world data. 
-The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing a certain destination.
+In order to generate test data, we have created a method of simulating real world data. 
+The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing certain destinations.
 This makes it possible to create a data set, where it is possible to predict the expected result.
 
 \paragraph{What to test}
@@ -29,13 +29,11 @@ The system relies on the clusters to be indicative of how the bikes are used.
 All predictions uses the hotspots as a basis and misplaced hotspots can therefore skew the results, degrading the precision of the predictions.
 We therefore want to test if the hotspots generated are as they are expected.
 
-In order to test this, we will generate a dataset using a list of addresses, simulating the real usage of the system.
-We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
-This will give an indication of how well our hotspots are created.
-
 \paragraph{Test data and cases}
 For this test, a data set has been created.
 It consists of five addresses and their corresponding GPS coordinates.
+We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
+This will give an indication of how well our hotspots are created.
 
 Three of the points are well separated, in order to test the general cluster creation.
 The last two points are placed one street from each other, in order to test how the clustering handles close points.
