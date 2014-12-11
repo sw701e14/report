@@ -3,18 +3,14 @@ The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi
 ASP.NET Web API uses ASP.NET MVC\cite{aspnet_mvc}, with the use of \texttt{ApiController}, instead of the regular \texttt{Controller}.
 In the architecture, the web service is defined as a component of its own (see \cref{arch:webservice}).
 
-\paragraph{Resources} are objects, containing named properties and sub-resources.
-Sub-resources are represented as simple objects, containing only its relative URL.
-\mikael{This seems like it comes out of nothing, and doesn't fit in. Perhaps a mention that this is used in the implementation to represent resources, as defined in ROA?}
+\subsection{Resource Oriented Architecture}
+Resource Oriented Architecture criteria, as described in \cref{webservice:roa}, set the ground rules for designing the API.
+These criteria are therefore upheld by the API.
 
-\input{content/mvc}
-
-\paragraph{Resource Oriented Architecture} criteria, as described in \cref{webservice:roa}, set the ground rules for designing the API.
-These criteria are therefore upheld by the API, as described in the following section.
-\mikael{This seems like it should be mentioned earlier, as the criteria should also be overheld when implementing controllers}
-
-\subsection{Resources}\label{webservice:resources}
+\subsubsection{Resources}\label{webservice:resources}
 This section contains the resources designed and implemented in the web service.
+Resources in the implementation are objects, containing named properties and sub-resources.
+Sub-resources are represented as simple objects, containing only its relative URL.
 Each resource is described following this structure:
 \begin{itemize}
 \item \textbf{URL} the URL of the resource
@@ -24,7 +20,7 @@ Each resource is described following this structure:
 \item \textbf{Responses} HTTP status codes which could be returned by this resource
 \end{itemize}
 
-\subsubsection{The resources implemented:}
+\subsubsection*{The resources implemented:}
 \bruno{Skal de i appendix eller skal det sættes op på en anden måde?}
 
 % Command for displaying url, properties, and sub-resource of each resource
@@ -63,3 +59,6 @@ This ressource returns all the hotspots in the system.
 \resource{/predictions}{}{}{GET}{200 OK}
 This is the prediction resource.
 When a client wants to know when a bike arrives at a hotspot this ressource can be used.
+
+\input{content/mvc}
+
