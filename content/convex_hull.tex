@@ -4,11 +4,11 @@ This section introduces convex hull and the theory is based on \citet[section 33
 Given a set of points the smallest convex polygon for which each of the points in the set are either on the border of the polygon or inside it is called the convex hull. \cite[33.1-5]{aadbook}
 The convex hull is represented by a set of points.
 Graham-Scan\cite[page 1031]{aadbook}, an algorithm for finding the convex hull, has been implemented.
-\bruno{Instead of citing, should we write more about it?}
+\bruno{Instead of citing, should we write more about it? \stefan{i do not think it is necessary}}
 
 
-\bruno{Should maybe be in a section for it self - for rounding of the chapter or like a section for: 'that is what we found out?'}
-For each cluster the convex hull is found.
-There is a certain loss of information by doing that, but it also saves some space.
-But the project can easily be satisfied by this representation because the hotspots are only used to check whether there is a point in a hotspot or not.
-The result, a set of points representing a polygon, is the representation of a hotspot.
+\section{Conclusion}
+
+This chapther has examined how we would like to create hotspot for use in our model of the bike system.
+For clustering of the data we have chosen to use the DBSCAN algorithm and then afterwards run the Graham Scan convex hull algorithm in order to make a minimal representation of the cluster.
+The resulting convex hull is then the hotspot to be used when predicting the movement of the bikes.

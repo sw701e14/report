@@ -59,88 +59,62 @@ If the data can be represented as a graph with the objects as nodes, clusters ca
 A cluster is defined by the density of the data objects.
 A cluster is a dense region surrounded by a low density region.
 
+\subsection{Our data and purpose}
+The data we need to cluster is GPS data from the bikes.
+A bike will send a GPS location in some interval, and it will be saved in a database.
+We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
+These clusters may have different size depending on the physical properties of the places the bikes are left.
+
+The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
+
+Based on this description we need an partitional, exclusive, partial and density based clustering.
+
+Partitional because we do not need a hierarchical representation of the clusters.
+It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
+We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
+
 \subsection{Techniques}
 
-This section will explore the techniques that exist in cluster analysis.
+This section will explore the techniques that exist in cluster analysis and evaluate them based on the requirements stated in the previous section.
 
-\subsubsection{K-means}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
-
+\subsubsection{K-means}
 K-means is a technique that creates a partitioning from prototypes where the prototypes are the center of the clusters.
 
 The basic algorithm takes a number K and generates K initial center points.
 Each data object is then assigned to the nearest center point.
 The center points are now updated to be the center of the created clusters.
 These steps are repeated until no point changes cluster or the center points do not change.
-The algorithm is described as pseudo code in \cref{kmeans-algo}
 
-\begin{algorithm}
-\SetAlgoLined
-\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-\Input{An integer k, the number of desired clusters}
-\Output{An assigment of each point to a cluster}
+Because we do not have a way of finding $ k $ before running the algorithm, this approach is not applicable to our problem.
 
-select K initial center points \\
-\Repeat{Center points do not change\label{repeatcondition}} {
-Form K clusters by assigning each point to the closest center point \\
-Calculate the centerpoint of the newly formed clusters \label{recalculate}\\
-}
-\caption{The K-means clustering algorithm}\label{kmeans-algo}
-\end{algorithm}
-
-Because most of the convergence happens in the initial iterations the condition in \cref{repeatcondition} can be replaced by a weaker condition, like repeat until only 1\% of the points change clusters.
-
-\paragraph{Strengths and weaknesses}
-the K-means algorithm can have some difficulty finding clusters where the data is placed in shapes very different from globular. 
-Also very big differences in size of cluster may make it difficult for K-means to differentiate the clusters.
-
-\subsubsection{Hierarchical Clustering}\bruno{Should maybe be removed for the final report because we do not use it in our project.}
-
+\subsubsection{Hierarchical Clustering}
 Hierarchical clustering arranges the points in a hierarchy depending on the distance between points.
 Hierarchical clustering can be performed either by starting at the top of the tree or at the bottom.
 \textit{Agglomerative hierarchical clustering} starts by considering all points as being in an individual cluster and generating the hierarchy by merging the closest clusters. 
 \textit{Divisive hierarchical clustering} start by considering all points as being in a single cluster and then splitting the clusters at each step.
 
-The algorithm for the agglomerative variant is described as an algorithm in \cref{agglo-hier}.
-
-\begin{algorithm}
-\SetAlgoLined
-\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-\Output{A tree defining the hierarchies of the clustering}
-
-Compute the proximity matrix\\
-\Repeat{Only one cluster is remaining}{
-Merge the closest two clusters\\
-Update the proximity matrix to reflect the proximity between the newly created cluster and the old clusters\\
-}
-\caption{Agglomerative hierarchical clustering algorithm}\label{agglo-hier}
-\end{algorithm}
-
-\begin{comment}
-\paragraph{Defining proximity}
-The key to the agglomerative hierarchical clustering algorithm is to choose a fitting measure for proximity.
-An approach is to look at the clusters as a graph.
-Then clusters can be compared by looking at either the distance between the closest members of the clusters, or the distance between the farthest members of the clusters.
-Another method is to look at the increase in SSE to the center of a cluster when performing a merge, and minimizing this value.
-This method is called Ward's method.
-\end{comment}
-
-\paragraph{Strengths and weaknesses}
-Hierarchical clustering is ideal when some kind of taxonomy needs to be created of the data.
-This however comes at the cost of computational and space complexity.
+We have no need for a hierarchical division of our clusters, and this algorithm is therefor not appropriate for our use.
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}
-DBSCAN in a densitybased clusteringalgorithm that locates regions of high density that are separated by regions of low density.
+DBSCAN in a density based clustering algorithm that locates regions of high density that are separated by regions of low density.
 
 \paragraph{Center based point density}
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be classified whether a point is placed in a dense region (a core point),at the edge of a dense region (a border point) or is in a region with sparse density (a noise point).
-The exact definition of the three types of points are as follows:\cite{pang2006introduction}
+The exact definition of the three types of points are as follows\cite{pang2006introduction}:
 
+\paragraph{}
+
+\noindent
 \textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it. 
 Here $ MinPts $ is the number of points in the vicinity of a point regarded as dense by the user, and $ eps $ is the radius to look for these points.
+
+\noindent
 \textbf{Border points} A point that is not a core point, but is in the neighborhood of a core point. 
 One point can be a border point to several core points.
+
+\noindent
 \textbf{Noise point} Any point that is neither a core point or a border point. 
 
 Given these definitions, the algorithm is described in \cref{dbscan-algo}
@@ -154,44 +128,9 @@ Assign each border point to one of the clusters associated with the border point
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
 \end{algorithm}
 
-\paragraph{Strengts and weaknesses}
+\paragraph{Strengths and weaknesses}
 DBScan is resistant to noise and can also handle clusters that vary in size.
 DBScan can have some trouble finding clusters that vary in density.
 
-\subsubsection{Choosing an algorithm}
-\stefan{maybe in analysis?}
-The previous sections have describes the available algorithms for clustering.
-We can now choose an algorithm based on our data and purpose.
-Our data and purpose will be described in order to evaluate the three presented algorithms.
-
-\paragraph{Our data and purpose}
-The data we need to cluster is gps data from the bikes.
-A bike will send a gps location in some interval, and it will be saved in a database.
-We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
-These clusters may have different size depending on the physical properties of the places the bikes are left.
-
-The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
-
-\paragraph{K-means}
-The k-means algorithm needs a value for $ k $.
-For our purpose this is difficult to know in advance, and it may even change over time.
-
-\paragraph{Hierarchical clustering}
-Because we do not need a taxonomy of the data points this method is not necessary.
-
-\paragraph{DBScan}
-This method both handles the noisy outliers of our data and can make clusters of different size.
-It therefore seems like a good choice for our project.
-
-
-\paragraph{Choosing parameters}
-DBSCAN is defined by the two parameters $ eps $ and $ MinPts $.
-The quality of the result of DBSCAN will be dependent on these parameters.
-
-A method for determining these values is considering the behaviour of the distance to the k-th nearest neighbour of all the points, calle $ k-dist $.
-The $ k-dist $ value of points in a cluster will be small if $ k $ is not larger than the number of points in the cluster.
-Sorting these values and plotting them in a graph will show a sharp bend in the area where $ eps $ will be suitable. 
-Using this value as $ eps $ and $ k $ as $MinPts$ will make every point that has a $ k-dist $ smaller than the chosen value a core point.
-
-Choosing $ k $ can be done experimentally but the original DBSCAN algorithm used $ k= 4 $ which turned out to be a reasonable value for two dimensional data sets.
-\stefan{Skal flyttes til implementation måske?}
+\subsection{Summary} Of the three presented algorithms only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density based clustering algorithm.
+We therefore use this algorithm to detect clusters in our data for use as the hotspots in our model.
