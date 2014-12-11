@@ -1,59 +1,55 @@
 \section{Integration test}
 
-In order to test that our components interact together as we expect we have chosen to do an integration test.
+In order to test that our components interact together as we would expect, we have chosen to do an integration test.
 
 Integration testing has the purpose of testing that two units work together. 
-Traditionally integration testing is done by integrating two modules at a time either from the top of the dependency tree or from the bottom.
-There exists a variant which tests the whole system together from the beginning, called big bang integration testing.
-We have chosen to perform our test with this method because of time limitations. \cite{inttest}
+Traditionally, integration testing is done by integrating two modules at a time, either from the top of the dependency tree or from the bottom.
+There exists a variant, in which the whole system is tested together, instead of pair-wise, called big bang integration testing.
+We have chosen to perform our test with this method, due to time limitations. \cite{inttest}
 
-\subsection{Our test setup}
+\subsection{Test setup}
 The purpose of the test is to figure out if the system can produce sane predictions for the bikes in the system.
 
 \stefan{coupling with problem statement}
 
-We have made a system that can simulate the real world data. 
-The simulator gets a list of destinations as input and it is then possible to adjust the probability of the system choosing a certain destination. 
-This makes it possible to create a data set where it is possible to predict the expected result.
+We have made a system that can simulate real world data. 
+The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing a certain destination.
+This makes it possible to create a data set, where it is possible to predict the expected result.
 
-
-\subsection{Test Cases}
-
+\paragraph{What to test}
 We want to test the following parts of our system:
 
 \begin{itemize}
 \item Creation of hotspots
-\item Predictions 
+\item Predictions
 \end{itemize}
 
-\subsubsection{Creation of hotspots}
+\subsection{Creation of hotspots}
 The system relies on the clusters to be indicative of how the bikes are used. 
-All predictions uses the hotspots as a basis and misplaced hotspots can therefore skew the results and degrade the precision of the predictions.
-We therefore want to test if the hotspots generated are where they are expected to be.
+All predictions uses the hotspots as a basis and misplaced hotspots can therefore skew the results, degrading the precision of the predictions.
+We therefore want to test if the hotspots generated are as they are expected.
 
-In order to test this we will generate a dataset using a list of addresses simulating the real usage of the system.
+In order to test this, we will generate a dataset using a list of addresses, simulating the real usage of the system.
 We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
-
 This will give an indication of how well our hotspots are created.
 
-\paragraph{The test data}
-For this test a data set has been created.
+\paragraph{Test data and cases}
+For this test, a data set has been created.
 It consists of five addresses and their corresponding GPS coordinates.
 
-Three of the points are well separated in order to test the general cluster creation.
-The last two points are placed one street from each other to test how the clustering handles close points.
+Three of the points are well separated, in order to test the general cluster creation.
+The last two points are placed one street from each other, in order to test how the clustering handles close points.
 \stefan{ikke sikker på om den del giver mening}
 
-
-\paragraph{Predictions}
+\subsection{Predictions}
 The users rely on the predictions of bikes to be somewhat telling of how the bikes move around in the city.
 It is therefore important to test how well the predictions work.
 
-To test this we create a number of controlled data sets.
+\paragraph{Test data} To test this we create a number of controlled data sets.
 The data sets are controlled by assigning probabilities of choosing the destinations. 
-We then know there to expect the probabilities to be high.
+We then know where to expect the probabilities to be high.
 
-\paragraph{The test cases}
+\paragraph{Test cases}
 The obvious test case is when the generated data has equal probability of choosing every destination. 
 In this case we would expect the probabilities of a bike arriving at every destination to be the same.
 
