@@ -1,11 +1,15 @@
 This chapter will reflect on how the developed system could be improved.
 
 \section{R-Trees}
-What we are dealing with is spatial data, and there is a specialized data structure for spatial data called R-trees.\cite[Section 25.3.5.3]{database_system_concepts}
+What we are dealing with is spatial data in 2 dimensions.
+There is a specialized data structure for spatial data called R-trees.\cite[Section 25.3.5.3]{database_system_concepts}
+By implementing this data structure, we should be able to drastically improve performance of our system in certain areas.
 
-An R-tree is a recursively defined tree, where actual spatial data (in our case bike locations and hotspots) are the leaves.
-Everything is recursively grouped in Minimum-Bound-Rectangles (MBR).
-By putting everything in MBRs, it is possible to improve search time, for instance when we want to check whether a new bike location is within a hotspot.
+An R-tree is a recursively defined tree, where actual spatial data (in our case bike locations and hotspots) are located at the leaf level.
+Everything above leaf level is recursively grouped in Minimum-Bound-Rectangles (MBR).
+
+By putting everything in MBRs, it is possible to improve search time, since it is possible to exclude certain parts of the tree when doing specialized queries.
+In our case, an example of this could be when we want to check whether a new bike location is within a hotspot.
 This could drastically improve performance in our system, both when updating the model, but also when receiving bike location updates.
 
 \section{Model Updating}\label{reflection:model_updating}
@@ -15,9 +19,9 @@ Below is a list trying to show the factors that influence the model:
 \begin{itemize}
 \item Time of day
 \item Weekday
-\item What kind of day(holidays, working day, etc.)
-\item Weather
-\item etc.
+\item What kind of day (workday, holiday, city events, etc.)
+\item Weather conditions
+\item Etc.
 \end{itemize}
 A simple model would be to update it every week, and don't take the different factors into account.
 An example of a more complex model is to partition the day into mornings, afternoons and nights.
@@ -28,30 +32,30 @@ To find the best model one needs a collection of real data for testing which mod
 
 
 \section{Accuracy and Convex Hull}
-The algorithm that finds the convex hull\cref{}\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
+The algorithm that finds the convex hull (see  \cref{})\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
 This means that some points that should be inside/outside the convex hull are not.
 This can give some unexpected results.
-When checking if a bike is inside a convex hull, the accuracy is not taking into account either.
+When checking if a bike is inside a convex hull, the accuracy is not taken into account either.
 \bruno{Hvad er løsningen udover bare at gøre det?}
-
+\mikael{Godt spørgsmål}
 
 \section{Usage statistics for Aalborg Kommune}
 One of the requests from the interview with Aalborg Kommune (see \cref{interview:goals}) was that they wanted certain statistics about bike usage.
 
-Since the data is available, since bike locations are already being continuously collected, all that needed for this to be fulfilled, would be adding a data-warehouse.
-The data-warehouse would extract the newest bike location updates and form its own data, so that it could be easy to query on it, like the queries mentioned in \cref{interview:goals}.
+Since the data is available, as bike locations are already being continuously collected, all that needed for this to be fulfilled, would be adding a data-warehouse.
+The data-warehouse would extract the newest bike location updates and form its own data, so that it could be easy to query on it, queries such as those mentioned in \cref{interview:goals}.
 
-These statistics could be used for improving the physical system(Aalborg Bycyklen, \cref{aalborg_bycyklen}) and the software system.
+These statistics could be used for improving the \citybike system, as well as the software system.
 The statistics could improve/help the following processes:
 \begin{itemize}
-\item Where to add more cycle tracks
-\item Improve traffic lights
+\item Where to add more bike lanes
+\item Improve traffic lights \mikael{Forstår ikke denne her}
 \item When to update the model(s)
 \item etc.
 \end{itemize}
 
 \section{API Access}
-Adding different quieries for Aalborg Kommune, that should not be accessible to normal users, would require the API to be updated with security measures.
+Adding different queries for Aalborg Kommune, that should not be accessible to normal users, would require the API to be updated with security measures.
 Therefore it would be rather practically to introduce different user access levels.
 E.g. there could be the following access levels:
 \begin{itemize}

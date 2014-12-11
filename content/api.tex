@@ -32,7 +32,7 @@ Each resource is described following this structure:
 \item[Responses:]{\texttt{#5}}
 \end{description}}
 
-\resource{/}{version}{availablebikes, hotspots, bikes}{GET}{200 OK}
+\resource{/}{version}{availablebikes, hotspots, predictions}{GET}{200 OK}
 The root path serves as the entry point for the API.
 It has a single property; version, to be used for asserting that the API has changes that implementations should react to.
 More importantly, it contains a sub-resource for each main resource.
@@ -52,13 +52,13 @@ In case a client tries to request a bike that is not available, it will be met w
 
 \resource{/hotspots}{hotspots}{}{GET}{200 OK}
 
-This ressource returns all the hotspots in the system.
+This resource returns all the hotspots in the system.
 
 \noindent\hrulefill
 
 \resource{/predictions}{}{}{GET}{200 OK}
 This is the prediction resource.
-When a client wants to know when a bike arrives at a hotspot this ressource can be used.
+When a client wants to know when a bike arrives at a hotspot this resource can be used.
 
 \input{content/mvc}
 
