@@ -1,6 +1,6 @@
 Since we no longer have stations, bike users can now finish a ride anywhere.
 This means we will potentially have a vast number of start/end locations.
-This is a problem as locations very close to each other are considered to be different.
+This is a problem as all locations, even those very close to each other, are considered to be different.
 
 Instead we want to group these locations that are close to each other, and more frequent, into hotspots.
 This way we limit the number of predictions needed, as we only model the most frequently travelled areas, as opposed to every single location.
