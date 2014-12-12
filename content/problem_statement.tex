@@ -26,17 +26,17 @@ Additionally, certain limitations and requests were made by Aalborg Kommune, col
 \subsection{Scope}
 Due to the limited time and project members, certain restrictions will be set, as to remove focus on certain problems.
 
-\paragraph{Making Short stops} will be completely overlooked in this project, as any solution to this problem would require some added locking mechanisms, which would conflict with the limitations set by Aalborg Kommune.
+\paragraph{Making short stops} will be completely overlooked in this project, as any solution to this problem would require some added locking mechanisms, which would conflict with the limitations set by Aalborg Kommune.
 
 \paragraph{Statistics about usage} is something Aalborg Kommune also requested.
-This, however, is deemed too far from the initial problem, as well as adding too much to the workload.
+This, however, is deemed too far from the initial problem, as we won't be able to get any significant data without testing it on the actual bikes.\alexander{Reasonable argument?}
 
 \subsection{Solution}
 We have chosen the solution with the same bikes as the current system, with the addition of a GPS chip on each individual bike, and completely removing the stations and bike locks.
 This is due to the restrictions set by Aalborg Kommune, requesting a simple system, in order to accommodate the unspecified target user group.
 
 \paragraph{GPS and hotspots}
-The greatest changes to the current system is the addition of the GPS and the introduction og hotspots.
+The greatest changes to the current system is the addition of the GPS and the introduction of hotspots.
 Hotspots will serve as informal stations; areas of the map where bikes are often parked.
 By combining these two things, we want to improve on the problems with the current system.
 
@@ -51,25 +51,25 @@ Whenever an area is a popular place to be going from/to, a hotspot should emerge
 
 \subparagraph{\ref{pr_arrive}: No way of knowing when a bike will arrive} will be handled by modeling bike behavior and predicting when a bike will be available at certain hotspot(s).
 
-\subparagraph{Broken bikes} will not be directly handled, but it is possible to infer from looking at bike locations and seeing when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
+\subparagraph{\ref{pr_broken}: Broken bikes} will not be directly handled, but it is possible to infer from looking at bike locations and detecting when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
 
 \paragraph{Software}
 A software solution is then to be developed, consisting of 3 main software components, and a shared database.
 The structure of the solution can be seen in \cref{fig:solution_structure}.
 
 \begin{figure}[h]
-\includegraphics[width=\textwidth]{our_solution.pdf}
+\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 5cm}]{our_solution.pdf}
 \caption{The overall structure of our solution}
 \label{fig:solution_structure}
 \end{figure}
 
 The \textit{Location Service} continuously updates the locations of the bikes.
 The \textit{Model Updater} uses the location updates to generate a model used for predictions.
-The \textit{Webservice} makes available an API, in order to make platform implementations to make available the data as specified in the requirements.
+The \textit{Web Service} makes an API available, in order to make platform implementations to make the data available as specified in the requirements.
 A web service was chosen as to make the system as available as possible, due to the unspecific target user group.
 
 \subsection{New problems}
-In order to achieve this new system, with the addition of GPS and hotspots, new problems emerge.
+In order to develop this new system, with the addition of GPS and hotspots, new problems emerge.
 The following chapters will focus on the problems:
 \begin{itemize}
 \item How to define and find hotspots?

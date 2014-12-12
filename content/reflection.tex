@@ -1,16 +1,11 @@
 This chapter will reflect on how the developed system could be improved.
 
-\section{R-Trees}
-What we are dealing with is spatial data in 2 dimensions.
-There is a specialized data structure for spatial data called R-trees.\cite[Section 25.3.5.3]{database_system_concepts}
-By implementing this data structure, we should be able to drastically improve performance of our system in certain areas.
-
-An R-tree is a recursively defined tree, where actual spatial data (in our case bike locations and hotspots) are located at the leaf level.
-Everything above leaf level is recursively grouped in Minimum-Bound-Rectangles (MBR).
-
-By putting everything in MBRs, it is possible to improve search time, since it is possible to exclude certain parts of the tree when doing specialized queries.
-In our case, an example of this could be when we want to check whether a new bike location is within a hotspot.
-This could drastically improve performance in our system, both when updating the model, but also when receiving bike location updates.
+\section{Optimized Data Structure}
+To optimize the API, a more complex data structure should be introduced.
+E.g. the process of checking whether bike locations are within a hotspot would be improved.
+Because as of now the implementation uses a list, which means that every element is accessed in worst case.
+Therefore using another data structure would mean that some parts could be skipped.
+R-trees\cite[Section 25.3.5.3]{database_system_concepts} is a data structure that could be chosen for that purpose.
 
 \section{Model Updating}\label{reflection:model_updating}
 There are some issues regarding the process of updating the model(\cref{}\bruno{ref to 'creating markov chain' section}) and how often it should be updated.
@@ -49,7 +44,7 @@ These statistics could be used for improving the \citybike system, as well as th
 The statistics could improve/help the following processes:
 \begin{itemize}
 \item Where to add more bike lanes
-\item Improve traffic lights \mikael{Forstår ikke denne her}
+\item Improve cycle infrastructure
 \item When to update the model(s)
 \item etc.
 \end{itemize}
