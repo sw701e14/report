@@ -1,5 +1,9 @@
 \section{Convex Hull}\label{convex_hull}
-This section introduces convex hull and the theory is based on \citet[section 33.3]{aadbook}.
+In order to check whether a location is within a hotspot, we need to represent hotspots as something different than a cluster of locations.
+Instead of doing this with a simple geometrical shape, as this could misrepresent complexly shaped hotspots, we represent a hotspot as a polygon by applying convex hull to the clustered locations.
+This way we reduce the amount of locations needed to represent a hotspot, and without any loss of information.
+
+The following definition of convex hull is based on \citet[section 33.3]{aadbook}.
 
 Given a set of points the smallest convex polygon for which each of the points in the set are either on the border of the polygon or inside it is called the convex hull. \cite[33.1-5]{aadbook}
 The convex hull is represented by a set of points.
