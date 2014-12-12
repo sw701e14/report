@@ -1,5 +1,13 @@
-This chapter contains a definition of a hotspot and how we intend to find them based on our data.
-It contains theory about the clustering techniques used to group the data into hotspots as well as a section about the convex hull algorithm that we use to create a bounding rectangle to describe the cluster.
+Since we no longer have stations, bike users can now finish a ride anywhere.
+This means we will potentially have a vast number of start/end locations.
+This is a problem as locations very close to each other are considered to be different.
+
+Instead we want to group these locations that are close to each other, and more frequent, into hotspots.
+This way we limit the number of predictions needed, as we only model the most frequently travelled areas, as opposed to every single location.
+
+In order to group the locations we explore clustering techniques, before choosing an appropriate one to implement.
+
+Finally, in order to simplify hotspot representations, we apply convex hull, creating a polygon representation of a hotspot.
 
 \section{Hotspot}\label{hotspot}
 We define a hotspot to be an area with a closer density of points compared to the rest of the data.
