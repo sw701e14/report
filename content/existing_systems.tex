@@ -1,7 +1,7 @@
 \section{Existing Systems}
 
 Already existing systems are explored in order to draw inspiration from them.
-They will also serve as guidelines to what should and shouldn't be repeated in a proposal of a new system.
+They will also serve as guidelines to what should and shouldn't be repeated in a proposal of a new system.\alexander{Do we want to propose a new system?}
 
 There are many public bike systems around the world, mainly in bigger cities.
 The systems differ a lot in both how and where bikes are acquired and how the use of the bikes is paid.
@@ -23,14 +23,14 @@ In exchange for a fixed subscription of 70 DKK/month, the hourly rate is reduced
 In both cases, an account must be created first.
 This can be done using an internet browser or the bike-mounted tablet.
 
-To use the service the user has to log-in with an existing account.
+To use the service the user has to sign in with an existing account.
 The bike is then unlocked from the rack and the hourly charges begin.
 Once the bike is no longer in use and placed in a rack again, the user is logged out and the bike is locked.
 
 If a bike is left outside a bike station for longer than 2 hours, fees are charged (200 DKK in Copenhagen/Frederiksberg, 800 DKK outside), or if it has been in use for longer than 10 hours (500 DKK).
 For short stops during a trip, the lock can be locked with an analogue lock, which is unlocked the same way as at a station, but only for the currently active user.
 
-It is possible to reserve a bike by using their web page, which in all cases cost 10 DKK.
+It is possible to reserve a bike by using their website, which in all cases cost 10 DKK.
 This will hold a bike, by locking it, up to 45 minutes before it is needed.
 Half an hour before the reservation time, a text message is sent to inform whether a bike was successfully held or not.
 Repeated reservations are allowed.
@@ -41,7 +41,7 @@ The tablet is used for registration and signing in/out.
 Additionally the tablet, with use of the GPS, can provide navigational guidance.
 
 \subsection{New York City: Citi Bike NYC}
-Citi Bike NYC\cite{nyc_citibike} is a system which makes available bikes for single use, but many times.
+Citi Bike NYC\cite{nyc_citibike} is a system which makes bikes available for single use, but many times.
 
 Unlike most other systems, you do not rent a single bike.
 There are three methods of renting bikes:
@@ -57,55 +57,55 @@ With annual membership this interval is extended to 45 minutes.
 However, after each interval, you can just acquire another bike.
 If you do not return the bike after the interval, overcharge fees occur.
 
-In order to acquire a bike with a pass, a payment is made with a credit-card at a bike-station, which provides a single-use code.
-This code is entered on the bike itself, which is equipped with a tablet solely for this purpose, which will unlock the bike from the bike-rack.
+In order to acquire a bike with a pass, a payment is made with a credit card at a bike station, which provides a single-use code.
+This code is entered on the bike itself, which is equipped with a tablet solely for this purpose, which will unlock the bike from the bike rack.
 Along with the pass fee, a \$101 security hold is placed.
-When a bike is returned, and another bike is to be acquired, the credit-card must be used again.
-The credit-card will not be charged again if a pass is already active, instead a new code is provided.
-For annual memberships a key is used to unlock bikes and no interaction with the bike-station is needed.
+When a bike is returned, and another bike is to be acquired, the credit card must be used again.
+The credit card will not be charged again if a pass is already active, instead a new code is provided.
+For annual memberships a key is used to unlock bikes and no interaction with the bike station is needed.
 
 The exact number of bikes and stations is unknown.
 The official website states that there are ''100s of stations'' and ''1000s of bikes''\cite{nyc_citibike}.
-The bikes are very simple, with no motor or GPS, and the tablet in front is only used for unlocking bikes with either pass-code or membership-key.
+The bikes are very simple, with no motor or GPS, and the tablet in front is only used for unlocking bikes with either code or membership key.
 
 \subsection{Evaluation}
 Based on the problems described in \cref{aalborg_bycyklen:challenges}, the existing systems will be evaluated in regards to whether they solve these problems.
 
 \paragraph{Bikes left outside stations}
 In Bycyklen, this is partially solved by the hourly charges until the bike is returned, along with the additional fees if the bike is immobile for 2 hours or used for more than 10 hours.
-Presumably, the GPS in the bikes can also be used to locating misplaced bikes (This is based on the fact that users agree to let Bycyklen collect anonymous data about start/end destination, and route usage).
+Presumably, the GPS in the bikes can also be used to locating misplaced bikes (this is based on the fact that users agree to let Bycyklen collect anonymous data about start/end destination, and route usage).
 
-In Citibike NYC overcharge fees are continuously charged, after exceeding the allowed half hour trip, until it is returned to a bike station.
+In Citi Bike NYC overcharge fees are continuously charged, after exceeding the allowed half hour trip, until it is returned to a bike station.
 Nothing can be found about whether this goes on forever or not.
 
 \paragraph{Too few stations}
-Bycyklen has 20 stations in Copenhagen making the solution difficult to use trips with a destination not close to a station. 
+Bycyklen has 20 stations in Copenhagen making the solution difficult to use for trips with a destination not close to a station. 
 
-Citi bikes tries to solve this problem by placing so many stations in the city that you are never far from a station.
-Whether or not this solution solves the problem is not know, but it seems like an expensive solution.
+Citi Bike NYC tries to solve this problem by placing so many stations in the city that you are never far from a station.
+Whether or not this solution solves the problem is not known, but it seems like an expensive solution.
 
 \paragraph{Making short stops}
-Bycyklen provides an analogue lock, for short stops (2 hours) during use.
+Bycyklen provides a manual lock, for short stops (2 hours) during use.
 However, when done using a bike it must be returned to a station.
 
 In Citi Bike NYC, the multitude of stations and the placement throughout the city should make sure that there is always a station close-by, no matter where you want to end your trip, including shorter stops.
 
 \paragraph{No bikes at station}
-Both Bycyklen and Citibike NYC have web apps with a map showing stations, along with an indication of how many bikes are available at the different stations.
-Citibike NYC also has native mobile apps, while Bycyklen only has the web app.
+Both Bycyklen and Citi Bike NYC have web applications with a map showing stations, along with an indication of how many bikes are available at the different stations.
+Citi Bike NYC also has native mobile applications, while Bycyklen only has the web application.
 
 \paragraph{No way of knowing when a bike will arrive}
-Neither Bycyklen nor Citibike NYC has a prediction system, but they have solutions that attempt to address the problem.
+Neither Bycyklen nor Citi Bike NYC has a prediction system, but they have solutions that attempt to address the problem.
 
 Bycyklen tries to solve the problem with reservations but they cannot ensure that a bike will be available, as it will only attempt to lock a bike 45 minutes before the reservation time if a bike is available.
 
-Citibike NYC has no reservation system, one must consult an app for available bikes at stations, but the multitude of  available bikes should ensure that there's always a bike, and the multitude of stations should ensure that you will not have to go far if no bike was at the first visited station.
+Citi Bike NYC has no reservation system, one must consult an app for available bikes at stations, but the multitude of  available bikes should ensure that there's always a bike, and the multitude of stations should ensure that you will not have to go far if no bike was at the first visited station.
 
 \paragraph{Broken bikes}
 Before using a Bycyklen bike, all faults on the bike must be reported, or else the user can be charged for faults found by the next user.
 Faults must also be reported during use, and if a fault hinters a trip, a refund can be made.
 
-Using the mounted tablet on a Citibike NYC bike, one can report faults/damages by pressing a wrench-icon button.
+Using the mounted tablet on a Citi Bike NYC bike, one can report faults/damages by pressing a wrench-icon button.
 If faults are found during use, the bike is simply returned at a station and the aforementioned button is pressed.
 
 \subsection{Conclusion}
@@ -114,7 +114,7 @@ Both systems do well in handling all the problems described in \cref{aalborg_byc
 They are, however, in conflict with the results from the interview with Aalborg Kommune, as stated in \cref{interview:goals}.
 Specifically, the simplicity of the system, where Aalborg Kommune did not like the idea of booking/reservations, as it would complicate the use of the bikes.
 
-Additionally they are both costly systems, and cannot be easily built on top of the current Aalborg Bycyklen system because they require a lot of changes to the bikes and stations to accommodate for the locking and renting mechanics of the two systems.
+Additionally they are both costly systems, and cannot be easily implemented on top of the current Aalborg Bycyklen system because they require a lot of changes to the bikes and stations to accommodate for the locking and renting mechanics of the two systems.
 
 Another problem is the lack of usage statistics in the current system, meaning that it is not easy to find out where to put stations (which both existing systems require).
-In case too few stations are set up, or are poorly placed, it could affect both the flexibility and the reliability problem.
+In case too few stations are set up, it would only aggravate the existing problems.
