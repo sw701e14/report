@@ -1,24 +1,22 @@
 \section{Modeling Behavior}\label{modelbehavior}
-As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \cref{problem_statement}), it must be able to answer questions such as the following:
+As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \cref{problem_statement}), it must be able to answer questions such as: 
+
 \begin{itemize}
 \item How much time will it take before a bike will be in my vicinity?
-\item What is the probability of finding a bike nearby from 16.25 to 16.35?
-\stefan{can we answer this?}
 \end{itemize}
 
 The location of the bikes are abstracted by creating hotspots, as described in \cref{hotspots}.
 In actuality, the location of bikes is modeled to be more complex as will be further explored in \cref{markov:modeling}.
 However the theory and methods described in the following sections apply regardless.
 
-By abstracting the locations to be hotspots the above questions can be rephrased as:
+By abstracting the locations to be hotspots the above question can be rephrased as: 
 
 \begin{itemize}
-\item How much time will it take before a bike will be \textit{in a given hotspot}?
-\item What is the probability of finding a bike \textit{in a given hotspot} from 16.25 to 16.35?
-\stefan{can we answer this?}
+\item How much time will it take before a bike will be \emph{in a given hotspot}?
 \end{itemize}
 
-To answer these questions we need to model the behavior of an \emph{average} bike.
+
+To answer this question we need to model the behavior of an \emph{average} bike.
 In other words, we need to provide a formal description of the movement of a single bike representing the movement, on average, of all bikes.
 
 \subsection{Abstraction Model}
