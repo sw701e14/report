@@ -1,46 +1,45 @@
-\section{Modelling Behavior}\label{modelbehavior}
-As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \mikkel{Insert reference to problem statement}), it must be able to answer questions such as the following:
+\section{Modeling Behavior}\label{modelbehavior}
+As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \cref{problem_statement}), it must be able to answer questions such as: 
+
 \begin{itemize}
-\item How much time will it take before a bike, with probability 90\%, will be in my vicinity?
-\item What is the probability of finding a bike nearby from 16.25 to 16.35?
+\item How much time will it take before a bike will be in my vicinity?
 \end{itemize}
 
 The location of the bikes are abstracted by creating hotspots, as described in \cref{hotspots}.
 In actuality, the location of bikes is modeled to be more complex as will be further explored in \cref{markov:modeling}.
 However the theory and methods described in the following sections apply regardless.
 
-By abstracting the locations to be hotspots the above questions can be rephrased as:
+By abstracting the locations to be hotspots the above question can be rephrased as: 
 
 \begin{itemize}
-\item How much time will it take before a bike, with probability 90\%, will be \textit{in a given hotspot}?
-\item What is the probability of finding a bike \textit{in a given hotspot} from 16.25 to 16.35?
+\item How much time will it take before a bike will be \emph{in a given hotspot}?
 \end{itemize}
 
-To answer these questions we need to model the behavior of an \textit{average} bike.
+
+To answer this question we need to model the behavior of an \emph{average} bike.
 In other words, we need to provide a formal description of the movement of a single bike representing the movement, on average, of all bikes.
 
 \subsection{Abstraction Model}
 As the system is based on anonymous usage no user sensitive information is collected.
-Because of this uncertainty in the modeling is expected, as all bikes (and thus all users) are modeled as a single \textit{average bike}.
-Modeling the movement of all bikes will be done by modeling the movement of this average bike.
+Because of this some uncertainty is expected in the model, as all bikes (and thus all users) are modeled as a single \textit{average bike}.
+Modeling the movement of all bikes will be done by modeling the movement of this average bike as a stochastic process \cite{stochastic}.
 
-Asides from that we must also consider that our model will be working on discrete-time location data.
+We must also consider that our model will be working on discrete-time location data.
 The GPS units that the bikes will be equipped with will only report the location of a bike at a \textit{fixed} interval.
-Additionally the accuracy of each of these measurements can be low, resulting in even more in-precision.
-
+Additionally the accuracy of each of these measurements can be low, resulting in even more imprecision.
 As we are modeling the average bike, we can represent the state of the process as the location of the bike.
-The location of the bike can be seen as which hotspot the bike is currently located at.
+In order to reduce the number of locations to a sensible number we will use the generated hotspots instead.
 Using this definition we can describe the movement of the bike as an infinite route $h_1, h_2, h_3, \dots$ where $h_i \in H \mid i \in \mathbb{N}$ and $H$ is the set of hotspots in the system.
 
-Using this representation of the average bike we see that the average bike must move from one hotspot $h_i$ to another $h_{i+1}$ in one \textit{timestep}.
+Using this representation of the average bike we see that the average bike must move from one hotspot $h_i$ to another $h_{i+1}$ in one \emph{timestep}.
 Note that it could be that $h_i = h_{i+1}$, meaning that the bike has moved to the same hotspot as it departed from.
 This is also used to indicate that the bike has not moved.
 In \cref{markov:modeling} we will describe the modeling of the average city bike in greater detail.
 
-Taking all of the above into account, it is reasonable to suggest the abstraction model, for the behavior of the average city bike, being a discrete-time Markov chain, where the states are used to represent hotspots.
+Taking all of the above into account it is reasonable to suggest the abstraction model for the behavior of the average city bike, to be a discrete-time Markov chain where the states are used to represent hotspots.
 
 \subsection{Discrete-Time Markov Chains}\label{markov}
-A discrete-time Markov chain models state changes in a process at discrete time intervals.
+The state of a discrete-time Markov chain model changes in a process at discrete time intervals.
 It can be viewed as a sequence (chain) of random variables $X_1, X_2, X_3, \dots$ where each such variable is a function $X_i:S \rightarrow x$.
 Here $S$ is a countable set of states representing the possible states (hotspots) in the process described by the Markov chain and $x$ is a \textit{random} state from $S$.
 The subscript describes the time associated with each of the variables.
@@ -76,10 +75,10 @@ Time-homogeneous Markov chains provides us with a much simpler method of modelin
 A time-homogeneous Markov chain is very simple to represent (as is described below) and easy to use when predicting the state of the average bike multiple steps into the future.
 For these reasons we have chosen to simplify our Markov chain models.
 
-\textit{This simplification will mean that we are unable to determine a difference in behavior at different times in the process.
+This simplification will mean that we are unable to determine a difference in behavior at different times in the process.
 Thus we cannot, using a single model, represent different behaviors of the average bike in the morning/afternoon or in different days of the week.
 To allow for this distinction multiple models could be generated, representing different datasets.
-The system would then simply select the model that corresponds to the current time-of-day/day-of-week.}
+The system would then simply select the model that corresponds to the current time-of-day/day-of-week.
 
 \paragraph{Mathematical representation}\label{markov:math}
 From the above definitions we have that a Markov chain $\mathcal{M}$ can be described as a function $\tau_M:S\times S \rightarrow [0;1]$ such that $\tau_M(x, y) = \mathbb{P}(X_{n + 1} = y \mid X_n = x)$.
@@ -97,7 +96,7 @@ For instance, a Markov chain currently in $H_1$ has probability $0.7$ of transit
 
 In the diagram there are no edges with weight zero.
 Any such edges would represent transitions with zero probability (\textit{``impossible``} transitions).
-Had there been edges with weight zero, they could have been removed to simplify it.
+Had there been edges with weight zero, they could have been removed to simplify the graph.
 This also means that any \textit{missing} edge between two states $s_1$ and $s_2$ implies that $\tau(s_1, s_2) = 0$.
 Examples of this can be seen in \cref{markov:model:complex} where states $D_1$ and $D_2$ are not connected.
 
@@ -116,7 +115,7 @@ The modeling described so far only allows for a bike to be at a hotspot and thus
 
 To accommodate this restriction we introduce an additional state for each of the hotspots.
 These states are called \emph{departure states} and the departure state associated with hotspot $H_i$ is denoted as $D_i$.
-The simple two-hotspots model described above can then be expanded with two additional states, as seen in \cref{markov:model:complex}.
+The simple two-hotspots model described above can then be expanded with departure states, as seen in \cref{markov:model:complex}.
 
 \input{content/markov_model_complex}
 

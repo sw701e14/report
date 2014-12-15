@@ -1,6 +1,6 @@
 The collected bike data consist of a lot of routes.
 Each route has a start and end location and some locations visited in-between.
-This gives a lot of start and end locations that possible are close by each other.
+This gives a lot of start and end locations that possible are close to each other.
 To simplify the data the start/end locations get grouped together to an area.
 This way we limit the number of predictions needed, as we only model the most frequently travelled areas, as opposed to every single location.
 
@@ -12,4 +12,4 @@ Finally, in order to simplify hotspot representations, we apply convex hull, cre
 We define a hotspot to be an area with a closer density of points compared to the rest of the data.
 The points considered have to be static to be a part of the hotspot meaning that we only consider points which has not moved since the last time interval.
 \mikael{I think we should define a hotspot like so:
-''We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. The locations considered have to be static to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.}
+''We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. The locations considered have to be static to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.\alexander{+1}}
