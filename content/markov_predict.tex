@@ -6,4 +6,57 @@ In this section, we will describe how this initial state is established and how 
 
 It should be noted, that the use of the term \textit{''prediction''} in this section refers to determining possible future states of a system, estimated by the Markov chain model.
 
-\subsection{Initial state}
+\paragraph{Notation}
+We will introduce some notation in order to describe the various probability distributions of Markov chains.
+Let
+\begin{itemize}
+\item $X_0$ be the random variable representing the possible initial states.
+\item $H = \{h_0, h_1, \dots, h_n\}$ be the set of hotspots.
+\item $D = \{d_0, d_1, \dots, d_n\}$ be the set of departure states.
+\item $S = H \cup D$ be the set of all states.
+\item $P_j(h_i) = \mathbb{P}(X_j = h_i)$ and $P_j(d_i) = \mathbb{P}(X_j = d_i)$
+\end{itemize}
+
+Additionally we let $P_j$ represent a vector with the probability distribution of the random variable $X_j$.
+To formalize this definition, we use the following:
+
+\begin{equation}\label{markov:vector}
+P_j = \Big(
+P_j(h_0),\;
+P_j(d_0),\;
+P_j(h_1),\;
+P_j(d_1),\;
+\dots,\;
+P_j(h_n),\;
+P_j(d_n)
+\Big)
+\end{equation}
+
+\subsection{Initial distribution}
+The initial probability distribution represents the probability of the \textit{average} bike being in each of the states (hotspots or departure states) in the system.
+Thus we can simply examine all the bikes in the system and identify their current location.
+
+The current location of a bike $L(b)$ can be either a hotspot or a departure state; $L(b) \in S$.
+The probability of the average bike being in state $s$ will then be equal to the fraction of bikes that are actually in $s$.
+
+Let $B$ be the set of all active bikes in the system and $B_j(s) \in B$ be the set of bikes in state $s$ at time $j$ as described by the model.
+$B_0(s)$ will then be the initial set of bikes in state $s$ and we can represent the probability distribution as the following:
+$$P_0 = \left(
+\frac{\lvert B_0(h_0) \rvert}{\lvert B \rvert},\;
+\frac{\lvert B_0(d_0) \rvert}{\lvert B \rvert},\;
+\frac{\lvert B_0(h_1) \rvert}{\lvert B \rvert},\;
+\frac{\lvert B_0(d_1) \rvert}{\lvert B \rvert},\;
+\dots,\;
+\frac{\lvert B_0(h_n) \rvert}{\lvert B \rvert},\;
+\frac{\lvert B_0(d_n) \rvert}{\lvert B \rvert}
+\right)$$
+
+\paragraph{Location of a bike}
+Looking at the coordinates of a single bike we are able to determine if it is inside a hotspot or not.
+If it is not, we will iterate backwards through the set of known locations of a bike until we find it located in a hotspot $h_i$.
+We then say that the bike is currently in state $d_i$.
+If there is no data placing a bike within a hotspot the bike will instead be said to be in the departure state of the nearest hotspot.
+In this context nearest refers to the hotspot that has the lowest minimum distance to the last known location of the bike.
+
+With a set of states such as the one in \cref{markov:model:complex} we could have a distribution with 8 bikes in the first hotspot and 2 bikes having left it but not arrived at another hotspot:
+$$P_0 = \left(\frac{8}{15}, \frac{2}{15}, \frac{5}{15}, \frac{0}{15}\right)$$
