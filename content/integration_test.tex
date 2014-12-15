@@ -39,7 +39,7 @@ Three of the points are well separated, in order to test the general cluster cre
 The last two points are placed one street from each other, in order to test how the clustering handles points that are near each other.
 
 \subsection{Predictions}
-The users rely on the predictions of bikes to be somewhat telling of how the bikes move around in the city.
+The users rely on the predictions of bike usage, as stated in \cref{prob_statement:solution}, item 5.
 It is therefore important to test how well the predictions work.
 
 \paragraph{Test data} To test this we create a number of controlled data sets.
@@ -50,5 +50,5 @@ We then know where to expect the probabilities to be high.
 The obvious test case is when the generated data has equal probability of choosing every destination. 
 In this case we would expect the probabilities of a bike arriving at every destination to be the same.
 
-Another test case is to weigh one destination higher than the others.
+Another test case is to weight one destination higher than the others.
 In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
