@@ -34,11 +34,9 @@ For this test, a data set has been created.
 It consists of five addresses and their corresponding GPS coordinates.
 We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
 Because the addresses are the only place where the bikes stand still, there should only be clusters by the addresses.
-This will give an indication of how well our hotspots are created.
 
 Three of the points are well separated, in order to test the general cluster creation.
-The last two points are placed one street from each other, in order to test how the clustering handles close points.
-\stefan{ikke sikker på om den del giver mening}
+The last two points are placed one street from each other, in order to test how the clustering handles points that are near each other.
 
 \subsection{Predictions}
 The users rely on the predictions of bikes to be somewhat telling of how the bikes move around in the city.
