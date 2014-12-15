@@ -21,25 +21,14 @@ Below is a list trying to show the factors that influence the model:
 A simple model would be to update it every week, and don't take the different factors into account.
 An example of a more complex model is to partition the day into mornings, afternoons and nights.
 And for each of these have a model for holidays and working days.
-As the example shows, to get the best results one model might not be enough. 
 
 To find the best model one needs a collection of real data for testing which model gives the best results.
 
-
-\section{Accuracy and Convex Hull}
-The algorithm that finds the convex hull (see  \cref{})\bruno{ref til convex hull - hvis der kommer et eksplicit afsnit ellers til komponentent hvor det er nævnt} from the clusters, does not take accuracy into account.
-This means that some points that should be inside/outside the convex hull are not.
-This can give some unexpected results.
-When checking if a bike is inside a convex hull, the accuracy is not taken into account either.
-\mikkel{Er det faktisk et problem?}
-\bruno{Hvad er løsningen udover bare at gøre det?}
-\mikael{Godt spørgsmål}
-
 \section{Usage statistics for Aalborg Kommune}
-One of the requests from the interview with Aalborg Kommune (see \cref{interview:goals}) was that they wanted certain statistics about bike usage.
+One of the requests from the interview with Aalborg Kommune (see \Cref{interview:goals}) was that they wanted certain statistics about bike usage.
 
-Since the data is available, as bike locations are already being continuously collected, all that needed for this to be fulfilled, would be adding a data-warehouse.
-The data-warehouse would extract the newest bike location updates and form its own data, so that it could be easy to query on it, queries such as those mentioned in \cref{interview:goals}.
+Since the data is available, as bike locations are already being continuously collected.
+We would add a data-warehouse to extract the newest bike location updates and form its own data, so that it could be easy to query on it, queries such as those mentioned in \Cref{interview:goals}.
 
 These statistics could be used for improving the \citybike system, as well as the software system.
 The statistics could improve/help the following processes:
@@ -51,9 +40,9 @@ The statistics could improve/help the following processes:
 \end{itemize}
 
 \section{API Access}
-Adding different queries for Aalborg Kommune, that should not be accessible to normal users, would require the API to be updated with security measures.
+Adding different queries for Aalborg Kommune, that should not be accessible to normal users, would require the API to be re-designed considering security measures.
 Therefore it would be rather practically to introduce different user access levels.
-E.g. there could be the following access levels:
+For instance there could be the following access levels:
 \begin{itemize}
 \item Administrator (facilitator of the API - access to everything)
 \item User (standard access)
