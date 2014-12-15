@@ -1,5 +1,5 @@
 \section{Clustering}\label{clustering}
-In order to find the hotspot(s) defined in \cref{hotspot}, a technique called clustering can be used.
+In order to find the hotspot(s) defined in \cref{hotspot}, we considered different clustering techniques.
 This section will describe the concepts of clustering as well as the possible algorithms.
 This section is based on \citet{pang2006introduction}.
 
@@ -23,14 +23,14 @@ A clustering is a collection of clusters.
 This section will introduce the terminology used to describe clusterings. 
 
 \paragraph{Hierarchical versus partitional}
-A \textit{partitional clustering} is a division of data into non-overlapping subsets, where each object is in exactly one subset.
+A \textit{partitional clustering} is a division of data into pairwise disjoint subsets, where each object belongs to exactly one subset.
 If clusters are allowed to have subclusters, the clustering is said to be \textit{hierarchical}.
 A hierarchical clustering is represented as a set of nested clusters organized as a tree where each node is the union of its children.
 
 \paragraph{Exclusive, overlapping and fuzzy clusterings}
 
 A clustering is \textit{exclusive} if an object is assigned to exactly one cluster.
-If an object can belong to more than one group the clustering is \textit{overlapping}.
+If an object can belong to more than one group the clustering is said to be \textit{overlapping}.
 If a weight is used to describe the membership of sets the clustering is said to be \textit{fuzzy}.
 
 \paragraph{Complete versus partial}
@@ -38,7 +38,7 @@ If a weight is used to describe the membership of sets the clustering is said to
 A \textit{complete} clustering has every object assigned to a cluster while a \textit{partial} clustering can have outliers that do not belong to any cluster.
 
 \subsection{Types of clusters}
-The idea of a cluster depend very much on the data set it is applied on.
+The idea of a cluster depends on the kind of data set it is applied on.
 In this section the different notions of a cluster will be presented
 
 \paragraph{Well separated}
@@ -67,9 +67,9 @@ These clusters may have different size depending on the physical properties of t
 
 The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
 
-Based on this description we need an partitional, exclusive, partial and density based clustering.
+Based on this description we need a partitional, exclusive, partial and density based clustering.
 
-Partitional because we do not need a hierarchical representation of the clusters.
+Partitional because we do not need a hierarchical representation of the clusters.\giovanni{``Of the clusters were hierarchically organized, it would be much easier to perform point location on them `or their convex hull' abstractions.''}
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
@@ -91,7 +91,7 @@ Because we do not have a way of finding $ k $ before running the algorithm, this
 Hierarchical clustering arranges the points in a hierarchy depending on the distance between points.
 Hierarchical clustering can be performed either by starting at the top of the tree or at the bottom.
 \textit{Agglomerative hierarchical clustering} starts by considering all points as being in an individual cluster and generating the hierarchy by merging the closest clusters. 
-\textit{Divisive hierarchical clustering} start by considering all points as being in a single cluster and then splitting the clusters at each step.
+\textit{Divisive hierarchical clustering} starts by considering all points as being in a single cluster and then continues by splitting the clusters at each step.
 
 We have no need for a hierarchical division of our clusters, and this algorithm is therefor not appropriate for our use.
 
@@ -107,7 +107,7 @@ The exact definition of the three types of points are as follows\cite{pang2006in
 \paragraph{}
 
 \noindent
-\textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it. 
+\textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it. \alexander{Fix indent}
 Here $ MinPts $ is the number of points in the vicinity of a point regarded as dense by the user, and $ eps $ is the radius to look for these points.
 
 \noindent
@@ -169,7 +169,7 @@ regionQuery(P, eps)\\
 \stefan{algortithm in appendix?}
 \paragraph{Strengths and weaknesses}
 DBScan is resistant to noise and can also handle clusters that vary in size.
-DBScan can have some trouble finding clusters that vary in density.
+DBScan can have some trouble finding clusters that vary in density.\giovanni{``What does this mean? Elaborate or explain''}
 
 \subsection{Summary} Of the three presented algorithms only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data for use as the hotspots in our model.
