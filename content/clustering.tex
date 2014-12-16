@@ -66,10 +66,12 @@ We expect the points to be distributed in a wide area, but clustered around plac
 These clusters may have different size depending on the physical properties of the places the bikes are left.
 
 The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
+A polygon will be used as a representation of a cluster, more about that in \Cref{convex_hull}.
 
-Based on this description we need a partitional, exclusive, partial and density based clustering.
+Based on this description we need a hierarchical, exclusive, partial and density based clustering.
 
-Partitional because we do not need a hierarchical representation of the clusters.\giovanni{``Of the clusters were hierarchically organized, it would be much easier to perform point location on them `or their convex hull' abstractions.''}
+Hierarchically because we want to represent the clusters as a polygon.
+This would ease the task of point location.
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
