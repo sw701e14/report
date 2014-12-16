@@ -138,3 +138,47 @@ This models the fact that a bike must transit through $H_j$ before it can arrive
 
 This model allows us to initialize a Markov chain using some initial state representing the current (the time of a query) location of the bikes and then predict where the bikes will be located after a number of time steps.
 From this prediction it is then possible to predict how many bikes should be available at a given hotspot in a given timespan according to our model.
+
+\paragraph{Ordered matrix}
+To ensure that the various parts of this section, as well as the implementation, works consistently we introduce a set ordering of states in the matrix.
+In this representation of the matrix $(x, y)$ is used to denote $\tau_M(x, y)$.
+This is done solely to simplify the matrix.
+
+\begin{equation}\label{markov:matrix-ordered}
+\begin{bmatrix}
+(h_0, h_0) & (h_0, d_0) &
+(h_0, h_1) & (h_0, d_1) &
+\cdots &
+(h_0, h_n) & (h_0, d_n)\\
+
+(d_0, h_0) & (d_0, d_0) &
+(d_0, h_1) & (d_0, d_1) &
+\cdots &
+(d_0, h_n) & (d_0, d_n)\\
+
+
+(h_1, h_0) & (h_1, d_0) &
+(h_1, h_1) & (h_1, d_1) &
+\cdots &
+(h_1, h_n) & (h_1, d_n)\\
+
+(d_1, h_0) & (d_1, d_0) &
+(d_1, h_1) & (d_1, d_1) &
+\cdots &
+(d_1, h_n) & (d_1, d_n)\\
+
+
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots\\
+
+
+(h_n, h_0) & (h_n, d_0) &
+(h_n, h_1) & (h_n, d_1) &
+\cdots &
+(h_n, h_n) & (h_n, d_n)\\
+
+(d_n, h_0) & (d_n, d_0) &
+(d_n, h_1) & (d_n, d_1) &
+\cdots &
+(d_n, h_n) & (d_n, d_n)
+\end{bmatrix}
+\end{equation}
