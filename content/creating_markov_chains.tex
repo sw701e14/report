@@ -4,16 +4,18 @@ The algorithm takes a set of hotspots $H$ and a set of GPS data $G$. For each ho
 The result of the algorithm is a matrix with the probabilities for all possible transactions.
 
 \begin{algorithm}[H]
+\SetAlgoNoEnd
 \textbf{create\_model($H, G$)} \\
 Let $M$ be an empty $n \times n$ matrix with $n = 2|H|$ \\
-Let $S$ be a grouping of $G$, so that for each $S_i$ we have all bike states (determined by location) for state $i$\\
-Let $L$ be a set of the latest state for each bike, initialized with its latest state\\
-\For{each grouped state $s$ in $S$}
-  {\For{each bike $b$ in $s$}
-    {$n \leftarrow s_b$\\
-    \If{$L_b$ is a hotspot and $s_b$ is not}{$n \leftarrow D_{s_b}$}The transition $L_b \rightarrow s$ is added to $M$\\
+Let $T$ be a grouping of $G$, so that for each $T_{i_b}$ we have the state (determined by location) for bike $b$ at time-step $i$\\
+Let $L$ be a set of the latest state for each bike, initialized with its initial hotspot (the one closest to its latest location)\\
+\ForEach{$t \in T$}
+  {\ForEach{$b \in t$}
+    {\If{$L_b \in H \land t_b \not\in H$}{$n \leftarrow D_{t_b}$}
+    \Else{$n \leftarrow t_b$}
+    Transition $L_b \rightarrow n$ is added to $M$\\
      $L_b \leftarrow n$}}
-$M$ is normalized.\\
+Normalize $M$\\
 \Return{M}
 \caption{Creating the model.}
 \label{markov:create_model}
