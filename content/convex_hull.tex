@@ -8,10 +8,3 @@ The following definition of convex hull is based on \citet[section 33.3]{aadbook
 Given a set of points the smallest convex polygon for which each of the points in the set are either on the border of the polygon or inside it is called the convex hull\cite[33.1-5]{aadbook}.
 The convex hull is represented by a set of points.
 Graham-Scan\cite[page 1031]{aadbook}, an algorithm for finding the convex hull, has been implemented.
-
-
-\section{Conclusion}
-
-This chapther has examined how we would like to create hotspots for use in our model of the bike system.
-For clustering of the data we have chosen to use the DBSCAN algorithm and then afterwards run the Graham Scan convex hull algorithm in order to make a minimal representation of the cluster.
-The resulting convex hull is then the hotspot to be used when predicting the movement of the bikes.
