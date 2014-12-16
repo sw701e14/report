@@ -29,7 +29,7 @@ every node/.style={font=\sffamily,minimum height=1cm}]
 \draw[path] (locationsource.east) -- (common.north);
 
 \end{tikzpicture}
-\caption{The Data Loading Component. The full diagram can be seen on \cref{arch}}
+\caption{The Data Loading Component. The full diagram can be seen on \Cref{arch}}
 \label{dataloadingcomponent}
 \end{figure}
 
@@ -39,7 +39,7 @@ The \texttt{Data Loading} component contains interfaces and data transfer object
 The \lstinline!GPSInput! class works as a data transfer object for \lstinline!GPSData! in the \texttt{Model} layer of the \texttt{Business Logic} component.
 
 The \lstinline!IDataSource! interface defines the behaviour of a data source in the system enabling the source to be changed.
-The interface can be seen in \cref{idatasourcecode}.
+The interface can be seen in \Cref{idatasourcecode}.
 
 \begin{lstlisting}[language=C,caption=The IDataSource interface,label=idatasourcecode]
 public interface IDataSource
@@ -59,5 +59,5 @@ The \lstinline!Location Source! is an implementation of the \lstinline!IDataSour
 The \texttt{Location Source} contains implementations of the \lstinline!IDataSource! and will therefore contain an implementation of the simulation of bikes.
 In the real system an implementation will be made where the data is fetched from the GPS trackers on the bikes instead.
 
-The implementation of the bike simulation will be described in \cref{design:datasimulation}.
+The implementation of the bike simulation will be described in \Cref{design:datasimulation}.
  
