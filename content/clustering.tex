@@ -1,12 +1,12 @@
 \section{Clustering}\label{clustering}
-In order to find the hotspot(s) defined in \cref{hotspot}, we considered different clustering techniques.
+In order to find the hotspot(s) defined in \Cref{hotspot}, we considered different clustering techniques.
 This section will describe the concepts of clustering as well as the possible algorithms.
 This section is based on \citet{pang2006introduction}.
 
 \subsection{Cluster Analysis}
 Cluster analysis is a technique used to group data objects based only on the information the data itself contains.
 The requirement for membership in a certain cluster is often vague, as several acceptable clusterings can be made on the same dataset.
-An example of this can be seen on \cref{clusterings} where the same dataset has been clustered in three radically different ways, even though all three could be regarded as correct, depending on the purpose of the clustering.
+An example of this can be seen on \Cref{clusterings} where the same dataset has been clustered in three radically different ways, even though all three could be regarded as correct, depending on the purpose of the clustering.
 
 The definition of a cluster therefore depends on the dataset and the purpose of the clustering 
 
@@ -14,7 +14,7 @@ The definition of a cluster therefore depends on the dataset and the purpose of 
 \includegraphics[trim= 3.1cm 20.61cm 5cm 2.5cm, clip=true]{graphics/different_clusters}
 \centering
 \label{clusterings}
-\caption{Different clusterings on the same dataset. From \citet{pang2006introduction}}
+\caption{Different clusterings on the same dataset. From \citet{pang2006introduction}.}
 \end{figure}
 
 \subsection{Types of clusterings}
@@ -66,10 +66,12 @@ We expect the points to be distributed in a wide area, but clustered around plac
 These clusters may have different size depending on the physical properties of the places the bikes are left.
 
 The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
+A polygon will be used as a representation of a cluster, more about that in \Cref{convex_hull}.
 
-Based on this description we need a partitional, exclusive, partial and density based clustering.
+Based on this description we need a hierarchical, exclusive, partial and density based clustering.
 
-Partitional because we do not need a hierarchical representation of the clusters.\giovanni{``Of the clusters were hierarchically organized, it would be much easier to perform point location on them `or their convex hull' abstractions.''}
+Hierarchically because we want to represent the clusters as a polygon.
+This would ease the task of point location.
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
@@ -103,11 +105,10 @@ There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be classified whether a point is placed in a dense region (a core point),at the edge of a dense region (a border point) or is in a region with sparse density (a noise point).
 The exact definition of the three types of points are as follows\cite{pang2006introduction}:
-
-\paragraph{}
-
+\\
+\\
 \noindent
-\textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it. \alexander{Fix indent}
+\textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it.
 Here $ MinPts $ is the number of points in the vicinity of a point regarded as dense by the user, and $ eps $ is the radius to look for these points.
 
 \noindent
@@ -119,12 +120,12 @@ One point can be a border point to several core points.
 
 \begin{figure}
 \fbox{\includegraphics[trim= 3.1cm 20.61cm 5cm 2.5cm, clip=true]{graphics/DBSCAN_point_types}}
-\caption{The three types of points in the clustering algorithm DBSCAN. Taken from \cite[page 528]{pang2006introduction}}
+\caption{The three types of points in the clustering algorithm DBSCAN. Taken from \cite[page 528]{pang2006introduction}.}
 \label{dbscan_point_types}
 \end{figure}
 
-A visual description can be seen on \cref{dbscan_point_types}.
-Given these definitions, the algorithm is described in \cref{dbscan-algo}.
+A visual description can be seen on \Cref{dbscan_point_types}.
+Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
 
 \begin{algorithm}
 DBSCAN(D, eps, MinPts)\\
@@ -167,9 +168,10 @@ regionQuery(P, eps)\\
 	\Return {all points within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
 \stefan{algortithm in appendix?}
+\bruno{Den står fint her}
 \paragraph{Strengths and weaknesses}
-DBScan is resistant to noise and can also handle clusters that vary in size.
-DBScan can have some trouble finding clusters that vary in density.\giovanni{``What does this mean? Elaborate or explain''}
+DBSCAN is resistant to noise and can also handle clusters that vary in size.
+DBSCAN can have some trouble finding clusters that vary in density.\giovanni{``What does this mean? Elaborate or explain''}
 
 \subsection{Summary} Of the three presented algorithms only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data for use as the hotspots in our model.

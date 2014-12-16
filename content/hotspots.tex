@@ -1,11 +1,11 @@
-The data collected through the GPS chips installed on the bikes describes a lot of routes.
+The data collected through the GPS receivers installed on the bikes describes a lot of routes.
 Each route has a start and end location and some locations visited in-between. A start/end location is a location in which a bike have been at a standstill for at-least one location update.
 This gives a lot of start and end locations that possible are close to each other.
 In this way we model the most frequently traveled areas, as opposed to every single location, simplifying the calculation for prediction.
 
 In order to group the locations, we explore clustering techniques, before choosing an appropriate one to implement.
 
-Finally, in order to simplify hotspot representations, we represent its set of locations by means of its convex hull, this creates a polygon representation of a hotspot that will be easy to query for point location.
+Finally, in order to simplify hotspot representations, we represent its set of locations by means of its convex hull(\citet[section 33.3]{aadbook}), this creates a polygon representation of a hotspot that will be easy to query for point location.
 
 \section{Hotspot}\label{hotspot}
 We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. Only start/end locations are considered to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.

@@ -1,6 +1,6 @@
 \section{Data Flow}\label{data_flow}
 This section describes the data flow from city bike(s) to database. More precisely how the data that is received from the GPS receiver is send to the database and what it is used for.
-A diagram of the data flow can be seen in \cref{fig:dataFlowDiagram}.
+A diagram of the data flow can be seen in \Cref{fig:dataFlowDiagram}.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth, trim={0 25cm 8cm 0}]{dataflowdiagram.pdf}
@@ -15,13 +15,13 @@ The data received is read and processed, then stored as an \texttt{GPS data} obj
 This process is repeated every 5 minutes for each bike.
 
 \paragraph{From \texttt{GPS data} to Hotpots}
-The \texttt{GPS data} are available from the database and is used by the clustering algorithm DBSCAN (see \cref{clustering:DBSCAN}) to find all clusters.
+The \texttt{GPS data} are available from the database and is used by the clustering algorithm DBSCAN (see \Cref{clustering:DBSCAN}) to find all clusters.
 By using convex hull (see \cite[page 1031]{aadbook}) on each cluster the number of \texttt{GPS data} needed to describe a \texttt{Hotspot} is greatly minimized.
 The \texttt{Hotspot}s are then stored in the database.
 
 \paragraph{From Hotspots to Markov Chain}
-A Markov Chain (see \cref{markov}) is build from the routes and \texttt{Hotspot}s stored in the database.
+A Markov Chain (see \Cref{markov}) is build from the routes and \texttt{Hotspot}s stored in the database.
 The Markov Chain is then stored in the database.
 
 \paragraph{Database}
-The database design and structure are explained in \cref{database_design}.
+The database design and structure are explained in \Cref{database_design}.
