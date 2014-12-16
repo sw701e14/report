@@ -14,7 +14,7 @@ Let $L$ be a set, so that $L_b$ denotes the latest state of bike $b$ (initially 
       \If{$L_b \in H \land loc \not\in H$}
       {Let $s \leftarrow D_{L_b}$}
     \Else{Let $s \leftarrow loc$}
-    Transition $L_b \rightarrow loc$ is added to $M$\\
+    Transition $L_b \rightarrow s$ is added to $M$\\
      $L_b \leftarrow s$}
 Normalize $M$\\
 \Return{M}
