@@ -33,17 +33,14 @@ This corresponds to item \ref{pr_arrive} in the problem statement.
 
 \subsection{Finding hotspots}
 The system relies on the clusters to be indicative of how the bikes are used. 
-All predictions uses the hotspots as a basis and misplaced hotspots can therefore skew the results, degrading the precision of the predictions.
+All predictions use the hotspots as a basis and misplaced hotspots can therefore skew the results, degrading the precision of the predictions.
 We therefore want to test if the hotspots generated are as they are expected.
 
 \paragraph{Test data and cases}
 For this test, a data set has been created.
-It consists of five addresses and their corresponding GPS coordinates.
+It consists of two addresses and their corresponding GPS coordinates.
 We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
 Because the addresses are the only place where the bikes stand still, there should only be clusters by the addresses.
-
-Three of the points are well separated, in order to test the general cluster creation.
-The last two points are placed one street from each other, in order to test how the clustering handles points that are near each other.
 
 \subsection{Predictions}
 The users rely on the predictions of bike usage, as stated in \Cref{prob_statement:solution}, item 5.
