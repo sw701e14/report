@@ -113,4 +113,16 @@ Because of this predictions can be handled by working directly from the initial 
 We can then directly calculate the expected distribution of bikes in future steps of the Markov chain.
 
 \paragraph{An example}
-Given the distribution of bikes from page \pageref{markov:example-vector} and the transition probabilities given in \Cref{markov:model:complex} on page \pageref{markov:model:complex}.
+Given the distribution of bikes from page \pageref{markov:example-vector} and the transition probabilities given in \Cref{markov:model:complex} on page \pageref{markov:model:complex} we can estimate the location of the 16 bikes in the example system.
+The initial distribution of bikes $(8, 2, 6, 0)$, which multiplied by the matrix yield the following results:
+$$
+(8, 2, 6, 0)
+\begin{bmatrix}
+0.65 & 0.3 & 0.05 & 0\\
+0.1  & 0.6 & 0.3  & 0\\
+0.15 & 0   & 0.35 & 0.5\\
+0.2  & 0   & 0.1  & 0.7
+\end{bmatrix}
+=
+(6.3, 3.6, 3.1, 3)
+$$
