@@ -10,19 +10,26 @@ We have chosen to perform our test with this method, due to time limitations \ci
 \subsection{Test setup}
 The purpose of the tests we have designed is to check if the system can produce sensible predictions for the bikes in the system.
 
-\stefan{coupling with problem statement}
-
 In order to generate test data, we have created a method for simulating real world data. 
 The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing certain destinations.
 This makes it possible to create a data set, where it is possible to predict the expected result.
 
 \paragraph{What to test}
-We want to test the following parts of our system:
+We want to test if the system works as specified in the problem statement.
+The points we want to focus on testing are \ref{pr_few}: Too few stations and \ref{pr_arrive}: No way of knowing when a bike will arrive. 
+The full problem statement can be found in \cref{problem_statement}.
+We want to test the following parts of our system in order to test the two problem statement items:
 
 \begin{itemize}
-\item Finding hotspots
-\item Predictions
+\item Finding hotspots 
+\item Markov Chains
 \end{itemize}
+
+We test the hotspot creation in order to check if hotspots are generated where there is bike activity, and this to check if the created hotspots will work as a stand in for the old stations.
+This corresponds to item \ref{pr_few} in the problem statement.
+
+We test the markov chains in order to figure out if our method of generating markov chains give proper values for using when predicting the behavior of the bikes.
+This corresponds to item \ref{pr_arrive} in the problem statement.
 
 \subsection{Finding hotspots}
 The system relies on the clusters to be indicative of how the bikes are used. 
@@ -42,7 +49,7 @@ The last two points are placed one street from each other, in order to test how 
 The users rely on the predictions of bike usage, as stated in \Cref{prob_statement:solution}, item 5.
 It is therefore important to test how well the predictions work.
 
-\paragraph{Test data} To test this we create a number of controlled data sets.
+\subsubsection{Test data} To test this we create a number of controlled data sets.
 The data sets are controlled by assigning probabilities of choosing the destinations. 
 We then know where to expect the probabilities to be high.
 
@@ -68,9 +75,9 @@ These are the numbers that indicate how the routes are expected to be chosen.
 These numbers are pairwise marked with a color in the table.
 Each of these sets of numbers indicate the distribution between destinations.
 As the distribution of the generated data was set to be equal, we would expect these numbers to be equal as well.
-\stefan{calculate deviation?}
 
 \begin{figure}
+	\centering
 \begin{tabular}{|c | c c c c c c c c|}
 \hline
 \% &      $ h_1 $ & $ d_1 $ & $ h_2 $ & $ d_2 $ & $ h_3 $ & $ d_3 $ & $ h_4 $ & $ d_4 $\\
@@ -88,22 +95,59 @@ $ d_4 $ & {\color{purple}7,7} &   &   {\color{purple}6,8} &   &   {\color{purple
 \caption{Results of the test with an even distribution}\label{test_even}
 \end{figure}
 
+The numbers are normalized so they add up to 100 \% and can be seen on \cref{even_results} where the expected results are in the left table and the actual results are in the right table.
+
+\begin{figure}
+	
+	\begin{tabular} {c c }
+		
+		\begin{tabular}{ | c | c c c c |}
+			\hline
+			& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
+			\hline
+			$ d_1 $ & $ d $ & 33.33 & 33.33 & 33.33\\
+			$ d_2 $ & 33.33 & $ d $ & 33.33 & 33.33\\
+			$ d_3 $ & 33.33 & 33.33 & $ d $ & 33.33\\
+			$ d_4 $ & 33.33 & 33.33 & 33.33 & $ d $\\
+			\hline
+		\end{tabular}
+		
+		&
+		
+		\begin{tabular}{ | c | c c c c |}
+			\hline
+			& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
+			\hline
+			$ d_1 $ & $ d $ & 33.85 & 32.68 & 33.46\\
+			$ d_2 $ & 31.01 & $ d $ & 36.08 & 32.9\\
+			$ d_3 $ & 31.39 & 33.92 & $ d $ & 34.68 \\
+			$ d_4 $ & 35.98 & 31.78 & 32.24 & $ d $\\
+			\hline
+		\end{tabular}
+	\end{tabular}
+	\caption{The expected proportions to the left and the resulting proportions to the right}\label{even_results}
+\end{figure}
+
+As it can be seen from the results, the numbers look very reasonable considered that they were randomly generated. 
+The biggest deviation is the transition from $ d_4 $ to $ h_1 $ which is 7.95\% deviation. \stefan{kan man konkludere mere på det?}
+
 \paragraph{Uneven distribution}
 Another test case is to weight one destination higher than the others.
 In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
 
-The data for this test was created in the exact same way, a 15 hour period with four possible addresses and 100 bikes.
-The only difference was that the distribution was changed so $ h_1 $ had 50 \% chance, $ h_2 $ 20 \% and both $ h_3 $ and $ h_4 $ had 15 \%.
-It is not possible to translate the input addresses to indexes in the markov chain because the markov chain is based on the clusters found by the DBSCAN algorithm.
+The data for this test was created in the exact same way as the data for the even distribution, a 15 hour period with four possible addresses and 100 bikes.
+The only difference was that the distribution was changed so one address had 50 \% chance, another had 20 \% and the two remaining had 15 \% chance of being chosen.
+
 The resulting markov chain after this simulation can be seen on \Cref{test_uneven}.
 
 \begin{figure}
+	\centering
 	\begin{tabular}{|c | c c c c c c c c|}
 		\hline
 		\% &      $ h_1 $ & $ d_1 $ & $ h_2 $ & $ d_2 $ & $ h_3 $ & $ d_3 $ & $ h_4 $ & $ d_4 $\\
 		\hline
 		$ h_1 $ & 60,4 &  39,6 &   0,1 &   &   &   &   &  \\
-		$ h_1 $ & 0,1 &  59,4 &  {\color{red}24,3} &   &   {\color{red}6,9} &   &   {\color{red}9,4} &  \\
+		$ d_1 $ & 0,1 &  59,4 &  {\color{red}24,3} &   &   {\color{red}6,9} &   &   {\color{red}9,4} &  \\
 		$ h_2 $ & 0,2 &   &  59,3 &  40,4 &   &   &   &  \\
 		$ d_2 $ & {\color{blue}7,4} &   &   0,2 &  74,8 &   {\color{blue}7,6} &   &  {\color{blue}10,1} &  \\
 		$ h_3 $ & &   &   &   &  59,9 &  40,1 &   &  \\
@@ -114,3 +158,66 @@ The resulting markov chain after this simulation can be seen on \Cref{test_uneve
 	\end{tabular}
 	\caption{Results of the test with an uneven distribution}\label{test_uneven}
 \end{figure}
+
+It is not possible to translate the input addresses to indexes in the markov chain because the markov chain is based on the clusters found by the DBSCAN algorithm.
+Based on the colored numbers it seems that $ h_1 $ had 15\% chance, $ h_2 $ had 50\% chance, $ h_3 $ had 15\% chance and $ h_4 $ had 20\% chance of being chosen.
+\todo{bedre at plotte hotspots og vurdere derudfra?}
+
+Based on these hotspot assignments we would expect the following proportions for the departure rows, where the $ d $ in each row is any number determining how long a bike is in a departure state before it leaves.
+The numbers are normalized so they add up to 100 \% and can be seen on \cref{uneven_results} where the expected results are in the left table and the actual results are in the right table.
+
+\begin{figure}
+
+\begin{tabular} {c c }
+
+\begin{tabular}{ | c | c c c c |}
+	\hline
+	 & $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
+	\hline
+	$ d_1 $ & $ d $ & 58.82 & 17.65 & 23.53\\
+	$ d_2 $ & 30 & $ d $ & 30 & 40\\
+	$ d_3 $ & 17.65 & 58.82 & $ d $ & 23.53\\
+	$ d_4 $ & 18.75 & 62.5 & 18.75 & $ d $\\
+	\hline
+\end{tabular}
+
+&
+
+\begin{tabular}{ | c | c c c c |}
+	\hline
+	& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
+	\hline
+	$ d_1 $ & $ d $ & 59.85 & 17.00 & 23.15\\
+	$ d_2 $ & 29.48 & $ d $ & 30.28 & 40.24\\
+	$ d_3 $ & 20.10 & 57.29 & $ d $ & 22.61 \\
+	$ d_4 $ & 20.61 & 63.51 & 15.88 & $ d $\\
+	\hline
+\end{tabular}
+\end{tabular}
+\caption{The expected proportions to the left and the resulting proportions to the right}\label{uneven_results}
+\end{figure}
+
+These results are a little more difficult to judge based on the tables, and a table with the deviations for each of the results have therefore been constructed in \cref{deviations}.
+
+\begin{figure}
+	\centering
+	\begin{tabular}{ | c | c c c c |}
+	\hline
+	& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
+	\hline
+	$ d_1 $ & $ d $ & 1.75 & 3.68 & 1.61\\
+	$ d_2 $ & 1.73 & $ d $ & 0.93 & 0.6\\
+	$ d_3 $ & 13.88 & 2.60 & $ d $ & 3.01 \\
+	$ d_4 $ & 9.92 & 1.62 & 15.30 & $ d $\\
+	\hline
+\end{tabular}
+\caption{Deviations for the results of the unevenly distributed test} \label{deviations}
+\end{figure}
+
+The biggest deviations are the transitions from $ d_3 $ to $ h_1 $ and from $ d_4 $ to $ h_3 $ on 13.88\% and 15.30\% respectively.
+
+These deviations are higher than the results for the evenly distributed test, but it is still reasonable considered the randomly generated data.
+
+\subsubsection{Conclusion}
+This section has tested the validity of the markov chains that are being used in our system.
+The results showed that there is up to 15\% deviation from the expected numbers, but considering that the data was randomly generated we consider this in an acceptable range.
