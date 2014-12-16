@@ -1,10 +1,9 @@
 \chapter{Database Design}\label{database_design}
-\stefan{This section may be redundant, and an entry in appendix may be better.}
 To store the data we use a MySQL database is utilized.
 The following will describe the database design and the choices involved.
 
 When location data is collected and processed, it is stored in the \texttt{GPS\_data} table.
-This table contains all information necessary for storing a GPS point as well as the field "hasNotMoved"\alexander{Maybe we should change the name to something without negation?} which indicates whether the bike is standing still or has moved since the point was inserted into the database.
+This table contains all information necessary for storing a GPS point as well as the field "hasNotMoved" which indicates whether the bike is standing still or has moved since the point was inserted into the database.
 This has been done in order to reduce redundant data in the database.
 The GPS\_data table can be seen in \cref{tbl_gpsdata}.
 
