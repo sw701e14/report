@@ -1,5 +1,5 @@
 \section{Making predictions}
-As a Markov chain $\mathcal{M}$ can be represented with a matrix $\mathbf{M}$ (constructed from \cref{algo:markov}), we can use $\mathbf{M}$ to give an estimate of the behavior of the average bike in future time-steps.
+As a Markov chain $\mathcal{M}$ can be represented with a matrix $\mathbf{M}$ (constructed from \Cref{algo:markov}), we can use $\mathbf{M}$ to give an estimate of the behavior of the average bike in future time-steps.
 For this we require an initial probability distribution for the average bike.
 We can then apply $\mathbf{M}$ to this distribution to determine the probability of the average bike being in various states after a number to time-steps.
 In this section, we will describe how this initial state is established and how we use it to handle predictions.

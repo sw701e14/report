@@ -5,7 +5,7 @@ The following will describe the database design and the choices involved.
 When location data is collected and processed, it is stored in the \texttt{GPS\_data} table.
 This table contains all information necessary for storing a GPS point as well as the field "hasNotMoved" which indicates whether the bike is standing still or has moved since the point was inserted into the database.
 This has been done in order to reduce redundant data in the database.
-The GPS\_data table can be seen in \cref{tbl_gpsdata}.
+The GPS\_data table can be seen in \Cref{tbl_gpsdata}.
 
 \begin{lstlisting}[caption=Table for GPS\_data, label=tbl_gpsdata, language=SQL]
 CREATE TABLE gps_data (
@@ -20,7 +20,7 @@ CREATE TABLE gps_data (
 \end{lstlisting}
 
 To query information about a single bike, and keep track of the bikes currently available in the system, we use the \texttt{bikes} table.
-This table is very simple and can be seen in \cref{tbl_bikes}.
+This table is very simple and can be seen in \Cref{tbl_bikes}.
 
 \begin{lstlisting}[caption=Table for bikes, label=tbl_bikes]
 CREATE TABLE bikes (
@@ -30,7 +30,7 @@ CREATE TABLE bikes (
 
 The hotspots created by the DBSCAN algorithm are also stored in the database.
 A hotspot is described by a convex hull of the points that make up the area of the hotspot.
-This convex hull is stored as binary data (a blob) in the \texttt{hotspot} table, which can be seen in \cref{tbl_hotspot}.
+This convex hull is stored as binary data (a blob) in the \texttt{hotspot} table, which can be seen in \Cref{tbl_hotspot}.
 
 \begin{lstlisting}[caption=Table for hotspots, label=tbl_hotspot]
 CREATE TABLE hotspots (
