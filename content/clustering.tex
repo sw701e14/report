@@ -161,14 +161,12 @@ expandCluster(P, NeighborPts, C, eps, MinPts)\\
 			{add Pn to cluster C\\}
 		}
 	}
-\end{algorithm}
+\end{algorithm}%(Pn) is used instead of (p') in source (wiki).
 
 \begin{algorithm}
 regionQuery(P, eps)\\
 	\Return {all points within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
-\stefan{algortithm in appendix?}
-\bruno{Den står fint her}
 
 \subsection{Summary} Of the three presented algorithms only the DBSCAN algorithm fits our need for a exclusive, partial and density based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data for use as the hotspots in our model.
