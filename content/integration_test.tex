@@ -49,25 +49,28 @@ The last two points are placed one street from each other, in order to test how 
 The users rely on the predictions of bike usage, as stated in \Cref{prob_statement:solution}, item 5.
 It is therefore important to test how well the predictions work.
 
-\subsubsection{Test data} To test this we create a number of controlled data sets.
+\paragraph{Test data} To test this we create a number of controlled data sets.
 The data sets are controlled by assigning probabilities of choosing the destinations. 
 We then know where to expect the probabilities to be high.
 
-\paragraph{Even distribution}
-The obvious test case is when the generated data has equal probability of choosing every destination. 
-In this case we would expect the probabilities of a bike arriving at every destination to be the same.
-
-The data was generated to simulate a 15 hour period with four possible addresses and 100 bikes.
-To control the data, every time a bike arrived at a hotspot it would wait for the next destination for 12 minutes.
-The ensures that the is registered a point that gets the "hasNotMoved" flag, because it stays in the hotspot for two cycles.
-The results for the test can be seen in \Cref{test_even}.
-The table shows the markov chain created on the generated data, after four clusters was created from the points marked "hasNotMoved".
-H indicates a hotspot while D indicates a departure state.
-The number in $ (h_1,d_2) $ indicates the probability of transitioning from hotspot 1 to departure state 2 in percent. 
+To control the data, every time a bike arrives at a hotspot it will wait for 12 minutes, before going to the next destination.
+This ensures that there is registered two points within a hotspot, so that the trip is ended.
 
 The addresses are placed so it should not be possible to go from one hotspot to another in a single update interval.
 This means that it should only be possible to get to a hotspot from a departure state, and not directly.
 This means that every hotspot row in the result should contain only two numbers, the transition to itself and the transition to its departure state.
+
+In order to display results, tables depicting the generated Markov Chain matrix are displayed.
+$h$ indicates a hotspot while $d$ indicates a departure state.
+The number in $ (d_1,h_2) $ indicates the probability in percentages of transitioning from departure state 1 to hotspot 2. 
+
+\subsubsection{Even distribution}
+The obvious test case is when the generated data has equal probability of choosing every destination. 
+In this case we would expect the probabilities of a bike arriving at every destination to be the same.
+
+The data was generated to simulate a 15 hour period with four possible addresses and 100 bikes.
+The results for the test can be seen in \Cref{test_even}.
+
 In the result it is seen that some inaccuracies have occurred since there are some entries with values that, although very low, are not zero as expected.
 
 The important numbers are those that tell how a bike act when in a departure state.
@@ -133,7 +136,7 @@ The biggest deviation is the transition from $ d_4 $ to $ h_1 $ which is 7.95\% 
 \stefan{kan man konkludere mere på det?}
 \alexander{Maybe one should perform more runs of the same test to determine what deviation is acceptable?}
 
-\paragraph{Uneven distribution}
+\subsubsection{Uneven distribution}
 Another test case is to weight one destination higher than the others.
 In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
 
