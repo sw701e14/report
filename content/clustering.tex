@@ -169,9 +169,7 @@ regionQuery(P, eps)\\
 \end{algorithm}
 \stefan{algortithm in appendix?}
 \bruno{Den står fint her}
-\paragraph{Strengths and weaknesses}
-DBSCAN is resistant to noise and can also handle clusters that vary in size.
-DBSCAN can have some trouble finding clusters that vary in density.\giovanni{``What does this mean? Elaborate or explain''}
 
-\subsection{Summary} Of the three presented algorithms only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density based clustering algorithm.
+\subsection{Summary} Of the three presented algorithms only the DBSCAN algorithm fits our need for a exclusive, partial and density based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data for use as the hotspots in our model.
+The hierarchical need is covered by saving the clusters in a tree data structure\footnote{This was not implemented, see \Cref{ref:ods}.}.
