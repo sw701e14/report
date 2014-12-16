@@ -1,15 +1,11 @@
-The collected bike data consist of a lot of routes.
-Each route has a start and end location and some locations visited in-between.
+The data collected through the GPS receivers installed on the bikes describes a lot of routes.
+Each route has a start and end location and some locations visited in-between. A start/end location is a location in which a bike have been at a standstill for at-least one location update.
 This gives a lot of start and end locations that possible are close to each other.
-To simplify the data the start/end locations get grouped together to an area.
-This way we limit the number of predictions needed, as we only model the most frequently travelled areas, as opposed to every single location.
+In this way we model the most frequently traveled areas, as opposed to every single location, simplifying the calculation for prediction.
 
-In order to group the locations we explore clustering techniques, before choosing an appropriate one to implement.
+In order to group the locations, we explore clustering techniques, before choosing an appropriate one to implement.
 
-Finally, in order to simplify hotspot representations, we apply convex hull, creating a polygon representation of a hotspot.
+Finally, in order to simplify hotspot representations, we represent its set of locations by means of its convex hull(\citet[section 33.3]{aadbook}), this creates a polygon representation of a hotspot that will be easy to query for point location.
 
 \section{Hotspot}\label{hotspot}
-We define a hotspot to be an area with a closer density of points compared to the rest of the data.
-The points considered have to be static to be a part of the hotspot meaning that we only consider points which has not moved since the last time interval.
-\mikael{I think we should define a hotspot like so:
-''We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. The locations considered have to be static to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.\alexander{+1}}
+We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. Only start/end locations are considered to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.

@@ -1,18 +1,18 @@
 \section{Integration test}
 
-In order to test that our components interact together as we would expect, we have chosen to do an integration test.
+In order to test that our components interact together according to the specifications, we have chosen to perform integration testing of the system.
 
 Integration testing has the purpose of testing that two units work together. 
 Traditionally, integration testing is done by integrating two modules at a time, either from the top of the dependency tree or from the bottom.
 There exists a variant, in which the whole system is tested together, instead of pair-wise, called big bang integration testing.
-We have chosen to perform our test with this method, due to time limitations. \cite{inttest}
+We have chosen to perform our test with this method, due to time limitations \cite{inttest}.
 
 \subsection{Test setup}
-The purpose of the test is to figure out if the system can produce sane predictions for the bikes in the system.
+The purpose of the tests we have designed is to check if the system can produce sensible predictions for the bikes in the system.
 
 \stefan{coupling with problem statement}
 
-In order to generate test data, we have created a method of simulating real world data. 
+In order to generate test data, we have created a method for simulating real world data. 
 The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing certain destinations.
 This makes it possible to create a data set, where it is possible to predict the expected result.
 
@@ -34,23 +34,83 @@ For this test, a data set has been created.
 It consists of five addresses and their corresponding GPS coordinates.
 We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
 Because the addresses are the only place where the bikes stand still, there should only be clusters by the addresses.
-This will give an indication of how well our hotspots are created.
 
 Three of the points are well separated, in order to test the general cluster creation.
-The last two points are placed one street from each other, in order to test how the clustering handles close points.
-\stefan{ikke sikker på om den del giver mening}
+The last two points are placed one street from each other, in order to test how the clustering handles points that are near each other.
 
 \subsection{Predictions}
-The users rely on the predictions of bikes to be somewhat telling of how the bikes move around in the city.
+The users rely on the predictions of bike usage, as stated in \Cref{prob_statement:solution}, item 5.
 It is therefore important to test how well the predictions work.
 
 \paragraph{Test data} To test this we create a number of controlled data sets.
 The data sets are controlled by assigning probabilities of choosing the destinations. 
 We then know where to expect the probabilities to be high.
 
-\paragraph{Test cases}
+\paragraph{Even distribution}
 The obvious test case is when the generated data has equal probability of choosing every destination. 
 In this case we would expect the probabilities of a bike arriving at every destination to be the same.
 
-Another test case is to weigh one destination higher than the others.
+The data was generated to simulate a 15 hour period with four possible addresses and 100 bikes.
+To control the data, every time a bike arrived at a hotspot it would wait for the next destination for 12 minutes.
+The ensures that the is registered a point that gets the "hasNotMoved" flag, because it stays in the hotspot for two cycles.
+The results for the test can be seen in \Cref{test_even}.
+The table shows the markov chain created on the generated data, after four clusters was created from the points marked "hasNotMoved".
+H indicates a hotspot while D indicates a departure state.
+The number in $ (h_1,d_2) $ indicates the probability of transitioning from hotspot 1 to departure state 2 in percent. 
+
+The addresses are placed so it should not be possible to go from one hotspot to another in a single update interval.
+This means that it should only be possible to get to a hotspot from a departure state, and not directly.
+This means that every hotspot row in the result should contain only two numbers, the transition to itself and the transition to its departure state.
+In the result it is seen that some inaccuracies have occurred since there are some entries with values that, although very low, are not zero as expected.
+
+The important numbers are those that tell how a bike act when in a departure state.
+These are the numbers that indicate how the routes are expected to be chosen.
+These numbers are pairwise marked with a color in the table.
+Each of these sets of numbers indicate the distribution between destinations.
+As the distribution of the generated data was set to be equal, we would expect these numbers to be equal as well.
+\stefan{calculate deviation?}
+
+\begin{figure}
+\begin{tabular}{|c | c c c c c c c c|}
+\hline
+\% &      $ h_1 $ & $ d_1 $ & $ h_2 $ & $ d_2 $ & $ h_3 $ & $ d_3 $ & $ h_4 $ & $ d_4 $\\
+ \hline
+$ h_1 $ & 59,6 &  40,1 & 0,3 &   &   &   &   &  \\
+$ d_1 $ & 0,1 &  74,6 &  { \color{red} 8,6} &   &   {\color{red}8,3} &   &  {\color{red} 8,5} &  \\
+$ h_2 $ & 0,2 &   &  59,6 &  40,1 &   &   &   &  \\
+$ d_2 $ & {\color{blue}9,8} &   &   0,1 &  68,4 &  {\color{blue}11,4} &   &  {\color{blue}10,4} &  \\
+$ h_3 $ & &   &   0,1 &   &  59,2 &  40,7 &   &  \\
+$ d_3 $ & {\color{orange}12,4} &   &  {\color{orange}13,4} &   &   0,2 &  60,4 &  {\color{orange}13,7} &  \\
+$ h_4 $ & &   &   &   &   &   &  60,0 &  40,0\\
+$ d_4 $ & {\color{purple}7,7} &   &   {\color{purple}6,8} &   &   {\color{purple}6,9} &   &   0,0 &  78,5\\
+\hline
+\end{tabular}
+\caption{Results of the test with an even distribution}\label{test_even}
+\end{figure}
+
+\paragraph{Uneven distribution}
+Another test case is to weight one destination higher than the others.
 In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
+
+The data for this test was created in the exact same way, a 15 hour period with four possible addresses and 100 bikes.
+The only difference was that the distribution was changed so $ h_1 $ had 50 \% chance, $ h_2 $ 20 \% and both $ h_3 $ and $ h_4 $ had 15 \%.
+It is not possible to translate the input addresses to indexes in the markov chain because the markov chain is based on the clusters found by the DBSCAN algorithm.
+The resulting markov chain after this simulation can be seen on \Cref{test_uneven}.
+
+\begin{figure}
+	\begin{tabular}{|c | c c c c c c c c|}
+		\hline
+		\% &      $ h_1 $ & $ d_1 $ & $ h_2 $ & $ d_2 $ & $ h_3 $ & $ d_3 $ & $ h_4 $ & $ d_4 $\\
+		\hline
+		$ h_1 $ & 60,4 &  39,6 &   0,1 &   &   &   &   &  \\
+		$ h_1 $ & 0,1 &  59,4 &  {\color{red}24,3} &   &   {\color{red}6,9} &   &   {\color{red}9,4} &  \\
+		$ h_2 $ & 0,2 &   &  59,3 &  40,4 &   &   &   &  \\
+		$ d_2 $ & {\color{blue}7,4} &   &   0,2 &  74,8 &   {\color{blue}7,6} &   &  {\color{blue}10,1} &  \\
+		$ h_3 $ & &   &   &   &  59,9 &  40,1 &   &  \\
+		$ d_3 $ & {\color{orange}4,0} &   &  {\color{orange}11,4} &   &   &  80,1 &   {\color{orange}4,5} &  \\
+		$ h_4 $ & 0,1 &   &   &   &   &   &  59,0 &  40,9\\
+		$ d_4 $ & {\color{purple}7,4} &   &  {\color{purple}22,8} &   &   {\color{purple}5,7} &   &   0,1 &  64,1\\
+		\hline
+	\end{tabular}
+	\caption{Results of the test with an uneven distribution}\label{test_uneven}
+\end{figure}

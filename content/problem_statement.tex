@@ -2,7 +2,7 @@ This section contains the main problem for this project and the form of solution
 
 \subsection{Analysis Summary}
 The analysis was based on the initial problem: \textit{How can the current \citybike system be improved, in order to make it more usable?}.
-From the analysis, it was found that the current \citybike has several problems, limiting the overall usability (as described in \cref{aalborg_bycyklen:challenges}).
+From the analysis, it was found that the current \citybike has several problems, limiting the overall usability (as described in \Cref{aalborg_bycyklen:challenges}).
 
 The problems identified were:
 \begin{enumerate}
@@ -29,10 +29,10 @@ Due to the limited time and project members, certain restrictions will be set, a
 \paragraph{Making short stops} will be completely overlooked in this project, as any solution to this problem would require some added locking mechanisms, which would conflict with the limitations set by Aalborg Kommune.
 
 \paragraph{Statistics about usage} is something Aalborg Kommune also requested.
-This, however, is deemed too far from the initial problem, as we won't be able to get any significant data without testing it on the actual bikes.\alexander{Reasonable argument?}
+This, however, is deemed too far from the initial problem, as we won't be able to get any significant data without testing it on the actual bikes.
 
-\subsection{Solution}
-We have chosen the solution with the same bikes as the current system, with the addition of a GPS chip on each individual bike, and completely removing the stations and bike locks.
+\subsection{Solution} \label{prob_statement:solution}
+We have chosen the solution with the same bikes as the current system, with the addition of a GPS receiver on each individual bike, and completely removing the stations and bike locks.
 This is due to the restrictions set by Aalborg Kommune, requesting a simple system, in order to accommodate the unspecified target user group.
 
 \paragraph{GPS and hotspots}
@@ -55,24 +55,24 @@ Whenever an area is a popular place to be going from/to, a hotspot should emerge
 
 \paragraph{Software}
 A software solution is then to be developed, consisting of 3 main software components, and a shared database.
-The structure of the solution can be seen in \cref{fig:solution_structure}.
+The structure of the solution can be seen in \Cref{fig:solution_structure}.
 
 \begin{figure}[h]
-\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 5cm}]{our_solution.pdf}
+\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 1.5cm}]{our_solution.pdf}
 \caption{The overall structure of our solution}
 \label{fig:solution_structure}
 \end{figure}
 
 The \textit{Location Service} continuously updates the locations of the bikes.
-The \textit{Model Updater} uses the location updates to generate a model used for predictions.
+The \textit{Model Updater} uses the stored location data to generate a model used for predictions.
 The \textit{Web Service} makes an API available, in order to make platform implementations to make the data available as specified in the requirements.
 A web service was chosen as to make the system as available as possible, due to the unspecific target user group.
 
 \subsection{New problems}
-In order to develop this new system,\alexander{Is it really a `new system'?} with the addition of GPS and hotspots, new problems emerge.
+In order to develop this system, with the addition of GPS and hotspots, new problems emerge.
 The following chapters will focus on the problems:
 \begin{itemize}
 \item How to define and find hotspots?
 \item How to model the usage and use this for predictions?
 \item How to make this data available through a web service?
-\end{itemize}\alexander{Add `How to simulate realistic data'?}
+\end{itemize}
