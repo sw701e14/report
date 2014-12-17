@@ -48,7 +48,7 @@ The clustering algorithm chosen, DBSCAN explained \Cref{clustering:DBSCAN}, expe
 Because real data is not available the chosen values for the paramters are based on the following.
 
 The $MinPts$ paramter was set to 4 as suggested by \citet[Page 529]{pang2006introduction}.
-For the other paramter $eps$ the value 15 was chosen, 15 metres.
+For the other paramter, $eps$, the value 15 was chosen, 15 metres.
 This value was chosen because a GPS receivers accuracy is 15 metres according to \citet{garmingps}.
 Setting $eps$ = 15 makes sense because a GPS data point then can be up to 15 metres away from its real location.
 
@@ -56,13 +56,16 @@ Setting $eps$ = 15 makes sense because a GPS data point then can be up to 15 met
 \paragraph{Result}
 The result has been visualized and can be seen on \cref{fig:test:clustering}.
 The figure shows two clusters as expected and a path of GPS data points in-between.
+The test shows that all GPS data points that should be in a cluster are in a cluster(The circles on \cref{fig:test:clustering}.).
+This means that the clustering is quite accurate.
 The result shows us that the clustering works as expected.
 But one should keep in mind that the DBSCAN paramters maybe needs to be changed when used on real data.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{clusteringTest}
 \caption{The clustering test results.
- The crosses indicating the coordinates of the two given addresses. The squares representing GPS points received while a bike is moving. The points/circles/dots\bruno{??} representing when a bike stands still. The line connecting the points/circles/dots\bruno{??} is the cluster represented by a polygon(a hotspot). }
+ The crosses indicating the coordinates of the two given addresses. The squares representing GPS points received while a bike is moving. The circles representing when a bike stands still. The line connecting the circles is the cluster represented by a polygon(a hotspot).}
+ Keep in mind that the squares inside a cluster are not part of a cluster.
 \label{fig:test:clustering}
 \end{figure}
 
