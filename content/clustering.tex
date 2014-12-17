@@ -69,9 +69,11 @@ The purpose of the clustering is to find the areas where the bicycles are being 
 
 Based on this description we need a hierarchical, exclusive, partial and density based clustering.
 
-Hierarchically, because we want to represent the clusters as a polygon.
+Hierarchically, because it makes it easy to locate what cluster a point belongs to by traversing the resulting tree.
 \mikael{Er det her ikke forkert, har vi ikke en partitional clustering?}
-This would ease the task of point location.
+\stefan{vi har ikke hierarkisk, men ud fra vores data ville det sandsynligvis være det bedste valg, da det er lettere at finde ud af hvilket cluster et punkt er i.
+(jeg har omformuleret argumentet en smule siden Mikaels kommentar)}
+
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
