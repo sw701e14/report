@@ -60,16 +60,17 @@ A cluster is a dense region surrounded by a low density region.
 
 \subsection{Our data and purpose}
 The data we need to cluster is GPS data from the bikes.
-A bike will send a GPS location in some interval, and it will be saved in a database.
+\mikael{Som mine tidligere kommentarer, klart defineret begreb. GPS data, i denne kontekst, dækker kun over stillestående punkter.}
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
-These clusters may have different size depending on the physical properties of the places the bikes are left.
+These clusters may have different size, depending on the physical properties of the places the bikes are left.
 
-The purpose of the clustering is to find the areas where the bicycles are being used the most in order to make predictions on when a bike will arrive in those areas.
-A polygon will be used as a representation of a cluster, more about that in \Cref{convex_hull}.
+The purpose of the clustering is to find the areas where the bicycles are being used the most, in order to make predictions on when a bike will arrive in those areas.
+\mikael{Bør det ikke benævnes som hotspot her, da vi har defineret hotspots?}
 
 Based on this description we need a hierarchical, exclusive, partial and density based clustering.
 
-Hierarchically because we want to represent the clusters as a polygon.
+Hierarchically, because we want to represent the clusters as a polygon.
+\mikael{Er det her ikke forkert, har vi ikke en partitional clustering?}
 This would ease the task of point location.
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
