@@ -28,42 +28,40 @@ We want to test the following parts of our system in order to test the two probl
 We test the hotspot creation in order to check if hotspots are generated where there is bike activity, and this to check if the created hotspots will work as a stand in for the old stations.
 This corresponds to item \ref{pr_few} in the problem statement.
 
-We test the markov chains in order to figure out if our method of generating markov chains give proper values for using when predicting the behavior of the bikes.
+We test the Markov chains in order to figure out if our method of generating Markov chains give proper values for using when predicting the behavior of the bikes.
 This corresponds to item \ref{pr_arrive} in the problem statement.
 
 \subsection{Finding hotspots}
-The system relies on the clusters to be indicative of how the bikes are used. 
-All predictions use the hotspots as a basis and misplaced hotspots can therefore skew the results, degrading the precision of the predictions.
-We therefore want to test if the hotspots generated are as they are expected.
+All predictions are calculated based on the generated hotspots.
+Misplaced hotspots can therefore skew the results, decreasing the precision of the predictions.
+Thus, we want to test whether or not the hotspots are generated as expected.
 
 \paragraph{Test data}
-For this test, a data set has been created.
-It consists of two addresses and their corresponding GPS coordinates.
-We will then compute the hotspots based on this data and compare the center of these hotspots with the addresses they are generated from.
+For this test, we have constructed a data set, which consists of two addresses and their corresponding GPS coordinates.
+We will then generate the hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
 Because the addresses are the only place where the bikes stand still, there should only be clusters by the addresses.
 
 \paragraph{DBSCAN parameters}
-The clustering algorithm chosen, DBSCAN explained \Cref{clustering:DBSCAN}, expects two paramters, $eps$ and $MinPts$.
+The clustering algorithm chosen, DBSCAN explained in \Cref{clustering:DBSCAN}, expects two paramters, $eps$ and $MinPts$.
 Because real data is not available the chosen values for the paramters are based on the following.
 
 The $MinPts$ paramter was set to 4 as suggested by \citet[Page 529]{pang2006introduction}.
 For the other paramter, $eps$, the value 15 was chosen, 15 metres.
 This value was chosen because a GPS receivers accuracy is 15 metres according to \citet{garmingps}.
-Setting $eps$ = 15 makes sense because a GPS data point then can be up to 15 metres away from its real location.
+Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 metres away from its real location.
 
 
 \paragraph{Result}
-The result has been visualized and can be seen on \cref{fig:test:clustering}.
-The figure shows two clusters as expected and a path of GPS data points in-between.
-The test shows that all GPS data points that should be in a cluster are in a cluster(The circles on \cref{fig:test:clustering}.).
-This means that the clustering is quite accurate.
-The result shows us that the clustering works as expected.
-But one should keep in mind that the DBSCAN paramters maybe needs to be changed when used on real data.
+The result has been visualized and can be seen in \Cref{fig:test:clustering}.
+The figure shows as expected, two hotspots and a path of GPS data points in-between.
+The test verifies that all GPS data points, that should be in a hotspot, actually are (as illustrated by the circles in \Cref{fig:test:clustering}).
+This means that the clustering is accurate and works as expected.
+One should keep in mind that the DBSCAN paramters, which worked with the constructed data set, may need to be calibrated when used on real data.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{clusteringTest}
-\caption{The clustering test results.
- The crosses indicating the coordinates of the two given addresses. The squares representing GPS points received while a bike is moving. The circles representing when a bike stands still. The line connecting the circles is the cluster represented by a polygon(a hotspot).}
+\caption{The clustering test results. 
+The crosses indicating the coordinates of the two given addresses. The squares representing GPS points received while a bike is moving. The circles representing when a bike stands still. The line connecting the circles is the cluster represented by a polygon(a hotspot).}
  Keep in mind that the squares inside a cluster are not part of a cluster.
 \label{fig:test:clustering}
 \end{figure}
@@ -166,7 +164,7 @@ In this case we would expect the probability of a bike arriving at this particul
 The data for this test was created in the exact same way as the data for the even distribution, a 15 hour period with four possible addresses and 100 bikes.
 The only difference was that the distribution was changed so one address had 50 \% chance, another had 20 \% and the two remaining had 15 \% chance of being chosen.
 
-The resulting markov chain after this simulation can be seen on \Cref{test_uneven}.
+The resulting Markov chain after this simulation can be seen on \Cref{test_uneven}.
 
 \begin{figure}
 	\centering
@@ -187,7 +185,7 @@ The resulting markov chain after this simulation can be seen on \Cref{test_uneve
 	\caption{Results of the test with an uneven distribution}\label{test_uneven}
 \end{figure}
 
-It is not possible to translate the input addresses to indexes in the markov chain because the markov chain is based on the clusters found by the DBSCAN algorithm.
+It is not possible to translate the input addresses to indexes in the Markov chain because the Markov chain is based on the clusters found by the DBSCAN algorithm.
 Based on the colored numbers it seems that $ h_1 $ had 15\% chance, $ h_2 $ had 50\% chance, $ h_3 $ had 15\% chance and $ h_4 $ had 20\% chance of being chosen.
 \stefan{bedre at plotte hotspots og vurdere derudfra?}
 \alexander{In my opinion prediction is best verified and illustrated by a matrix, but the clustering is clearly best illustrated with a map with hotspots.}
@@ -248,5 +246,5 @@ The biggest deviations are the transitions from $ d_3 $ to $ h_1 $ and from $ d_
 These deviations are higher than the results for the evenly distributed test, but it is still reasonable considered the randomly generated data.
 
 \subsubsection{Conclusion}
-This section has tested the validity of the markov chains that are being used in our system.
+This section has tested the validity of the Markov chains that are being used in our system.
 The results showed that there is up to 15\% deviation from the expected numbers, but considering that the data was randomly generated we consider this in an acceptable range.
