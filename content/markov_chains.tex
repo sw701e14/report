@@ -20,23 +20,24 @@ To answer this question we need to model the behavior of an \emph{average} bike.
 In other words, we need to provide a formal description of the movement of a single bike, representing the movement, on average, of all bikes.
 
 \subsection{Abstraction Model}
-As the system is based on anonymous usage no user sensitive information is collected.
-Because of this some uncertainty is expected in the model, as all bikes (and thus all users) are modeled as a single \textit{average bike}.
+As the system is based on anonymous usage, no user sensitive information is collected.
+Because of this, some uncertainty is expected in the model, as all bikes (and thus all users) are modeled as a single \textit{average bike}.
 Modeling the movement of all bikes will be done by modeling the movement of this average bike as a stochastic process \cite{stochastic}.
 
 We must also consider that our model will be working on discrete-time location data.
 The GPS units that the bikes will be equipped with will only report the location of a bike at a \textit{fixed} interval.
+\mikael{Dette kunne snildt være defineret tidligere, da det bruges både i hotspots, her, og i tests.}
 Additionally the accuracy of each of these measurements can be low, resulting in even more imprecision.
 As we are modeling the average bike, we can represent the state of the process as the location of the bike.
-In order to reduce the number of locations to a sensible number we will use the generated hotspots instead.
-Using this definition we can describe the movement of the bike as an infinite route $h_1, h_2, h_3, \dots$ where $h_i \in H \mid i \in \mathbb{N}$ and $H$ is the set of hotspots in the system.
+In order to reduce the number of locations to a sensible number, we will use the generated hotspots instead.
+Using this definition, we can describe the movement of the bike as an infinite route $h_1, h_2, h_3, \dots$ where $h_i \in H \mid i \in \mathbb{N}$ and $H$ is the set of hotspots in the system.
 
-Using this representation of the average bike we see that the average bike must move from one hotspot $h_i$ to another $h_{i+1}$ in one \emph{timestep}.
+Using this representation of the average bike, we see that the average bike must move from one hotspot $h_i$ to another $h_{i+1}$ in one \emph{timestep}.
 Note that it could be that $h_i = h_{i+1}$, meaning that the bike has moved to the same hotspot as it departed from.
 This is also used to indicate that the bike has not moved.
-In \Cref{markov:modeling} we will describe the modeling of the average city bike in greater detail.
+In \Cref{markov:modeling} we will describe the modeling of the average bike in greater detail.
 
-Taking all of the above into account it is reasonable to suggest the abstraction model for the behavior of the average city bike, to be a discrete-time Markov chain where the states are used to represent hotspots.
+Taking all of the above into account, it is reasonable to suggest the abstraction model for the behavior of the average bike, to be a discrete-time Markov chain, where the states are used to represent hotspots.
 
 \subsection{Discrete-Time Markov Chains}\label{markov}
 The state of a discrete-time Markov chain model changes in a process at discrete time intervals.
