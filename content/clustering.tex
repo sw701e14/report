@@ -98,25 +98,23 @@ We have no need for a hierarchical division of our clusters, and this algorithm 
 \mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}
-DBSCAN in a density based clustering algorithm that locates regions of high density that are separated by regions of low density.
+DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
 
 \paragraph{Center based point density}
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
-Using this measure it can be classified whether a point is placed in a dense region (a core point),at the edge of a dense region (a border point) or is in a region with sparse density (a noise point).
+Using this measure it can be determined whether a point is placed in a dense region (a core point), at the edge of a dense region (a border point), or is in a region with sparse density (a noise point).
 The exact definition of the three types of points are as follows\cite{pang2006introduction}:
-\\
-\\
-\noindent
-\textbf{Core point} These points have at least $ MinPts $ points in a radius of $ eps $ from it.
-Here $ MinPts $ is the number of points in the vicinity of a point regarded as dense by the user, and $ eps $ is the radius to look for these points.
 
-\noindent
-\textbf{Border points} A point that is not a core point, but is in the neighborhood of a core point. 
+\begin{description}
+\item[Core point] These points have at least $ MinPts $ points in a radius of $ eps $ from it.
+Here, $ MinPts $ is the minimal number of points in the vicinity of a point, regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
+
+\item[Border points] A point that is not a core point, but is in the neighbourhood of a core point. 
 One point can be a border point to several core points.
 
-\noindent
-\textbf{Noise point} Any point that is neither a core point or a border point. 
+\item[Noise point] Any point that is neither a core point or a border point. 
+\end{description}
 
 \begin{figure}
 \fbox{\includegraphics[trim= 3.1cm 20.61cm 5cm 2.5cm, clip=true]{graphics/DBSCAN_point_types}}
