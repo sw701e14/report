@@ -39,16 +39,16 @@ Thus, we want to test whether or not the hotspots are generated as expected.
 \paragraph{Test data}
 For this test, we have constructed a data set, which consists of two addresses and their corresponding GPS coordinates.
 We will then generate the hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
-Because the addresses are the only place where the bikes stand still, there should only be clusters by the addresses.
+Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
 
 \paragraph{DBSCAN parameters}
-The clustering algorithm chosen, DBSCAN explained in \Cref{clustering:DBSCAN}, expects two paramters, $eps$ and $MinPts$.
-Because real data is not available the chosen values for the paramters are based on the following.
+The clustering algorithm chosen, DBSCAN explained in \Cref{clustering:DBSCAN}, expects two parameters, $eps$ and $MinPts$.
+Because real data is not available the chosen values for the parameters are based on the following.
 
-The $MinPts$ paramter was set to 4 as suggested by \citet[Page 529]{pang2006introduction}.
-For the other paramter, $eps$, the value 15 was chosen, 15 metres.
-This value was chosen because a GPS receivers accuracy is 15 metres according to \citet{garmingps}.
-Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 metres away from its real location.
+The $MinPts$ parameter was set to 4 as suggested by \citet[Page 529]{pang2006introduction}.
+For the other parameter, $eps$, the value 15 was chosen, 15 meters.
+This value was chosen because a GPS receivers accuracy is 15 meters according to \citet{garmingps}.
+Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 meters away from its real location.
 
 
 \paragraph{Result}
@@ -56,7 +56,7 @@ The result has been visualized and can be seen in \Cref{fig:test:clustering}.
 The figure shows as expected, two hotspots and a path of GPS data points in-between.
 The test verifies that all GPS data points, that should be in a hotspot, actually are (as illustrated by the circles in \Cref{fig:test:clustering}).
 This means that the clustering is accurate and works as expected.
-One should keep in mind that the DBSCAN paramters, which worked with the constructed data set, may need to be calibrated when used on real data.
+One should keep in mind that the DBSCAN parameters, which worked with the constructed data set, may need to be calibrated when used on real data.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{clusteringTest}
