@@ -25,6 +25,7 @@ The location service component processes and stores location data directly from 
 The \texttt{Location Service} consists of a \texttt{Location Source} which provides data points to the \texttt{Data Collector}.
 
 \paragraph{The Location Source layer} fetches data from the data source then adapts and casts the data to the appropriate data type in the \texttt{Common} layer.
+\stefan{cast? transform måske?}
 It is structured so that the \texttt{Location Source} layer can easily be replaced with another source of data.
 
 \paragraph{The Data Collector layer} gathers the data from the \texttt{Location Source} layer and processes it. 
@@ -39,7 +40,7 @@ The macro component's task is to generate and update the model in the system.
 The generation of the model works as follows:
 Clusters are created based on the GPS data in the database \Cref{clustering:DBSCAN}.
 The convex hull of the clusters is calculated and saved as the hotspots of the model.
-Markov chains are now created with these clusters as states \Cref{sec:generatemarkov}.
+Markov chains are now created with these clusters as states \Cref{markov:create_model}.
 
 \subsection{Web Service}\label{arch:webservice}
 \texttt{Web Service} is the macro component containing the \texttt{Model}, \texttt{View}, and \texttt{Controller}.
