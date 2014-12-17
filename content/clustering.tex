@@ -76,25 +76,26 @@ It needs to be exclusive because we want the clusters to be separated from each 
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
 \subsection{Techniques}
-This section will explore the techniques that exist in cluster analysis and evaluate them based on the requirements stated in the previous section.
+This section will explore the techniques that exist in cluster analysis, as well as evaluate them, based on the requirements stated in the previous section.
 
 \subsubsection{K-means}
-K-means is a technique that creates a partitioning from prototypes where the prototypes are the center of the clusters.
+K-means is a technique that creates a partitioning from prototypes, where the prototypes are the centers of clusters.
 
-The basic algorithm takes a number K and generates K initial center points.
+The basic algorithm takes a number $K$ and generates $K$ initial center points.
 Each data object is then assigned to the nearest center point.
 The center points are now updated to be the center of the created clusters.
-These steps are repeated until no point changes cluster or the center points do not change.
+These steps are repeated until no point changes cluster, or the center points do not change.
 
-Because we do not have a way of finding $ k $ before running the algorithm, this approach is not applicable to our problem.
+Because we do not have a way of finding $K$ before running the algorithm, this approach is not applicable to our problem.
 
 \subsubsection{Hierarchical Clustering}
-Hierarchical clustering arranges the points in a hierarchy depending on the distance between points.
+Hierarchical clustering arranges the points in a hierarchy, dependent on the distance between points.
 Hierarchical clustering can be performed either by starting at the top of the tree or at the bottom.
-\textit{Agglomerative hierarchical clustering} starts by considering all points as being in an individual cluster and generating the hierarchy by merging the closest clusters. 
-\textit{Divisive hierarchical clustering} starts by considering all points as being in a single cluster and then continues by splitting the clusters at each step.
+\textit{Agglomerative hierarchical clustering} starts by considering all points as being in individual clusters, then generating the hierarchy by merging the closest clusters.
+\textit{Divisive hierarchical clustering} starts by considering all points as being in a single cluster, then continues by splitting the clusters at each step.
 
-We have no need for a hierarchical division of our clusters, and this algorithm is therefor not appropriate for our use.
+We have no need for a hierarchical division of our clusters, and this algorithm is therefore not appropriate for our use.
+\mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}
 DBSCAN in a density based clustering algorithm that locates regions of high density that are separated by regions of low density.
