@@ -13,7 +13,7 @@ Let
 \item $X_0$ be the random variable representing the possible initial states.
 \item $H = \{h_0, h_1, \dots, h_n\}$ be the set of hotspots.
 \item $D = \{d_0, d_1, \dots, d_n\}$ be the set of departure states.
-\item $S = H \cup D$ be the set of all states.
+\item be the set of all states, $S = H \cup D$.
 \item $P_j(h_i) = \mathbb{P}(X_j = h_i)$ and $P_j(d_i) = \mathbb{P}(X_j = d_i)$
 \end{itemize}
 
@@ -84,6 +84,7 @@ To do this, we look at a single value in the vector $P_1$; $P_1(h_0)$.
 The remaining values in the vector are defined in a similar manor.
 
 Using the probability matrix from \Cref{markov:matrix-ordered}, page \pageref{markov:matrix-ordered}, we can determine $P_1(h_0)$.
+\stefan{nogen grund til pludselig at pagereffe?}
 Additionally, we can use \Cref{markov:vector:init} to further specify the value:
 $$
 P_1(h_0) = 
