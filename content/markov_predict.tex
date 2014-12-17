@@ -39,7 +39,7 @@ Thus we can simply examine all the bikes in the system and identify their curren
 The current location of a bike $L(b)$ can be either a hotspot or a departure state; $L(b) \in S$.
 The probability of the average bike being in state $s$ will then be equal to the fraction of bikes that are actually in $s$.
 
-Let $B$ be the set of all active bikes in the system and $B_j(s) \in B$ be the set of bikes in state $s$ at time $j$ as described by the model.
+Let $B$ be the set of all active bikes in the system and $B_j(s) \in B$ be the set of bikes in state $s$ at time $j$, as described by the model.
 $B_0(s)$ will then be the initial set of bikes in state $s$ and we can represent the probability distribution as the following:
 \begin{equation}\label{markov:vector:init}
 P_0 = \Bigg(
@@ -54,22 +54,22 @@ P_0 = \Bigg(
 \end{equation}
 
 \paragraph{Location of a bike}
-Looking at the coordinates of a single bike we are able to determine if it is inside a hotspot or not.
-If it is not, we will iterate backwards through the set of known locations of a bike until we find it located in a hotspot $h_i$.
+Looking at the coordinates of a single bike, we are able to determine if it is inside a hotspot or not.
+If it is not, we will iterate backwards through the set of known locations of a bike until, we find it located in a hotspot $h_i$.
 We then say that the bike is currently in state $d_i$.
-If there is no data placing a bike within a hotspot the bike will instead be said to be in the departure state of the nearest hotspot.
-In this context nearest refers to the hotspot that has the lowest minimum distance to the last known location of the bike.
+If there is no data placing a bike within a hotspot, the bike will instead be said to be in the departure state of the nearest hotspot.
+In this context, nearest refers to the hotspot that has the lowest minimum distance to the last known location of the bike.
+\mikael{Bør det her ikke være under Generating Model?}
 
 \paragraph{An example}
-With a set of states such as the one in \cref{markov:model:complex} and a total of 16 bikes we could have a distribution of bikes as follows:
-8 bikes are currently located in hotspot $h_1$, while 2 bikes have left it, but have not arrived in another hotspot.
-They are in departure state $d_1$.
-Finally 6 bikes are located in hotspot $h_2$ and none are in its departure state.
+With a set of states, such as the one in \Cref{markov:model:complex}, and a total of 16 bikes, we could have a distribution of bikes as follows:
+8 bikes are currently located in hotspot $h_1$. 2 bikes have left it $h_1$, but have not arrived in another hotspot; they are in departure state $d_1$.
+Finally, 6 bikes are located in hotspot $h_2$, while none are in its departure state $d_2$.
 
-Such a distribution of bikes would result in an initial probability distribution of the average bike as below:
+Such a distribution of bikes would result in an initial probability distribution of the average bike as such:
 $$P_0 = \left(\frac{8}{16}, \frac{2}{16}, \frac{6}{16}, \frac{0}{16}\right)=(0.5, 0.125, 0.375, 0)$$\label{markov:example-vector}
 This distribution will be used to determine future probability distributions of the system.
-In the following section this example will be revisited, providing such informations.
+In the following section, this example will be revisited, providing such information.
 
 \subsection{Predicting from the initial distribution}
 Having represented the probability distributions as vectors we can multiply them with the transitional matrices described in \cref{markov} and \cref{sec:generatemarkov}.
