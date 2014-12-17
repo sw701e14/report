@@ -1,7 +1,7 @@
 \section{Existing Systems}
 
 Already existing systems are explored in order to draw inspiration from them.
-They will also serve as guidelines to what should and shouldn't be repeated in the new developed system.
+They will also serve as guidelines to what should and shouldn't be repeated in the new developed system.\alexander{Again, do we really create a new system on par with Aalborg City Bike?}
 
 There are many public bike systems around the world, mainly in bigger cities.
 The systems differ a lot in both how and where bikes are acquired and how the use of the bikes is paid.
@@ -12,10 +12,10 @@ Aalborg Bycyklen is an example of a grab-if-available-system.
 Chosen for comparison are two systems; Bycyklen\footnote{Translation from Danish: 'The City Bike'}, located in Copenhagen and Citi Bike NYC, located in New York City.
 These systems are similar to Aalborg Bycyklen, in that the bikes are publicly available, and at many different locations.
 
-These two systems have been chosen also because of the social similarities of the cities with respect to Aalborg.
+These two systems have been chosen also because of the social similarities\alexander{Is it okay not to mention anything about social similarities?} of the cities with respect to Aalborg.
 Rent-systems will not be considered, as these are too different from the more publicly available systems.
 
-\subsection{Copenhagen: Bycyklen}
+\subsection{Copenhagen: Bycyklen}\alexander{Replace instances of GPS with GPS receivers.}
 The overall purpose of Bycyklen\cite{cph_bycyklen}\cite{cph_bycyklen_conditions} is to provide bikes for both single and repeated use.
 
 A bike is rented at an hourly rate of 25 DKK/hour.
@@ -76,10 +76,10 @@ In Bycyklen, this is partially solved by the hourly charges until the bike is re
 Presumably, the GPS in the bikes can also be used to locating misplaced bikes (this is based on the fact that users agree to let Bycyklen collect anonymous data about start/end destination, and route usage).
 
 In Citi Bike NYC overcharge fees are continuously charged, after exceeding the allowed half hour trip, until it is returned to a bike station.
-Nothing can be found about whether this goes on forever or not.
+Nothing can be found about whether this goes on forever or not, however this ensures the user returns the bike to avoid fees.
 
 \paragraph{Too few stations}
-Bycyklen has 20 stations in Copenhagen making the solution difficult to use for trips with a destination not close to a station. 
+Bycyklen has 20 stations in Copenhagen making the solution difficult to use for trips with a destination away from a station. 
 
 Citi Bike NYC tries to solve this problem by placing so many stations in the city that you are never far from a station.
 Whether or not this solution solves the problem is not known, but it seems like an expensive solution.
@@ -114,7 +114,7 @@ Both systems do well in handling all the problems described in \Cref{aalborg_byc
 They are, however, in conflict with the results from the interview with Aalborg Kommune, as stated in \Cref{interview:goals}.
 Specifically, the simplicity of the system, where Aalborg Kommune did not like the idea of booking/reservations, as it would complicate the use of the bikes.
 
-Additionally they are both costly systems, and cannot be easily implemented on top of the current Aalborg Bycyklen system because they require a lot of changes to the bikes and stations to accommodate for the locking and renting mechanics of the two systems.
+Additionally they are both costly systems, and cannot be easily implemented on top of the current Aalborg Bycyklen system\alexander{system or serivce?} because they require a lot of changes to the bikes and stations to accommodate for the locking and renting mechanics of the two systems.
 
-Another problem is the lack of usage statistics in the current system, meaning that it is not easy to find out where to put stations (which both existing systems require).
+Another problem is the lack of usage statistics in the current system, meaning that it is not easy to find out where to place stations (which both existing systems require).
 In case too few stations are set up, it would only aggravate the existing problems.
