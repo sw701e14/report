@@ -1,4 +1,4 @@
-This section contains the main problem for this project and the form of solution required.
+This section contains the main problem for this project and the generic description of the required solution.
 
 \subsection{Analysis Summary}
 The analysis was based on the initial problem: \textit{How can the current \citybike system be improved, in order to make it more usable?}.
@@ -24,7 +24,7 @@ Additionally, certain limitations and requests were made by Aalborg Kommune, col
 \end{enumerate}
 
 \subsection{Scope}
-Due to the limited time and project members, certain restrictions will be set, as to remove focus on certain problems.
+Due to the limited time and project members, certain restrictions will be set, as to remove focus from certain problems.
 
 \paragraph{Making short stops} will be completely overlooked in this project, as any solution to this problem would require some added locking mechanisms, which would conflict with the limitations set by Aalborg Kommune.
 
@@ -40,12 +40,13 @@ The greatest changes to the current system is the addition of the GPS and the in
 Hotspots will serve as informal stations; areas of the map where bikes are often parked.
 By combining these two things, we want to improve on the problems with the current system.
 
-\subparagraph{\ref{pr_stations}: Bikes left outside stations} is handled by GPS, as bikes and their exact location now can be found, no matter if it is at a hotspot or not.
+\subparagraph{\ref{pr_stations}: Bikes left outside stations} is handled by GPS, as bikes and their location now can be found, no matter if it is at a hotspot or not.
 
 \subparagraph{\ref{pr_few}: Too few stations} is automatically handled by the generation of hotspots.
 Whenever an area is a popular place to be going from/to, a hotspot should emerge and reflect this.
 
 \subparagraph{\ref{pr_stops}: Making short stops} was deemed out of scope.
+\mikkel{Is this not indirectly improved upon by removing stations?}
 
 \subparagraph{\ref{pr_nobikes}: No bikes at station} is handled by locating the exact location of an available bike, or looking up nearby hotspots.
 
@@ -54,7 +55,7 @@ Whenever an area is a popular place to be going from/to, a hotspot should emerge
 \subparagraph{\ref{pr_broken}: Broken bikes} will not be directly handled, but it is possible to infer from looking at bike locations and detecting when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
 
 \paragraph{Software}
-A software solution is then to be developed, consisting of 3 main software components, and a shared database.
+A software solution is to be developed, consisting of 3 main software components, and a shared database.
 The structure of the solution can be seen in \Cref{fig:solution_structure}.
 
 \begin{figure}[h]
@@ -71,6 +72,7 @@ A web service was chosen as to make the system as available as possible, due to 
 \subsection{New problems}
 In order to develop this system, with the addition of GPS and hotspots, new problems emerge.
 The following chapters will focus on the problems:
+\mikkel{Could we write these without starting with 'How to'?}
 \begin{itemize}
 \item How to define and find hotspots?
 \item How to model the usage and use this for predictions?
