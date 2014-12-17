@@ -30,6 +30,7 @@ The \texttt{Location Service} consists of a \texttt{Location Source} which provi
 \mikkel{Jeg forestiller mig spørgsmål som ''What is The \texttt{Location Service} and a \texttt{Location Source}?''}
 
 \paragraph{The Location Source layer} fetches data from the data source then adapts and casts the data to the appropriate data type in the \texttt{Common} layer.
+\stefan{cast? transform måske?}
 It is structured so that the \texttt{Location Source} layer can easily be replaced with another source of data.
 \mikkel{Her refereres til Common, som ikke er beskrevet.}
 
@@ -45,7 +46,7 @@ The macro component's task is to generate and update the model in the system.
 The generation of the model works as follows:
 Clusters are created based on the GPS data in the database \Cref{clustering:DBSCAN}.
 The convex hull of the clusters is determined and saved as the hotspots of the model.
-Markov chains are now created with these clusters as states \Cref{sec:generatemarkov}.
+Markov chains are now created with these clusters as states \Cref{markov:create_model}.
 \mikkel{Mangler vi ikke truncate?}
 
 \subsection{Web Service}\label{arch:webservice}

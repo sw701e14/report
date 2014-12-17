@@ -60,7 +60,7 @@ If the data can be represented as a graph, with the objects as nodes, clusters c
 A cluster is defined by the density of the data objects.
 A cluster is a dense region surrounded by a low density region.
 
-\subsection{Our data and purpose}
+\subsection{Our data and purpose}\label{data_purporse}
 The data we need to cluster is GPS data from the bikes.
 \mikael{Som mine tidligere kommentarer, klart defineret begreb. GPS data, i denne kontekst, dækker kun over stillestående punkter.}
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
@@ -179,7 +179,7 @@ regionQuery(P, eps)\\
 	\Return {all points within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
 
-\subsection{Summary} Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
+\subsection{Summary}\bruno{Hvordan argumentere vi for at bruge DBSCAN fremfor en algoritme der møder alle vores krav?} Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.
 \mikkel{Jeg ville gerne have noget af det her nævnt inden vi går i detaljer med DBSCAN.
 Jeg synes godt vi kan afslutte den her section med en subsection of DBSCAN, efter at have sagt at det er den vi vil bruge.}
