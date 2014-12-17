@@ -42,21 +42,21 @@ Taking all of the above into account, it is reasonable to suggest the abstractio
 \subsection{Discrete-Time Markov Chains}\label{markov}
 The state of a discrete-time Markov chain model changes in a process at discrete time intervals.
 It can be viewed as a sequence (chain) of random variables $X_1, X_2, X_3, \dots$ where each such variable is a function $X_i:S \rightarrow x$.
-Here $S$ is a countable set of states representing the possible states (hotspots) in the process described by the Markov chain and $x$ is a \textit{random} state from $S$.
+Here, $S$ is a countable set of states, representing the possible states (hotspots) in the process described by the Markov chain, and $x$ is a \textit{random} state from $S$.
 The subscript describes the time associated with each of the variables.
-Thus $X_i$ represents the possible states of the process at time $i$.
-This notation allows us to establish a timespan as each step refers to a fixed interval.
+Thus, $X_i$ represents the possible states of the process at time $i$.
+This notation allows us to establish a timespan, as each step refers to a fixed interval.
 
-This randomness will be biased towards certain states given its current state (and possibly time) resulting in a set of probabilities for each state given a random variable.
+This randomness will be biased towards certain states, given its current state (and possibly time), resulting in a set of probabilities for each state given a random variable.
 Let $\mathbb{P}(X_i = x)$ be the probability of $X_i$ being in state $x$.
-The above will then allow us to express the probability of moving to a state $y$ given the path we have traversed.
-In other words, knowing what state we are in and how we got to it allows us to determine the probability of the next state being $y$:
+The above will then allow us to express the probability of moving to a state $y$, given the path we have traversed.
+In other words, knowing which state we are in, and how we got to it, allows us to determine the probability of the next state being $y$:
 
 $$\mathbb{P}(X_{n+1} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)$$
 
 \paragraph{Markov property}\label{markov:property}
-For the sequence to describe a Markov chain it must additionally have the Markov property.
-The Markov property states that for any state $x$ we can determine the probability of the next state being $y$ without any knowledge of the path that led to $x$.
+For the sequence to describe a Markov chain, it must additionally have the Markov property.
+The Markov property states that for any state $x$ we can determine the probability of the next state being $y$, without any knowledge of the path that led to $x$.
 We can formalize this as:
 
 \begin{align}\label{markov:eq:markov_prob}
@@ -65,7 +65,7 @@ We can formalize this as:
 \end{align}
 
 \paragraph{Time-homogeneous Markov chains}
-In an effort to simplify the problem of predicting the behavior of the average bike we will be using time-homogeneous Markov chains.
+In an effort to simplify the problem of predicting the behavior of the average bike, we will be using time-homogeneous Markov chains.
 A Time-homogeneous Markov chain can also be thought of as a time-independent chain.
 In other words, predicting the next state of the chain can be done without knowledge of the time:
 \begin{equation}
@@ -77,14 +77,14 @@ A time-homogeneous Markov chain is very simple to represent (as is described bel
 For these reasons we have chosen to simplify our Markov chain models.
 
 This simplification will mean that we are unable to determine a difference in behavior at different times in the process.
-Thus we cannot, using a single model, represent different behaviors of the average bike in the morning/afternoon or in different days of the week.
-To allow for this distinction multiple models could be generated, representing different datasets.
+Thus we cannot, using a single model, represent different behaviors of the average bike in the morning/afternoon, or in different days of the week.
+To allow for this distinction, multiple models could be generated, representing different datasets.
 The system would then simply select the model that corresponds to the current time-of-day/day-of-week.
 
 \paragraph{Mathematical representation}\label{markov:math}
-From the above definitions we have that a Markov chain $\mathcal{M}$ can be described as a function $\tau_M:S\times S \rightarrow [0;1]$ such that $\tau_M(x, y) = \mathbb{P}(X_{n + 1} = y \mid X_n = x)$.
-As the chain is independent of time we can represent it using a single matrix containing all its transitional probabilities.
-Below is a generic representation of such a matrix:
+From the above definitions, we have that a Markov chain $\mathcal{M}$ can be described as a function $\tau_M:S\times S \rightarrow [0;1]$, such that $\tau_M(x, y) = \mathbb{P}(X_{n + 1} = y \mid X_n = x)$.
+As the chain is independent of time, we can represent it using a single matrix, containing all its transitional probabilities.
+Here is a generic representation of such a matrix:
 
 \begin{equation}\label{markov:matrix}
 \begin{bmatrix}
@@ -95,22 +95,22 @@ Below is a generic representation of such a matrix:
 \end{bmatrix}
 \end{equation}
 
-This is a simple representation that allows us to predict probabilities multiple steps into the future by applying the same matrix to some initial probability distribution multiple times.
+This is a simple representation, which will allow us to predict probabilities multiple steps into the future, by applying the same matrix to some initial probability distribution multiple times.
 
 \paragraph{Visual representation}
-Markov chains are typically represented using a DAG\footnote{Directed Acyclic Graph} with weight on its edges.
-In such a graph nodes represent states and the weight of edges represent the probability of transitioning between two states.
+Markov chains are typically represented using a DAG\footnote{Directed Acyclic Graph} with weights on the edges.
+In such a graph, nodes represent states and the weight of edges represent the probability of transitioning between two states.
 This is a direct mapping of the matrix described above.
 
-In \Cref{markov:model:simple} we give an example of a Markov chain that models an average city bike traveling back and forth between two hotspots $\{h_1, h_2\}$.
-From the weights on the diagram edges we can read the time-homogeneous probability of moving from one state to another (or staying in the same state).
-For instance, a Markov chain currently in $h_1$ has probability $0.7$ of transitioning to $h_1$ (staying) and probability $0.3$ of transitioning to $h_2$.
+In \Cref{markov:model:simple}, we give an example of a Markov chain that models an average bike, travelling back and forth between two hotspots $\{h_1, h_2\}$.
+From the weights on the diagram edges, we can read the time-homogeneous probability of moving from one state to another (or staying in the same state).
+For instance, a bike currently in $h_1$ has probability $0.7$ of transitioning to $h_1$ (staying) and probability $0.3$ of transitioning to $h_2$.
 
-In the diagram there are no edges with weight zero.
+In the diagram, there are no edges with weight zero.
 Any such edges would represent transitions with zero probability (\textit{``impossible``} transitions).
 Had there been edges with weight zero, they could have been removed to simplify the graph.
 This also means that any \textit{missing} edge between two states $s_1$ and $s_2$ implies that $\tau(s_1, s_2) = 0$.
-Examples of this can be seen in \Cref{markov:model:complex} where states $D_1$ and $D_2$ are not connected.
+An example of this can be seen in \Cref{markov:model:complex}, where states $d_1$ and $d_2$ are not connected.
 
 \subsection{Modeling the average bike}\label{markov:modeling}
 Throughout this section the average bike has been modeled using a state set consisting of hotspots and an associated transition function (represented using a probability matrix).
