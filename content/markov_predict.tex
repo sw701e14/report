@@ -130,12 +130,12 @@ $$
 
 \subsection{Accumulating probability}
 The previous section described how to determine the probabilities of bikes being in a specific state.
-However the user of \projectname{}\alexander{Think of a better project name.} does not seek to know what the probability, of a bike being at a station at a certain time, is.
+However, the user of \projectname{}\alexander{Think of a better project name.} does not seek to know what the probability of a bike being at a station at a certain time is.
 Instead the user should be informed about how long he should wait at a hotspot before a bike arrives.
 
 Because of this, we wish to alter the model to reflect a user waiting at a hotspot.
 We achieve this by altering the transition probabilities of the model.
-Let $\tau'_M(x,y)$ describe the probability of the average bike transitioning from state $x \in S$ to state $y \in S$ when the user is waiting for a bike at hotspot $z \in H$.
+Let $\tau'_M(x,y)$ describe the probability of the average bike transitioning from state $x \in S$ to state $y \in S$, when the user is waiting for a bike at hotspot $z \in H$.
 Then we have that:
 $$\tau'_M(x, y) = \left\{
   \begin{array}{l l}
@@ -143,5 +143,5 @@ $$\tau'_M(x, y) = \left\{
     0 & \text{if $x = z \wedge y \neq z$}\\
     \tau_M(x, y) &
   \end{array} \right.$$
-Using this function bikes will never leave hotspot $z$ \textit{while the user is waiting}.
-This better mimics the process of waiting for a bike; rather than the probability that a bike is present when bikes continuously leave the hotspot.
+Using this function, bikes will never leave hotspot $z$, \textit{while the user is waiting}.
+This better mimics the process of waiting for a bike; rather than the probability that a bike is present, as bikes continuously leave the hotspot.
