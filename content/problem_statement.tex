@@ -26,7 +26,8 @@ Additionally, certain limitations and requests were made by Aalborg Kommune, col
 \subsection{Scope}
 Due to the limited time and project members restrictions will be set, to remove focus from certain problems.
 
-\paragraph{Making short stops} will be completely overlooked in this project, as any solution to this problem would require some added locking mechanisms, which would conflict with the limitations set by Aalborg Kommune.\bruno{Men det løser vi jo?}
+\paragraph{Making short stops} is not solved directly as the only solution we see can directly addresses the problem is the use of a locking mechanism.
+This would conflict with the limitations set by Aalborg Kommune.
 
 \paragraph{Statistics about usage} is something Aalborg Kommune also requested.
 This, however, is deemed too far from the initial problem, as we won't be able to get any significant data without testing it on the actual bikes.
@@ -45,8 +46,10 @@ By combining these two things, we want to improve on the problems with the curre
 \subparagraph{\ref{pr_few}: Too few stations} is automatically handled by the generation of hotspots.
 Whenever an area is a popular place to be going from/to, a hotspot should emerge and reflect this.
 
-\subparagraph{\ref{pr_stops}: Making short stops} was deemed out of scope.
-\mikkel{Is this not indirectly improved upon by removing stations?}
+\subparagraph{\ref{pr_stops}: Making short stops} is improved upon but not solved.
+If a user stops in a hotspot he can use the system to estimate how long he will have to wait before a new bike arrives at that particular hotspot.
+From this information he can decide whether to leave the bike or not (or possibly how long he should spend in a shop etc.).
+This is an improvement over the current system that provides no such information, however it does not solve the problem entirely.
 
 \subparagraph{\ref{pr_nobikes}: No bikes at station} is handled by locating the exact location of an available bike, or looking up nearby hotspots.
 
