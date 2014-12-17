@@ -72,18 +72,19 @@ This distribution will be used to determine future probability distributions of 
 In the following section, this example will be revisited, providing such information.
 
 \subsection{Predicting from the initial distribution}
-Having represented the probability distributions as vectors we can multiply them with the transitional matrices described in \cref{markov} and \cref{sec:generatemarkov}.
+Having represented the probability distributions as vectors, we can multiply them with the transitional matrices described in \cref{markov} and \cref{sec:generatemarkov}.
+\mikael{Mener du den matrix du definere sidst i 3.1?}
 Such a multiplication would result in a vector with the probability distribution of the individual states after one time-step.
 In other words:
 \begin{equation}
 P_{t+1} = M  P_t
 \end{equation}
-Using this definition we can define $P_1$ from $P_0$.
-To do this we look at a single value in the vector $P_1$; $P_1(h_0)$.
+Using this definition, we can define $P_1$ from $P_0$.
+To do this, we look at a single value in the vector $P_1$; $P_1(h_0)$.
 The remaining values in the vector are defined in a similar manor.
 
-Using the probability matrix from \Cref{markov:matrix-ordered} on page \pageref{markov:matrix-ordered} we can determine $P_1(h_0)$.
-Additionally we can use \Cref{markov:vector:init} to further specify the value:
+Using the probability matrix from \Cref{markov:matrix-ordered}, page \pageref{markov:matrix-ordered}, we can determine $P_1(h_0)$.
+Additionally, we can use \Cref{markov:vector:init} to further specify the value:
 $$
 P_1(h_0) = 
 \frac{\lvert B_0(h_0) \rvert}{\lvert B \rvert}
@@ -91,15 +92,15 @@ P_1(h_0) =
 \frac{\lvert B_0(d_n) \rvert}{\lvert B \rvert}
 \cdot \tau_M(d_n, h_0)
 $$
-This will then represent the probability that the average bike is in state $h_0$ after one time-step.
-As this models a single average bike we can multiply the probability with the number of bikes in order to determine the expected number of bikes in $h_0$ at time 1:
+This will then represent the probability, that the average bike is in state $h_0$ after one time-step.
+As this models a single average bike, we can multiply the probability with the number of bikes, in order to determine the expected number of bikes in $h_0$ at time 1:
 
 $$B_1(h_0) = P_1(h_0) \cdot |B|$$
 
 This definition of $B_1(h_0)$ can be simplified by removing the $|B|$ from each term.
 This gives a simple definition of the value, that can be easily shown to be true for all $B_1(s) \mid s \in S$.
 Thus we can use this process to retrieve $B_1$ as a vector.
-Using a similar argument we can also show that the same rule applies to all $B_j$.
+Using a similar argument, we can also show that the same rule applies to all $B_j$.
 
 $$
 B_1(h_0) = 
@@ -109,12 +110,12 @@ B_1(h_0) =
 \cdot \tau_M(d_n, h_0)
 $$
 
-Because of this predictions can be handled by working directly from the initial distribution of bikes, instead of the distribution of probabilities.
+Because of this, predictions can be handled by working directly from the initial distribution of bikes, instead of the distribution of probabilities.
 We can then directly calculate the expected distribution of bikes in future steps of the Markov chain.
 
 \paragraph{An example}
-Given the distribution of bikes from page \pageref{markov:example-vector} and the transition probabilities given in \Cref{markov:model:complex} on page \pageref{markov:model:complex} we can estimate the location of the 16 bikes in the example system.
-The initial distribution of bikes $(8, 2, 6, 0)$, which multiplied by the matrix yield the following results:
+Given the distribution of bikes, page \pageref{markov:example-vector}, and the transition probabilities given in \Cref{markov:model:complex}, page \pageref{markov:model:complex}, we can estimate the location of the 16 bikes in the example system.
+The initial distribution of bikes $(8, 2, 6, 0)$ multiplied by the matrix yield the following results:
 $$
 (8, 2, 6, 0)
 \begin{bmatrix}
