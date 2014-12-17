@@ -1,10 +1,11 @@
 \section{Convex Hull}\label{convex_hull}
 In order to check whether a location is within a hotspot, we need to represent hotspots as something different than a cluster of locations.
 Instead of doing this with a simple geometrical shape, as this could misrepresent complexly shaped hotspots, we represent a hotspot as a polygon by applying convex hull to the clustered locations.
+\mikkel{A convex hull is a misrepresentation of a complex shape.}
 This way we reduce the amount of locations needed to represent a hotspot, and without any loss of information.
 
 The following definition of convex hull is based on \citet[section 33.3]{aadbook}.
 
-Given a set of points, the smallest convex polygon, for which each of the points in the set are either on the border of or inside the polygon, is called the convex hull\cite[33.1-5]{aadbook}.
-The convex hull is represented by a set of points.
-Graham-Scan\cite[page 1031]{aadbook}, an algorithm for finding the convex hull, was implemented.
+Given a set of points, the smallest convex polygon, for which each of the points in the set are either on the border of or inside the polygon, is called the convex hull of the polygon\cite[33.1-5]{aadbook}.
+A convex hull is represented by a set of points.
+We used an implementation of the Graham-Scan\cite[page 1031]{aadbook} algorithm to identify convex hulls for hotspots.

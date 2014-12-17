@@ -13,10 +13,11 @@ The purpose of the tests we have designed is to check if the system can produce 
 In order to generate test data, we have created a method for simulating real world data. 
 The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing certain destinations.
 This makes it possible to create a data set, where it is possible to predict the expected result.
+\mikkel{Jeg synes ikke det er helt tydeligt at man kan sætte probability for enkelte adresser. ''adjust the probability of the system''}
 
 \paragraph{What to test}
 We want to test if the system works as specified in the problem statement.
-The problems we want to focus on testing are \ref{pr_few}: \textit{Too few stations} and \ref{pr_arrive}: \textit{No way of knowing when a bike will arrive}. 
+The problems we want to focus on in testing are \ref{pr_few}: \textit{Too few stations} and \ref{pr_arrive}: \textit{No way of knowing when a bike will arrive}. 
 The full problem statement can be found in \cref{problem_statement}.
 We want to test the following parts of our system in order to test the two problem statement items:
 
@@ -26,6 +27,7 @@ We want to test the following parts of our system in order to test the two probl
 \end{itemize}
 
 We test the hotspot creation in order to check if hotspots are generated where there is bike activity, and this to check if the created hotspots will work as a stand in for the old stations.
+\mikkel{''and this to check''}
 This corresponds to item \ref{pr_few} in the problem statement.
 
 We test the Markov chains in order to figure out if our method of generating Markov chains give proper values for using when predicting the behavior of the bikes.
@@ -38,8 +40,10 @@ Thus, we want to test whether or not the hotspots are generated as expected.
 
 \paragraph{Test data}
 For this test, we have constructed a data set, which consists of two addresses and their corresponding GPS coordinates.
-We will then generate the hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
+\mikkel{Jeg synes vi skal inkludere addresserne her, for klarhedens skyld.}
+We will then generate hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
 Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
+\mikkel{Hvorfor er støj en grund til at der kun laves clusters på de adresser?}
 
 \paragraph{DBSCAN parameters}
 The clustering algorithm chosen, DBSCAN explained in \Cref{clustering:DBSCAN}, expects two parameters, $eps$ and $MinPts$.

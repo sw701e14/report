@@ -6,6 +6,7 @@ This section is based on \citet{pang2006introduction}.
 \subsection{Cluster Analysis}
 Cluster analysis is a technique used to group data objects based only on the information the data itself contains.
 The requirement for membership in a certain cluster is often vague, as several acceptable clusterings can be made on the same dataset.
+\mikkel{What is an acceptable clustering?}
 An example of this can be seen in \Cref{clusterings}, where the same dataset has been clustered in three radically different ways, even though all three could be regarded as correct, depending on the purpose of the clustering.
 The clustering therefore depends on the dataset and its purpose.
 
@@ -19,6 +20,7 @@ The clustering therefore depends on the dataset and its purpose.
 \subsection{Types of clusterings}
 
 A clustering is a collection of clusters.
+\mikkel{Clusterings has been mentioned before this definition of the word.}
 This section will introduce the terminology used to describe clusterings. 
 
 \paragraph{Hierarchical versus partitional}
@@ -66,6 +68,7 @@ These clusters may have different size, depending on the physical properties of 
 
 The purpose of the clustering is to find the areas where the bicycles are being used the most, in order to make predictions on when a bike will arrive in those areas.
 \mikael{Bør det ikke benævnes som hotspot her, da vi har defineret hotspots?}
+\mikkel{Enig. Vi burde have en præcis definition og så anvende den efterfølgende.}
 
 Based on this description we need a hierarchical, exclusive, partial and density based clustering.
 
@@ -73,6 +76,7 @@ Hierarchically, because it makes it easy to locate what cluster a point belongs 
 \mikael{Er det her ikke forkert, har vi ikke en partitional clustering?}
 \stefan{vi har ikke hierarkisk, men ud fra vores data ville det sandsynligvis være det bedste valg, da det er lettere at finde ud af hvilket cluster et punkt er i.
 (jeg har omformuleret argumentet en smule siden Mikaels kommentar)}
+\mikkel{Skal vi ikke bare skrive det om til at passe med det vi faktisk gør?}
 
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
@@ -99,11 +103,13 @@ Hierarchical clustering can be performed either by starting at the top of the tr
 We would like our clustering to be hierarchical, but this algorithm does requirement for a density based clustering.
 \mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
 \stefan{jeg har opdateret konklusionen, men jeg ved ikke hvordan vi argumenterer for at density er vigtigere end hierarki}
+\mikkel{Som jeg læser det her lægger det op til complete clustering. Er det ikke problematisk da vi vil forvente at have støj i vort data.}
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}
 DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
 
 \stefan{der mangler måske et sted hvor der står at DBSCAN er superduper, inden vi begynder at gå i detaljer med den?}
+\mikkel{Jeg synes godt vi kan benytte minimum nearest neighbours som et argument for DBSCAN.}
 
 \paragraph{Center based point density}
 There exists different methods of determining density in a set of data points.
@@ -114,6 +120,7 @@ The exact definition of the three types of points are as follows\cite{pang2006in
 \begin{description}
 \item[Core point] These points have at least $ MinPts $ points in a radius of $ eps $ from it.
 Here, $ MinPts $ is the minimal number of points in the vicinity of a point, regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
+\mikkel{Jeg synes beskrivelsen af core point er lidt rodet/uklar}
 
 \item[Border points] A point that is not a core point, but is in the neighbourhood of a core point. 
 One point can be a border point to several core points.
@@ -146,6 +153,7 @@ DBSCAN(D, eps, MinPts)\\
 	}
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
 \end{algorithm}
+\mikkel{Skal vi gøre noget ved algoritmen ift notationen så vi undgår den uklarhed der er på wiki siden?}
 
 \begin{algorithm}
 expandCluster(P, NeighborPts, C, eps, MinPts)\\
@@ -173,5 +181,8 @@ regionQuery(P, eps)\\
 
 \subsection{Summary} Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.
+\mikkel{Jeg ville gerne have noget af det her nævnt inden vi går i detaljer med DBSCAN.
+Jeg synes godt vi kan afslutte den her section med en subsection of DBSCAN, efter at have sagt at det er den vi vil bruge.}
 The hierarchical need is covered by saving the clusters in a tree data structure\footnote{This was not implemented, see \Cref{ref:ods}.}.
 \mikael{Samme konflikt som tidligere nævnt.}
+\mikkel{Kan vi ikke bare sige hvad vi har gjort fremfor hvad vi gerne ville have gjort?}
