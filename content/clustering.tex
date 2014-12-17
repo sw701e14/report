@@ -37,22 +37,22 @@ If a weight is used to describe the membership of sets, the clustering is said t
 A \textit{complete} clustering has every object assigned to a cluster, while a \textit{partial} clustering can have outliers; objects that do not belong to any cluster.
 
 \subsection{Types of clusters}
-The idea of a cluster depends on the kind of data set it is applied on.
-In this section the different notions of a cluster will be presented
+The purpose of a cluster depends on the kind of data set it is applied on.
+In this section, the different notions of a cluster will be presented.
 
 \paragraph{Well separated}
-A cluster is a set of objects where the objects that are similar are grouped in a cluster. 
+A cluster is a set of objects, where the objects that are similar are grouped in a cluster. 
 Sometimes a threshold is used to define a minimum similarity. 
-All objects in a cluster needs to be at least as similar to the other objects in a cluster for an object to be in the cluster.
+All objects in a cluster need to be at least as similar to all other objects in the cluster, for an object to be in the cluster.
 
 \paragraph{Prototype based}
-An object is placed in clusters based on prototypes that defines the clusters.
-An object is placed in the cluster where the object is more similar to the prototype of the cluster than to the prototype of any other cluster.
+Objects are placed in clusters based on the prototypes that define the clusters.
+An object is placed in the cluster where the object is more similar to the prototype of that cluster, than to the prototype of all other clusters.
 
-These prototypes can be either the average value of a cluster or the most representative object of a cluster.
+These prototypes can be either the average value of a cluster, or the most representative object of a cluster.
 
 \paragraph{Graph based}
-If the data can be represented as a graph with the objects as nodes, clusters can be defined as connected components in the graph.
+If the data can be represented as a graph, with the objects as nodes, clusters can be defined as connected components in the graph.
 
 \paragraph{Density based}
 A cluster is defined by the density of the data objects.
