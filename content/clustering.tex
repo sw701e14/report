@@ -96,8 +96,9 @@ Hierarchical clustering can be performed either by starting at the top of the tr
 \textit{Agglomerative hierarchical clustering} starts by considering all points as being in individual clusters, then generating the hierarchy by merging the closest clusters.
 \textit{Divisive hierarchical clustering} starts by considering all points as being in a single cluster, then continues by splitting the clusters at each step.
 
-We have no need for a hierarchical division of our clusters, and this algorithm is therefore not appropriate for our use.
+We would like our clustering to be hierarchical, but this algorithm does requirement for a density based clustering.
 \mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
+\stefan{jeg har opdateret konklusionen, men jeg ved ikke hvordan vi argumenterer for at density er vigtigere end hierarki}
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}
 DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
