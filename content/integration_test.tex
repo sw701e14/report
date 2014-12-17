@@ -116,7 +116,7 @@ $ h_4 $ & &   &   &   &   &   &  60,0 &  40,0\\
 $ d_4 $ & {\color{purple}7,7} &   &   {\color{purple}6,8} &   &   {\color{purple}6,9} &   &   0,0 &  78,5\\
 \hline
 \end{tabular}
-\caption{Results of the test with an even distribution}\label{test_even}
+\caption{Results of the test with an even distribution. The colored sets of numbers indicate the probabilities of each departure state going to each of the other hotspots.}\label{test_even}
 \end{figure}
 
 The numbers are normalized so they add up to 100 \% and can be seen on \cref{even_results} where the expected results are in the left table and the actual results are in the right table.
@@ -182,7 +182,7 @@ The resulting Markov chain after this simulation can be seen on \Cref{test_uneve
 		$ d_4 $ & {\color{purple}7,4} &   &  {\color{purple}22,8} &   &   {\color{purple}5,7} &   &   0,1 &  64,1\\
 		\hline
 	\end{tabular}
-	\caption{Results of the test with an uneven distribution}\label{test_uneven}
+	\caption{Results of the test with an uneven distribution. The colored sets of numbers indicate the probabilities of each departure state going to each of the other hotspots.}\label{test_uneven}
 \end{figure}
 
 It is not possible to translate the input addresses to indexes in the Markov chain because the Markov chain is based on the clusters found by the DBSCAN algorithm.
