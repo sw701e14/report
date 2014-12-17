@@ -1,14 +1,14 @@
 This chapter will reflect on how the developed system could be improved.
 
 \section{Optimized Data Structure}\label{ref:ods}
-To optimize the API, a more complex data structure should be introduced.
-E.g. the process of checking whether bike locations are within a hotspot would be improved.
-Because as of now the implementation uses a list, which means that every element is accessed in worst case.
-Therefore using another data structure would mean that some parts could be skipped.
+As mentioned in \cite{data_purporse} we would have like a hierarchical clustering because it would have made it easier to check whether bike is within a hotspot.
+The current implementation uses a list, which means that every element is accessed in worst case.
+Using a data structure on top of the DBSCAN clustering algorithm would mean better performance in this regard.
 R-trees\cite[Section 25.3.5.3]{database_system_concepts} is a data structure that could be chosen for that purpose.
 
 \section{Model Updating}\label{reflection:model_updating}
-There are some issues regarding the process of updating the model(\Cref{sec:generatemarkov}) and how often it should be updated.
+There are some issues regarding the process of updating the model(\Cref{ref?}) and how often it should be updated.
+\stefan{hvor skal det referere til? Det er jo både hotspots og markov}
 There are many possibilities regarding this, because it is a rather complex matter.
 Below is a list trying to show the factors that influence the model:
 \begin{itemize}
