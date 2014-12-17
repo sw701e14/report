@@ -1,23 +1,23 @@
 \section{Modeling Behavior}\label{modelbehavior}
-As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \Cref{problem_statement}), it must be able to answer questions such as: 
+As the purpose of \projectname{} is to be able to predict the movement of bikes at a given time (see \Cref{problem_statement}, Problem \ref{pr_arrive}), it must be able to answer questions such as: 
 
 \begin{itemize}
 \item How much time will it take before a bike will be in my vicinity?
 \end{itemize}
 
-The location of the bikes are abstracted by creating hotspots, as described in \Cref{hotspots}.
-In actuality, the location of bikes is modeled to be more complex as will be further explored in \Cref{markov:modeling}.
-However the theory and methods described in the following sections apply regardless.
+The locations of the bikes are abstracted by creating hotspots, as described in the previous chapter.
+In actuality, the location of bikes is modeled to be more complex, as will be further explored in \Cref{markov:modeling}.
+However, the theory and methods described in the following sections apply regardless.
+\mikael{Er ikke sikker på jeg forstår denne paragraf.}
 
-By abstracting the locations to be hotspots the above question can be rephrased as: 
+By abstracting the locations to be hotspots, the above question can be rephrased as: 
 
 \begin{itemize}
 \item How much time will it take before a bike will be \emph{in a given hotspot}?
 \end{itemize}
 
-
 To answer this question we need to model the behavior of an \emph{average} bike.
-In other words, we need to provide a formal description of the movement of a single bike representing the movement, on average, of all bikes.
+In other words, we need to provide a formal description of the movement of a single bike, representing the movement, on average, of all bikes.
 
 \subsection{Abstraction Model}
 As the system is based on anonymous usage no user sensitive information is collected.
