@@ -45,9 +45,8 @@ For this test, we have constructed a data set, which consists of two addresses:
 \end{itemize}
 and their corresponding GPS coordinates.
 We will then generate hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
-Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
-\mikkel{Hvorfor er støj en grund til at der kun laves clusters på de adresser?}
-\mikkel{WORKWORK: Der er støj - derfor bliver clusters større end 1 punkt.}
+Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should form a cloud of GPS locations around the address which will then be clustered.
+
 
 \paragraph{DBSCAN parameters}
 The clustering algorithm chosen\footnote{DBSCAN explained in \Cref{clustering:DBSCAN}} expects two parameters, $eps$ and $MinPts$.
@@ -55,9 +54,8 @@ Because real data is not available the chosen values for the parameters are base
 
 The $MinPts$ parameter was set to 4 as suggested by \citet[Page 529]{pang2006introduction}.
 For the other parameter, $eps$, 15 meters was chosen.
-This value was chosen because a GPS receivers accuracy is 15 meters according to \citet{garmingps}.
-Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 meters away from its real location.
-\mikael{Argumenter for at det giver mening ift. test da vi regner med at ramme samme punkt}
+This value was chosen because of the perturbation, as described in \Cref{inputsimulation:pointgeneration}, which was added to all simulated points.
+When clustering, we are ensured that the bike locations which are based on the same address will be grouped, as the perturbation does not exceed $eps$.
 
 \paragraph{Result}
 The result has been visualized and can be seen in \Cref{fig:test:clustering}.
@@ -107,7 +105,7 @@ The data was generated to simulate a 15 hour period with 100 bikes and 4 possibl
 The results for the test can be seen in \Cref{test_even}.
 
 In the result it is seen that some inaccuracies have occurred since there are some entries with values that, although very low, are not zero as expected.
-\mikkel{WORKWORK: Vi mangler et eksempel på sådan en værdi.}
+An example of this inaccuracy is ($ h_1, h_2 $) which is 0.3 even though it should be impossible to get from $ h_1 $ to $ h_2 $ in only one step.
 
 The important numbers are those that tell how a bike act when in a departure state.
 These are the numbers that indicate how the routes are expected to be chosen.
@@ -133,7 +131,6 @@ $ d_4 $ & {\color{purple}7,7} &   &   {\color{purple}6,8} &   &   {\color{purple
 \hline
 \end{tabular}
 \caption{Results of the test with an even distribution. A colored set of numbers indicates the probabilities of a departure state going to each of the other hotspots.}\label{test_even}
-\mikkel{Jeg synes ikke beskrivelsen af farver er klar nok}
 \end{figure}
 
 The numbers are normalized such that they add up to 100 \% and can be seen on \cref{even_results} where the expected results are in the left table and the actual results are in the right table.
@@ -146,10 +143,10 @@ The numbers are normalized such that they add up to 100 \% and can be seen on \c
 			\hline
 			& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
 			\hline
-			$ d_1 $ & $ d $ & 33.33 & 33.33 & 33.33\\
-			$ d_2 $ & 33.33 & $ d $ & 33.33 & 33.33\\
-			$ d_3 $ & 33.33 & 33.33 & $ d $ & 33.33\\
-			$ d_4 $ & 33.33 & 33.33 & 33.33 & $ d $\\
+			$ d_1 $ & $  $ & {\color{red}33.33} & {\color{red}33.33} & {\color{red}33.33}\\
+			$ d_2 $ & {\color{blue}33.33} & $  $ & {\color{blue}33.33} & {\color{blue}33.33}\\
+			$ d_3 $ & {\color{orange}33.33} & {\color{orange}33.33} & $  $ & {\color{orange}33.33}\\
+			$ d_4 $ & {\color{purple}33.33} & {\color{purple}33.33} & {\color{purple}33.33} & $   $\\
 			\hline
 		\end{tabular}
 		
@@ -159,23 +156,18 @@ The numbers are normalized such that they add up to 100 \% and can be seen on \c
 			\hline
 			& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
 			\hline
-			$ d_1 $ & $ d $ & 33.85 & 32.68 & 33.46\\
-			$ d_2 $ & 31.01 & $ d $ & 36.08 & 32.9\\
-			$ d_3 $ & 31.39 & 33.92 & $ d $ & 34.68 \\
-			$ d_4 $ & 35.98 & 31.78 & 32.24 & $ d $\\
+			$ d_1 $ & $  $ & {\color{red}33.85} & {\color{red}32.68} & {\color{red}33.46}\\
+			$ d_2 $ & {\color{blue}31.01} & $  $ & {\color{blue}36.08} & {\color{blue}32.9}\\
+			$ d_3 $ & {\color{orange}31.39} & {\color{orange}33.92} & $  $ & {\color{orange}34.68} \\
+			$ d_4 $ & {\color{purple}35.98} & {\color{purple}31.78} & {\color{purple}32.24} & $   $\\
 			\hline
 		\end{tabular}
 	\end{tabular}
 	\caption{The expected proportions to the left and the resulting proportions to the right}\label{even_results}
-	\mikkel{WORKWORK: Fjern $d$?}
-	\mikkel{WORKWORK: Jeg synes vi skal bruge samme color-coding her som i den store tabel}
+
 \end{figure}
 
-As it can be seen from the results, the numbers look very reasonable considered that they were randomly generated. 
-The biggest deviation is the transition from $ d_4 $ to $ h_1 $ which is 7.95\% deviation. 
-\stefan{kan man konkludere mere på det?
-\mikkel{WORKWORK: Jeg synes vi skal droppe de 7.95\%. De giver ikke rigtig noget relevant information.
-Jeg tænker at vi bare kan skrive ''this is a reasonable result and one would expect it converge to 33.3\% as the set of test data is increased''}}
+As it can be seen from the results, the numbers look very reasonable. One would expect the numbers to converge to 33.3\% as the set of test data is increased.
 
 \subsubsection{Uneven distribution}
 Another test case is to weight one destination higher than the others.
@@ -222,10 +214,10 @@ The expected results are in the left table and the actual results are in the rig
 	\hline
 	 & $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
 	\hline
-	$ d_1 $ & $ d $ & 58.82 & 17.65 & 23.53\\
-	$ d_2 $ & 30 & $ d $ & 30 & 40\\
-	$ d_3 $ & 17.65 & 58.82 & $ d $ & 23.53\\
-	$ d_4 $ & 18.75 & 62.5 & 18.75 & $ d $\\
+	$ d_1 $ & $  $ & {\color{red}58.82} & {\color{red}17.65} & {\color{red}23.53}\\
+	$ d_2 $ & {\color{blue}30} & $  $ & {\color{blue}30} & {\color{blue}40}\\
+	$ d_3 $ & {\color{orange}17.65} & {\color{orange}58.82} & $  $ & {\color{orange}23.53}\\
+	$ d_4 $ & {\color{purple}18.75} & {\color{purple}62.5} & {\color{purple}18.75} & $  $\\
 	\hline
 \end{tabular}
 
@@ -235,43 +227,14 @@ The expected results are in the left table and the actual results are in the rig
 	\hline
 	& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
 	\hline
-	$ d_1 $ & $ d $ & 59.85 & 17.00 & 23.15\\
-	$ d_2 $ & 29.48 & $ d $ & 30.28 & 40.24\\
-	$ d_3 $ & 20.10 & 57.29 & $ d $ & 22.61 \\
-	$ d_4 $ & 20.61 & 63.51 & 15.88 & $ d $\\
+	$ d_1 $ & $  $ & {\color{red}59.85} & {\color{red}17.00} & {\color{red}23.15}\\
+	$ d_2 $ & {\color{blue}29.48} & $  $ & {\color{blue}30.28} & {\color{blue}40.24}\\
+	$ d_3 $ & {\color{orange}20.10} & {\color{orange}57.29} & $  $ & {\color{orange}22.61} \\
+	$ d_4 $ & {\color{purple}20.61} & {\color{purple}63.51} & {\color{purple}15.88} & $  $\\
 	\hline
 \end{tabular}
 \end{tabular}
 \caption{The expected proportions to the left and the resulting proportions to the right}\label{uneven_results}
 \end{figure}
 
-These results are a little more difficult to judge based on the tables, and a table with the deviations for each of the results have therefore been constructed in \cref{deviations}.
-
-\begin{figure}
-	\centering
-	\begin{tabular}{ | c | c c c c |}
-	\hline
-	& $ h_1 $ & $ h_2 $ & $ h_3 $ & $ h_4 $\\
-	\hline
-	$ d_1 $ & $ d $ & 1.75 & 3.68 & 1.61\\
-	$ d_2 $ & 1.73 & $ d $ & 0.93 & 0.6\\
-	$ d_3 $ & 13.88 & 2.60 & $ d $ & 3.01 \\
-	$ d_4 $ & 9.92 & 1.62 & 15.30 & $ d $\\
-	\hline
-\end{tabular}
-\caption{Deviations for the results of the unevenly distributed test} \label{deviations}
-\end{figure}
-
-The biggest deviations are the transitions from $ d_3 $ to $ h_1 $ and from $ d_4 $ to $ h_3 $ on 13.88\% and 15.30\% respectively.
-\mikkel{Som med forrige tabel så synes jeg ikke det giver mening at tale om deviations i procenter.
-Så vil afvigelserne være større for små tal.
-Jeg synes i det hele taget ikke det giver mening at se på afvigelsen på forholdet mellem fordelingen af sandsynlighed. Hvad repræsenterer de 13 og 15 procent?}
-
-These deviations are higher than the results for the evenly distributed test, but it is still reasonable considered the randomly generated data.
-\mikkel{De er vel kun større fordi vi fokuserer på procentvis afvigelse og fordi vi her har med mindre tal at gøre?}
-
-\subsubsection{Conclusion}
-This section has tested the validity of the Markov chains that are being used in our system.
-The results showed that there is up to 15\% deviation from the expected numbers, but considering that the data was randomly generated we consider this in an acceptable range.
-\mikkel{Jeg synes vi skal droppe procent-afvigelserne og så bare skrive at vi kunne se at det virkede fint nok \textit{''reasonable''}}
-\mikkel{Behøver vi en conclusion sektion? - NEJ!}
+These results are a little more difficult to judge based on the tables, but the numerical difference are at most 2.45 percentage points (from $ d_4 $ to $ h_1 $) which is regarded as a reasonable result.

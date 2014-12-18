@@ -2,11 +2,10 @@
 The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi}, which is an implementation of the Model-View-Controller architecture.
 In the architecture of \projectname{}, the web service is defined as a component of its own (see \Cref{arch:webservice}).
 
-\input{content/mvc}
-
-\paragraph{Resource Oriented Architecture}
-As described in \Cref{webservice:roa}, this architecture sets the ground rules for designing the API.
+As described in \Cref{webservice:roa}, ROA sets the ground rules for designing the API.
 These criteria are therefore upheld by the API.
+
+\input{content/mvc}
 
 \subsection{Resources}\label{webservice:resources}
 This section contains the resources designed and implemented in the web service.
@@ -14,25 +13,34 @@ Resources in the implementation are objects, containing named properties and sub
 Sub-resources are represented as simple objects, containing only its relative URL.
 Each resource is described following this structure:
 \begin{itemize}
-\item \textbf{URL} the URL of the resource
-\item \textbf{Properties} a property which can be accessed from this resource
-\item \textbf{Resources} the resource(s) which can be accessed from this resource
-\item \textbf{Methods} HTTP methods which can be used on that resource
-\item \textbf{Responses} HTTP status codes which could be returned by this resource
+\item \textbf{URL:} the URL of the resource
+\item \textbf{Properties:} a property which can be accessed from this resource
+\item \textbf{Resources:} the resource(s) which can be accessed from this resource
+\item \textbf{Methods:} HTTP methods which can be used on that resource
+\item \textbf{Responses:} HTTP status codes which could be returned by this resource
 \end{itemize}
 
 \subsection{The resources implemented:}
 % Command for displaying url, properties, and sub-resource of each resource
-\newcommand{\resource}[6]{\noindent \vfill \fbox{\begin{minipage}{\textwidth}\begin{description}
+\newcommand{\resource}[6]{\noindent \fbox{\begin{minipage}{\textwidth}
+\begin{multicols}{2}
+\begin{description}
 \item[URL:]{\texttt{#1}}
 \item[Properties:]{\texttt{#2}}
+\end{description}
+\end{multicols}
+\begin{description}
 \item[Resources:]{\texttt{#3}}
+\end{description}
+\begin{multicols}{2}
+\begin{description}
 \item[Methods:]{\texttt{#4}}
 \item[Responses:]{\texttt{#5}}
 \end{description}
+\end{multicols}
 {#6}
 \end{minipage}
-}\vfill }
+}\vspace{0.3cm}}
 
 \resource{/}{version}{availablebikes, hotspots, predictions}{GET}{200 OK}
 {The root path serves as the entry point for the API.
@@ -42,11 +50,9 @@ More importantly, it contains a sub-resource for each main resource.}
 \resource{/availablebikes}{count}{List of availablebikes}{GET}{200 OK}
 {This resource contains a list of all \texttt{availablebike} resources, along with a count of how many there are.}
 
-
 \resource{/availablebikes/\{bikeId\}}{latitude, longitude}{}{GET}{200 OK, 404 Not Found}
 {This is the actual \texttt{availablebike} resource.
 In case a client tries to request a bike that is not available, it will be met with a \texttt{404 Not Found} response.}
-
 
 \resource{/hotspots}{hotspots}{}{GET}{200 OK}
 {This resource returns a list of all the hotspot resources in the system.}
@@ -55,11 +61,9 @@ In case a client tries to request a bike that is not available, it will be met w
 {This resource returns the points the make up the convex hull of a single hotspot.
 In case a client tries to request a hotspot that is not available, it will be met with a \texttt{404 Not Found} response.}
 
-
 \resource{/prediction}{}{}{GET}{200 OK}
 {This is the prediction resource.
 When a client wants to know when a bike arrives at a hotspot this resource can be used.}
 
-\alexander{Ret ALLE (hele rapporten) således der ikke bliver brugt paragraph som en del af sætningen. Brug description i stedet for.}
-\alexander{Ret layout for alle API ''kasserne''.}
+\alexander{Se og vurder om API Kasserne nu er ok.}
 

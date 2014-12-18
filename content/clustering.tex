@@ -62,7 +62,7 @@ The data we need to cluster is all the static GPS locations.
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes (hotspots).
 These clusters may have different size, depending on the physical properties of the places the bikes are left.
 
-The purpose of the clustering is to find the areas where bicycles are left most often, in order to make predictions on when a bike will arrive in those areas.
+The purpose of the clustering is to find the areas where bikes are left most often, in order to make predictions on when a bike will arrive in those areas.
 These areas can then be considered our hotspots.
 
 Based on this description we need a partitional, exclusive, partial and density based clustering.
@@ -95,12 +95,22 @@ It should also be noted that hierarchical clustering is a complete clustering.
 For bikes used by many different users one would expect some noise in the data.
 Therefore it seems reasonable to only implement a partial clustering.
 
-\subsubsection{DBSCAN}\label{clustering:DBSCAN}\alexander{Write introduction to DBSCAN arguing that we choose it and why. See summary.}
-DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
+\subsubsection{DBSCAN}
+DBSCAN is a density based clustering algorithm that uses the notion of a number $ MinPts $ and a distance $ eps $ to determine if points are in the same cluster.
+If there are $ MinPts $ in a radius of $ eps $ of a point this point will be regarded as a cluster. 
+The rest of the cluster will be determined by expanding the cluster using the same definition on the neighboring points.
 
-\mikkel{Jeg synes godt vi kan benytte minimum nearest neighbours som et argument for DBSCAN.}
+This algorithm fits our need for a an exclusive, partitional and density-based clustering algorithm.
+It therefore seems to be the best candidate for our purpose.
 
-\paragraph{Center based point density}
+\subsubsection{Choice of clustering algorithm}\label{clustering:DBSCAN}
+Of the three presented algorithms, only the DBSCAN algorithm fits our needs as stated in the description of the algorithm.
+Thus we have chosen to implement this algorithm for our clustering.
+
+\noindent
+The DBSCAN algorithm will be described in more detail in the following.
+
+\paragraph{The DBSCAN algorithm}
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be determined whether a point is placed in a dense region (a core point), at the edge of a dense region (a border point), or is in a region with sparse density (a noise point).
@@ -122,50 +132,50 @@ One point can be a border point to several core points.
 \label{dbscan_point_types}
 \end{figure}
 
-Given these definitions, the algorithm is described in \Cref{dbscan-algo}\bruno{Ref til kilde. Kilden skal være slided for DBSCAN fra DIS.}.
+Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
 
-\alexander{Slå alle algoritmer sammen til én.}
-\alexander{Ret til korrekt notation og ret i forhold til wiki. regionQuery skal have data med som parameter.}
-\begin{algorithm}
+\begin{algorithm}[h]
+\SetAlgoNoEnd
 DBSCAN(D, eps, MinPts)\\
-	C = 0\\
-	\For {each unvisited point P in dataset D mark P as visited\\}
+	C $\leftarrow$ 0\\
+	\ForEach {unvisited point P in dataset D}
 	{
-		NeighborPts = regionQuery(P, eps)\\
+  	mark P as visited\\
+		NeighborPts $\leftarrow$ regionQuery(D, P, eps)\\
 		\eIf {sizeof(NeighborPts) < MinPts}{
 			mark P as NOISE\\
 		}
 		{
-			C = next cluster\\
-			expandCluster(P, NeighborPts, C, eps, MinPts)
+			C $\leftarrow$ next cluster\\
+			expandCluster(D, P, NeighborPts, C, eps, MinPts)
 		}
 	}
-\caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
-\end{algorithm}
+\caption{The DBSCAN clustering algorithm\cite{dbscanwiki}}\label{dbscan-algo}
+\phantom{ForLineBreak}
+\setcounter{AlgoLine}{0}
 
-\begin{algorithm}
-expandCluster(P, NeighborPts, C, eps, MinPts)\\
+expandCluster(D, P, NeighborPts, C, eps, MinPts)\\
 	add P to cluster C\\
-	\For {each point Pn in NeighborPts\\}
+	\ForEach {point Pn in NeighborPts}
 	{
-		\If{Pn is not visited\\}
+		\If{Pn is not visited}
 		{
 			mark Pn as visited\\
-			NeighborPtsn = regionQuery(Pn, eps)\\
+			NeighborPtsn $\leftarrow$ regionQuery(D, Pn, eps)\\
+					\If {sizeof(NeighborPtsn) $\geq$ MinPts}
+					{
+						NeighborPts $\leftarrow$ $ NeighborPts \cup NeighborPtsn $
+					}
 		}
-		\If {sizeof(NeighborPtsn) >= MinPts\\}
-		{
-			NeighborPts = $ NeighborPts \cup NeighborPtsn $\\
-			\If {Pn is not yet member of any cluster\\}
-			{add Pn to cluster C\\}
-		}
+					\If {Pn is not yet member of any cluster}
+					{
+						{add Pn to cluster C\\}
+					}
 	}
-\end{algorithm}%(Pn) is used instead of (p') in source (wiki).
+%(Pn) is used instead of (p') in source (wiki).
+\phantom{ForLineBreak}
+\setcounter{AlgoLine}{0}
 
-\begin{algorithm}
-regionQuery(P, eps)\\
-	\Return {all points within the eps-neighborhood of P (including P)\\}
+regionQuery(D, P, eps)\\
+	\Return {all points from D within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
-
-\subsection{Summary} Of the three presented algorithms, only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density-based clustering algorithm.
-We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.

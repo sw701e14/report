@@ -19,26 +19,27 @@ Additionally, certain limitations and requests were made by Aalborg Kommune, col
 \begin{enumerate}
 \item No renting/booking system
 \item No specific target user group
-\item Interested in statistics about usage
+\item Interested in statistics about usage \label{pr_stats}
 \item Short period usage
 \end{enumerate}
 
 \subsection{Scope}
 Due to the limited time and project members restrictions will be set, to remove focus from certain problems.
 
-\paragraph{Making short stops} is not solved directly as the only solution we see can directly addresses the problem is the use of a locking mechanism.
-This would conflict with the limitations set by Aalborg Kommune.
+\begin{description}
+\item[\ref{pr_stops}: Making short stops] is not solved directly, as the only solution we see can directly addresses the problem, is the use of a locking mechanism.
 
-\paragraph{Statistics about usage} is something Aalborg Kommune also requested.
+\item[Statistics about usage] is something Aalborg Kommune also requested.
 This, however, is deemed too far from the initial problem, as we won't be able to get any significant data without testing it on the actual bikes.
+\end{description}
 
 \subsection{Solution} \label{prob_statement:solution}
 We have chosen the solution with the same bikes as the current system, with the addition of a GPS receiver on each individual bike, and completely removing the stations and bike locks.
 This is due to the restrictions set by Aalborg Kommune, requesting a simple system, in order to accommodate the unspecified target user group.
 
+
 \paragraph{GPS receivers and Hotspots}\label{gpsreceiver}
-\alexander{GPS receivers?}
-The greatest changes to the current system is the addition of the GPS and the introduction of hotspots.
+The greatest changes to the current system is the addition of the GPS receivers and the introduction of hotspots.
 As we do not have access to real GPS receivers, we will base the rest of the report on the following assumptions about the GPS receivers on the bikes:
 Each bike is equipped with a GPS receiver which uses GPS satellites to calculate its location. The GPS receiver is presumed to send the location of the receiver, an accuracy stated in meters\footnote{the definition of accuracy is based on the output from \citet{followmee}} and a time stamp indicating the time of the reading.
 This collection of data will be referred to as a \emph{GPS location}	
@@ -48,21 +49,23 @@ Hotspots will serve as informal stations; areas of the map where bikes are often
 
 By combining these two things, we want to improve on the problems with the current system.
 
-\subparagraph{\ref{pr_stations}: Bikes left outside stations} is handled by GPS, as bikes and their location now can be found, no matter if it is at a hotspot or not.
+\begin{description}
+\item[\ref{pr_stations}: Bikes left outside stations] is handled by the GPS receivers, as bikes and their location now can be found, no matter if it is at a hotspot or not.
 
-\subparagraph{\ref{pr_few}: Too few stations} is automatically handled by the generation of hotspots.
+\item[\ref{pr_few} :Too few stations] is automatically handled by the generation of hotspots.
 Whenever an area is a popular place to be going from/to, a hotspot should emerge and reflect this.
 
-\subparagraph{\ref{pr_stops}: Making short stops} is improved upon but not solved.
+\item[\ref{pr_stops}: Making short stops] is improved upon but not solved.
 If a user stops in a hotspot he can use the system to estimate how long he will have to wait before a new bike arrives at that particular hotspot.
 From this information he can decide whether to leave the bike or not (or possibly how long he should spend in a shop etc.).
 This is an improvement over the current system that provides no such information, however it does not solve the problem entirely.
 
-\subparagraph{\ref{pr_nobikes}: No bikes at station} is handled by locating the exact location of an available bike, or looking up nearby hotspots.
+\item[\ref{pr_nobikes}: No bikes at station] is handled by locating the exact location of an available bike, or looking up nearby hotspots.
 
-\subparagraph{\ref{pr_arrive}: No way of knowing when a bike will arrive} will be handled by modeling bike behavior and predicting when a bike will be available at certain hotspot(s).
+\item[\ref{pr_arrive}: No way of knowing when a bike will arrive] will be handled by modeling bike behavior and predicting when a bike will be available at certain hotspot(s).
 
-\subparagraph{\ref{pr_broken}: Broken bikes} will not be directly handled, but it is possible to infer from looking at bike locations and detecting when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
+\item[\ref{pr_broken}: Broken bikes] will not be directly handled, but it is possible to infer from looking at bike locations and detecting when a bike has been immobile for a very long time, which could indicate that it either is too far away for anyone to pick it up, or broken.
+\end{description}
 
 \paragraph{Software}
 A software solution is to be developed, consisting of 3 main software components, and a shared database.
@@ -79,9 +82,9 @@ The \textit{Model Updater} uses the stored location data to generate a model use
 The \textit{Web Service} makes an API available, in order to make platform implementations to make the data available as specified in the requirements.
 A web service was chosen as to make the system as available as possible, due to the unspecific target user group.
 
-\subsection{New problems}
-In order to develop this system, with the addition of GPS and hotspots, new problems emerge.
-The following chapters will focus on the problems:
+\subsection{New problems} \label{new_problems}
+In order to develop this system, with the addition of GPS receivers and hotspots, new problems emerge.
+The following chapters will focus on these problems:
 
 \begin{itemize}
 \item Defining and identifying hotspots
