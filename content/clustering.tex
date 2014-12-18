@@ -103,10 +103,9 @@ We would like our clustering to be hierarchical, but this algorithm does require
 \stefan{jeg har opdateret konklusionen, men jeg ved ikke hvordan vi argumenterer for at density er vigtigere end hierarki}
 \mikkel{WORKWORK: Do this! Som jeg læser det her lægger det op til complete clustering. Er det ikke problematisk da vi vil forvente at have støj i vort data.}
 
-\subsubsection{DBSCAN}\label{clustering:DBSCAN}
+\subsubsection{DBSCAN}\label{clustering:DBSCAN}\alexander{Write introduction to DBSCAN arguing that we choose it and why. See summary.}
 DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
 
-\stefan{der mangler måske et sted hvor der står at DBSCAN er superduper, inden vi begynder at gå i detaljer med den?}
 \mikkel{Jeg synes godt vi kan benytte minimum nearest neighbours som et argument for DBSCAN.}
 
 \paragraph{Center based point density}
@@ -133,8 +132,9 @@ One point can be a border point to several core points.
 \end{figure}
 
 A visual description can be seen on \Cref{dbscan_point_types}.
-Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
+Given these definitions, the algorithm is described in \Cref{dbscan-algo}\bruno{Ref til kilde. Kilden skal være slided for DBSCAN fra DIS.}.
 
+\mikael{Slå alle algoritmer sammen til én.}
 \begin{algorithm}
 DBSCAN(D, eps, MinPts)\\
 	C = 0\\
@@ -151,7 +151,6 @@ DBSCAN(D, eps, MinPts)\\
 	}
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
 \end{algorithm}
-\mikkel{Skal vi gøre noget ved algoritmen ift notationen så vi undgår den uklarhed der er på wiki siden?}
 
 \begin{algorithm}
 expandCluster(P, NeighborPts, C, eps, MinPts)\\
@@ -179,8 +178,6 @@ regionQuery(P, eps)\\
 
 \subsection{Summary}\bruno{Hvordan argumentere vi for at bruge DBSCAN fremfor en algoritme der møder alle vores krav?} Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.
-\mikkel{Jeg ville gerne have noget af det her nævnt inden vi går i detaljer med DBSCAN.
-Jeg synes godt vi kan afslutte den her section med en subsection of DBSCAN, efter at have sagt at det er den vi vil bruge.}
 The hierarchical need is covered by saving the clusters in a tree data structure\footnote{This was not implemented, see \Cref{ref:ods}.}.
 \mikael{Samme konflikt som tidligere nævnt.}
 \mikkel{Kan vi ikke bare sige hvad vi har gjort fremfor hvad vi gerne ville have gjort?}
