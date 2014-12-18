@@ -95,13 +95,22 @@ It should also be noted that hierarchical clustering is a complete clustering.
 For bikes used by many different users one would expect some noise in the data.
 Therefore it seems reasonable to only implement a partial clustering.
 
-\subsubsection{DBSCAN}\label{clustering:DBSCAN}
-Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
-Thus we chose to implement this algorithm.
-The algorithm locates regions of high density separated by regions of low density.
-\alexander{Læs og vurder om intro til DBSCAN nu er acceptabel.}
+\subsubsection{DBSCAN}
+DBSCAN is a density based clustering algorithm that uses the notion of a number $ MinPts $ and a distance $ eps $ to determine if points are in the same cluster.
+If there are $ MinPts $ in a radius of $ eps $ of a point this point will be regarded as a cluster. 
+The rest of the cluster will be determined by expanding the cluster using the same definition on the neighboring points.
 
-\paragraph{Center based point density}
+This algorithm fits our need for a an exclusive, partitional and density-based clustering algorithm.
+It therefore seems to be the best candidate for our purpose.
+
+\subsubsection{Choice of clustering algorithm}\label{clustering:DBSCAN}
+Of the three presented algorithms, only the DBSCAN algorithm fits our needs as stated in the description of the algorithm.
+Thus we have chosen to implement this algorithm for our clustering.
+
+\noindent
+The DBSCAN algorithm will be described in more detail in the following.
+
+\paragraph{The DBSCAN algorithm}
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be determined whether a point is placed in a dense region (a core point), at the edge of a dense region (a border point), or is in a region with sparse density (a noise point).
@@ -123,7 +132,7 @@ One point can be a border point to several core points.
 \label{dbscan_point_types}
 \end{figure}
 
-Given these definitions, the algorithm is described in \Cref{dbscan-algo}\bruno{Ref til kilde. Kilden skal være slided for DBSCAN fra DIS.}.
+Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
 
 \alexander{Gennemse algoritmen og se om den er som ønsket.}
 \begin{algorithm}[h]
@@ -140,7 +149,7 @@ DBSCAN(D, eps, MinPts)\\
 			expandCluster(D, P, NeighborPts, C, eps, MinPts)
 		}
 	}
-\caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
+\caption{The DBSCAN clustering algorithm\cite{dbscanwiki}}\label{dbscan-algo}
 \phantom{ForLineBreak}
 \setcounter{AlgoLine}{0}
 
@@ -169,7 +178,3 @@ expandCluster(D, P, NeighborPts, C, eps, MinPts)\\
 regionQuery(D, P, eps)\\
 	\Return {all points from D within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
-
-\alexander{Hvad skal der stå i summary - Alt er allerede nævn i afsnittet? -Slet?}
-\subsection{Summary} Of the three presented algorithms, only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density-based clustering algorithm.
-We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.
