@@ -114,10 +114,9 @@ An example of this can be seen in \Cref{markov:model:complex}, where states $d_1
 \subsection{Modeling the average bike}\label{markov:modeling}
 Throughout this section, the average bike has been modeled using a state set, consisting of hotspots and an associated transition function (represented using a probability matrix).
 We presented a simple example of this, using only two hotspots, in \Cref{markov:model:simple}.
-Using this system, we will be able to make predictions on the path of the bike in the system.
-To do this we require an initial state for the system.
-\mikael{'System' virker meget forkert her.}
-\bruno{Hvad med 'model'}
+Using this model, we will be able to make predictions on the path of the bike in the system.
+To do this we require an initial state of the system.
+
 This state should represent the current (at the time of querying) location of the bikes in the system.
 Using this representation, we will be able to compute the probability that the bikes will be in some hotspot after a number of time steps.
 
