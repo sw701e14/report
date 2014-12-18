@@ -41,22 +41,16 @@ The data is then stored through the \texttt{Data Access} layer.
 \texttt{Model Agent}\footnote{An agent is defined as a program that invoke a given task, when a condition is satisfied, then returning to a sleeping state, until the condition is satisfied again.\cite{definitionagent}} is the macro component containing the \texttt{Model Updater} layer.
 The macro component's task is to generate and update the model in the system. 
 
-\paragraph{The Model Updater layer} handles the generation of the models.
-The generation of the model works as follows:
-Clusters are created based on the GPS data in the database \Cref{clustering:DBSCAN}.
-The convex hull of the clusters is determined and saved as the hotspots of the model.
-Markov chains are now created with these clusters as states \Cref{markov:create_model}.
-\mikael{Tilføj noget om truncate}
-\mikael{Fix referencer}
+\paragraph{The Model Updater layer} This is where the generation of the model is handled, which works as follows:\\
+Clusters are created based on the GPS data in the database.
+This is done using DBSCAN, as described in \Cref{clustering:DBSCAN}.
+The convex hull of each cluster is determined, by using Graham Scan, and these are saved to be used as hotspots.
+The Markov chain matrix is now created with these hotspots, and their departures, as was described in \Cref{markov:create_model}.
+
+Finally, since we have no further use of it, all already modelled GPS data is truncated from the database, with exception of the single latest location of all bikes.
 
 \subsection{Web Service}\label{arch:webservice}
-\texttt{Web Service} is the macro component containing the \texttt{Model}, \texttt{View}, and \texttt{Controller}.
-The task of the macro component is to provide a web service for users to interact with the system. (see \Cref{chap:webservice})
-\mikael{Lav referencer i stedet for at gentage}
-
-\paragraph{The Model} manages the application domain and handles data and actions possible for each data type.
-
-\paragraph{The View} manages the display of the \texttt{Model}.
-
-\paragraph{The Controller} handles the user interaction. Based on the user request, the \texttt{Controller} sends commands to the \texttt{Model} and \texttt{View}.
-\mikkel{Jeg synes allerede vi har beskrevet det her i MVC afsnittet. Kan vi ikke bare smide en reference?}
+Web Service is the macro component containing a Model, View, and Controller.
+The task of the macro component is to provide a web service, in order for users to interact with the system.
+The model, view, and controller of the web service were introduced in \Cref{??}.
+\mikael{Her mangler reference til når MVC er blevet flyttet.}

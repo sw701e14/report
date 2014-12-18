@@ -1,9 +1,12 @@
 This chapter will reflect on how the developed system could be improved.
 
 \section{Optimized Data Structure}\label{ref:ods}
-As mentioned in \cite{data_purporse} we would have like a hierarchical clustering because it would have made it easier to check whether bike is within a hotspot.
+In \cite{data_purporse} we mention that we would like a partitional clustering because we do not need hierarchies for hour purpose.
+While this is true it has since come to our attention that a hierarchical clustering would have made it easier to check whether bike is within a hotspot.
 The current implementation uses a list, which means that every element is accessed in worst case.
-Using a data structure on top of the DBSCAN clustering algorithm would mean better performance in this regard.
+A hierarchical clustering would not have this problem because it would be possible to traverse the hierarchy when looking for a point.
+
+Using a data structure on top of the DBSCAN clustering algorithm would be a possible improvement to the current implementation.
 R-trees\cite[Section 25.3.5.3]{database_system_concepts} is a data structure that could be chosen for that purpose.
 
 \section{Model Updating}\label{reflection:model_updating}
