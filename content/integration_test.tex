@@ -166,10 +166,8 @@ The numbers are normalized such that they add up to 100 \% and can be seen on \c
 As it can be seen from the results, the numbers look very reasonable considered that they were randomly generated. 
 The biggest deviation is the transition from $ d_4 $ to $ h_1 $ which is 7.95\% deviation. 
 \stefan{kan man konkludere mere på det?
-\mikkel{Jeg synes vi skal droppe de 7.95\%. De giver ikke rigtig noget relevant information.
+\mikkel{WORKWORK: Jeg synes vi skal droppe de 7.95\%. De giver ikke rigtig noget relevant information.
 Jeg tænker at vi bare kan skrive ''this is a reasonable result and one would expect it converge to 33.3\% as the set of test data is increased''}}
-\alexander{Maybe one should perform more runs of the same test to determine what deviation is acceptable?
-\stefan{not gonna happen <3<3}}
 
 \subsubsection{Uneven distribution}
 Another test case is to weight one destination higher than the others.
@@ -201,12 +199,9 @@ The resulting Markov chain after this simulation can be seen on \Cref{test_uneve
 \end{figure}
 
 It is not possible to translate the input addresses to indexes in the Markov chain because the Markov chain is based on the clusters found by the DBSCAN algorithm.
-\mikkel{Det er vel muligt ved bare at kigge i databasens hotspots. Det giver ikke rigtig mening at sige at vi ikke kan oversætte adresser til hotspots når vi gør det i den forrige test.}
+\mikkel{WORKWORK: Make order of percentages and table the same.\\
+Det er vel muligt ved bare at kigge i databasens hotspots. Det giver ikke rigtig mening at sige at vi ikke kan oversætte adresser til hotspots når vi gør det i den forrige test.}
 Based on the colored numbers it seems that $ h_1 $ had 15\% chance, $ h_2 $ had 50\% chance, $ h_3 $ had 15\% chance and $ h_4 $ had 20\% chance of being chosen.
-\stefan{bedre at plotte hotspots og vurdere derudfra?}
-\alexander{In my opinion prediction is best verified and illustrated by a matrix, but the clustering is clearly best illustrated with a map with hotspots.
-\mikkel{Agreed - I think the current method is the best}}
-\mikkel{Kunne man ikke gøre det i omvendt rækkefølge - altså sådan at man først beregner de proportionale procenter og derefter bestemmer hvilke hotspots der er hvad.}
 
 Based on these hotspot assignments we would expect the proportions in \Cref{uneven_results} for the departure rows.
 The expected results are in the left table and the actual results are in the right table.
@@ -271,4 +266,4 @@ These deviations are higher than the results for the evenly distributed test, bu
 This section has tested the validity of the Markov chains that are being used in our system.
 The results showed that there is up to 15\% deviation from the expected numbers, but considering that the data was randomly generated we consider this in an acceptable range.
 \mikkel{Jeg synes vi skal droppe procent-afvigelserne og så bare skrive at vi kunne se at det virkede fint nok \textit{''reasonable''}}
-\mikkel{Behøver vi en conclusion sektion?}
+\mikkel{Behøver vi en conclusion sektion? - NEJ!}
