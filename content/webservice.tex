@@ -44,19 +44,20 @@ along with the four properties:
 \item Uniform interface
 \end{itemize}.
 \begin{description}
-\item[Resources] A resource is a subset of the resource state.
+\item[Resources] are a subset of the resource state.
 A single resource is an entity important enough to be a thing in itself.
 Each resource should have at least one \textit{URI} (Unique Resource Identifier).
 URIs ensure that each resource can be uniquely identified, directly handling the \textit{addressability} property.
 
-\subparagraph{Representations} A representation of a specific resource is a collection of any useful information about that resource's state, defined by properties and sub-resources.
-Representations of resources depends on the desired use.
+\begin{description}
+\item[Representations] of resources depends on the desired use.
+A representation of a specific resource is a collection of any useful information about that resource's state, defined by properties and sub-resources.
+\end{description}
 
+\item[Connectedness and linking resources] are highly dependent on URIs.
+As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI.
 
-\item[Connectedness and linking resources] As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI.
-Thus, connectedness and linking resources are highly dependent on URIs.
-
-\item[Statelessness] By providing, if any, state-relevant parameters on each request, statelessness is achieved.
+\item[Statelessness] is handled by providing, if any, state-relevant parameters on each request.
 This makes the server independent of clients and previous requests, as it is up to each individual client to handle its own application state (not to be confused with the server's resource state) and providing it when needed.
 
 \item[Uniform interface] is where the HTTP/1.1 specifications come in.
