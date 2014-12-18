@@ -1,12 +1,31 @@
 \section{Generating the Average Bike Model} \label{markov:create_model}
 Matrices that describe the transition probabilities of Markov chains, should be generated from the GPS data collected from the bikes in the system.
 This process is handled by \Cref{markov:alg:create_model}.
-The algorithm takes a set of hotspots $H$ and the set of GPS data $G$, from which the matrix should be built.
-Here, $g \in G$ represents a single bike location update.
-Retrieving a location from $G$ can be done using both a bike and a date.
-The date parameter identifies that the data reported before the specified date should be retrieved.
-For each hotspot $h \in H$ there exists a departure state $D_h$.
-The result of the algorithm is a matrix with the probabilities for all possible transitions.
+The algorithm takes a set of hotspots $H$ and the set of GPS locations $G$, from which the matrix should be built.
+For each hotspot $h \in H$ there exists a departure state $d \in D$.
+Additionally $B$ represents the set of bikes that is being modeled.
+
+It is presumed that $G$ is implemented using a data structure that allows the retrieval of a single element using a chronological ordering.
+This will allow us to retrieve the first/last element in the set and to compare elements using the $=$, $<$ and $>$ operators.
+
+\paragraph{Functions}
+We let $g \in G$ represent a single GPS location and say that $G(b) \mid b \in B$ represents the set of GPS locations assocaited with bike $b$.
+Both $G$ and $G(b)$ can then be seen as ordered sets of GPS locations.
+
+From this we can provide a definition for the function $G(b, d)$ where $d$ is a representation of a date.
+Let $G(b) = \{g_0, g_1, \dots, g_n\}$, then we have that:
+\begin{equation}
+G(b, d) = 
+\left\{
+  \begin{array}{l l}
+    g_0 & \text{if $g_0.date > d$}\\
+    g_n & \text{if $g_n.date \leq d$}\\
+    g_k & \text{where $g_k.date \leq d \wedge g_{k+1}.date > d$}
+  \end{array} \right.
+\end{equation}
+$L(b)$ represents a collection of $bike \rightarrow state$ references and is used to maintain a list of the last known location of each bike.
+\mikkel{Jeg har tilføjet diverse definitioner - jeg synes måske bare det er mange informationer at få for at læse en algoritme.
+Det synes jeg ikke normalt man har med når man læser om algoritmer andre steder.}
 
 \begin{algorithm}
 \SetAlgoNoEnd
@@ -18,8 +37,8 @@ Let $M$ be an empty $n \times n$ matrix with $n = 2|H|$ \\
 	$L(b) \leftarrow
 	 \textbf{NearestState}(H, g)$
 	}
-Let $d \leftarrow \text{Date}(G.first)$\\
-Let $l \leftarrow \text{Date}(G.last)$\\
+Let $d \leftarrow G.first.date$\\
+Let $l \leftarrow G.last.date$\\
 \While{$d \leq l$}
 	{
 	\ForEach{$b \in B$}
@@ -42,8 +61,6 @@ Normalize $M$\\
 \caption{Creating the model.}
 \label{markov:alg:create_model}
 \end{algorithm}
-\mikkel{WORKWORK}
-\bruno{\stefan{B, D og L bliver  ikke introduceret? (alg 2)}}
 
 \begin{algorithm}
 \SetAlgoNoEnd
