@@ -77,6 +77,7 @@ Hierarchically, because it makes it easy to locate what cluster a point belongs 
 \stefan{vi har ikke hierarkisk, men ud fra vores data ville det sandsynligvis være det bedste valg, da det er lettere at finde ud af hvilket cluster et punkt er i.
 (jeg har omformuleret argumentet en smule siden Mikaels kommentar)}
 \mikkel{Skal vi ikke bare skrive det om til at passe med det vi faktisk gør?}
+\stefan{skriv en god historie om hierarkier}
 
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
@@ -115,12 +116,11 @@ DBSCAN is a density-based clustering algorithm, which locates regions of high de
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be determined whether a point is placed in a dense region (a core point), at the edge of a dense region (a border point), or is in a region with sparse density (a noise point).
-The exact definition of the three types of points are as follows\cite{pang2006introduction}:
+A visual representation can be seen on \Cref{dbscan_point_types} and the exact definition of the three types of points are as follows\cite{pang2006introduction}:
 
 \begin{description}
 \item[Core point] These points have at least $ MinPts $ points in a radius of $ eps $ from it.
-Here, $ MinPts $ is the minimal number of points in the vicinity of a point, regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
-\mikkel{Jeg synes beskrivelsen af core point er lidt rodet/uklar}
+Here, $ MinPts $ is the minimal number of points in the vicinity of a point, for it to be regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
 
 \item[Border points] A point that is not a core point, but is in the neighbourhood of a core point. 
 One point can be a border point to several core points.
@@ -134,7 +134,6 @@ One point can be a border point to several core points.
 \label{dbscan_point_types}
 \end{figure}
 
-A visual description can be seen on \Cref{dbscan_point_types}.
 Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
 
 \begin{algorithm}
