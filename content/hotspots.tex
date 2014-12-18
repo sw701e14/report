@@ -1,23 +1,15 @@
-The data collected through the GPS receivers installed on the bikes can be used to describe the routes traveled by the bikes in the system.
-These routes can be used to make the hotspots that \projectname{} will use for predicting the behavior of the bikes.
+The data collected through the GPS receivers installed on the bikes can be used to find out where the users of the system most frequently start and stop their journeys.
+The point can be used to make the hotspots that \projectname{} will use for predicting the behavior of the bikes.
 This chapter will explain how we will use the GPS data to create hotspots that describe the most frequently visited places in the city.
-\stefan{husk for guds skyld at ændre BIKEX}
-\stefan{jeg har forsøgt at lave en smule om så det forklarer mere om hvad konteksten er, men der skal nok laves noget mere, også i forbindelse med Mikaels kommentarer}
-\stefan{write this Stefan}
 
-Each route has a start and end location and some locations visited in-between. A start/end location is a location in which a bike has been at a standstill for at-least one location update.
-\mikael{Der mangler noget klargørelse af hvad vores opfattelse af hvordan/hvor ofte GPS lokationer bliver opdateret, og derudaf hvorfor vi bestemmer stillestående lokationer som vi gør}
-\mikael{Mere klare begreber for lokation, bike location update?, stillestående opdatering/punkt?}
-This gives a lot of start and end locations that possible are close to each other.
-In this way we model the most frequently traveled areas, as opposed to every single location, simplifying the calculation for prediction.
-\bruno{Jeg synes vi skal introducere et kapitel eller en side mellem problem statement og resten af rapporten med begreber som nævnt i mikaels kommentar.
-Det kunne fx være: 'GPS  receiver: en enhed der bruger GPS til at beregne dens lokation på jorden.' noget i den dur.}
+These frequently visited places will be referred to as \emph{Hotspots}.
+Hotspots are defined as confined areas in the city where users of the system start and arrive more frequently, and therefore the GPS locations are more frequent in this area.
 
-In order to group the locations, we explore clustering techniques, before choosing an appropriate one to implement.
+For the purpose of making hotspots we need a definition of when a bike is standing still.
+The GPS receiver described in \ref{prob_statement:solution} will not tell if the bike is moving or not.
+We will instead consider a GPS location as standing still if the next GPS location received by the system is at the same spot taking inaccuracy into account.
+Such a point will be marked as standing still and will be referred in the rest of the report as a \emph{static GPS location}.
+
+In order to group all the static GPS locations, we explore clustering techniques, before choosing an appropriate one to implement.
 
 Finally, in order to simplify hotspot representations, we represent its set of locations by means of its convex hull, this creates a polygon representation of a hotspot that will be easy to query for point location.
-
-\section{Hotspot}\label{hotspot}
-We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. Only start/end locations are considered to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.
-\mikael{Samme som ovenover, mere klare begreber}
-\mikkel{Enig - jeg synes jeg mangler en klar definition af hvad et hotspot er}
