@@ -19,10 +19,4 @@ In our case the view is the serialized resource representation, that the user ob
 Per default, this is \texttt{text/xml}, however, by adding the \texttt{Accept} header\cite[Section 14]{http_specification}, this can be set to \texttt{application/json}.
 
 \paragraph{Controller} handles the interaction with users.
-Based on user input, the controller works on the model and selects what the view needs to be used for displaying the data.
-\mikkel{''what the view needs to be used for displaying the data'' - jeg forstår ikke sætningen :/}
-
-The routing to controllers is handled by the attributes \texttt{[RoutePrefix]} and \texttt{[Route]}.
-In order to handle the different HTTP methods, controller methods are also annotated with an appropriate \texttt{[Http\{Method\}]} attribute (e.g. \texttt{[HttpGet]}) \cite{asp_routing}.
-\mikkel{Jeg går ud fra at alle de ting der står i [ ] parenteser er attributes i C\#. Det synes jeg vi er nød til at præcisere.}
-\mikkel{Jeg synes den ekstra information om routing adskiller sig meget fra den øvrige beskrivelse - er det ikke en uinteressant detalje?}
+Based on user input, the controller works on the model and selects which view is needed to display the data.
