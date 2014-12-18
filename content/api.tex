@@ -2,11 +2,10 @@
 The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi}, which is an implementation of the Model-View-Controller architecture.
 In the architecture of \projectname{}, the web service is defined as a component of its own (see \Cref{arch:webservice}).
 
-\input{content/mvc}
-
-\paragraph{Resource Oriented Architecture}
-As described in \Cref{webservice:roa}, this architecture sets the ground rules for designing the API.
+As described in \Cref{webservice:roa}, ROA sets the ground rules for designing the API.
 These criteria are therefore upheld by the API.
+
+\input{content/mvc}
 
 \subsection{Resources}\label{webservice:resources}
 This section contains the resources designed and implemented in the web service.
@@ -14,11 +13,11 @@ Resources in the implementation are objects, containing named properties and sub
 Sub-resources are represented as simple objects, containing only its relative URL.
 Each resource is described following this structure:
 \begin{itemize}
-\item \textbf{URL} the URL of the resource
-\item \textbf{Properties} a property which can be accessed from this resource
-\item \textbf{Resources} the resource(s) which can be accessed from this resource
-\item \textbf{Methods} HTTP methods which can be used on that resource
-\item \textbf{Responses} HTTP status codes which could be returned by this resource
+\item \textbf{URL:} the URL of the resource
+\item \textbf{Properties:} a property which can be accessed from this resource
+\item \textbf{Resources:} the resource(s) which can be accessed from this resource
+\item \textbf{Methods:} HTTP methods which can be used on that resource
+\item \textbf{Responses:} HTTP status codes which could be returned by this resource
 \end{itemize}
 
 \subsection{The resources implemented:}
