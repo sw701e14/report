@@ -57,7 +57,7 @@ In case a client tries to request a bike that is not available, it will be met w
 \resource{/hotspots}{hotspots}{}{GET}{200 OK}
 {This resource returns a list of all the hotspot resources in the system.}
 
-\resource{/hotspots/hotspot}{coordinates}{}{GET}{200 OK, 404 Not Found}
+\resource{/hotspots/\{hotspotId\}}{coordinates}{}{GET}{200 OK, 404 Not Found}
 {This resource returns the points the make up the convex hull of a single hotspot.
 In case a client tries to request a hotspot that is not available, it will be met with a \texttt{404 Not Found} response.}
 
