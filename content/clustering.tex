@@ -1,12 +1,12 @@
 \section{Clustering}\label{clustering}
-In order to find the hotspot(s) defined in \Cref{hotspot}, we considered different clustering techniques.
+A clustering is a collection of data object groupings (clusters).
+In order to identify hotspots we consider different clustering techniques.
 This section will describe the concepts of clustering as well as the possible algorithms.
 This section is based on \citet{pang2006introduction}.
 
 \subsection{Cluster Analysis}
-Cluster analysis is a technique used to group data objects based only on the information the data itself contains.
-The requirement for membership in a certain cluster is often vague, as several acceptable clusterings can be made on the same dataset.
-\mikkel{What is an acceptable clustering?}
+Cluster analysis is a technique used to group data objects into clusters based only on the information the data itself contains.
+The requirement for membership in a certain cluster is often vague, as several clusterings can be made on the same dataset.
 An example of this can be seen in \Cref{clusterings}, where the same dataset has been clustered in three radically different ways, even though all three could be regarded as correct, depending on the purpose of the clustering.
 The clustering therefore depends on the dataset and its purpose.
 
@@ -18,10 +18,7 @@ The clustering therefore depends on the dataset and its purpose.
 \end{figure}
 
 \subsection{Types of clusterings}
-
-A clustering is a collection of clusters.
-\mikkel{Clusterings has been mentioned before this definition of the word.}
-This section will introduce the terminology used to describe clusterings. 
+This section will introduce the terminology used to describe the various types of clusterings. 
 
 \paragraph{Hierarchical versus partitional}
 A \textit{partitional clustering} is a division of data into pairwise disjoint subsets, where each object belongs to exactly one subset.
@@ -103,18 +100,16 @@ Of the three presented algorithms, only the DBSCAN algorithm fits our need for a
 Thus we chose to implement this algorithm.
 The algorithm locates regions of high density separated by regions of low density.
 \alexander{Læs og vurder om intro til DBSCAN nu er acceptabel.}
-\mikkel{Jeg synes godt vi kan benytte minimum nearest neighbours som et argument for DBSCAN.}
 
 \paragraph{Center based point density}
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be determined whether a point is placed in a dense region (a core point), at the edge of a dense region (a border point), or is in a region with sparse density (a noise point).
-The exact definition of the three types of points are as follows\cite{pang2006introduction}:
+A visual representation can be seen on \Cref{dbscan_point_types} and the exact definition of the three types of points are as follows\cite{pang2006introduction}:
 
 \begin{description}
 \item[Core point] These points have at least $ MinPts $ points in a radius of $ eps $ from it.
-Here, $ MinPts $ is the minimal number of points in the vicinity of a point, regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
-\mikkel{Jeg synes beskrivelsen af core point er lidt rodet/uklar}
+Here, $ MinPts $ is the minimal number of points in the vicinity of a point, for it to be regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
 
 \item[Border points] A point that is not a core point, but is in the neighbourhood of a core point. 
 One point can be a border point to several core points.
@@ -128,8 +123,7 @@ One point can be a border point to several core points.
 \label{dbscan_point_types}
 \end{figure}
 
-A visual description can be seen on \Cref{dbscan_point_types}.
-Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
+Given these definitions, the algorithm is described in \Cref{dbscan-algo}\bruno{Ref til kilde. Kilden skal være slided for DBSCAN fra DIS.}.
 
 \alexander{Gennemse algoritmen og se om den er som ønsket.}
 \begin{algorithm}[h]
