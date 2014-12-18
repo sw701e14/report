@@ -2,13 +2,11 @@
 The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi}.
 In the architecture, the web service is defined as a component of its own (see \Cref{arch:webservice}).
 
-\subsection{Resource Oriented Architecture}
+\paragraph{Resource Oriented Architecture}
 Resource Oriented Architecture criteria, as described in \Cref{webservice:roa}, set the ground rules for designing the API.
 These criteria are therefore upheld by the API.
-\mikkel{WORKWORK: You do this}
-\mikkel{Er det nødvendigt med en ROA subsection. Kan vi ikke bare nævne det som en paragraph og lave Resources om til en subsection?}
 
-\subsubsection{Resources}\label{webservice:resources}
+\subsection{Resources}\label{webservice:resources}
 This section contains the resources designed and implemented in the web service.
 Resources in the implementation are objects, containing named properties and sub-resources.
 Sub-resources are represented as simple objects, containing only its relative URL.
@@ -21,7 +19,7 @@ Each resource is described following this structure:
 \item \textbf{Responses} HTTP status codes which could be returned by this resource
 \end{itemize}
 
-\subsubsection*{The resources implemented:}
+\subsection{The resources implemented:}
 % Command for displaying url, properties, and sub-resource of each resource
 \newcommand{\resource}[6]{\noindent \vfill \fbox{\begin{minipage}{\textwidth}\begin{description}
 \item[URL:]{\texttt{#1}}
