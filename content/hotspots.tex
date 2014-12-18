@@ -3,6 +3,7 @@ These routes can be used to make the hotspots that \projectname{} will use for p
 This chapter will explain how we will use the GPS data to create hotspots that describe the most frequently visited places in the city.
 \stefan{husk for guds skyld at ændre BIKEX}
 \stefan{jeg har forsøgt at lave en smule om så det forklarer mere om hvad konteksten er, men der skal nok laves noget mere, også i forbindelse med Mikaels kommentarer}
+\stefan{write this Stefan}
 
 Each route has a start and end location and some locations visited in-between. A start/end location is a location in which a bike has been at a standstill for at-least one location update.
 \mikael{Der mangler noget klargørelse af hvad vores opfattelse af hvordan/hvor ofte GPS lokationer bliver opdateret, og derudaf hvorfor vi bestemmer stillestående lokationer som vi gør}
@@ -14,7 +15,7 @@ Det kunne fx være: 'GPS  receiver: en enhed der bruger GPS til at beregne dens 
 
 In order to group the locations, we explore clustering techniques, before choosing an appropriate one to implement.
 
-Finally, in order to simplify hotspot representations, we represent its set of locations by means of its convex hull(\citet[section 33.3]{aadbook}), this creates a polygon representation of a hotspot that will be easy to query for point location.
+Finally, in order to simplify hotspot representations, we represent its set of locations by means of its convex hull, this creates a polygon representation of a hotspot that will be easy to query for point location.
 
 \section{Hotspot}\label{hotspot}
 We define a hotspot to be an area with a higher density of locations, compared to the rest of the data. Only start/end locations are considered to be part of a hotspot, meaning that we only consider locations in which a bike has stood still.
