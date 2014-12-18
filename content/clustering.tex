@@ -127,10 +127,12 @@ Given these definitions, the algorithm is described in \Cref{dbscan-algo}\bruno{
 
 \alexander{Gennemse algoritmen og se om den er som ønsket.}
 \begin{algorithm}[h]
+\SetAlgoNoEnd
 DBSCAN(D, eps, MinPts)\\
 	C $\leftarrow$ 0\\
-	\For {each unvisited point P in dataset D mark P as visited}
+	\ForEach {unvisited point P in dataset D}
 	{
+  	mark P as visited\\
 		NeighborPts $\leftarrow$ regionQuery(D, P, eps)\\
 		\eIf {sizeof(NeighborPts) < MinPts}{
 			mark P as NOISE\\
@@ -146,21 +148,21 @@ DBSCAN(D, eps, MinPts)\\
 
 expandCluster(D, P, NeighborPts, C, eps, MinPts)\\
 	add P to cluster C\\
-	\For {each point Pn in NeighborPts}
+	\ForEach {point Pn in NeighborPts}
 	{
 		\If{Pn is not visited}
 		{
 			mark Pn as visited\\
 			NeighborPtsn $\leftarrow$ regionQuery(D, Pn, eps)\\
+					\If {sizeof(NeighborPtsn) $\geq$ MinPts}
+					{
+						NeighborPts $\leftarrow$ $ NeighborPts \cup NeighborPtsn $
+					}
 		}
-		\If {sizeof(NeighborPtsn) $\geq$ MinPts}
-		{
-			NeighborPts $\leftarrow$ $ NeighborPts \cup NeighborPtsn $\\
-			\If {Pn is not yet member of any cluster}
-			{
-				{add Pn to cluster C\\}
-			}
-		}
+					\If {Pn is not yet member of any cluster}
+					{
+						{add Pn to cluster C\\}
+					}
 	}
 %(Pn) is used instead of (p') in source (wiki).
 \phantom{ForLineBreak}
