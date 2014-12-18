@@ -1,4 +1,4 @@
-\section{Making predictions}
+\section{Making Predictions}
 As a Markov chain $\mathcal{M}$ can be represented with a matrix $\mathbf{M}$ (constructed in \Cref{markov:create_model}), we can use $\mathbf{M}$ to give an estimate of the behavior of the average bike in future time-steps.
 For this we require an initial probability distribution for the average bike.
 We can then apply $\mathbf{M}$ to this distribution to determine the probability of the average bike being in various states after a number to time-steps.
@@ -32,7 +32,7 @@ P_j(d_n)
 \Big)
 \end{equation}
 
-\subsection{Initial distribution}
+\subsection{Initial Distribution}
 The initial probability distribution represents the probability of the \textit{average} bike being in each of the states (hotspots or departure states) in the system.
 Thus we can simply examine all the bikes in the system and identify their current location.
 
@@ -70,7 +70,7 @@ $$P_0 = \left(\frac{8}{16}, \frac{2}{16}, \frac{6}{16}, \frac{0}{16}\right)=(0.5
 This distribution will be used to determine future probability distributions of the system.
 In the following section, this example will be revisited, providing such information.
 
-\subsection{Predicting from the initial distribution}
+\subsection{Predicting from the Initial Distribution}
 Having represented the probability distributions as vectors, we can multiply them with the transitional matrices described by \cref{markov:matrix-ordered} on page \pageref{markov:matrix-ordered}.
 Such a multiplication would result in a vector with the probability distribution of the individual states after one time-step.
 In other words:
@@ -126,7 +126,7 @@ $$
 (6.3, 3.6, 3.1, 3)
 $$
 
-\subsection{Accumulating probability}
+\subsection{Accumulating Probability}
 The previous section described how to determine the probabilities of bikes being in a specific state.
 However, the user of \projectname{} does not seek to know what the probability of a bike being at a station at a certain time is.
 Instead the user should be informed about how long he should wait at a hotspot before a bike arrives.

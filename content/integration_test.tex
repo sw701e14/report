@@ -1,4 +1,4 @@
-\section{Integration test}
+\section{Integration Test}
 
 In order to test that our components interact together according to the specifications, we have chosen to perform integration testing of the system.
 
@@ -7,7 +7,7 @@ Traditionally, integration testing is done by integrating two modules at a time,
 There exists a variant, in which the whole system is tested together, instead of pair-wise, called big bang integration testing.
 We have chosen to perform our test with this method, due to time limitations \cite{inttest}.
 
-\subsection{Test setup}
+\subsection{Test Setup}
 The purpose of the tests we have designed is to check if the system can produce sensible predictions for the bikes in the system.
 
 In order to generate test data, we have created a method for simulating real world data. 
@@ -32,7 +32,7 @@ This corresponds to item \ref{pr_few} in the problem statement.
 We test the Markov chains in order to figure out if our method of generating Markov chains give proper values for using when predicting the behavior of the bikes.
 This corresponds to item \ref{pr_arrive} in the problem statement.
 
-\subsection{Finding hotspots}
+\subsection{Finding Hotspots}
 All predictions are calculated based on the generated hotspots.
 Misplaced hotspots can therefore skew the results, decreasing the precision of the predictions.
 Thus, we want to test whether or not the hotspots are generated as expected.

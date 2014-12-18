@@ -17,7 +17,7 @@ The clustering therefore depends on the dataset and its purpose.
 \label{clusterings}
 \end{figure}
 
-\subsection{Types of clusterings}
+\subsection{Types of Clusterings}
 This section will introduce the terminology used to describe the various types of clusterings. 
 
 \paragraph{Hierarchical versus partitional}
@@ -35,7 +35,7 @@ If a weight is used to describe the membership of sets, the clustering is said t
 
 A \textit{complete} clustering has every object assigned to a cluster, while a \textit{partial} clustering can have outliers; objects that do not belong to any cluster.
 
-\subsection{Types of clusters}
+\subsection{Types of Clusters}
 The purpose of a cluster depends on the kind of data set it is applied on.
 In this section, the different notions of a cluster will be presented.
 
@@ -57,7 +57,7 @@ If the data can be represented as a graph, with the objects as nodes, clusters c
 A cluster is defined by the density of the data objects.
 A cluster is a dense region surrounded by a low density region.
 
-\subsection{Our data and purpose}\label{data_purporse}
+\subsection{Our Data and Purpose}\label{data_purporse}
 The data we need to cluster is all the static GPS locations.
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes (hotspots).
 These clusters may have different size, depending on the physical properties of the places the bikes are left.
@@ -84,7 +84,7 @@ These steps are repeated until no point changes cluster, or the center points do
 
 Because we do not have a way of finding $K$ before running the algorithm, this approach is not applicable to our problem.
 
-\subsubsection{Hierarchical Clustering}
+\subsubsection{Hierarchical clustering}
 Hierarchical clustering arranges the points in a hierarchy, dependent on the distance between points.
 Hierarchical clustering can be performed either by starting at the top of the tree or at the bottom.
 \textit{Agglomerative hierarchical clustering} starts by considering all points as being in individual clusters, then generating the hierarchy by merging the closest clusters.
