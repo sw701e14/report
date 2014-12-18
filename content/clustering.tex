@@ -60,13 +60,11 @@ A cluster is a dense region surrounded by a low density region.
 \subsection{Our data and purpose}\label{data_purporse}
 The data we need to cluster is GPS data from the bikes.
 \mikael{Som mine tidligere kommentarer, klart defineret begreb. GPS data, i denne kontekst, dækker kun over stillestående punkter.}
-We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
+We expect the points to be distributed in a wide area, but clustered around places where people place the bikes (hotspots).
 These clusters may have different size, depending on the physical properties of the places the bikes are left.
 
-\mikkel{WORKWORK: Ret area til hotspot ''where appropriate''}
-The purpose of the clustering is to find the areas where the bicycles are being used the most, in order to make predictions on when a bike will arrive in those areas.
-\mikael{Bør det ikke benævnes som hotspot her, da vi har defineret hotspots?}
-\mikkel{Enig. Vi burde have en præcis definition og så anvende den efterfølgende.}
+The purpose of the clustering is to find the areas where bicycles are left most often, in order to make predictions on when a bike will arrive in those areas.
+These areas can then be considered our hotspots.
 
 Based on this description we need a hierarchical, exclusive, partial and density based clustering.
 
@@ -102,7 +100,9 @@ Hierarchical clustering can be performed either by starting at the top of the tr
 We would like our clustering to be hierarchical, but this algorithm does requirement for a density based clustering.
 \mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
 \stefan{jeg har opdateret konklusionen, men jeg ved ikke hvordan vi argumenterer for at density er vigtigere end hierarki}
-\mikkel{WORKWORK: Do this! Som jeg læser det her lægger det op til complete clustering. Er det ikke problematisk da vi vil forvente at have støj i vort data.}
+It should also be noted that hierarchical clustering is a complete clustering.
+For bikes used by many different users one would expect some noise in the data.
+Therefore it seems reasonable to only implement a partial clustering.
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}\alexander{Write introduction to DBSCAN arguing that we choose it and why. See summary.}
 DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
