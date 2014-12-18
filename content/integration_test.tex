@@ -55,9 +55,8 @@ Because real data is not available the chosen values for the parameters are base
 
 The $MinPts$ parameter was set to 4 as suggested by \citet[Page 529]{pang2006introduction}.
 For the other parameter, $eps$, 15 meters was chosen.
-This value was chosen because a GPS receivers accuracy is 15 meters according to \citet{garmingps}.
-Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 meters away from its real location.
-\mikael{Argumenter for at det giver mening ift. test da vi regner med at ramme samme punkt}
+This value was chosen because of the perturbation, as described in \Cref{inputsimulation:pointgeneration}, which was added to all simulated points.
+When clustering, we are ensured that the bike locations which are based on the same address will be grouped, as the perturbation does not exceed $eps$.
 
 \paragraph{Result}
 The result has been visualized and can be seen in \Cref{fig:test:clustering}.
