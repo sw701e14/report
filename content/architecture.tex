@@ -1,7 +1,7 @@
 This chapter illustrates the system architecture and describes the role of each component.
 It also contains an analysis of why the architecture is scalable.
-\mikkel{WORKWORK: All macro component should \textbf{not} list their layers and then list then again.}
-A system architecture is introduced to ease maintenance and ensure scalability.
+
+The system architecture is introduced to ease maintenance and ensure scalability.
 The architecture consists of four macro components and a database, as can be seen in \Cref{fig:architecture}. The macro components are: Shared, Location Service, Model Agent, and Web Service.
 
 \begin{figure}
@@ -15,32 +15,31 @@ The design of the database can be found in \Cref{database_design}.
 It is not included in the report as its structure is rather trivial and only serves the purpose of having a simple and fast method of storing/retrieving large amounts of data.
 
 \section{Shared}
-The task of the macro component shared is to provide extended capabilities to all other macro components.
+The task of the shared macro component is to provide extended capabilities to all other macro components.
+The component provides a shared structural representation of data and a uniform set of database connection methods.
 
-\paragraph{The Data Access layer} All SQL statements and communication with the database are encapsulated here providing the upper layers a communication protocol to the database.
+\paragraph{Data Access} All SQL statements and communication with the database are encapsulated here providing the upper layers a communication protocol to the database.
 Additionally this layer provides an abstraction of the actual communication with the database as well as an abstraction of the database design.
 
-\paragraph{The Data Transfer Object layer} contains all the shared data types and their attributes, making it possible for all the macro components to treat the data uniformly.
+\paragraph{Data Transfer Object} This layer provides a collection of shared data types, making it possible for all the macro components to treat the data uniformly.
 The types within this layer provides methods for retrieving data from the database and converting it into elements of the types in the Data Transfer Object layer.
 \mikkel{Jeg synes vi mangler en beskrivelse af hvorfor der er forbindelse fra de tre øverste komponenter til Data Access. Men jeg kan ikke lige komme på en.}
 
 \section{Location Service} 
-The location service component processes and stores location data directly from a data source. 
-The \texttt{Location Service} consists of a \texttt{Location Source} which provides data points to the \texttt{Data Collector}.
-\mikkel{Jeg forestiller mig spørgsmål som ''What is The \texttt{Location Service} and a \texttt{Location Source}?''}
+The location service component processes and stores location data directly from a data source.
+In other words it serves the purpose of loading gps location data for the other components (through the shared macro component).
 
-\paragraph{The Location Source layer} fetches data from the data source and then adapts it to the appropriate data type in the Common layer.
-\stefan{cast? transform måske?}
-It is structured so that the Location Source layer can easily be replaced with another source of data.
+\paragraph{Location Source} Provides an implementation of a data-source from which data can be retrieved.
+The common layer in provides a shared structure for communication between the location layers.
 
-\paragraph{The Data Collector layer} gathers the data from the \texttt{Location Source} layer and processes it. 
-The data is then stored through the \texttt{Data Access} layer.
+The layer is structured such that the Location Source layer can easily be replaced with another source of data\footnote{This is used for providing data when testing the system, as will be described in \cref{design:datasimulation}.}.
 
-\section{Model Agent}
-\texttt{Model Agent}\footnote{An agent is defined as a program that invoke a given task, when a condition is satisfied, then returning to a sleeping state, until the condition is satisfied again.\cite{definitionagent}} is the macro component containing the \texttt{Model Updater} layer.
-The macro component's task is to generate and update the model in the system. 
+\paragraph{Data Collector} Using a data source defined in the location source layer, this layer gathers the gps location data and stores it in the database using the shared macro component.
 
-\paragraph{The Model Updater layer} This is where the generation of the model is handled, which works as follows:\\
+\section[title]{Model Agent\footnote{An agent is defined as a program that invoke a given task, when a condition is satisfied, then returning to a sleeping state, until the condition is satisfied again.\cite{definitionagent}}}
+The task of the model agent macro component is to generate and update the hotspot and Markov chain model in the database (through the shared macro component).
+
+\paragraph{Model Updater layer} This is where the generation of the model is handled, which works as follows:\\
 Clusters are created based on the GPS data in the database.
 This is done using DBSCAN, as described in \Cref{clustering:DBSCAN}.
 The convex hull of each cluster is determined, by using Graham Scan, and these are saved to be used as hotspots.
