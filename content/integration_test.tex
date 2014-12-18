@@ -11,9 +11,8 @@ We have chosen to perform our test with this method, due to time limitations \ci
 The purpose of the tests we have designed is to check if the system can produce sensible predictions for the bikes in the system.
 
 In order to generate test data, we have created a method for simulating real world data. 
-The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing certain destinations.
+The simulator gets a list of destinations (in the form of addresses) and a list of probabilities as input, making it possible to adjust the probability of the system deliberately choosing certain destinations.
 This makes it possible to create a data set, where it is possible to predict the expected result.
-\stefan{\mikkel{Jeg synes ikke det er helt tydeligt at man kan sætte probability for enkelte adresser. ''adjust the probability of the system''}}
 
 \paragraph{What to test}
 We want to test if the system works as specified in the problem statement.
@@ -26,8 +25,8 @@ We want to test the following parts of our system in order to test the two probl
 \item Markov Chains
 \end{itemize}
 
-We test the hotspot creation in order to check if hotspots are generated where there is bike activity, and this to check if the created hotspots will work as a stand in for the old stations.
-\stefan{\mikkel{''and this to check''}}
+We test the hotspot creation in order to check if hotspots are generated where there is bike activity. 
+This will check if the created hotspots will be able work as a stand in for the old stations.
 This corresponds to item \ref{pr_few} in the problem statement.
 
 We test the Markov chains in order to figure out if our method of generating Markov chains give proper values for using when predicting the behavior of the bikes.
