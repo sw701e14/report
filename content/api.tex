@@ -23,13 +23,22 @@ Each resource is described following this structure:
 
 \subsubsection*{The resources implemented:}
 % Command for displaying url, properties, and sub-resource of each resource
-\newcommand{\resource}[6]{\noindent \vfill \fbox{\begin{minipage}{\textwidth}\begin{description}
+\newcommand{\resource}[6]{\noindent \vfill \fbox{\begin{minipage}{\textwidth}
+\begin{multicols}{2}
+\begin{description}
 \item[URL:]{\texttt{#1}}
 \item[Properties:]{\texttt{#2}}
+\end{description}
+\end{multicols}
+\begin{description}
 \item[Resources:]{\texttt{#3}}
+\end{description}
+\begin{multicols}{2}
+\begin{description}
 \item[Methods:]{\texttt{#4}}
 \item[Responses:]{\texttt{#5}}
 \end{description}
+\end{multicols}
 {#6}
 \end{minipage}
 }\vfill }
@@ -42,16 +51,12 @@ More importantly, it contains a sub-resource for each main resource.}
 \resource{/availablebikes}{count}{List of availablebikes}{GET}{200 OK}
 {This resource contains a list of all \texttt{availablebike} resources, along with a count of how many there are.}
 
-
 \resource{/availablebikes/\{bikeId\}}{latitude, longitude}{}{GET}{200 OK, 404 Not Found}
 {This is the actual \texttt{availablebike} resource.
 In case a client tries to request a bike that is not available, it will be met with a \texttt{404 Not Found} response.}
 
-
 \resource{/hotspots}{hotspots}{}{GET}{200 OK}
 {This resource returns all the hotspots in the system.}
-
-
 
 \resource{/predictions}{}{}{GET}{200 OK}
 {This is the prediction resource.
@@ -61,7 +66,7 @@ When a client wants to know when a bike arrives at a hotspot this resource can b
 \stefan{mangler der en /hotspots/{hotspot} og en /prediction/{prediction}?}}
 
 \alexander{Ret ALLE (hele rapporten) således der ikke bliver brugt paragraph som en del af sætningen. Brug description i stedet for.}
-\alexander{Ret layout for alle API ''kasserne''.}
+\alexander{Se og vurder om API Kasserne nu er ok.}
 
 \input{content/mvc}
 
