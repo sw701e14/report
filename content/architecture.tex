@@ -39,12 +39,12 @@ The layer is structured such that the Location Source layer can easily be replac
 The task of the model agent macro component is to generate and update the hotspot and Markov chain model in the database (through the shared macro component).
 
 \paragraph{Model Updater layer} This is where the generation of the model is handled, which works as follows:\\
-Clusters are created based on the GPS data in the database.
+Clusters are created based on the GPS locations in the database.
 This is done using DBSCAN, as described in \Cref{clustering:DBSCAN}.
 The convex hull of each cluster is determined, by using Graham Scan, and these are saved to be used as hotspots.
 The Markov chain matrix is now created with these hotspots, and their departures, as was described in \Cref{markov:create_model}.
 
-Finally, since we have no further use of it, all already modelled GPS data is truncated from the database, with exception of the single latest location of all bikes.
+Finally, since we have no further use of it, all already modeled GPS locations are truncated from the database, with exception of the single latest location of all bikes.
 
 \section{Web Service}\label{arch:webservice}
 Web Service is the macro component containing a Model, View, and Controller.
