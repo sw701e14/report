@@ -45,9 +45,8 @@ This notation allows us to establish a timespan, as each step refers to a fixed 
 
 This randomness will be biased towards certain states, given its current state (and possibly time), resulting in a set of probabilities for each state given a random variable.
 Let $\mathbb{P}(X_i = x)$ be the probability of $X_i$ being in state $x$.
-The above will then allow us to express the probability of moving to a state $y$, given the path we have traversed.
-\stefan{mangler der et y et sted eller forstår jeg det ikke?}
-\mikkel{y refererer til en vilkårlig state}
+The above will then allow us to express the probability of moving to an arbitrary state $y$, given the path we have traversed.
+
 In other words, knowing which state we are in, and how we got to it, allows us to determine the probability of the next state being $y$:
 
 $$\mathbb{P}(X_{n+1} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)$$
