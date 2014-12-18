@@ -71,12 +71,6 @@ This is an improvement over the current system that provides no such information
 A software solution is to be developed, consisting of 3 main software components, and a shared database.
 The structure of the solution can be seen in \Cref{fig:solution_structure}.
 
-\begin{figure}[h]
-\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 1.5cm}]{our_solution.pdf}
-\caption{The overall structure of our solution}
-\label{fig:solution_structure}
-\end{figure}
-
 The \textit{Location Service} continuously updates the locations of the bikes.
 The \textit{Model Updater} uses the stored location data to generate a model used for predictions.
 The \textit{Web Service} makes an API available, in order to make platform implementations to make the data available as specified in the requirements.
@@ -91,3 +85,9 @@ The following chapters will focus on these problems:
 \item Modeling the usage and using the model for predictions
 \item Making the data available through a web service
 \end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 1.5cm}]{our_solution.pdf}
+\caption{The overall structure of our solution}
+\label{fig:solution_structure}
+\end{figure}
