@@ -1,12 +1,12 @@
 \section{Clustering}\label{clustering}
-A clustering is a collection of data object groupings (clusters).
-In order to identify hotspots we consider different clustering techniques.
+In order to find the hotspot(s) defined in \Cref{hotspot}, we considered different clustering techniques.
 This section will describe the concepts of clustering as well as the possible algorithms.
 This section is based on \citet{pang2006introduction}.
 
 \subsection{Cluster Analysis}
-Cluster analysis is a technique used to group data objects into clusters based only on the information the data itself contains.
-The requirement for membership in a certain cluster is often vague, as several clusterings can be made on the same dataset.
+Cluster analysis is a technique used to group data objects based only on the information the data itself contains.
+The requirement for membership in a certain cluster is often vague, as several acceptable clusterings can be made on the same dataset.
+\mikkel{What is an acceptable clustering?}
 An example of this can be seen in \Cref{clusterings}, where the same dataset has been clustered in three radically different ways, even though all three could be regarded as correct, depending on the purpose of the clustering.
 The clustering therefore depends on the dataset and its purpose.
 
@@ -18,7 +18,10 @@ The clustering therefore depends on the dataset and its purpose.
 \end{figure}
 
 \subsection{Types of clusterings}
-This section will introduce the terminology used to describe the various types of clusterings. 
+
+A clustering is a collection of clusters.
+\mikkel{Clusterings has been mentioned before this definition of the word.}
+This section will introduce the terminology used to describe clusterings. 
 
 \paragraph{Hierarchical versus partitional}
 A \textit{partitional clustering} is a division of data into pairwise disjoint subsets, where each object belongs to exactly one subset.
@@ -63,7 +66,6 @@ The data we need to cluster is GPS data from the bikes.
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes.
 These clusters may have different size, depending on the physical properties of the places the bikes are left.
 
-\mikkel{WORKWORK: Ret area til hotspot ''where appropriate''}
 The purpose of the clustering is to find the areas where the bicycles are being used the most, in order to make predictions on when a bike will arrive in those areas.
 \mikael{Bør det ikke benævnes som hotspot her, da vi har defineret hotspots?}
 \mikkel{Enig. Vi burde have en præcis definition og så anvende den efterfølgende.}
@@ -75,7 +77,6 @@ Hierarchically, because it makes it easy to locate what cluster a point belongs 
 \stefan{vi har ikke hierarkisk, men ud fra vores data ville det sandsynligvis være det bedste valg, da det er lettere at finde ud af hvilket cluster et punkt er i.
 (jeg har omformuleret argumentet en smule siden Mikaels kommentar)}
 \mikkel{Skal vi ikke bare skrive det om til at passe med det vi faktisk gør?}
-\stefan{skriv en god historie om hierarkier}
 
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
@@ -102,7 +103,7 @@ Hierarchical clustering can be performed either by starting at the top of the tr
 We would like our clustering to be hierarchical, but this algorithm does requirement for a density based clustering.
 \mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
 \stefan{jeg har opdateret konklusionen, men jeg ved ikke hvordan vi argumenterer for at density er vigtigere end hierarki}
-\mikkel{WORKWORK: Do this! Som jeg læser det her lægger det op til complete clustering. Er det ikke problematisk da vi vil forvente at have støj i vort data.}
+\mikkel{Som jeg læser det her lægger det op til complete clustering. Er det ikke problematisk da vi vil forvente at have støj i vort data.}
 
 \subsubsection{DBSCAN}\label{clustering:DBSCAN}\alexander{Write introduction to DBSCAN arguing that we choose it and why. See summary.}
 DBSCAN is a density-based clustering algorithm, which locates regions of high density that are separated by regions of low density.
@@ -113,11 +114,12 @@ DBSCAN is a density-based clustering algorithm, which locates regions of high de
 There exists different methods of determining density in a set of data points.
 One approach is to use a point as a center and calculate the number of points that are within a certain radius of the point.
 Using this measure it can be determined whether a point is placed in a dense region (a core point), at the edge of a dense region (a border point), or is in a region with sparse density (a noise point).
-A visual representation can be seen on \Cref{dbscan_point_types} and the exact definition of the three types of points are as follows\cite{pang2006introduction}:
+The exact definition of the three types of points are as follows\cite{pang2006introduction}:
 
 \begin{description}
 \item[Core point] These points have at least $ MinPts $ points in a radius of $ eps $ from it.
-Here, $ MinPts $ is the minimal number of points in the vicinity of a point, for it to be regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
+Here, $ MinPts $ is the minimal number of points in the vicinity of a point, regarded as dense by the user, and $ eps $ is the radius in which to look for these points.
+\mikkel{Jeg synes beskrivelsen af core point er lidt rodet/uklar}
 
 \item[Border points] A point that is not a core point, but is in the neighbourhood of a core point. 
 One point can be a border point to several core points.
@@ -131,50 +133,54 @@ One point can be a border point to several core points.
 \label{dbscan_point_types}
 \end{figure}
 
-Given these definitions, the algorithm is described in \Cref{dbscan-algo}\bruno{Ref til kilde. Kilden skal være slided for DBSCAN fra DIS.}.
+A visual description can be seen on \Cref{dbscan_point_types}.
+Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
 
-\alexander{Slå alle algoritmer sammen til én.}
-\alexander{Ret til korrekt notation og ret i forhold til wiki. regionQuery skal have data med som parameter.}
-\begin{algorithm}
+\alexander{Gennemse algoritmen og se om den er som ønsket.}
+\begin{algorithm}[h]
 DBSCAN(D, eps, MinPts)\\
-	C = 0\\
-	\For {each unvisited point P in dataset D mark P as visited\\}
+	C $\leftarrow$ 0\\
+	\For {each unvisited point P in dataset D mark P as visited}
 	{
-		NeighborPts = regionQuery(P, eps)\\
+		NeighborPts $\leftarrow$ regionQuery(D, P, eps)\\
 		\eIf {sizeof(NeighborPts) < MinPts}{
 			mark P as NOISE\\
 		}
 		{
-			C = next cluster\\
-			expandCluster(P, NeighborPts, C, eps, MinPts)
+			C $\leftarrow$ next cluster\\
+			expandCluster(D, P, NeighborPts, C, eps, MinPts)
 		}
 	}
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
-\end{algorithm}
+\phantom{ForLineBreak}
+\setcounter{AlgoLine}{0}
 
-\begin{algorithm}
-expandCluster(P, NeighborPts, C, eps, MinPts)\\
+expandCluster(D, P, NeighborPts, C, eps, MinPts)\\
 	add P to cluster C\\
-	\For {each point Pn in NeighborPts\\}
+	\For {each point Pn in NeighborPts}
 	{
-		\If{Pn is not visited\\}
+		\If{Pn is not visited}
 		{
 			mark Pn as visited\\
-			NeighborPtsn = regionQuery(Pn, eps)\\
+			NeighborPtsn $\leftarrow$ regionQuery(D, Pn, eps)\\
 		}
-		\If {sizeof(NeighborPtsn) >= MinPts\\}
+		\If {sizeof(NeighborPtsn) $\geq$ MinPts}
 		{
-			NeighborPts = $ NeighborPts \cup NeighborPtsn $\\
-			\If {Pn is not yet member of any cluster\\}
-			{add Pn to cluster C\\}
+			NeighborPts $\leftarrow$ $ NeighborPts \cup NeighborPtsn $\\
+			\If {Pn is not yet member of any cluster}
+			{
+				{add Pn to cluster C\\}
+			}
 		}
 	}
-\end{algorithm}%(Pn) is used instead of (p') in source (wiki).
+%(Pn) is used instead of (p') in source (wiki).
+\phantom{ForLineBreak}
+\setcounter{AlgoLine}{0}
 
-\begin{algorithm}
-regionQuery(P, eps)\\
-	\Return {all points within the eps-neighborhood of P (including P)\\}
+regionQuery(D, P, eps)\\
+	\Return {all points from D within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
+
 
 \subsection{Summary}\bruno{Hvordan argumentere vi for at bruge DBSCAN fremfor en algoritme der møder alle vores krav?} Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.
