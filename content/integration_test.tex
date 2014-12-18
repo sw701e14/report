@@ -93,7 +93,7 @@ The number in $ (d_1,h_2) $ indicates the probability in percentages of transiti
 The simplest test case is when the generated data has equal probability of choosing every destination. 
 In this case we would expect the probabilities of a bike arriving at every destination to be the same.
 
-The data was generated to simulate a 15 hour period with four possible addresses and 100 bikes.
+The data was generated to simulate a 15 hour period with 100 bikes and 4 possible addresses: Nørresundby Torv, 9400 Nørresundby; Nytorv, 9000 Aalborg; Borgmester Jørgensens Vej 5, 9000 Aalborg; Selma Lagerløfs Vej 300, 9220 Aalborg Ø.
 The results for the test can be seen in \Cref{test_even}.
 
 In the result it is seen that some inaccuracies have occurred since there are some entries with values that, although very low, are not zero as expected.
@@ -171,7 +171,7 @@ Jeg tænker at vi bare kan skrive ''this is a reasonable result and one would ex
 Another test case is to weight one destination higher than the others.
 In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
 
-The data for this test was created in the exact same way as the data for the even distribution, a 15 hour period with four possible addresses and 100 bikes.
+The data for this test was created in the exact same way as the data for the even distribution, a 15 hour period with 100 bikes and the same 4 possible addresses.
 The only difference was that the distribution was changed such that one address had 50 \% chance of being chosen, another had 20 \% and the two remaining had 15 \%.
 
 
