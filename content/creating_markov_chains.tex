@@ -3,7 +3,7 @@ Matrices that describe the transition probabilities of Markov chains, should be 
 This process is handled by \Cref{markov:alg:create_model}.
 The algorithm takes a set of hotspots $H$ and the set of GPS locations $G$, from which the matrix should be built.
 For each hotspot $h \in H$ there exists a departure state $d \in D$.
-Additionally $B$ represents the set of bikes that is being modeled.
+Additionally, $B$ represents the set of bikes that is being modeled.
 
 It is presumed that $G$ is implemented using a data structure that allows the retrieval of a single element using a chronological ordering.
 This will allow us to retrieve the first/last element in the set and to compare elements using the $=$, $<$ and $>$ operators.
@@ -24,8 +24,6 @@ G(b, d) =
   \end{array} \right.
 \end{equation}
 $L(b)$ represents a collection of $bike \rightarrow state$ references and is used to maintain a list of the last known location of each bike.
-\mikkel{Jeg har tilføjet diverse definitioner - jeg synes måske bare det er mange informationer at få for at læse en algoritme.
-Det synes jeg ikke normalt man har med når man læser om algoritmer andre steder.}
 
 \begin{algorithm}
 \SetAlgoNoEnd
