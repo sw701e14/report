@@ -46,12 +46,13 @@ The generation of the model works as follows:
 Clusters are created based on the GPS data in the database \Cref{clustering:DBSCAN}.
 The convex hull of the clusters is determined and saved as the hotspots of the model.
 Markov chains are now created with these clusters as states \Cref{markov:create_model}.
-\mikkel{Mangler vi ikke truncate?}
+\mikael{Tilføj noget om truncate}
+\mikael{Fix referencer}
 
 \subsection{Web Service}\label{arch:webservice}
 \texttt{Web Service} is the macro component containing the \texttt{Model}, \texttt{View}, and \texttt{Controller}.
 The task of the macro component is to provide a web service for users to interact with the system. (see \Cref{chap:webservice})
-\mikkel{Kan vi finde ud af hvordan vi refererer til sections/chapters?}
+\mikael{Lav referencer i stedet for at gentage}
 
 \paragraph{The Model} manages the application domain and handles data and actions possible for each data type.
 

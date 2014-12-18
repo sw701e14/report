@@ -40,7 +40,7 @@ Thus, we want to test whether or not the hotspots are generated as expected.
 
 \paragraph{Test data}
 For this test, we have constructed a data set, which consists of two addresses and their corresponding GPS coordinates.
-\mikkel{Jeg synes vi skal inkludere addresserne her, for klarhedens skyld.}
+\mikael{Indsæt adresserne brugt i testen}
 We will then generate hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
 Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
 \mikkel{Hvorfor er støj en grund til at der kun laves clusters på de adresser?}
@@ -54,8 +54,7 @@ The $MinPts$ parameter was set to 4 as suggested by \citet[Page 529]{pang2006int
 For the other parameter, $eps$, 15 meters was chosen.
 This value was chosen because a GPS receivers accuracy is 15 meters according to \citet{garmingps}.
 Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 meters away from its real location.
-\stefan{jeg er uenig i at det er grunden til at der er valgt 15 meter, men jeg tror ikke vi har noget reelt argument}
-\mikkel{Det argument holder kun så længe vi taler genereret data. Reelt data vil ikke have præcis den samme placering. Så enten synes jeg vi skal bruge et andet argument, eller også skal vi skrive at det kun relaterer sig til testen.}
+\mikael{Argumenter for at det giver mening ift. test da vi regner med at ramme samme punkt}
 
 \paragraph{Result}
 The result has been visualized and can be seen in \Cref{fig:test:clustering}.
