@@ -3,14 +3,12 @@ Scalability is an important factor when designing a web service. In this project
 
 Users are important, to take into account, since there is a high uncertainty in regards to the number of users, which could lead to performance issues if not addressed.
 
-Additionally, the number of bikes should be increasable without causing problems in the system. If not addressed, it could lead to storage issues due to the increase in GPS data and increase in the time required to build the models.
-\mikkel{Jeg synes der står at man sagtens kan increase men at det nemt kan føre til problemer.}
-A high number of resulting hotspots will also result in slower response times for the users due to the increased complexity of the predictions.
-\mikkel{Jeg synes vi skal lave et estimat på hvornår det kunne blive aktuelt.}
+Additionally, the number of bikes must be increasable without causing problems in the system. If not addressed, it could lead to storage issues due to the increase in GPS data and increase in the time required to build the models.
+A high number of resulting hotspots will also result in slower response times for the users due to the increased number of matrix multiplication required.
 
 The easiest way to address these issues is to scale out (adding new hardware) or scale up (enhance existing hardware) \cite{michael2007scale}. 
 
-\paragraph{The system} is scalable due to the way the macro components are divided. By dividing the system into macro components with their own tasks, it would be easy to add more hardware. It should further be easy to implement additional functionality due to the \texttt{Shared} macro component.
+\paragraph{The system} is scalable due to the way the macro components are divided. By dividing the system into macro components with their own tasks, it would be easy to add more hardware. It should further be easy to implement additional functionality due to the Shared macro component.
 
-Since each macro component only needs a connection to the \texttt{Shared} macro component, it should be possible to migrate or add new macro components to other machines - as long as it can connect to the \texttt{Shared} macro component. Thus it is possible to scale out which increases the performance of the system.
-\mikkel{Hvordan ser det ud ift skalering (og dermed synkronisering) af database?}
+Since each macro component only needs a connection to the Shared macro component, it should be possible to migrate or add new macro components to other machines - as long as it can connect to the Shared macro component.
+Thus it is possible to scale out which increases the performance of the system.
