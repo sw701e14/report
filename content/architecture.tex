@@ -1,6 +1,5 @@
-\section{Overview}
-\mikkel{WORKWORK: Merge this description with the architecture intro.
-All subsections should be subsections and overview must die.}
+This chapter illustrates the system architecture and describes the role of each component.
+It also contains an analysis of why the architecture is scalable.
 \mikkel{WORKWORK: All macro component should \textbf{not} list their layers and then list then again.}
 A system architecture is introduced to ease maintenance and ensure scalability.
 The architecture consists of four macro components and a database, as can be seen in \Cref{fig:architecture}. The macro components are: Shared, Location Service, Model Agent, and Web Service.
@@ -11,11 +10,11 @@ The architecture consists of four macro components and a database, as can be see
 \label{fig:architecture}
 \end{figure}
 
-\subsection{Database} The database used is a MySQL database, and is where all our data is stored.
+\section{Database} The database used is a MySQL database, and is where all our data is stored.
 The design of the database can be found in \Cref{database_design}.
 \mikkel{WORKWORK: Jeg synes vi mangler lidt argumentation for hvorfor designet ikke er inkluderet i rapporten.}
 
-\subsection{Shared}
+\section{Shared}
 The task of the macro component shared is to provide extended capabilities to all other macro components.
 
 \paragraph{The Data Access layer} All SQL statements and communication with the database are encapsulated here providing the upper layers a communication protocol to the database.
@@ -25,7 +24,7 @@ Additionally this layer provides an abstraction of the actual communication with
 The types within this layer provides methods for retrieving data from the database and converting it into elements of the types in the Data Transfer Object layer.
 \mikkel{Jeg synes vi mangler en beskrivelse af hvorfor der er forbindelse fra de tre øverste komponenter til Data Access. Men jeg kan ikke lige komme på en.}
 
-\subsection{Location Service} 
+\section{Location Service} 
 The location service component processes and stores location data directly from a data source. 
 The \texttt{Location Service} consists of a \texttt{Location Source} which provides data points to the \texttt{Data Collector}.
 \mikkel{Jeg forestiller mig spørgsmål som ''What is The \texttt{Location Service} and a \texttt{Location Source}?''}
@@ -37,7 +36,7 @@ It is structured so that the Location Source layer can easily be replaced with a
 \paragraph{The Data Collector layer} gathers the data from the \texttt{Location Source} layer and processes it. 
 The data is then stored through the \texttt{Data Access} layer.
 
-\subsection{Model Agent}
+\section{Model Agent}
 \texttt{Model Agent}\footnote{An agent is defined as a program that invoke a given task, when a condition is satisfied, then returning to a sleeping state, until the condition is satisfied again.\cite{definitionagent}} is the macro component containing the \texttt{Model Updater} layer.
 The macro component's task is to generate and update the model in the system. 
 
@@ -49,7 +48,7 @@ Markov chains are now created with these clusters as states \Cref{markov:create_
 \mikael{Tilføj noget om truncate}
 \mikael{Fix referencer}
 
-\subsection{Web Service}\label{arch:webservice}
+\section{Web Service}\label{arch:webservice}
 \texttt{Web Service} is the macro component containing the \texttt{Model}, \texttt{View}, and \texttt{Controller}.
 The task of the macro component is to provide a web service for users to interact with the system. (see \Cref{chap:webservice})
 \mikael{Lav referencer i stedet for at gentage}
