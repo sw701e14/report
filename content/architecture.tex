@@ -4,12 +4,6 @@ It also contains an analysis of why the architecture is scalable.
 The system architecture is introduced to ease maintenance and ensure scalability.
 The architecture consists of four macro components and a database, as can be seen in \Cref{fig:architecture}. The macro components are: Shared, Location Service, Model Agent, and Web Service.
 
-\begin{figure}
-\includegraphics[width=\textwidth, trim={2cm 1cm 6cm 0}]{systemArchitecture.pdf}
-\caption{The architecture of the system}
-\label{fig:architecture}
-\end{figure}
-
 \section{Database} The database used is a MySQL database, and is where all our data is stored.
 The design of the database can be found in \Cref{database_design}.
 It is not included in the report as its structure is rather trivial and only serves the purpose of having a simple and fast method of storing/retrieving large amounts of data.
@@ -23,6 +17,12 @@ Additionally this layer provides an abstraction of the actual communication with
 
 \paragraph{Data Transfer Object} This layer provides a collection of shared data types, making it possible for all the macro components to treat the data uniformly.
 The types within this layer provides methods for retrieving data from the database and converting it into elements of the types in the Data Transfer Object layer.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth, trim={0cm 8cm 8cm 0}]{systemArchitecture.pdf}
+\caption{The architecture of the system}
+\label{fig:architecture}
+\end{figure}
 
 \section{Location Service} 
 The location service component processes and stores location data directly from a data source.
