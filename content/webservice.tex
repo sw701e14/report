@@ -52,11 +52,7 @@ As each resource is uniquely identified, any resource containing sub-resources o
 This makes the server independent of clients and previous requests, as it is up to each individual client to handle its own application state (not to be confused with the server's resource state) and providing it when needed.
 
 \paragraph{Uniform interface} is where the HTTP/1.1 specifications come in.
-By taking advantage of the HTTP methods GET, POST, PUT, DELETE, HEAD, and OPTIONS, every resource is handled the same way.
-POST, GET, PUT, and DELETE correspond to the Create, Read, Update, Delete (CRUD) operations.
-HEAD is for retrieving the resource's meta-data, without the actual representation.
-OPTIONS is for seeing allowed methods for a given resource (additionally, by providing the Authorization header, actions can be restricted based on client permissions).
-
-Any feedback needed to be given to clients from the server is handled through HTTP status codes (e.g. '200 OK', '404 Not Found').
-\mikkel{WORKWORK - tilpas til vores løsning}
-\mikkel{Jeg synes det her afsnit er for detaljeret og giver informationer som jeg ikke ved hvad jeg skal gøre med. Hvad er CRUD? Bruger vi HEAD og OPTIONS?}
+HTTP provides a set of methods for retrieving and modifying resources.
+As the service provided by \projectname{} will only allow users to retrieve data we will on be employing the GET method.
+All resources can then be retrieved using a GET request (see \Cref{webservice:resources} for a specification).
+Any feedback needed to be given to clients from the server is handled through HTTP status codes (e.g. '200 OK' and '404 Not Found').
