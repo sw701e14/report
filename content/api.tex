@@ -1,9 +1,11 @@
 \section{Web Service API}\label{design:web_service}
-The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi}.
-In the architecture, the web service is defined as a component of its own (see \Cref{arch:webservice}).
+The web service API was implemented using ASP.NET Web API 2.3\cite{aspnet_webapi}, which is an implementation of the Model-View-Controller architecture.
+In the architecture of \projectname{}, the web service is defined as a component of its own (see \Cref{arch:webservice}).
+
+\input{content/mvc}
 
 \paragraph{Resource Oriented Architecture}
-Resource Oriented Architecture criteria, as described in \Cref{webservice:roa}, set the ground rules for designing the API.
+As described in \Cref{webservice:roa}, this architecture sets the ground rules for designing the API.
 These criteria are therefore upheld by the API.
 
 \subsection{Resources}\label{webservice:resources}
@@ -60,6 +62,4 @@ When a client wants to know when a bike arrives at a hotspot this resource can b
 
 \alexander{Ret ALLE (hele rapporten) således der ikke bliver brugt paragraph som en del af sætningen. Brug description i stedet for.}
 \alexander{Ret layout for alle API ''kasserne''.}
-
-\input{content/mvc}
 
