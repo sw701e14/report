@@ -43,8 +43,8 @@ along with the four properties:
 \item Connectedness
 \item Uniform interface
 \end{itemize}.
-
-\paragraph{Resources} A resource is a subset of the resource state.
+\begin{description}
+\item[Resources] A resource is a subset of the resource state.
 A single resource is an entity important enough to be a thing in itself.
 Each resource should have at least one \textit{URI} (Unique Resource Identifier).
 URIs ensure that each resource can be uniquely identified, directly handling the \textit{addressability} property.
@@ -53,15 +53,15 @@ URIs ensure that each resource can be uniquely identified, directly handling the
 Representations of resources depends on the desired use.
 
 
-\paragraph{Connectedness and linking resources} As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI.
+\item[Connectedness and linking resources] As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI.
 Thus, connectedness and linking resources are highly dependent on URIs.
 
-\paragraph{Statelessness} By providing, if any, state-relevant parameters on each request, statelessness is achieved.
+\item[Statelessness] By providing, if any, state-relevant parameters on each request, statelessness is achieved.
 This makes the server independent of clients and previous requests, as it is up to each individual client to handle its own application state (not to be confused with the server's resource state) and providing it when needed.
 
-\paragraph{Uniform interface} The HTTP/1.1 specifications is used to secure an uniform interface.
+\item[Uniform interface] is where the HTTP/1.1 specifications come in.
 HTTP provides a set of methods for retrieving and modifying resources.
 As the service provided by \projectname{} will only allow users to retrieve data we will on be employing the GET method.
 All resources can then be retrieved using a GET request (see \Cref{webservice:resources} for a specification).
 Any feedback needed to be given to clients from the server is handled through HTTP status codes (e.g. '200 OK' and '404 Not Found').
-\alexander{Læs paragraphs og se om de stadig giver mening efter at titlen ikke længere er en del af første sætning.}
+\end{description}
