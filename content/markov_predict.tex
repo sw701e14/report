@@ -13,7 +13,7 @@ Let
 \item $X_0$ be the random variable representing the possible initial states.
 \item $H = \{h_0, h_1, \dots, h_n\}$ be the set of hotspots.
 \item $D = \{d_0, d_1, \dots, d_n\}$ be the set of departure states.
-\item be the set of all states, $S = H \cup D$. \bruno{i am confused}
+\item $S = H \cup D$ be the set of all states.
 \item $P_j(h_i) = \mathbb{P}(X_j = h_i)$ and $P_j(d_i) = \mathbb{P}(X_j = d_i)$
 \end{itemize}
 
@@ -59,7 +59,6 @@ If it is not, we will iterate backwards through the set of known locations of a 
 We then say that the bike is currently in state $d_i$.
 If there is no data placing a bike within a hotspot, the bike will instead be said to be in the departure state of the nearest hotspot.
 In this context, nearest refers to the hotspot that has the lowest minimum distance to the last known location of the bike.
-\mikael{Bør det her ikke være under Generating Model?}
 
 \paragraph{An example}
 With a set of states, such as the one in \Cref{markov:model:complex}, and a total of 16 bikes, we could have a distribution of bikes as follows:
@@ -73,6 +72,7 @@ In the following section, this example will be revisited, providing such informa
 
 \subsection{Predicting from the initial distribution}
 Having represented the probability distributions as vectors, we can multiply them with the transitional matrices described in \cref{markov} and \cref{markov:create_model}.
+\mikkel{WORKWORK: ref til equations i stedet}
 \mikael{Mener du den matrix du definere sidst i 3.1?}
 Such a multiplication would result in a vector with the probability distribution of the individual states after one time-step.
 In other words:

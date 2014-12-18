@@ -6,11 +6,7 @@ As the purpose of \projectname{} is to be able to predict the movement of bikes 
 \end{itemize}
 
 The locations of the bikes are abstracted by creating hotspots, as described in the previous chapter.
-In actuality, the location of bikes is modeled to be more complex, as will be further explored in \Cref{markov:modeling}.
-However, the theory and methods described in the following sections apply regardless.
-\bruno{\mikael{Er ikke sikker på jeg forstår denne paragraf.}}
-
-By abstracting the locations to be hotspots, the above question can be rephrased as: 
+Thus the above question can be rephrased as: 
 
 \begin{itemize}
 \item How much time will it take before a bike will be \emph{in a given hotspot}?
@@ -50,9 +46,8 @@ This notation allows us to establish a timespan, as each step refers to a fixed 
 
 This randomness will be biased towards certain states, given its current state (and possibly time), resulting in a set of probabilities for each state given a random variable.
 Let $\mathbb{P}(X_i = x)$ be the probability of $X_i$ being in state $x$.
-The above will then allow us to express the probability of moving to a state $y$, given the path we have traversed.
-\stefan{mangler der et y et sted eller forstår jeg det ikke?}
-\mikkel{y refererer til en vilkårlig state}
+The above will then allow us to express the probability of moving to an arbitrary state $y$, given the path we have traversed.
+
 In other words, knowing which state we are in, and how we got to it, allows us to determine the probability of the next state being $y$:
 
 $$\mathbb{P}(X_{n+1} = y \mid X_1 = x_1, X_2 = x_2, \dots X_n = x)$$
@@ -120,10 +115,9 @@ An example of this can be seen in \Cref{markov:model:complex}, where states $d_1
 \subsection{Modeling the average bike}\label{markov:modeling}
 Throughout this section, the average bike has been modeled using a state set, consisting of hotspots and an associated transition function (represented using a probability matrix).
 We presented a simple example of this, using only two hotspots, in \Cref{markov:model:simple}.
-Using this system, we will be able to make predictions on the path of the bike in the system.
-To do this we require an initial state for the system.
-\mikael{'System' virker meget forkert her.}
-\bruno{Hvad med 'model'}
+Using this model, we will be able to make predictions on the path of the bike in the system.
+To do this we require an initial state of the system.
+
 This state should represent the current (at the time of querying) location of the bikes in the system.
 Using this representation, we will be able to compute the probability that the bikes will be in some hotspot after a number of time steps.
 

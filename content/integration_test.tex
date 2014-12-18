@@ -40,10 +40,11 @@ Thus, we want to test whether or not the hotspots are generated as expected.
 
 \paragraph{Test data}
 For this test, we have constructed a data set, which consists of two addresses and their corresponding GPS coordinates.
-\mikkel{Jeg synes vi skal inkludere addresserne her, for klarhedens skyld.}
+\mikael{Indsæt adresserne brugt i testen}
 We will then generate hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
 Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
 \mikkel{Hvorfor er støj en grund til at der kun laves clusters på de adresser?}
+\mikkel{WORKWORK: Der er støj - derfor bliver clusters større end 1 punkt.}
 
 \paragraph{DBSCAN parameters}
 The clustering algorithm chosen\footnote{DBSCAN explained in \Cref{clustering:DBSCAN}} expects two parameters, $eps$ and $MinPts$.
@@ -53,8 +54,7 @@ The $MinPts$ parameter was set to 4 as suggested by \citet[Page 529]{pang2006int
 For the other parameter, $eps$, 15 meters was chosen.
 This value was chosen because a GPS receivers accuracy is 15 meters according to \citet{garmingps}.
 Setting $eps \leftarrow 15$ makes sense because a GPS data point then can be up to 15 meters away from its real location.
-\stefan{jeg er uenig i at det er grunden til at der er valgt 15 meter, men jeg tror ikke vi har noget reelt argument}
-\mikkel{Det argument holder kun så længe vi taler genereret data. Reelt data vil ikke have præcis den samme placering. Så enten synes jeg vi skal bruge et andet argument, eller også skal vi skrive at det kun relaterer sig til testen.}
+\mikael{Argumenter for at det giver mening ift. test da vi regner med at ramme samme punkt}
 
 \paragraph{Result}
 The result has been visualized and can be seen in \Cref{fig:test:clustering}.
@@ -98,12 +98,12 @@ The data was generated to simulate a 15 hour period with four possible addresses
 The results for the test can be seen in \Cref{test_even}.
 
 In the result it is seen that some inaccuracies have occurred since there are some entries with values that, although very low, are not zero as expected.
-\mikkel{Vi mangler et eksempel på sådan en værdi.}
+\mikkel{WORKWORK: Vi mangler et eksempel på sådan en værdi.}
 
 The important numbers are those that tell how a bike act when in a departure state.
 These are the numbers that indicate how the routes are expected to be chosen.
-These numbers are pairwise marked with a color in the table.
-\mikkel{Not pairwise}
+These numbers are setwise marked with a color in the table.
+
 Each of these sets of numbers indicate the distribution between destinations.
 As the distribution of the generated data was set to be equal, we would expect these numbers to be equal as well.
 
@@ -158,17 +158,15 @@ The numbers are normalized such that they add up to 100 \% and can be seen on \c
 		\end{tabular}
 	\end{tabular}
 	\caption{The expected proportions to the left and the resulting proportions to the right}\label{even_results}
-	\mikkel{Hvad er $d$?}
-	\mikkel{Jeg synes vi skal bruge samme color-coding her som i den store tabel}
+	\mikkel{WORKWORK: Fjern $d$?}
+	\mikkel{WORKWORK: Jeg synes vi skal bruge samme color-coding her som i den store tabel}
 \end{figure}
 
 As it can be seen from the results, the numbers look very reasonable considered that they were randomly generated. 
 The biggest deviation is the transition from $ d_4 $ to $ h_1 $ which is 7.95\% deviation. 
 \stefan{kan man konkludere mere på det?
-\mikkel{Jeg synes vi skal droppe de 7.95\%. De giver ikke rigtig noget relevant information.
+\mikkel{WORKWORK: Jeg synes vi skal droppe de 7.95\%. De giver ikke rigtig noget relevant information.
 Jeg tænker at vi bare kan skrive ''this is a reasonable result and one would expect it converge to 33.3\% as the set of test data is increased''}}
-\alexander{Maybe one should perform more runs of the same test to determine what deviation is acceptable?
-\stefan{not gonna happen <3<3}}
 
 \subsubsection{Uneven distribution}
 Another test case is to weight one destination higher than the others.
@@ -200,15 +198,12 @@ The resulting Markov chain after this simulation can be seen on \Cref{test_uneve
 \end{figure}
 
 It is not possible to translate the input addresses to indexes in the Markov chain because the Markov chain is based on the clusters found by the DBSCAN algorithm.
-\mikkel{Det er vel muligt ved bare at kigge i databasens hotspots. Det giver ikke rigtig mening at sige at vi ikke kan oversætte adresser til hotspots når vi gør det i den forrige test.}
+\mikkel{WORKWORK: Make order of percentages and table the same.\\
+Det er vel muligt ved bare at kigge i databasens hotspots. Det giver ikke rigtig mening at sige at vi ikke kan oversætte adresser til hotspots når vi gør det i den forrige test.}
 Based on the colored numbers it seems that $ h_1 $ had 15\% chance, $ h_2 $ had 50\% chance, $ h_3 $ had 15\% chance and $ h_4 $ had 20\% chance of being chosen.
-\stefan{bedre at plotte hotspots og vurdere derudfra?}
-\alexander{In my opinion prediction is best verified and illustrated by a matrix, but the clustering is clearly best illustrated with a map with hotspots.
-\mikkel{Agreed - I think the current method is the best}}
-\mikkel{Kunne man ikke gøre det i omvendt rækkefølge - altså sådan at man først beregner de proportionale procenter og derefter bestemmer hvilke hotspots der er hvad.}
 
-Based on these hotspot assignments we would expect the following proportions for the departure rows, where the $ d $ in each row is any number determining how long a bike is in a departure state before it leaves.
-The numbers are normalized so they add up to 100 \% and can be seen on \cref{uneven_results} where the expected results are in the left table and the actual results are in the right table.
+Based on these hotspot assignments we would expect the proportions in \Cref{uneven_results} for the departure rows.
+The expected results are in the left table and the actual results are in the right table.
 
 \begin{figure}
 
@@ -270,4 +265,4 @@ These deviations are higher than the results for the evenly distributed test, bu
 This section has tested the validity of the Markov chains that are being used in our system.
 The results showed that there is up to 15\% deviation from the expected numbers, but considering that the data was randomly generated we consider this in an acceptable range.
 \mikkel{Jeg synes vi skal droppe procent-afvigelserne og så bare skrive at vi kunne se at det virkede fint nok \textit{''reasonable''}}
-\mikkel{Behøver vi en conclusion sektion?}
+\mikkel{Behøver vi en conclusion sektion? - NEJ!}
