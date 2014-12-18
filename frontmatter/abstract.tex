@@ -1,1 +1,17 @@
-\stefan{write me}
+The purpose of this project was to improve on the already existing \citybike system, by implementing a software solution.
+
+In order to improve on the already existing \citybike system, it was first analyzed, identifying and defining problems to be improved upon.
+Based on these problems, along with information gained from an interview with Aalborg Kommune, a solution was formed.
+This solution built on-top of the current \citybike system, with the addition of GPS receivers and the removal of bike stations.
+
+Instead of bike stations, hotspots were introduced.
+These hotspots were found by using a clustering algorithm DBSCAN.
+Hotspot representation was then simplified by obtaining its convex hull.
+
+Time-homogenous Markov chains, represented as a matrix, was then introduced in order to form a model of the average bike usage.
+Based on this model, predictions were made about when to expect bikes at the different hotspots.
+
+In order to make the data available to the users, a web service was implemented.
+
+A pseudo-realistic simulation was created in order to ensure that the implementation was successful.
+The results of the tests suggest that the implementation was successful.
