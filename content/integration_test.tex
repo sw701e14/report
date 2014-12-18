@@ -114,7 +114,7 @@ These numbers are setwise marked with a color in the table.
 Each of these sets of numbers indicate the distribution between destinations.
 As the distribution of the generated data was set to be equal, we would expect these numbers to be equal as well.
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 \begin{tabular}{|c | c c c c c c c c|}
 \hline
@@ -135,7 +135,7 @@ $ d_4 $ & {\color{purple}7,7} &   &   {\color{purple}6,8} &   &   {\color{purple
 
 The numbers are normalized such that they add up to 100 \% and can be seen on \cref{even_results} where the expected results are in the left table and the actual results are in the right table.
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\begin{tabular} {c c }
 		
@@ -179,7 +179,7 @@ The only difference was that the distribution was changed such that one address 
 
 The resulting Markov chain after this simulation can be seen on \Cref{test_uneven}.
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\begin{tabular}{|c | c c c c c c c c|}
 		\hline
@@ -198,13 +198,13 @@ The resulting Markov chain after this simulation can be seen on \Cref{test_uneve
 	\caption{Results of the test with an even distribution. A colored set of numbers indicates the probabilities of a departure state going to each of the other hotspots.}\label{test_uneven}
 \end{figure}
 
-It is not possible to translate the input addresses to indexes in the Markov chain because the Markov chain is based on the clusters found by the DBSCAN algorithm.
-\mikkel{WORKWORK: Make order of percentages and table the same.\\
-Det er vel muligt ved bare at kigge i databasens hotspots. Det giver ikke rigtig mening at sige at vi ikke kan oversætte adresser til hotspots når vi gør det i den forrige test.}
-Based on the colored numbers it seems that $ h_1 $ had 15\% chance, $ h_2 $ had 50\% chance, $ h_3 $ had 15\% chance and $ h_4 $ had 20\% chance of being chosen.
+The order of the hotspots does not correspond to the order in which the percentages were presented above.
+However we have determined the association by examining the GPS locations associated with the generated hotspots.
+The ordering of percentages, using the hotspot order $h_1, h_2, h_3, h_4$, is $15\%, 50\%, 15\%, 20\%$.
 
-Based on these hotspot assignments we would expect the proportions in \Cref{uneven_results} for the departure rows.
+In \Cref{uneven_results} we present two tables that describe these values in relation to transitions.
 The expected results are in the left table and the actual results are in the right table.
+The values are normalized using three values at a time as a route is never generated with the same start and end address.
 
 \begin{figure}
 
