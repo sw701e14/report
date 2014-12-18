@@ -137,6 +137,7 @@ One point can be a border point to several core points.
 A visual description can be seen on \Cref{dbscan_point_types}.
 Given these definitions, the algorithm is described in \Cref{dbscan-algo}.
 
+\mikael{Slå alle algoritmer sammen til én.}
 \begin{algorithm}
 DBSCAN(D, eps, MinPts)\\
 	C = 0\\
@@ -153,7 +154,6 @@ DBSCAN(D, eps, MinPts)\\
 	}
 \caption{The DBSCAN clustering algorithm}\label{dbscan-algo}
 \end{algorithm}
-\mikkel{Skal vi gøre noget ved algoritmen ift notationen så vi undgår den uklarhed der er på wiki siden?}
 
 \begin{algorithm}
 expandCluster(P, NeighborPts, C, eps, MinPts)\\
