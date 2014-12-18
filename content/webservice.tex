@@ -13,10 +13,18 @@ The remainder of this section will describe RESTful web services (specifically R
 
 \subsection{Representational State Transfer(REST)}
 REST is an architectural style, which provides design criteria for network-based software architectures.
-\mikael{List design kriterierne, kapitel på kilde.}
 Web services adhering to these design criteria are referred to as RESTful web services.
-These criteria were defined in \citet{fielding_dissertation}.
-As REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA), as described in \citet{restful_web_services}.
+These criteria were defined in \citet[Chapter 5]{fielding_dissertation} and are listed here:
+\begin{enumerate}
+\item Client-Server
+\item Stateless
+\item Cache
+\item Uniform Interface
+\item Layered System
+\item Code-On-Demand (optional)
+\end{enumerate}
+
+Since REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA), as described in \citet{restful_web_services}.
 
 \subsection{Resource-Oriented Architecture(ROA)}\label{webservice:roa}
 ROA is an architecture, upholding the REST design criteria.
