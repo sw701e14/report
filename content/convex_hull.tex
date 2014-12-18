@@ -1,8 +1,9 @@
 \section{Convex Hull}\label{convex_hull}
 In order to check whether a location is within a hotspot, we need to represent hotspots as something different than a cluster of locations.
 Instead of doing this with a simple geometrical shape, as this could misrepresent complexly shaped hotspots, we represent a hotspot as a polygon by applying convex hull to the clustered locations.
-\mikkel{WORKWORK: A convex hull is a misrepresentation of a complex shape.}
-This way we reduce the amount of locations needed to represent a hotspot, and without any loss of information.
+
+A convex hull could also be a misrepresentation of a complexly shaped hotspot, but as hotspots have no inherent shape we deem the convex hull to be a close representation of what we associate with hotspots.
+This way we reduce the amount of locations needed to represent a hotspot without much loss of information.
 
 The following definition of convex hull is based on \citet[section 33.3]{aadbook}.
 

@@ -21,9 +21,7 @@ Because of this, some uncertainty is expected in the model, as all bikes (and th
 Modeling the movement of all bikes will be done by modeling the movement of this average bike as a stochastic process \cite{stochastic}.
 
 We must also consider that our model will be working on discrete-time location data.
-The GPS units that the bikes will be equipped with will only report the location of a bike at a \textit{fixed} interval.
-\bruno{\mikael{Dette kunne snildt være defineret tidligere, da det bruges både i hotspots, her, og i tests.}}
-\stefan{remember this god dammit}
+The GPS receivers that the bikes will be equipped with will only report the location of a bike at a \textit{fixed} interval as described in \ref{gpsreceiver}
 Additionally the accuracy of each of these measurements can be low, resulting in even more imprecision.
 As we are modeling the average bike, we can represent the state of the process as the location of the bike.
 In order to reduce the number of locations to a sensible number, we will use the generated hotspots instead.

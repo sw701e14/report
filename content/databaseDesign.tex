@@ -1,12 +1,11 @@
 \chapter{Database Design}\label{database_design}
 \mikael{Opdater dette kapitel (tilføj Markov/model), ret små finurligheder}
-To store the data we use a MySQL database is utilized.
-The following will describe the database design and the choices involved.
+To store the data we use a MySQL database.
 
-When location data is collected and processed, it is stored in the \texttt{GPS\_data} table.
-This table contains all information necessary for storing a GPS point as well as the field "hasNotMoved" which indicates whether the bike is standing still or has moved since the point was inserted into the database.
+When location data is collected and processed, it is stored in the \texttt{gps\_data} table.
+This table contains all information necessary for storing a GPS point as well as the field \texttt{hasNotMoved}, which indicates the bike is standing still, as the location has not changed since the previous point was inserted into the database.
 This has been done in order to reduce redundant data in the database.
-The GPS\_data table can be seen in \Cref{tbl_gpsdata}.
+The \texttt{gps\_data} table can be seen in \Cref{tbl_gpsdata}.
 
 \begin{lstlisting}[caption=Table for GPS\_data, label=tbl_gpsdata, language=SQL]
 CREATE TABLE gps_data (
@@ -37,5 +36,14 @@ This convex hull is stored as binary data (a blob) in the \texttt{hotspot} table
 CREATE TABLE hotspots (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
 	convex_hull BLOB NOT NULL
+);
+\end{lstlisting}
+
+The Markov chain matrix is also stored as binary data, as seen in \Cref{tbl_markov}.
+
+\begin{lstlisting}[caption=Table for Markov chains, label=tbl_markov]
+CREATE TABLE markov_chains (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  mc MEDIUMBLOB NOT NULL
 );
 \end{lstlisting}
