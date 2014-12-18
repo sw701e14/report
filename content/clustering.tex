@@ -58,23 +58,16 @@ A cluster is defined by the density of the data objects.
 A cluster is a dense region surrounded by a low density region.
 
 \subsection{Our data and purpose}\label{data_purporse}
-The data we need to cluster is GPS data from the bikes.
-\mikael{Som mine tidligere kommentarer, klart defineret begreb. GPS data, i denne kontekst, dækker kun over stillestående punkter.}
+The data we need to cluster is all the static GPS locations.
 We expect the points to be distributed in a wide area, but clustered around places where people place the bikes (hotspots).
 These clusters may have different size, depending on the physical properties of the places the bikes are left.
 
 The purpose of the clustering is to find the areas where bicycles are left most often, in order to make predictions on when a bike will arrive in those areas.
 These areas can then be considered our hotspots.
 
-Based on this description we need a hierarchical, exclusive, partial and density based clustering.
+Based on this description we need a partitional, exclusive, partial and density based clustering.
 
-Hierarchically, because it makes it easy to locate what cluster a point belongs to by traversing the resulting tree.
-\mikael{Er det her ikke forkert, har vi ikke en partitional clustering?}
-\stefan{vi har ikke hierarkisk, men ud fra vores data ville det sandsynligvis være det bedste valg, da det er lettere at finde ud af hvilket cluster et punkt er i.
-(jeg har omformuleret argumentet en smule siden Mikaels kommentar)}
-\mikkel{Skal vi ikke bare skrive det om til at passe med det vi faktisk gør?}
-\stefan{skriv en god historie om hierarkier}
-
+Partitional, because we do not need hierarchies for our problem, we only need the select clusters that meet our requirements for a cluster.
 It needs to be exclusive because we want the clusters to be separated from each other so any point on the map is either in one cluster or not in any cluster.
 We want to find out where the bikes spend most of their time and therefore we want a density based partial clustering.
 
@@ -97,9 +90,7 @@ Hierarchical clustering can be performed either by starting at the top of the tr
 \textit{Agglomerative hierarchical clustering} starts by considering all points as being in individual clusters, then generating the hierarchy by merging the closest clusters.
 \textit{Divisive hierarchical clustering} starts by considering all points as being in a single cluster, then continues by splitting the clusters at each step.
 
-We would like our clustering to be hierarchical, but this algorithm does requirement for a density based clustering.
-\mikael{Det her siger det stik modsatte af hvad 2.2.4 siger.}
-\stefan{jeg har opdateret konklusionen, men jeg ved ikke hvordan vi argumenterer for at density er vigtigere end hierarki}
+We would like our clustering to be partitional, which makes this algorithm inappropriate for hour purposes.
 It should also be noted that hierarchical clustering is a complete clustering.
 For bikes used by many different users one would expect some noise in the data.
 Therefore it seems reasonable to only implement a partial clustering.
@@ -176,8 +167,5 @@ regionQuery(P, eps)\\
 	\Return {all points within the eps-neighborhood of P (including P)\\}
 \end{algorithm}
 
-\subsection{Summary}\bruno{Hvordan argumentere vi for at bruge DBSCAN fremfor en algoritme der møder alle vores krav?} Of the three presented algorithms, only the DBSCAN algorithm fits our need for an exclusive, partial and density-based clustering algorithm.
+\subsection{Summary} Of the three presented algorithms, only the DBSCAN algorithm fits our need for a partitional, exclusive, partial and density-based clustering algorithm.
 We therefore use this algorithm to detect clusters in our data, to be used as the hotspots in our model.
-The hierarchical need is covered by saving the clusters in a tree data structure\footnote{This was not implemented, see \Cref{ref:ods}.}.
-\mikael{Samme konflikt som tidligere nævnt.}
-\mikkel{Kan vi ikke bare sige hvad vi har gjort fremfor hvad vi gerne ville have gjort?}

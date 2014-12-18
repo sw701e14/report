@@ -11,9 +11,8 @@ We have chosen to perform our test with this method, due to time limitations \ci
 The purpose of the tests we have designed is to check if the system can produce sensible predictions for the bikes in the system.
 
 In order to generate test data, we have created a method for simulating real world data. 
-The simulator gets a list of destinations (in the form of addresses) as input, making it possible to adjust the probability of the system, by deliberately choosing certain destinations.
+The simulator gets a list of destinations (in the form of addresses) and a list of probabilities as input, making it possible to adjust the probability of the system deliberately choosing certain destinations.
 This makes it possible to create a data set, where it is possible to predict the expected result.
-\stefan{\mikkel{Jeg synes ikke det er helt tydeligt at man kan sætte probability for enkelte adresser. ''adjust the probability of the system''}}
 
 \paragraph{What to test}
 We want to test if the system works as specified in the problem statement.
@@ -26,8 +25,8 @@ We want to test the following parts of our system in order to test the two probl
 \item Markov Chains
 \end{itemize}
 
-We test the hotspot creation in order to check if hotspots are generated where there is bike activity, and this to check if the created hotspots will work as a stand in for the old stations.
-\stefan{\mikkel{''and this to check''}}
+We test the hotspot creation in order to check if hotspots are generated where there is bike activity. 
+This will check if the created hotspots will be able work as a stand in for the old stations.
 This corresponds to item \ref{pr_few} in the problem statement.
 
 We test the Markov chains in order to figure out if our method of generating Markov chains give proper values for using when predicting the behavior of the bikes.
@@ -39,8 +38,12 @@ Misplaced hotspots can therefore skew the results, decreasing the precision of t
 Thus, we want to test whether or not the hotspots are generated as expected.
 
 \paragraph{Test data}
-For this test, we have constructed a data set, which consists of two addresses and their corresponding GPS coordinates.
-\mikael{Indsæt adresserne brugt i testen}
+For this test, we have constructed a data set, which consists of two addresses:
+\begin{itemize}
+\item Nytorv 1, 9000 Aalborg
+\item Nytorv 15, 9000 Aalborg
+\end{itemize}
+and their corresponding GPS coordinates.
 We will then generate hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
 Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
 \mikkel{Hvorfor er støj en grund til at der kun laves clusters på de adresser?}
@@ -94,7 +97,13 @@ The number in $ (d_1,h_2) $ indicates the probability in percentages of transiti
 The simplest test case is when the generated data has equal probability of choosing every destination. 
 In this case we would expect the probabilities of a bike arriving at every destination to be the same.
 
-The data was generated to simulate a 15 hour period with four possible addresses and 100 bikes.
+The data was generated to simulate a 15 hour period with 100 bikes and 4 possible addresses:
+\begin{itemize}
+\item Nørresundby Torv, 9400 Nørresundby
+\item Nytorv, 9000 Aalborg
+\item Borgmester Jørgensens Vej 5, 9000 Aalborg
+\item Selma Lagerløfs Vej 300, 9220 Aalborg Ø
+\end{itemize}
 The results for the test can be seen in \Cref{test_even}.
 
 In the result it is seen that some inaccuracies have occurred since there are some entries with values that, although very low, are not zero as expected.
@@ -172,7 +181,7 @@ Jeg tænker at vi bare kan skrive ''this is a reasonable result and one would ex
 Another test case is to weight one destination higher than the others.
 In this case we would expect the probability of a bike arriving at this particular destination to be higher than all the other probabilities.
 
-The data for this test was created in the exact same way as the data for the even distribution, a 15 hour period with four possible addresses and 100 bikes.
+The data for this test was created in the exact same way as the data for the even distribution, a 15 hour period with 100 bikes and the same 4 possible addresses.
 The only difference was that the distribution was changed such that one address had 50 \% chance of being chosen, another had 20 \% and the two remaining had 15 \%.
 
 

@@ -2,21 +2,28 @@ The following section will describe the possibilities when designing a web servi
 After the chosen architecture has been presented, the actual implementation will be presented.
 
 \section{Choosing an architecture}
-\stefan{beskriv hvad vi vil i laymans terms, lav paranteser om til fodnoter}
-When designing a web service, there are two overall architectural styles; REST (Representational State Transfter) and RPC (Remote Procedural Call) \cite{restful_web_services}.
-What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
-\mikkel{Jeg synes sætningen herover virker som om den er blevet kortet af. Den ''passer ikke ind''}
-As an RPC-style web service is, by definition, procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
+We want to use a webservice to make the content of our model available to the users of the system.
+When a user wants to know if a bike is available in their vicinity they will need a way to retrieve information about the bikes in the model.
 
-The remainder of this section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
-\mikkel{Kan vi ikke lave alle de her paranteser om til fodnoter?}
+REST\footnote{Representational State Transfter} is an architecture that exposes resources and as a bike can be represented as a resource REST will be our choice of web service architecture.
+
+The remainder of this section will describe REST web services, specifically Resource-Oriented Architecture, based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
+
 
 \subsection{Representational State Transfer(REST)}
 REST is an architectural style, which provides design criteria for network-based software architectures.
-\mikael{List design kriterierne, kapitel på kilde.}
 Web services adhering to these design criteria are referred to as RESTful web services.
-These criteria were defined in \citet{fielding_dissertation}.
-As REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA), as described in \citet{restful_web_services}.
+These criteria were defined in \citet[Chapter 5]{fielding_dissertation} and are listed here:
+\begin{enumerate}
+\item Client-Server
+\item Stateless
+\item Cache
+\item Uniform Interface
+\item Layered System
+\item Code-On-Demand (optional)
+\end{enumerate}
+
+Since REST is only an architectural style, making it possible to implement various correct architectures, we will be following one specific architecture implementation: Resource-Oriented Architecture (ROA), as described in \citet{restful_web_services}.
 
 \subsection{Resource-Oriented Architecture(ROA)}\label{webservice:roa}
 ROA is an architecture, upholding the REST design criteria.
