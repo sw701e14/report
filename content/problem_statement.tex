@@ -27,7 +27,7 @@ Additionally, certain limitations and requests were made by Aalborg Kommune, col
 Due to the limited time and project members restrictions will be set, to remove focus from certain problems.
 
 \begin{description}
-\item[\ref{pr_stops}: Making short stops] is not solved directly, as the only solution we see can directly addresses the problem, is the use of a locking mechanism.
+\item[Making short stops] is not solved directly, as the only solution we see can directly addresses the problem, is the use of a locking mechanism.
 
 \item[Statistics about usage] is something Aalborg Kommune also requested.
 This, however, is deemed too far from the initial problem, as we won't be able to get any significant data without testing it on the actual bikes.
@@ -41,9 +41,11 @@ This is due to the restrictions set by Aalborg Kommune, requesting a simple syst
 \paragraph{GPS receivers and Hotspots}\label{gpsreceiver}
 The greatest changes to the current system is the addition of the GPS receivers and the introduction of hotspots.
 As we do not have access to real GPS receivers, we will base the rest of the report on the following assumptions about the GPS receivers on the bikes:
-Each bike is equipped with a GPS receiver which uses GPS satellites to calculate its location. The GPS receiver is presumed to send the location of the receiver, an accuracy stated in meters\footnote{the definition of accuracy is based on the output from \citet{followmee}} and a time stamp indicating the time of the reading.
-This collection of data will be referred to as a \emph{GPS location}	
-The GPS receiver will send a GpS location to our system at a fixed interval, but it is not guaranteed that the interval is exact.
+Each bike is equipped with a GPS receiver which uses GPS satellites to calculate its location.
+
+The GPS receiver is presumed to send the location of the receiver, an accuracy stated in meters\footnote{the definition of accuracy is based on the output from \citet{followmee}} and a time stamp indicating the time of the reading.
+This collection of data will be referred to as a \emph{GPS location}.
+The GPS receiver will send a GPS location to our system at a fixed interval, but it is not guaranteed that the interval is exact.
 
 Hotspots will serve as informal stations; areas of the map where bikes are often parked.
 
@@ -52,7 +54,7 @@ By combining these two things, we want to improve on the problems with the curre
 \begin{description}
 \item[\ref{pr_stations}: Bikes left outside stations] is handled by the GPS receivers, as bikes and their location now can be found, no matter if it is at a hotspot or not.
 
-\item[\ref{pr_few} :Too few stations] is automatically handled by the generation of hotspots.
+\item[\ref{pr_few}: Too few stations] is automatically handled by the generation of hotspots.
 Whenever an area is a popular place to be going from/to, a hotspot should emerge and reflect this.
 
 \item[\ref{pr_stops}: Making short stops] is improved upon but not solved.
@@ -71,12 +73,6 @@ This is an improvement over the current system that provides no such information
 A software solution is to be developed, consisting of 3 main software components, and a shared database.
 The structure of the solution can be seen in \Cref{fig:solution_structure}.
 
-\begin{figure}[h]
-\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 1.5cm}]{our_solution.pdf}
-\caption{The overall structure of our solution}
-\label{fig:solution_structure}
-\end{figure}
-
 The \textit{Location Service} continuously updates the locations of the bikes.
 The \textit{Model Updater} uses the stored location data to generate a model used for predictions.
 The \textit{Web Service} makes an API available, in order to make platform implementations to make the data available as specified in the requirements.
@@ -91,3 +87,9 @@ The following chapters will focus on these problems:
 \item Modeling the usage and using the model for predictions
 \item Making the data available through a web service
 \end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth, trim={0cm 1cm 2cm 1.5cm}]{our_solution.pdf}
+\caption{The overall structure of our solution}
+\label{fig:solution_structure}
+\end{figure}
