@@ -45,9 +45,8 @@ For this test, we have constructed a data set, which consists of two addresses:
 \end{itemize}
 and their corresponding GPS coordinates.
 We will then generate hotspots based on this data, and compare the center of these hotspots, with the addresses from the constructed data set.
-Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should only be clusters around these addresses.
-\mikkel{Hvorfor er støj en grund til at der kun laves clusters på de adresser?}
-\mikkel{WORKWORK: Der er støj - derfor bliver clusters større end 1 punkt.}
+Because the addresses are the only place where the bikes stand still, and the data is generated with noise there should form a cloud of GPS locations around the address which will then be clustered.
+
 
 \paragraph{DBSCAN parameters}
 The clustering algorithm chosen\footnote{DBSCAN explained in \Cref{clustering:DBSCAN}} expects two parameters, $eps$ and $MinPts$.
