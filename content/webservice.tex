@@ -6,7 +6,6 @@ When designing a web service, there are two overall architectural styles; REST (
 What we want to do is expose our resource state (part of our server state, e.g. bikes with their current locations).
 \mikkel{Jeg synes sætningen herover virker som om den er blevet kortet af. Den ''passer ikke ind''}
 As an RPC-style web service is, by definition, procedure-oriented, and what we want to do is expose resources, REST is the natural choice.
-\mikkel{Der er meget opsummering over dette. En lang sæning der er svær at læse.}
 
 The remainder of this section will describe RESTful web services (specifically Resource-Oriented Architecture), based on \citet{restful_web_services}, \citet{fielding_dissertation}, and HTTP/1.1 Specification\cite{http_specification}.
 \mikkel{Kan vi ikke lave alle de her paranteser om til fodnoter?}
@@ -20,11 +19,10 @@ As REST is only an architectural style, making it possible to implement various 
 \subsection{Resource-Oriented Architecture(ROA)}\label{webservice:roa}
 ROA is an architecture, upholding the REST design criteria.
 \mikkel{Hvilke kriterier er det?}
-This is done by organizing and accessing resources in a standardized manner, and by following and taking full advantage of the HTTP/1.1 specification.
-\mikkel{Hvordan gør man det?}
+This is done by organizing and accessing resources in a standardized manner, and by following the HTTP/1.1 specification.
 
 In order to ensure that a ROA implementation will comply with the REST design criteria, it will have to adhere to the four concepts: \textit{resources, URIs, representing resources, linking resources}, along with the four properties: \textit{addressability, statelessness, connectedness, uniform interface} \cite[Chapter 4]{restful_web_services}.
-\mikkel{Det er svært at se hvad der er de fire koncepter.}
+\mikkel{WORKWORK: Det er svært at se hvad der er de fire koncepter.}
 
 \paragraph{Resources} are a subset of the resource state.
 A single resource is an entity important enough to be a thing in itself.
@@ -36,8 +34,6 @@ A representation of a specific resource is a collection of any useful informatio
 
 \paragraph{Connectedness and linking resources} are highly dependent on URIs.
 As each resource is uniquely identified, any resource containing sub-resources or needing to refer to other resources, can do so by linking to its URI.
-\mikkel{Skulle vi ikke anvende den tankegang i vores webservice? Sådan at predictions ikke giver alle hotspots men bare en URI til hver af dem.
-Det samme for listen af hotspots.}
 
 \paragraph{Statelessness} is handled by providing, if any, state-relevant parameters on each request.
 This makes the server independent of clients and previous requests, as it is up to each individual client to handle its own application state (not to be confused with the server's resource state) and providing it when needed.
@@ -49,4 +45,5 @@ HEAD is for retrieving the resource's meta-data, without the actual representati
 OPTIONS is for seeing allowed methods for a given resource (additionally, by providing the Authorization header, actions can be restricted based on client permissions).
 
 Any feedback needed to be given to clients from the server is handled through HTTP status codes (e.g. '200 OK', '404 Not Found').
+\mikkel{WORKWORK - tilpas til vores løsning}
 \mikkel{Jeg synes det her afsnit er for detaljeret og giver informationer som jeg ikke ved hvad jeg skal gøre med. Hvad er CRUD? Bruger vi HEAD og OPTIONS?}
