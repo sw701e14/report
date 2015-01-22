@@ -1,0 +1,84 @@
+\documentclass{beamer}
+\graphicspath{{../graphics/}}
+\usepackage{listings}
+\usepackage{ulem}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage[linesnumbered]{algorithm2e}
+\usepackage{multicol}
+
+\newcommand{\linespace}{\vspace{1em}}
+
+\mode<presentation>
+{
+  \usetheme{Darmstadt}
+  \setbeamertemplate{footline}[frame number]
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamercovered{transparent}
+}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+        \frametitle{Content}
+        \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/show/hide]
+   \end{frame}
+}
+
+\usepackage[danish]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{times}
+
+\usepackage{tikz}
+\usepackage{multirow}
+
+\title[OHPAC]{Online Hotspot-based Predictions\\
+for Aalborg City Bike}
+
+\subtitle{SW701E14}
+
+\author[SW701E14]{
+Mikael Elkiær Christensen \\\and
+Alexander Drægert \\\and
+Mikkel Sandø Larsen \\\and
+Stefan Marstrand Getreuer Micheelsen \\\and
+Bruno Thalmann
+}
+
+\institute[Aalborg University]
+{
+  Software\\
+  Aalborg University}
+
+\date[CFP 2003]{January 28, 2015}
+
+\begin{document}
+
+% % % % % % % %
+% INTRODUCTION
+% % % % % % % %
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Content}
+    \tableofcontents[sectionstyle=show/show,subsectionstyle=hide/hide/hide]
+\end{frame}
+
+% % % % %
+% SLIDES
+% % % % %
+
+\input{slides/introduction}
+\input{slides/analysis}
+\input{slides/finding_hotspots}
+\input{slides/predicting_behaviour}
+\input{slides/demo}
+\input{slides/conclusion}
+
+\end{document}
