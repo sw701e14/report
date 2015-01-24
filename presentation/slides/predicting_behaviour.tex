@@ -1,7 +1,7 @@
 \section{Predicting Behaviour}
 \begin{frame}{The prediction problem}
 \begin{center}
-\item How much time will it take before a bike will be \emph{in a given hotspot}
+How much time will it take before a bike will be \emph{in a given hotspot}
 
 \includegraphics[width=0.8\linewidth]{graphics/biketime}
 \end{center}
@@ -16,4 +16,20 @@
 
 \begin{frame}{Departure state model}
 \input{slides/markov_model_complex}
+\end{frame}
+
+\subsection{Creating the model}
+
+\begin{frame}{}
+	
+\begin{center}
+We want to generate the model with data from the GPS receivers on the bikes
+	
+\includegraphics[width=0.8\linewidth]{graphics/build_the_model}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{The algorithm}
+\input{slides/generate_markov_algorithm}
 \end{frame}
