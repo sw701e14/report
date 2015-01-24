@@ -40,3 +40,37 @@ We want to generate the model with data from the GPS receivers on the bikes
 \begin{frame}{The algorithm}
 \input{slides/generate_markov_algorithm}
 \end{frame}
+
+\subsection{Predicting with the model}
+
+\begin{frame}{}
+	
+\begin{center}
+The initial distribution of bikes in the system
+
+\includegraphics[scale=0.7]{graphics/initialworld}
+	
+$ (8,2,6,0) $
+\end{center}
+\end{frame}
+
+\begin{frame}
+	
+\begin{center}	
+	
+$ P_i \times \tau_M = P_{i+1}$\\
+		
+		
+$$
+(8, 2, 6, 0)
+\begin{bmatrix}
+0.65 & 0.3 & 0.05 & 0\\
+0.1  & 0.6 & 0.3  & 0\\
+0.15 & 0   & 0.35 & 0.5\\
+0.2  & 0   & 0.1  & 0.7
+\end{bmatrix}
+=
+(6.3, 3.6, 3.1, 3)
+$$
+\end{center}
+\end{frame}
