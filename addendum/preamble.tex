@@ -1,0 +1,85 @@
+% Document class, language and encoding setup
+\documentclass[a4paper,twoside,12pt,english]{report}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Fixing the font issue
+\usepackage{ae,aecompl}
+
+%All empty pages have no page style
+\usepackage{emptypage}
+
+% Color package
+\PassOptionsToPackage{dvipsnames}{xcolor}
+	\RequirePackage{xcolor} % [dvipsnames] 
+	
+% Allows page-links in pdf file
+\usepackage{hyperref}
+\hypersetup{
+% Uncomment the line below to remove all links (to references, figures, tables, etc)
+%draft, 
+%colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,
+% Uncomment the line below if you want to have black links (e.g. for printing black and white)
+colorlinks=true, linktocpage=true, pdfborder={0 0 0}, 
+pdfstartpage=3, pdfstartview=FitV, hypertexnames=true, pdfhighlight=/O, 
+breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines, plainpages=false,
+bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,
+urlcolor=Black, linkcolor=Black, citecolor=Black,
+%------------------------------------------------
+% PDF file meta-information
+%pdftitle={\myTitle},
+%pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},
+%pdfsubject={},
+%pdfkeywords={},
+%pdfcreator={pdfLaTeX},
+%pdfproducer={LaTeX with hyperref and classicthesis}
+%------------------------------------------------
+}
+
+% Todo notes package and commands
+\usepackage[colorinlistoftodos]{todonotes}
+
+% Allows commands to emit a space "at the end"
+\usepackage{xspace}
+
+% Listings setup
+\usepackage{listings}
+
+% Algorithm2e
+\usepackage[lined,boxed,commentsnumbered,linesnumbered]{algorithm2e}
+
+% Graphics setup
+\usepackage{graphicx}
+\graphicspath{{./graphics/}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,positioning,shapes.geometric}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Clever references
+\usepackage{cleveref}
+
+% Named references
+\usepackage{nameref}
+
+% Bibliography
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{unsrtnat}
+
+% Force position [H]
+\usepackage{float}
+
+\usepackage{verbatim}
+
+% Additional commands
+\input{todonotes}
+\input{lstlisting}
+\input{commands}
+
+%Prevents weird stretching of short pages
+\raggedbottom
+
+
+\usepackage{multicol}

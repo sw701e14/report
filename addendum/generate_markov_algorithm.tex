@@ -1,0 +1,40 @@
+\def\HiLi{\leavevmode\rlap{\hbox to \hsize{\color{yellow!50}\leaders\hrule height .8\baselineskip depth .5ex\hfill}}}
+
+
+\scalebox{0.8}{
+	
+\begin{algorithm}[H]
+\SetAlgoNoEnd
+\textbf{CreateModel}($H, G, step$)\\
+Let $M$ be an empty $m \times m$ matrix with $m = 2|H|$ \\
+\ForEach{$b \in B$}
+	{
+	$g \leftarrow G(b).first$\\
+	$L(b) \leftarrow \textbf{NearestState}(H, g)$
+	}
+ Let $d \leftarrow G.first.date$\\
+Let $l \leftarrow G.last.date$\\
+\While{$d \leq l$}
+	{
+	\ForEach{$b \in B$}
+		{
+		$g \leftarrow G(b, d)$\\
+		$n \leftarrow \textbf{NearestState}(H, g)$\\
+		\If{$n \in D \wedge L(b) \in D$}
+			{
+		$n \leftarrow L(b)$
+			}
+		\ElseIf{$n \in D \wedge L(b) \in H$}
+			{
+			$n \leftarrow L(b).departure$
+			}
+			$ increment(M,L(b),n) $\\
+			$ L(b) \leftarrow n $
+		}
+	$d \leftarrow \text{Add}(d, step)$
+	}
+Normalize $M$\\
+\Return{M}
+\end{algorithm}
+
+}
