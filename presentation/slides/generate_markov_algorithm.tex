@@ -19,14 +19,14 @@ Let $l \leftarrow G.last.date$\\
 	\ForEach{$b \in B$}
 		{
 		$g \leftarrow G(b, d)$\\
-\HiLi		$n \leftarrow \textbf{NearestState}(H, g)$\\
-\HiLi		\If{$n \in D \wedge L(b) \in D$}
+		$n \leftarrow \textbf{NearestState}(H, g)$\\
+		\If{$n \in D \wedge L(b) \in D$}
 			{
-\HiLi		$n \leftarrow L(b)$
+		$n \leftarrow L(b)$
 			}
-\HiLi		\ElseIf{$n \in D \wedge L(b) \in H$}
+		\ElseIf{$n \in D \wedge L(b) \in H$}
 			{
-\HiLi			$n \leftarrow L(b).departure$
+			$n \leftarrow L(b).departure$
 			}
 		}
 	$d \leftarrow \text{Add}(d, step)$
