@@ -7,9 +7,10 @@
 
 \begin{itemize}
 \item GPS receiver on each bike
-\item GPS receiver sends:
+\item GPS receiver sends \textit{GPS location}:
   \begin{itemize}
-  \item location (lat,long)
+  \item latitude
+  \item longitude
   \item accuracy
   \item timestamp
   \end{itemize}
@@ -24,10 +25,28 @@
 \begin{frame}
 \frametitle{Google Directions}
 
+\begin{itemize}
+\item Generated routes, based on:
+  \begin{itemize}
+  \item Start and end address
+  \item Splitting generated route into 5 min. intervals
+  \item Randomly choosing next destination and wait time
+  \item GPS location perturbation
+  \end{itemize}
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Visualizer}
+
+\begin{itemize}
+\item Visualizer shows:
+  \begin{itemize}
+  \item GPS locations
+  \item Static GPS locations
+  \end{itemize}
+\end{itemize}
 
 \end{frame}
 
