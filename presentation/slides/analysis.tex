@@ -26,6 +26,7 @@ Take a citybike,
 \end{column}
 \end{columns}
 \end{frame}
+%NOTE mention interview and that it provided hardly anything new besides this
 
 % % % % % %
 % Aalborg City Bike facts
@@ -57,21 +58,13 @@ Take a citybike,
 \end{frame}
 
 % % % % % %
-% Interview and existing systems
-% % % % % %
-\begin{frame}
-\frametitle{Interview and existing systems}
-{\Huge ?}
-\end{frame}
-
-% % % % % %
 % Analysis summary
 % % % % % %
 \begin{frame}
 \frametitle{Analysis summary}
 \begin{columns}
 \begin{column}{.45\textwidth}
-\begin{block}{Problems\footnotemark}
+\begin{block}{Problems}
 \begin{enumerate}
 \item Bikes left outside stations
 \item Too few stations
@@ -83,7 +76,7 @@ Take a citybike,
 \end{block}
 \end{column}
 \begin{column}{.45\textwidth}
-\begin{block}{Limitations/requests\footnotemark[1]}
+\begin{block}{Limitations/requests}
 \begin{enumerate}
 \item No renting/booking system
 \item No specific target user group
@@ -93,8 +86,8 @@ Take a citybike,
 \end{block}
 \end{column}
 \end{columns}
-\footnotetext{Section 1.4.1, p. 10}
 \end{frame}
+%NOTE mention interview with regards to limitations/requests
 
 \subsection{Problem statement}
 
@@ -105,27 +98,29 @@ Take a citybike,
 \frametitle{Trivially solved}
 \begin{block}{Problems}
 \begin{enumerate}
-\item \textbf{Bikes left outside stations}
-\item \textbf{Too few stations}
-\item \textbf{Making short stops}
-\item \textbf{No bikes at station}
-\item No way of knowing when a bike will arrive
-\item \textbf{Broken bikes}
+\item<1> Bikes left outside stations
+\item<1> Too few stations
+\item<1> Making short stops
+\item<1> No bikes at station
+\item<2> No way of knowing when a bike will arrive
+\item<1> Broken bikes
 \end{enumerate}
 \end{block}
 \end{frame}
+%NOTE transition graying out changes between all-5 and 5
 
 % % % % % %
 % New problems
 % % % % % %
 \begin{frame}
 \frametitle{New problems}
-\begin{enumerate}
+\begin{itemize}
 \item Defining and identifying hotspots
 \item Modelling the usage and using the model for predictions
 \item Making the data available through a web service
-\end{enumerate}
+\end{itemize}
 \end{frame}
+%NOTE sub-points with more details about the problems
 
 % % % % % %
 % Solution
@@ -137,3 +132,4 @@ Take a citybike,
 \includegraphics[height=.9\textheight]{our_solution.pdf}
 
 \end{frame}
+%NOTE think about points to add
