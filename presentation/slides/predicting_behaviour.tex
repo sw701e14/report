@@ -45,16 +45,107 @@ We want to generate the model with data from the GPS receivers on the bikes
 
 \end{frame}
 
-\begin{frame}{The algorithm}
-\input{slides/generate_markov_algorithm}
+\begin{frame}{Locate the bike}
+	
+\begin{center}
+
+\includegraphics[width=\linewidth]{graphics/createmarkov_initial}
+
+
+$$
+\begin{bmatrix}
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{bmatrix}
+$$
+\end{center}
+	
+\end{frame}
+
+\begin{frame}{Track the route of the bike}
+	
+	\begin{center}
+		
+		\includegraphics[width=\linewidth]{graphics/createmarkov_firststep}
+		
+		
+		$$
+		\begin{bmatrix}
+		0 & 1 & 0 & 0\\
+		0 & 0 & 0 & 0\\
+		0 & 0 & 0 & 0\\
+		0 & 0 & 0 & 0
+		\end{bmatrix}
+		$$
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}{Track the route of the bike}
+	
+	\begin{center}
+		
+		\includegraphics[width=\linewidth]{graphics/createmarkov_firststep}
+		
+		
+		$$
+		\begin{bmatrix}
+		0 & 1 & 0 & 0\\
+		0 & 3 & 0 & 0\\
+		0 & 0 & 0 & 0\\
+		0 & 0 & 0 & 0
+		\end{bmatrix}
+		$$
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}{Track the route of the bike}
+	
+	\begin{center}
+		
+		\includegraphics[width=\linewidth]{graphics/createmarkov_laststep}
+		
+		
+		$$
+		\begin{bmatrix}
+		0 & 1 & 0 & 0\\
+		0 & 3 & 1 & 0\\
+		0 & 0 & 0 & 0\\
+		0 & 0 & 0 & 0
+		\end{bmatrix}
+		$$
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}{Normalize the matrix}
+	
+	\begin{center}
+		
+		\input{slides/markov_model_complex}
+		
+		
+		$$
+		\begin{bmatrix}
+			0.65 & 0.3 & 0.05 & 0\\
+			0.1  & 0.6 & 0.3  & 0\\
+			0.15 & 0   & 0.35 & 0.5\\
+			0.2  & 0   & 0.1  & 0.7
+		\end{bmatrix} 
+		$$
+		
+	\end{center}
+	
 \end{frame}
 
 \subsection{Predicting with the model}
 
-\begin{frame}{}
+\begin{frame}{Find the initial distribution}
 	
 \begin{center}
-The initial distribution of bikes in the system
 
 \includegraphics[scale=0.7]{graphics/initialworld2}
 	
