@@ -32,9 +32,10 @@
 
 \subsection{Reduction strategies}
 \subsubsection{Rectangle/Ellipse}
-%\subsubsection{Polygon}
-\subsubsection{Convex Hull/Polygon}
+\subsubsection{Polygon}
+\subsubsection{Convex Hull}
 \begin{frame}
+%For meget overlap.
 \frametitle{Reduction strategy - Rectangle/Ellipse}
 \begin{multicols}{2}
 	\begin{itemize}
@@ -48,39 +49,21 @@
 	\begin{itemize}
 		\item Disadvantages:
 		\begin{itemize}
-			\item Inaccurate
+			\item Very inaccurate
 			\linebreak
 		\end{itemize}
 	\end{itemize}
 \end{multicols}
 \include{slides/finding_hotspots_example_hotspot3}
 \end{frame}
-%\begin{frame}
-%\frametitle{Reduction strategy - Polygon}
-%\begin{multicols}{2}
-%	\begin{itemize}
-%		\item Advantages:
-%		\begin{itemize}
-%			\item Precise
-%		\end{itemize}
-%	\end{itemize}
-%\columnbreak
-%	\begin{itemize}
-%		\item Disadvantages:
-%		\begin{itemize}
-%			\item Difficult to determine correct polygon???
-%		\end{itemize}
-%	\end{itemize}
-%\end{multicols}
-%\include{slides/finding_hotspots_example_hotspot4}
-%\end{frame}
 \begin{frame}
-\frametitle{Reduction strategy - Convex Hull/Polygon}
+%For specifik - vores data er ikke præcis/sikker nok til at begrænse det så meget.
+\frametitle{Reduction strategy - Polygon}
 \begin{multicols}{2}
 	\begin{itemize}
 		\item Advantages:
 		\begin{itemize}
-			\item Accurate
+			\item Very accurate
 			\linebreak
 		\end{itemize}
 	\end{itemize}
@@ -88,10 +71,28 @@
 	\begin{itemize}
 		\item Disadvantages:
 		\begin{itemize}
-			\item Computational expensive?
-			\linebreak
+			\item No existing algorithm
+			\item Very accurate
 		\end{itemize}
 	\end{itemize}
 \end{multicols}
 \include{slides/finding_hotspots_example_hotspot4}
+\end{frame}
+\begin{frame}
+%Perfekt mellemvej mellem de to - stadig tilpas hurtig og præcis.
+\frametitle{Reduction strategy - Convex Hull}
+\begin{multicols}{2}
+	\begin{itemize}
+		\item Advantages:
+		\begin{itemize}
+			\item Sufficiently accurate
+			\item Multiple existing algorithms
+		\end{itemize}
+	\end{itemize}
+\columnbreak
+	\begin{itemize}
+		\item Disadvantages:
+	\end{itemize}
+\end{multicols}
+\include{slides/finding_hotspots_example_hotspot5}
 \end{frame}
