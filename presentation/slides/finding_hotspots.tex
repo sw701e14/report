@@ -1,31 +1,14 @@
 \section{Finding Hotspots}
 
 \subsection{Clustering}
-\subsubsection{General}
-\subsubsection{Data}
-\subsubsection{Noise}
+\subsubsection{Expected Data}
 \begin{frame}
-\frametitle{General}
+\frametitle{Expected Data}
 	\begin{itemize}
-		\item Because ...
+		\item Red point are static GPS data
 	\end{itemize}
+	\include{slides/finding_hotspots_example_hotspot1}
 \end{frame}	
-\begin{frame}
-\frametitle{Data}
-	\begin{center}
-		%Make better example picture with standards from program.
-		\includegraphics[scale=0.5]{graphics/pointtype-example}
-	\end{center}
-\end{frame}	
-\begin{frame}
-\frametitle{Noise}
-	\begin{center}
-		%Make example picture with noise points.
-		\includegraphics[scale=0.5]{graphics/pointtype-example}
-	\end{center}
-\end{frame}	
-
-\subsubsection{DBSCAN} %Partial Clustering? - from presentation notes.
 \begin{frame}
 \frametitle{Expected data}
 	\begin{itemize}
@@ -34,101 +17,81 @@
 		\item Partial - Need for expected outliers.
 		\item Density based - The number of data points is important.
 	\end{itemize}
+	\include{slides/finding_hotspots_example_hotspot2}
 \end{frame}	
+\subsubsection{DBSCAN} %Partial Clustering? - from presentation notes.
 \begin{frame}
 \frametitle{DBSCAN Parameters}
 	\begin{itemize}
-		\item Core points
-		\item Border points
-		\item Noise points
+		\item Min points
+		\item Eps
 	\end{itemize}
 \end{frame}	
 
 %Slide med de 2 parameter og hvordan vi sætter dem. Hvad de betyder etc.
 
 \subsection{Reduction strategies}
-\subsubsection{Other reduction strategies}
+\subsubsection{Rectangle/Ellipse}
+%\subsubsection{Polygon}
+\subsubsection{Convex Hull/Polygon}
 \begin{frame}
-\frametitle{Reduction strategy - Rectangle}
+\frametitle{Reduction strategy - Rectangle/Ellipse}
 \begin{multicols}{2}
 	\begin{itemize}
 		\item Advantages:
 		\begin{itemize}
-			\item Property ...
-		\end{itemize}
-		\item Disadvantages:
-		\begin{itemize}
-			\item Property ...
+			\item Simple
+			\item Fast
 		\end{itemize}
 	\end{itemize}
 \columnbreak
-	\begin{center}
-		%Images of Convex Hull vs Square
-		\includegraphics[scale=0.5]{graphics/convexHull-example}\\
-		\includegraphics[scale=0.5]{graphics/convexHull-example}
-	\end{center}
+	\begin{itemize}
+		\item Disadvantages:
+		\begin{itemize}
+			\item Inaccurate
+			\linebreak
+		\end{itemize}
+	\end{itemize}
 \end{multicols}
+\include{slides/finding_hotspots_example_hotspot3}
 \end{frame}
+%\begin{frame}
+%\frametitle{Reduction strategy - Polygon}
+%\begin{multicols}{2}
+%	\begin{itemize}
+%		\item Advantages:
+%		\begin{itemize}
+%			\item Precise
+%		\end{itemize}
+%	\end{itemize}
+%\columnbreak
+%	\begin{itemize}
+%		\item Disadvantages:
+%		\begin{itemize}
+%			\item Difficult to determine correct polygon???
+%		\end{itemize}
+%	\end{itemize}
+%\end{multicols}
+%\include{slides/finding_hotspots_example_hotspot4}
+%\end{frame}
 \begin{frame}
-\frametitle{Reduction strategy - Elipse}
+\frametitle{Reduction strategy - Convex Hull/Polygon}
 \begin{multicols}{2}
 	\begin{itemize}
 		\item Advantages:
 		\begin{itemize}
-			\item Property ...
-		\end{itemize}
-		\item Disadvantages:
-		\begin{itemize}
-			\item Property ...
+			\item Accurate
+			\linebreak
 		\end{itemize}
 	\end{itemize}
 \columnbreak
-	\begin{center}
-		%Images of Convex Hull vs Circle
-		\includegraphics[scale=0.5]{graphics/convexHull-example}\\
-		\includegraphics[scale=0.5]{graphics/convexHull-example}
-	\end{center}
-\end{multicols}
-\end{frame}	
-\begin{frame}
-\frametitle{Reduction strategy - Polygon}
-\begin{multicols}{2}
 	\begin{itemize}
-		\item Advantages:
-		\begin{itemize}
-			\item Property ...
-		\end{itemize}
 		\item Disadvantages:
 		\begin{itemize}
-			\item Property ...
+			\item Computational expensive?
+			\linebreak
 		\end{itemize}
 	\end{itemize}
-\columnbreak
-	\begin{center}
-		%Images of Convex Hull vs Polygon
-		\includegraphics[scale=0.5]{graphics/convexHull-example}\\
-		\includegraphics[scale=0.5]{graphics/convexHull-example}
-	\end{center}
 \end{multicols}
-\end{frame}
-\begin{frame}
-\frametitle{Reduction strategy - Convex Hull}
-\begin{multicols}{2}
-	\begin{itemize}
-		\item Advantages:
-		\begin{itemize}
-			\item Property ...
-		\end{itemize}
-		\item Disadvantages:
-		\begin{itemize}
-			\item Property ...
-		\end{itemize}
-	\end{itemize}
-\columnbreak
-	\begin{center}
-		%Images of Convex Hull vs Polygon
-		\includegraphics[scale=0.5]{graphics/convexHull-example}\\
-		\includegraphics[scale=0.5]{graphics/convexHull-example}
-	\end{center}
-\end{multicols}
+\include{slides/finding_hotspots_example_hotspot4}
 \end{frame}
