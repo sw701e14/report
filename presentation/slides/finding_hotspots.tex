@@ -12,23 +12,13 @@
 \begin{frame}
 \frametitle{Expected Data}
 	\begin{itemize}
-		\item Partitional - No need for hierarchies.
+		\item Partitional - No need for sub-clusters. %I reflektion siger vi modsat til søgning.
 		\item Exclusive - Separated clusters.
 		\item Partial - Need for expected outliers.
-		\item Density based - The number of data points is important.
+		\item Density based - Where bikes are parked for the longest time.
 	\end{itemize}
 	\include{slides/finding_hotspots_example_hotspot2}
 \end{frame}	
-\subsubsection{DBSCAN} %Partial Clustering? - from presentation notes.
-\begin{frame}
-\frametitle{DBSCAN Parameters}
-	\begin{itemize}
-		\item Min points
-		\item Eps
-	\end{itemize}
-\end{frame}	
-
-%Slide med de 2 parameter og hvordan vi sætter dem. Hvad de betyder etc.
 
 \subsection{Reduction strategies}
 \subsubsection{Rectangle/Ellipse}
@@ -56,28 +46,28 @@
 \end{multicols}
 \include{slides/finding_hotspots_example_hotspot3}
 \end{frame}
-\begin{frame}
-%For specifik - vores data er ikke præcis/sikker nok til at begrænse det så meget.
-\frametitle{Reduction strategy - Polygon}
-\begin{multicols}{2}
-	\begin{itemize}
-		\item Advantages:
-		\begin{itemize}
-			\item Very accurate
-			\linebreak
-		\end{itemize}
-	\end{itemize}
-\columnbreak
-	\begin{itemize}
-		\item Disadvantages:
-		\begin{itemize}
-			\item No existing algorithm
-			\item Very accurate
-		\end{itemize}
-	\end{itemize}
-\end{multicols}
-\include{slides/finding_hotspots_example_hotspot4}
-\end{frame}
+%\begin{frame}
+%%For specifik - vores data er ikke præcis/sikker nok til at begrænse det så meget.
+%\frametitle{Reduction strategy - Polygon}
+%\begin{multicols}{2}
+%	\begin{itemize}
+%		\item Advantages:
+%		\begin{itemize}
+%			\item Very accurate
+%			\linebreak
+%		\end{itemize}
+%	\end{itemize}
+%\columnbreak
+%	\begin{itemize}
+%		\item Disadvantages:
+%		\begin{itemize}
+%			\item No existing algorithm
+%			\item Very accurate
+%		\end{itemize}
+%	\end{itemize}
+%\end{multicols}
+%\include{slides/finding_hotspots_example_hotspot4}
+%\end{frame}
 \begin{frame}
 %Perfekt mellemvej mellem de to - stadig tilpas hurtig og præcis.
 \frametitle{Reduction strategy - Convex Hull}
@@ -85,7 +75,7 @@
 	\begin{itemize}
 		\item Advantages:
 		\begin{itemize}
-			\item Sufficiently accurate
+			\item \textit{Sufficiently} accurate
 			\item Multiple existing algorithms
 		\end{itemize}
 	\end{itemize}
