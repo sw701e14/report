@@ -8,7 +8,7 @@
 \begin{frame}
 \frametitle{Aalborg City Bike as basis}
 \begin{columns}
-\begin{column}{.45\textwidth}
+\begin{column}{.5\textwidth}
 \begin{block}{From aalborgbycyklen.dk:}
 Take a citybike,
 \begin{itemize}
@@ -18,7 +18,7 @@ Take a citybike,
 \end{itemize}
 \end{block}
 \end{column}
-\begin{column}{.45\textwidth}
+\begin{column}{.5\textwidth}
 \begin{figure}
 \includegraphics[width=\textwidth]{graphics/acb_bike}
 \caption{An Aalborg City Bike (aalborgbycyklen.dk)}
@@ -34,7 +34,7 @@ Take a citybike,
 \begin{frame}
 \frametitle{Aalborg City Bike facts}
 \begin{columns}
-\begin{column}{.44\textwidth}
+\begin{column}{.5\textwidth}
 \begin{itemize}
 \item 200 bikes
 \begin{itemize}
@@ -48,7 +48,7 @@ Take a citybike,
 \item Unlock with 20 DKK coin, re-locking returns the coin
 \end{itemize}
 \end{column}
-\begin{column}{.44\textwidth}
+\begin{column}{.5\textwidth}
 \begin{figure}
 \includegraphics[width=\textwidth]{graphics/acb_gmaps}
 \caption{Map of all bike stations in Aalborg/Nørresundby Area (aalborgbycyklen.dk)}
@@ -63,7 +63,7 @@ Take a citybike,
 \begin{frame}
 \frametitle{Analysis summary}
 \begin{columns}
-\begin{column}{.45\textwidth}
+\begin{column}{.5\textwidth}
 \begin{block}{Problems}
 \begin{enumerate}
 \item Bikes left outside stations
@@ -75,7 +75,7 @@ Take a citybike,
 \end{enumerate}
 \end{block}
 \end{column}
-\begin{column}{.45\textwidth}
+\begin{column}{.5\textwidth}
 \begin{block}{Limitations/requests}
 \begin{enumerate}
 \item No renting/booking system
@@ -107,7 +107,6 @@ Take a citybike,
 \end{enumerate}
 \end{block}
 \end{frame}
-%NOTE transition graying out changes between all-5 and 5
 
 % % % % % %
 % New problems
@@ -127,9 +126,26 @@ Take a citybike,
 % % % % % %
 \begin{frame}
 \frametitle{Solution}
-
+\begin{columns}
+\begin{column}{.35\textwidth}
+\begin{itemize}
+\item Location Service
+\begin{itemize}
+\item Receives GPS data
+\end{itemize}
+\item Model Updater
+\begin{itemize}
+\item Updates model, based on latest GPS data
+\end{itemize}
+\item Web Service
+\begin{itemize}
+\item Makes available predictions
+\end{itemize}
+\end{itemize}
+\end{column}
+\begin{column}{.65\textwidth}
 \centering
 \includegraphics[height=.9\textheight]{our_solution.pdf}
-
+\end{column}
+\end{columns}
 \end{frame}
-%NOTE think about points to add
