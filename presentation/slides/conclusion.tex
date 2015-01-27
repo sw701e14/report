@@ -8,7 +8,7 @@ We have taken several precautions when generating data:
 \item Pertubation of GPS data
 \item Randomized GPS-update-time
 \end{itemize}
-Introduced to enforce the development of a system capable of dealing with data-variation\\
+Introduced to enforce the development of a system capable of dealing with data-variation\\\vspace{1em}
 Randomization is based on even probability distribution
 \begin{itemize}
 \item Convergence of generated data
@@ -57,21 +57,42 @@ None are supported by current API
 %\subsection{API Access Levels}
 \subsection{Spatial Querying}
 \begin{frame}{Data structure}{}
-{
-\setbeamercolor{block title}{use=structure,fg=white,bg=purple!75!black}
-\begin{block}{Problem:}
-Determining hotspot for a GPS point is inefficient.
-\end{block}
-}
-\begin{block}{Solution 1:}
-Apply a different clustering algorithm that performs hierarchical clustering.
-\end{block}
-\begin{block}{Solution 2:}
-Organize hotspots in a structure optimized for spatial queries such as an R-Tree.
-\end{block}
+Determining which hotspot contains a specific GPS location:
+\begin{itemize}
+\item Test each hotspot iteratively
+\end{itemize}
+\vspace{1em}
+Optimized by organizing hotspots in a structure optimized for spatial queries such as an R-Tree.\\
+\vspace{1em}
+Impacts queries and model construction.
 \end{frame}
 
 \subsection{Multiple Models}
-\begin{frame}{Incomplete}
-When to create new models?
+\begin{frame}{A single prediction model}
+The current system uses a single model as a proof of concept.\\
+\vspace{1em}
+The use of the system is expected to vary
+\begin{itemize}
+\item Change in users
+\item New buildings (shops, apartments, education etc.)
+\item Different times of year
+\end{itemize}
+\vspace{1em}
+One model will not suffice.
+\end{frame}
+
+\begin{frame}{Multiple prediction models}
+Models can be re-created at a given interval:
+\begin{itemize}
+\item Every week
+\item Every month
+\item Every year
+\end{itemize}
+\vspace{1em}
+Multiple models can represent different conditions:
+\begin{itemize}
+\item Holidays / weekends
+\item Time of day
+\item Weather
+\end{itemize}
 \end{frame}
